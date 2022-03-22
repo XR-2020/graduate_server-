@@ -1,7 +1,7 @@
 package com.example.graduate_sever.service.impl;
 
 import com.example.graduate_sever.Dao.chanxueyanMapper;
-import com.example.graduate_sever.common.DTO.ChanXueYanDTO;
+import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.JsonBean;
 import com.example.graduate_sever.common.People;
 import com.example.graduate_sever.common.ResVO;
@@ -19,7 +19,7 @@ public class ChanXueYanimpl implements ChanXueYanService {
     @Autowired
     private chanxueyanMapper chanxueyanMapper;
     @Override
-    public ResVO selectAll(ChanXueYanDTO chanXueYanDTO) {
+    public ResVO selectAll(DTO chanXueYanDTO) {
         List<Object> list=chanxueyanMapper.getAll(chanXueYanDTO).get(0);
         long total= (long)chanxueyanMapper.getAll(chanXueYanDTO).get(1).get(0);
         System.out.println(total);
@@ -27,9 +27,10 @@ public class ChanXueYanimpl implements ChanXueYanService {
     }
 
     @Override
-    public ResVO getSearchChanXueYan(ChanXueYanDTO chanXueYanDTO) {
-        List<Object> list=chanxueyanMapper.getSearchChanXueYan(chanXueYanDTO).get(0);
-        long total= (long)chanxueyanMapper.getSearchChanXueYan(chanXueYanDTO).get(1).get(0);
+    public ResVO getSearchChanXueYan(DTO chanXueYanDTO) {
+        List<List<Object>>data=chanxueyanMapper.getSearchChanXueYan(chanXueYanDTO);
+        List<Object> list=data.get(0);
+        long total= (long)data.get(1).get(0);
         System.out.println(total);
         return new ResVO(list,total);
     }

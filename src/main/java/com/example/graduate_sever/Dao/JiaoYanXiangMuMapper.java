@@ -1,4 +1,5 @@
 package com.example.graduate_sever.Dao;
+
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.People;
 import org.apache.ibatis.annotations.Mapper;
@@ -8,14 +9,14 @@ import java.util.List;
 
 @Mapper
 @Repository
-public interface chanxueyanMapper {
+public interface JiaoYanXiangMuMapper {
 
-    List<List<Object>> getAll(DTO chanXueYanDTO);
+    List<List<Object>> getAllJiaoYan(DTO jiaoYanXiangMuDTO);
 
-    List<List<Object>> getSearchChanXueYan(DTO chanXueYanDTO);
+    List<List<Object>> getSearchJiaoYan(DTO jiaoYanXiangMuDTO);
 
-    void deleteOneChanXueYan(int id);
+    void deleteOneJiaoYan(int id);
 
-    List<People> getChanXueYanDetail(Integer id);
+    List<People> getJiaoYanDetail(Integer id);
 
 }

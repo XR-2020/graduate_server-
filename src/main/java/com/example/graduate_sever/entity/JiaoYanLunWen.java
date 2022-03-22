@@ -15,13 +15,21 @@ import java.io.Serializable;
 public class JiaoYanLunWen implements Serializable {
     private static final long serialVersionUID=1L;
 
-
     private Integer id;
     private Integer status;
     private String finishtime;
     private String partment;
     private String name;
     private Integer badge;
+    private String tea_name;
+
+    public String getTea_name() {
+        return tea_name;
+    }
+
+    public void setTea_name(String tea_name) {
+        this.tea_name = tea_name;
+    }
 
     public Integer getBadge() {
         return badge;

@@ -1,7 +1,7 @@
 package com.example.graduate_sever.controller;
 
 
-import com.example.graduate_sever.common.DTO.ChanXueYanDTO;
+import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.JsonBean;
 import com.example.graduate_sever.common.ResVO;
 import com.example.graduate_sever.service.ChanXueYanService;
@@ -15,12 +15,12 @@ public class ChanXueYan {
     private ChanXueYanService chanXueYanService;
 
     @GetMapping("/getAllChanXueYan")
-    public ResVO getAllChanXueYan(ChanXueYanDTO chanXueYanDTO){
+    public ResVO getAllChanXueYan(DTO chanXueYanDTO){
         return chanXueYanService.selectAll(chanXueYanDTO);
     }
 
     @GetMapping("/getSearchChanXueYan")
-    public ResVO getSearchChanXueYan(ChanXueYanDTO chanXueYanDTO){
+    public ResVO getSearchChanXueYan(DTO chanXueYanDTO){
         System.out.println(chanXueYanDTO.getKey()+"______"+chanXueYanDTO.getPageIndex()+"_______"+chanXueYanDTO.getPageSize());
         return chanXueYanService.getSearchChanXueYan(chanXueYanDTO);}
 

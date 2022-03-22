@@ -3,7 +3,7 @@ package com.example.graduate_sever.common.DTO;
 /**
  * 用来接收前端查询的实例类
  * **/
-public class ChanXueYanDTO {
+public class DTO {
    private String key;
    private Integer pageIndex;
    private Integer pageSize ;
