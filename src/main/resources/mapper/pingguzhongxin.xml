@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.graduate_sever.Dao.JiaoYanXiangMuMapper">
+    <mapper namespace="com.example.graduate_sever.Dao.PingGuZhongXinMapper">
     <!--实体映射-->
     <resultMap id="PingGuZhongXin" type="com.example.graduate_sever.entity.PingGuZhongXinXiangGuan">
         <id column="id" jdbcType="INTEGER" property="id"/>
@@ -10,32 +10,33 @@
         <result column="partment" jdbcType="VARCHAR" property="partment"/>
         <result column="badge" jdbcType="INTEGER" property="badge"/>
         <result column="tea_name" jdbcType="VARCHAR" property="tea_name"/>
+        <result column="grade" jdbcType="VARCHAR" property="grade"/>
     </resultMap>
     <!--参与人映射-->
-    <resultMap id="people" type="com.example.graduate_sever.common.People">
+    <resultMap id="PingGuZhongXin_people" type="com.example.graduate_sever.common.People">
         <result column="badeg" jdbcType="INTEGER" javaType="int" property="badge"/>
         <result column="tea_name" jdbcType="VARCHAR" javaType="string" property="name"/>
     </resultMap>
-    <resultMap id="count" type="java.lang.Long"/>
+    <resultMap id="count8" type="java.lang.Long"/>
     <!--查询教研项目所有成果-->
     <!--application.yml 中通过 type-aliases-package 指定了实体类的为了，因此-->
-    <select id="getAllPingGuZhongXin" resultType="PingGuZhongXin,count">
+    <select id="getAllPingGuZhongXin" resultMap="PingGuZhongXin,count8">
         <bind name="beginIndex" value="(pageIndex-1)*pageSize"></bind>
-        select pingguzhongxinxiangguan.*,teacher.tea_name from pingguzhongxinxiangguan,teacher where status=1 and pingguzhongxinxiangguan.badge=teacher.badeg limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER};
+        select pingguzhongxinxiangguan.*,teacher.tea_name from pingguzhongxinxiangguan,teacher where status=1 and pingguzhongxinxiangguan.badge=teacher.badeg limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER};select found_rows() count8;
     </select>
     <!--删除一个教研项目-->
     <delete id="deleteOnePingGuZhongXin">
         delete * from pingguzhongxinxiangguan where pingguzhongxinxiangguan.id=#{id}
     </delete>
     <!--查询指定教研项目成果人员信息-->
-    <select id="getPingGuZhongXinDetail" parameterType="java.lang.Integer" resultMap="people">
+    <select id="getPingGuZhongXinDetail" parameterType="java.lang.Integer" resultMap="PingGuZhongXin_people">
         select teacher.tea_name,teacher.badeg from participation,teacher where participation.badge=teacher.badeg and participation.ach_id=#{id} and participation.type=4
     </select>
     <!--教研项目成果全局模糊查询-->
-    <select id="getSearchPingGuZhongXin" resultMap="PingGuZhongXin,count">
+    <select id="getSearchPingGuZhongXin" resultMap="PingGuZhongXin,count8">
         <bind name="beginIndex" value="(pageIndex-1)*pageSize"></bind>
         select c.*,t.tea_name from pingguzhongxinxiangguan c,teacher t
-        where status=1 and c.badge=t.badeg and CONCAT(c.id,t.tea_name,c.badge,c.partment,c.name,c.finishtime,c.status) LIKE CONCAT('%',#{key},'%') limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER};select found_rows() count;
+        where status=1 and c.badge=t.badeg and CONCAT(c.id,t.tea_name,c.badge,c.partment,c.name,c.finishtime,c.status) LIKE CONCAT('%',#{key},'%') limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER};select found_rows() count8;
     </select>
 </mapper>
 

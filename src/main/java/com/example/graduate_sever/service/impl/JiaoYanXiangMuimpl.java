@@ -13,10 +13,10 @@ import java.util.List;
 @Service("JiaoYanXiangMuService")
 public class JiaoYanXiangMuimpl implements JiaoYanXiangMuService {
     @Autowired
-    private JiaoYanXiangMuMapper jiaoYanXiangMuMapper;
+    private JiaoYanXiangMuMapper mapper;
     @Override
-    public ResVO getAllJiaoYan(DTO jiaoYanXiangMuDTO) {
-        List<List<Object>>data=jiaoYanXiangMuMapper.getAllJiaoYan(jiaoYanXiangMuDTO);
+    public ResVO getAllJiaoYan(DTO dTO) {
+        List<List<Object>>data=mapper.getAllJiaoYan(dTO);
         List<Object> list=data.get(0);
         long total= (long)data.get(1).get(0);
         System.out.println(total);
@@ -24,8 +24,8 @@ public class JiaoYanXiangMuimpl implements JiaoYanXiangMuService {
     }
 
     @Override
-    public ResVO getSearchJiaoYan(DTO jiaoYanXiangMuDTO) {
-        List<List<Object>>data=jiaoYanXiangMuMapper.getSearchJiaoYan(jiaoYanXiangMuDTO);
+    public ResVO getSearchJiaoYan(DTO dTO) {
+        List<List<Object>>data=mapper.getSearchJiaoYan(dTO);
         List<Object> list=data.get(0);
         long total= (long)data.get(1).get(0);
         System.out.println(total);
@@ -35,19 +35,19 @@ public class JiaoYanXiangMuimpl implements JiaoYanXiangMuService {
     @Override
     public JsonBean deleteJiaoYan(int[] ids) {
         for (int id:ids) {
-            jiaoYanXiangMuMapper.deleteOneJiaoYan(id);
+            mapper.deleteOneJiaoYan(id);
         }
         return new JsonBean(200,"","");
     }
 
     @Override
     public JsonBean deleteOneJiaoYan(Integer id) {
-        jiaoYanXiangMuMapper.deleteOneJiaoYan(id);
+        mapper.deleteOneJiaoYan(id);
         return new JsonBean(200,"","");
     }
 
     @Override
     public JsonBean getJiaoYanDetial(Integer id) {
-        return new JsonBean(200,"",jiaoYanXiangMuMapper.getJiaoYanDetail(id));
+        return new JsonBean(200,"",mapper.getJiaoYanDetail(id));
     }
 }

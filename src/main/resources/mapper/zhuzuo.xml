@@ -12,30 +12,30 @@
         <result column="tea_name" jdbcType="VARCHAR" property="tea_name"/>
     </resultMap>
     <!--参与人映射-->
-    <resultMap id="people" type="com.example.graduate_sever.common.People">
+    <resultMap id="ZhuZuo_people" type="com.example.graduate_sever.common.People">
         <result column="badeg" jdbcType="INTEGER" javaType="int" property="badge"/>
         <result column="tea_name" jdbcType="VARCHAR" javaType="string" property="name"/>
     </resultMap>
-    <resultMap id="count" type="java.lang.Long"/>
+    <resultMap id="count11" type="java.lang.Long"/>
     <!--查询教研项目所有成果-->
     <!--application.yml 中通过 type-aliases-package 指定了实体类的为了，因此-->
-    <select id="getAllZhuZuo" resultType="ZhuZuo,count">
+    <select id="getAllZhuZuo" resultMap="ZhuZuo,count11">
         <bind name="beginIndex" value="(pageIndex-1)*pageSize"></bind>
-        select zhuzuo.*,teacher.tea_name from zhuzuo,teacher where status=1 and zhuzuo.badge=teacher.badeg limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER};
+        select zhuzuo.*,teacher.tea_name from zhuzuo,teacher where status=1 and zhuzuo.badge=teacher.badeg limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER};select found_rows() count11;
     </select>
     <!--删除一个教研项目-->
     <delete id="deleteOneZhuZuo">
         delete * from zhuzuo where zhuzuo.id=#{id}
     </delete>
     <!--查询指定教研项目成果人员信息-->
-    <select id="getZhuZuoDetail" parameterType="java.lang.Integer" resultMap="people">
+    <select id="getZhuZuoDetail" parameterType="java.lang.Integer" resultMap="ZhuZuo_people">
         select teacher.tea_name,teacher.badeg from participation,teacher where participation.badge=teacher.badeg and participation.ach_id=#{id} and participation.type=9
     </select>
     <!--教研项目成果全局模糊查询-->
-    <select id="getSearchZhuZuo" resultMap="ZhuZuo,count">
+    <select id="getSearchZhuZuo" resultMap="ZhuZuo,count11">
         <bind name="beginIndex" value="(pageIndex-1)*pageSize"></bind>
         select c.*,t.tea_name from zhuzuo c,teacher t
-        where status=1 and c.badge=t.badeg and CONCAT(c.id,t.tea_name,c.badge,c.partment,c.name,c.finishtime,c.status) LIKE CONCAT('%',#{key},'%') limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER};select found_rows() count;
+        where status=1 and c.badge=t.badeg and CONCAT(c.id,t.tea_name,c.badge,c.partment,c.name,c.finishtime,c.status) LIKE CONCAT('%',#{key},'%') limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER};select found_rows() count11;
     </select>
 </mapper>
 

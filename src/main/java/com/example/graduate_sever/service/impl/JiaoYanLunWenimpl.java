@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service("JiaoYanXiangMuService")
+@Service("JiaoYanLunWenMuService")
 public class JiaoYanLunWenimpl implements JiaoYanLunWenMuService {
     @Autowired
     private JiaoYanLunWenMapper jiaoYanLunWenMapper;

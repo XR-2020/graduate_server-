@@ -1,6 +1,6 @@
 package com.example.graduate_sever.service.impl;
 
-import com.example.graduate_sever.Dao.chanxueyanMapper;
+import com.example.graduate_sever.Dao.ChanXueYanMapper;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.JsonBean;
 import com.example.graduate_sever.common.People;
@@ -13,15 +13,15 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
-
 @Service("ChanXueYanService")
 public class ChanXueYanimpl implements ChanXueYanService {
     @Autowired
-    private chanxueyanMapper chanxueyanMapper;
+    private ChanXueYanMapper chanxueyanMapper;
     @Override
     public ResVO selectAll(DTO chanXueYanDTO) {
-        List<Object> list=chanxueyanMapper.getAll(chanXueYanDTO).get(0);
-        long total= (long)chanxueyanMapper.getAll(chanXueYanDTO).get(1).get(0);
+        List<List<Object>>data=chanxueyanMapper.getAll(chanXueYanDTO);
+        List<Object> list=data.get(0);
+        long total= (long)data.get(1).get(0);
         System.out.println(total);
         return new ResVO(list,total);
     }

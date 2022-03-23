@@ -8,7 +8,7 @@ import java.util.List;
 
 @Mapper
 @Repository
-public interface chanxueyanMapper {
+public interface ChanXueYanMapper {
 
     List<List<Object>> getAll(DTO chanXueYanDTO);
 

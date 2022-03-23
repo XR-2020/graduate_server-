@@ -11,12 +11,12 @@ import java.util.List;
 @Repository
 public interface JiaoYuGuiHuaMapper {
 
-    List<List<Object>> getAllPingGuZhongXin(DTO jiaoYanXiangMuDTO);
+    List<List<Object>> getAllJiaoYuGuiHua(DTO jiaoYanXiangMuDTO);
 
-    List<List<Object>> getSearchPingGuZhongXin(DTO jiaoYanXiangMuDTO);
+    List<List<Object>> getSearchJiaoYuGuiHua(DTO jiaoYanXiangMuDTO);
 
-    void deleteOnePingGuZhongXin(int id);
+    void deleteOneJiaoYuGuiHua(int id);
 
-    List<People> getPingGuZhongXinDetail(Integer id);
+    List<People> getJiaoYuGuiHuaDetail(Integer id);
 
 }

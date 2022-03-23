@@ -18,7 +18,7 @@ public class JiaoYuGuiHuaimpl implements JiaoYuGuiHuaService {
     private JiaoYuGuiHuaMapper mapper;
     @Override
     public ResVO getAllJiaoYuGuiHua(DTO dTO) {
-        List<List<Object>>data=mapper.getAllPingGuZhongXin(dTO);
+        List<List<Object>>data=mapper.getAllJiaoYuGuiHua(dTO);
         List<Object> list=data.get(0);
         long total= (long)data.get(1).get(0);
         System.out.println(total);
@@ -27,7 +27,7 @@ public class JiaoYuGuiHuaimpl implements JiaoYuGuiHuaService {
 
     @Override
     public ResVO getSearchJiaoYuGuiHua(DTO dTO) {
-        List<List<Object>>data=mapper.getSearchPingGuZhongXin(dTO);
+        List<List<Object>>data=mapper.getSearchJiaoYuGuiHua(dTO);
         List<Object> list=data.get(0);
         long total= (long)data.get(1).get(0);
         System.out.println(total);
@@ -37,19 +37,19 @@ public class JiaoYuGuiHuaimpl implements JiaoYuGuiHuaService {
     @Override
     public JsonBean deleteJiaoYuGuiHua(int[] ids) {
         for (int id:ids) {
-            mapper.deleteOnePingGuZhongXin(id);
+            mapper.deleteOneJiaoYuGuiHua(id);
         }
         return new JsonBean(200,"","");
     }
 
     @Override
     public JsonBean deleteOneJiaoYuGuiHua(Integer id) {
-        mapper.deleteOnePingGuZhongXin(id);
+        mapper.deleteOneJiaoYuGuiHua(id);
         return new JsonBean(200,"","");
     }
 
     @Override
     public JsonBean getJiaoYuGuiHuaDetial(Integer id) {
-        return new JsonBean(200,"",mapper.getPingGuZhongXinDetail(id));
+        return new JsonBean(200,"",mapper.getJiaoYuGuiHuaDetail(id));
     }
 }
