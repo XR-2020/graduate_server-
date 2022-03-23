@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.graduate_sever.Dao.KeYanLunWenMapper">
+    <!--产学研实体映射-->
+    <resultMap id="KeYanLunWen" type="com.example.graduate_sever.entity.KeYanLunWen">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="finishtime" jdbcType="VARCHAR" property="finishtime"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="partment" jdbcType="VARCHAR" property="partment"/>
+        <result column="badge" jdbcType="INTEGER" property="badge"/>
+        <result column="tea_name" jdbcType="VARCHAR" property="tea_name"/>
+    </resultMap>
+    <!--参与人映射-->
+    <resultMap id="people" type="com.example.graduate_sever.common.People">
+        <result column="badeg" jdbcType="INTEGER" javaType="int" property="badge"/>
+        <result column="tea_name" jdbcType="VARCHAR" javaType="string" property="name"/>
+    </resultMap>
+    <resultMap id="count" type="java.lang.Long"/>
+    <!--查询产学研所有成果-->
+    <!--application.yml 中通过 type-aliases-package 指定了实体类的为了，因此-->
+    <select id="getAllKeYanLunWen" resultType="KeYanLunWen,count">
+        <bind name="beginIndex" value="(pageIndex-1)*pageSize"></bind>
+        select keyanlunwen.*,teacher.tea_name from keyanlunwen,teacher where status=1 and keyanlunwen.badge=teacher.badeg limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER};
+    </select>
+    <!--删除一个产学研成果-->
+    <delete id="deleteOneKeYanLunWen">
+        delete * from keyanlunwen where keyanlunwen.id=#{id}
+    </delete>
+    <!--查询指定产学研成果人员信息-->
+    <select id="getKeYanLunWenDetail" parameterType="java.lang.Integer" resultMap="people">
+        select teacher.tea_name,teacher.badeg from participation,teacher where participation.badge=teacher.badeg and participation.ach_id=#{id} and participation.type=10
+    </select>
+    <!--产学研成果全局模糊查询-->
+    <select id="getSearchKeYanLunWen" resultMap="KeYanLunWen,count">
+        <bind name="beginIndex" value="(pageIndex-1)*pageSize"></bind>
+        select c.*,t.tea_name from keyanlunwen c,teacher t
+        where status=1 and c.badge=t.badeg and CONCAT(c.id,t.tea_name,c.badge,c.partment,c.name,c.finishtime,c.status) LIKE CONCAT('%',#{key},'%') limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER};select found_rows() count;
+    </select>
+</mapper>
+

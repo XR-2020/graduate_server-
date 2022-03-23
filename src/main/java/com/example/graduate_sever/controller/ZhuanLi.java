@@ -14,28 +14,28 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ZhuanLi {
     @Autowired
-    private ZhuanLiService zhuanLiService;
+    private ZhuanLiService service;
 
     @GetMapping("/getAllZhuanLi")
     public ResVO getAllJiaoYuGuiHua(DTO dTO){
-        return zhuanLiService.getAllZhuanLi(dTO);
+        return service.getAllZhuanLi(dTO);
     }
 
     @GetMapping("/getSearchZhuanLi")
     public ResVO getSearchJiaoYuGuiHua(DTO dTO){
 //        System.out.println(chanXueYanDTO.getKey()+"______"+chanXueYanDTO.getPageIndex()+"_______"+chanXueYanDTO.getPageSize());
-        return zhuanLiService.getSearchZhuanLi(dTO);}
+        return service.getSearchZhuanLi(dTO);}
 
     @PostMapping("/deleteZhuanLi")
-    public JsonBean deleteJiaoYuGuiHua(int[] ids){return  zhuanLiService.deleteZhuanLi(ids);}
+    public JsonBean deleteJiaoYuGuiHua(int[] ids){return  service.deleteZhuanLi(ids);}
 
     @PostMapping("/deleteOneZhuanLi")
-    public  JsonBean deleteOnePingGuZhongXin(Integer id){return zhuanLiService.deleteOneZhuanLi(id);}
+    public  JsonBean deleteOnePingGuZhongXin(Integer id){return service.deleteOneZhuanLi(id);}
 
     @GetMapping("/getZhuanLiDetail")
     public JsonBean getPingGuZhongXinDetail(Integer id){
         System.out.println(id);
 
-        return zhuanLiService.getZhuanLiDetial(id);}
+        return service.getZhuanLiDetial(id);}
 
 }
