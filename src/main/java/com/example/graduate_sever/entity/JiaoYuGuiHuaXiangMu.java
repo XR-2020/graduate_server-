@@ -19,12 +19,37 @@ public class JiaoYuGuiHuaXiangMu implements Serializable {
     private Integer id;
     private Integer status;
     private String finishtime;
-    private String lianghua;
-    private String wenhao;
     private String partment;
     private String name;
     private Integer badge;
     private String tea_name;
+    private String grade;
+    private String level;
+    private String danwei;
+
+    public String getGrade() {
+        return grade;
+    }
+
+    public void setGrade(String grade) {
+        this.grade = grade;
+    }
+
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
+    }
+
+    public String getDanwei() {
+        return danwei;
+    }
+
+    public void setDanwei(String danwei) {
+        this.danwei = danwei;
+    }
 
     public String getTea_name() {
         return tea_name;
@@ -65,22 +90,6 @@ public class JiaoYuGuiHuaXiangMu implements Serializable {
 
     public void setFinishtime(String finishtime) {
         this.finishtime = finishtime;
-    }
-
-    public String getLianghua() {
-        return lianghua;
-    }
-
-    public void setLianghua(String lianghua) {
-        this.lianghua = lianghua;
-    }
-
-    public String getWenhao() {
-        return wenhao;
-    }
-
-    public void setWenhao(String wenhao) {
-        this.wenhao = wenhao;
     }
 
     public String getPartment() {

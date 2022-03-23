@@ -17,10 +17,19 @@ public class PingGuZhongXinXiangGuan implements Serializable {
     private Integer id;
     private Integer status;
     private String finishtime;
+    private String grade;
     private String partment;
     private String name;
     private Integer badge;
     private String tea_name;
+
+    public String getGrade() {
+        return grade;
+    }
+
+    public void setGrade(String grade) {
+        this.grade = grade;
+    }
 
     public String getTea_name() {
         return tea_name;

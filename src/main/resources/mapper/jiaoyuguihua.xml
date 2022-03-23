@@ -6,12 +6,13 @@
         <id column="id" jdbcType="INTEGER" property="id"/>
         <result column="status" jdbcType="INTEGER" property="status"/>
         <result column="finishtime" jdbcType="VARCHAR" property="finishtime"/>
-        <result column="lianghua" jdbcType="VARCHAR" property="lianghua"/>
-        <result column="wenhao" jdbcType="VARCHAR" property="wenhao"/>
+        <result column="level" jdbcType="VARCHAR" property="level"/>
+        <result column="danwei" jdbcType="VARCHAR" property="danwei"/>
         <result column="name" jdbcType="VARCHAR" property="name"/>
         <result column="partment" jdbcType="VARCHAR" property="partment"/>
         <result column="badge" jdbcType="INTEGER" property="badge"/>
         <result column="tea_name" jdbcType="VARCHAR" property="tea_name"/>
+        <result column="grade" jdbcType="VARCHAR" property="grade"/>
     </resultMap>
     <!--参与人映射-->
     <resultMap id="JiaoYuGuiHua_people" type="com.example.graduate_sever.common.People">
