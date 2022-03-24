@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.graduate_sever.Dao.ChanXueYanMapper">
     <!--产学研实体映射-->
-    <resultMap id="ChanXueYan" type="com.example.graduate_sever.entity.ChanXueYan">
+    <resultMap id="ChanXueYan" type="com.example.graduate_sever.model.ChanXueYan">
         <id column="id" jdbcType="INTEGER" property="id"/>
         <result column="status" jdbcType="INTEGER" property="status"/>
         <result column="finishtime" jdbcType="VARCHAR" property="finishtime"/>
@@ -39,5 +39,9 @@
         select c.*,t.tea_name from chanxueyan c,teacher t
         where status=1 and c.badge=t.badeg and CONCAT(c.id,t.tea_name,c.badge,c.partment,c.name,c.wenhao,c.lianghua,c.finishtime,c.status) LIKE CONCAT('%',#{key},'%') limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER};select found_rows() ChanXueYan_count;
     </select>
+    
+    <insert id="insertChanXueYan" parameterType="com.example.graduate_sever.entity.ChanXueYanEntity" useGeneratedKeys="true">
+        INSERT INTO chanxueyan (`status`, `finishtime`, `lianghua`, `wenhao`, `name`, `partment`, `badge`) VALUES (#{status,jdbcType=INTEGER},#{finishtime,jdbcType=VARCHAR},#{lianghua,jdbcType=VARCHAR},#{wenhao,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR},#{partment,jdbcType=VARCHAR},#{badge,jdbcType=INTEGER})
+    </insert>
 </mapper>
 

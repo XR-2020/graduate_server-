@@ -1,55 +1,23 @@
-package com.example.graduate_sever.entity;
+package com.example.graduate_sever.model;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.experimental.Accessors;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
 import java.io.Serializable;
 
 /*
-* 教育规划项目实体
+* 纵向科研项目实体
 * */
-
-public class JiaoYuGuiHuaXiangMu implements Serializable {
+public class ZongXiangKeYanXiangMu implements Serializable {
     private static final long serialVersionUID=1L;
-
 
     private Integer id;
     private Integer status;
     private String finishtime;
+    private String level;
+    private String type;
+    private String lixiang;
     private String partment;
     private String name;
     private Integer badge;
     private String tea_name;
-    private String grade;
-    private String level;
-    private String danwei;
-
-    public String getGrade() {
-        return grade;
-    }
-
-    public void setGrade(String grade) {
-        this.grade = grade;
-    }
-
-    public String getLevel() {
-        return level;
-    }
-
-    public void setLevel(String level) {
-        this.level = level;
-    }
-
-    public String getDanwei() {
-        return danwei;
-    }
-
-    public void setDanwei(String danwei) {
-        this.danwei = danwei;
-    }
 
     public String getTea_name() {
         return tea_name;
@@ -58,7 +26,6 @@ public class JiaoYuGuiHuaXiangMu implements Serializable {
     public void setTea_name(String tea_name) {
         this.tea_name = tea_name;
     }
-
 
     public Integer getBadge() {
         return badge;
@@ -90,6 +57,30 @@ public class JiaoYuGuiHuaXiangMu implements Serializable {
 
     public void setFinishtime(String finishtime) {
         this.finishtime = finishtime;
+    }
+
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getLixiang() {
+        return lixiang;
+    }
+
+    public void setLixiang(String lixiang) {
+        this.lixiang = lixiang;
     }
 
     public String getPartment() {

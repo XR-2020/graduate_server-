@@ -1,11 +1,5 @@
-package com.example.graduate_sever.entity;
+package com.example.graduate_sever.model;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.experimental.Accessors;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
 import java.io.Serializable;
 
 /*

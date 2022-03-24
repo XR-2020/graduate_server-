@@ -1,34 +1,19 @@
 package com.example.graduate_sever.entity;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.experimental.Accessors;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
 import java.io.Serializable;
 
 /*
-* 著作实体
+* 软件著作权实体
 * */
-public class ZhuZuo implements Serializable {
+public class RuanJianZhuZuoQuanEntity implements Serializable {
     private static final long serialVersionUID=1L;
 
-    private Integer id;
-    private Integer status;
+    private Integer status=0;
     private String finishtime;
     private String partment;
     private String name;
     private Integer badge;
-    private String tea_name;
 
-    public String getTea_name() {
-        return tea_name;
-    }
-
-    public void setTea_name(String tea_name) {
-        this.tea_name = tea_name;
-    }
 
     public Integer getBadge() {
         return badge;
@@ -36,14 +21,6 @@ public class ZhuZuo implements Serializable {
 
     public void setBadge(Integer badge) {
         this.badge = badge;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public Integer getStatus() {

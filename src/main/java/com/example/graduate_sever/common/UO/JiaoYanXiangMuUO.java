@@ -1,23 +1,19 @@
-package com.example.graduate_sever.entity;
+package com.example.graduate_sever.common.UO;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.experimental.Accessors;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
 import java.io.Serializable;
 
 /*
-* 科研项目结项实体
+* 教研项目实体
 * */
 
-public class KeYanXiangMuJieXiang implements Serializable {
+public class JiaoYanXiangMuUO implements Serializable {
     private static final long serialVersionUID=1L;
 
     private Integer id;
     private Integer status;
     private String finishtime;
+    private String lianghua;
+    private String wenhao;
     private String partment;
     private String name;
     private Integer badge;
@@ -61,6 +57,22 @@ public class KeYanXiangMuJieXiang implements Serializable {
 
     public void setFinishtime(String finishtime) {
         this.finishtime = finishtime;
+    }
+
+    public String getLianghua() {
+        return lianghua;
+    }
+
+    public void setLianghua(String lianghua) {
+        this.lianghua = lianghua;
+    }
+
+    public String getWenhao() {
+        return wenhao;
+    }
+
+    public void setWenhao(String wenhao) {
+        this.wenhao = wenhao;
     }
 
     public String getPartment() {

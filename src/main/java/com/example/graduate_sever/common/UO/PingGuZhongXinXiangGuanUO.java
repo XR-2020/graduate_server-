@@ -1,35 +1,28 @@
-package com.example.graduate_sever.entity;
+package com.example.graduate_sever.common.UO;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.experimental.Accessors;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
 import java.io.Serializable;
-import java.util.List;
 
 /*
-* 学科竞赛实体
+* 评估中心项目实体
 * */
-public class Competition implements Serializable {
+public class PingGuZhongXinXiangGuanUO implements Serializable {
     private static final long serialVersionUID=1L;
+
     private Integer id;
-    private String name;
-    private String grade;
-    private String level;
     private Integer status;
     private String finishtime;
+    private String grade;
+    private String partment;
+    private String name;
     private Integer badge;
     private String tea_name;
-    private String student;
 
-    public Integer getBadge() {
-        return badge;
+    public String getGrade() {
+        return grade;
     }
 
-    public void setBadge(Integer badge) {
-        this.badge = badge;
+    public void setGrade(String grade) {
+        this.grade = grade;
     }
 
     public String getTea_name() {
@@ -38,6 +31,14 @@ public class Competition implements Serializable {
 
     public void setTea_name(String tea_name) {
         this.tea_name = tea_name;
+    }
+
+    public Integer getBadge() {
+        return badge;
+    }
+
+    public void setBadge(Integer badge) {
+        this.badge = badge;
     }
 
     public Integer getStatus() {
@@ -56,28 +57,12 @@ public class Competition implements Serializable {
         this.finishtime = finishtime;
     }
 
-    public String getStudent() {
-        return student;
+    public String getPartment() {
+        return partment;
     }
 
-    public void setStudent(String student) {
-        this.student = student;
-    }
-
-    public String getLevel() {
-        return level;
-    }
-
-    public void setLevel(String level) {
-        this.level = level;
-    }
-
-    public String getGrade() {
-        return grade;
-    }
-
-    public void setGrade(String grade) {
-        this.grade = grade;
+    public void setPartment(String partment) {
+        this.partment = partment;
     }
 
     public String getName() {

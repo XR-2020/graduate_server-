@@ -1,24 +1,20 @@
-package com.example.graduate_sever.entity;
+package com.example.graduate_sever.model;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.experimental.Accessors;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
 import java.io.Serializable;
 
 /*
-* 软件著作权实体
+* 产学研实体
 * */
-public class RuanJianZhuZuoQuan implements Serializable {
-    private static final long serialVersionUID=1L;
 
+public class ChanXueYan implements Serializable{
+    private static final long serialVersionUID=1L;
     private Integer id;
     private Integer status;
     private String finishtime;
-    private String partment;
+    private String lianghua;
+    private String wenhao;
     private String name;
+    private String partment;
     private Integer badge;
     private String tea_name;
 
@@ -42,10 +38,6 @@ public class RuanJianZhuZuoQuan implements Serializable {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public Integer getStatus() {
         return status;
     }
@@ -62,12 +54,20 @@ public class RuanJianZhuZuoQuan implements Serializable {
         this.finishtime = finishtime;
     }
 
-    public String getPartment() {
-        return partment;
+    public String getLianghua() {
+        return lianghua;
     }
 
-    public void setPartment(String partment) {
-        this.partment = partment;
+    public void setLianghua(String lianghua) {
+        this.lianghua = lianghua;
+    }
+
+    public String getWenhao() {
+        return wenhao;
+    }
+
+    public void setWenhao(String wenhao) {
+        this.wenhao = wenhao;
     }
 
     public String getName() {
@@ -77,4 +77,17 @@ public class RuanJianZhuZuoQuan implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+
+    public String getPartment() {
+        return partment;
+    }
+
+    public void setPartment(String partment) {
+        this.partment = partment;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
 }

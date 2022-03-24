@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.graduate_sever.Dao.XueKeJingSaiMapper">
     <!--产学研实体映射-->
-    <resultMap id="JingSai" type="com.example.graduate_sever.entity.Competition">
+    <resultMap id="JingSai" type="com.example.graduate_sever.model.Competition">
         <id column="id" jdbcType="INTEGER" property="id"/>
         <result column="status" jdbcType="INTEGER" property="status"/>
         <result column="finishtime" jdbcType="VARCHAR" property="finishtime"/>

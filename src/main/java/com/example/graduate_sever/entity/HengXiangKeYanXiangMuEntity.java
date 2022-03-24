@@ -1,35 +1,17 @@
 package com.example.graduate_sever.entity;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.experimental.Accessors;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
 import java.io.Serializable;
 
 /*
-* 教研论文实体
+* 横向科研项目实体
 * */
-
-public class JiaoYanLunWen implements Serializable {
+public class HengXiangKeYanXiangMuEntity implements Serializable {
     private static final long serialVersionUID=1L;
-
-    private Integer id;
-    private Integer status;
+    private Integer status=0;
     private String finishtime;
     private String partment;
     private String name;
     private Integer badge;
-    private String tea_name;
-
-    public String getTea_name() {
-        return tea_name;
-    }
-
-    public void setTea_name(String tea_name) {
-        this.tea_name = tea_name;
-    }
 
     public Integer getBadge() {
         return badge;
@@ -37,14 +19,6 @@ public class JiaoYanLunWen implements Serializable {
 
     public void setBadge(Integer badge) {
         this.badge = badge;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public Integer getStatus() {
@@ -78,4 +52,5 @@ public class JiaoYanLunWen implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+
 }

@@ -1,42 +1,18 @@
 package com.example.graduate_sever.entity;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.experimental.Accessors;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
 import java.io.Serializable;
 
 /*
 * 荣誉称号实体
 * */
-public class Honor implements Serializable {
+public class HonorEntity implements Serializable {
     private static final long serialVersionUID=1L;
 
-    private Integer id;
-    private Integer status;
+    private Integer status=0;
     private String name;
     private String badge;
     private String level;
     private String finishtime;
-    private String tea_name;
-
-    public String getTea_name() {
-        return tea_name;
-    }
-
-    public void setTea_name(String tea_name) {
-        this.tea_name = tea_name;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public Integer getStatus() {
         return status;
