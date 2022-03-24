@@ -17,11 +17,18 @@ public class Honor implements Serializable {
     private Integer id;
     private Integer status;
     private String name;
-    private String people;
     private String badge;
     private String level;
     private String finishtime;
+    private String tea_name;
 
+    public String getTea_name() {
+        return tea_name;
+    }
+
+    public void setTea_name(String tea_name) {
+        this.tea_name = tea_name;
+    }
 
     public Integer getId() {
         return id;
@@ -45,14 +52,6 @@ public class Honor implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getPeople() {
-        return people;
-    }
-
-    public void setPeople(String people) {
-        this.people = people;
     }
 
     public String getBadge() {

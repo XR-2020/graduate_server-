@@ -7,6 +7,7 @@ import lombok.experimental.Accessors;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.io.Serializable;
+import java.util.List;
 
 /*
 * 学科竞赛实体
@@ -14,12 +15,30 @@ import java.io.Serializable;
 public class Competition implements Serializable {
     private static final long serialVersionUID=1L;
     private Integer id;
+    private String name;
+    private String grade;
+    private String level;
     private Integer status;
     private String finishtime;
+    private Integer badge;
+    private String tea_name;
     private String student;
-    private String level;
-    private String grade;
-    private String name;
+
+    public Integer getBadge() {
+        return badge;
+    }
+
+    public void setBadge(Integer badge) {
+        this.badge = badge;
+    }
+
+    public String getTea_name() {
+        return tea_name;
+    }
+
+    public void setTea_name(String tea_name) {
+        this.tea_name = tea_name;
+    }
 
     public Integer getStatus() {
         return status;

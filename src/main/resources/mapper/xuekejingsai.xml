@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.graduate_sever.Dao.XueKeJingSaiMapper">
+    <!--产学研实体映射-->
+    <resultMap id="JingSai" type="com.example.graduate_sever.entity.Competition">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="finishtime" jdbcType="VARCHAR" property="finishtime"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="grade" jdbcType="VARCHAR" property="grade"/>
+        <result column="level" jdbcType="VARCHAR" property="level"/>
+        <result column="badge" jdbcType="INTEGER" property="badge"/>
+        <result column="tea_name" jdbcType="VARCHAR" property="tea_name"/>
+        <result column="student" jdbcType="VARCHAR" property="student"/>
+    </resultMap>
+    <!--参与人映射-->
+    <resultMap id="JingSai_people" type="com.example.graduate_sever.common.People">
+        <result column="badeg" jdbcType="INTEGER" javaType="int" property="badge"/>
+        <result column="tea_name" jdbcType="VARCHAR" javaType="string" property="name"/>
+    </resultMap>
+    <resultMap id="JingSai_count" type="java.lang.Long"/>
+    <!--查询学科竞赛所有成果-->
+    <!--application.yml 中通过 type-aliases-package 指定了实体类的为了，因此-->
+    <select id="getAllJingSai" resultMap="JingSai,JingSai_count">
+        <bind name="beginIndex" value="(pageIndex-1)*pageSize"></bind>
+        select competition.*,teacher.tea_name from competition,teacher where status=1 and competition.badge=teacher.badeg limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER};select found_rows() JingSai_count;
+    </select>
+    <!--删除一个学科竞赛成果-->
+    <delete id="deleteOneJingSai">
+        delete * from competition where competition.id=#{id}
+    </delete>
+    <!--查询指定学科竞赛成果人员信息-->
+    <select id="getJingSaiDetail" parameterType="java.lang.Integer" resultMap="JingSai_people">
+        select teacher.tea_name,teacher.badeg from participation,teacher where participation.badge=teacher.badeg and participation.ach_id=#{id} and participation.type=13
+    </select>
+    <!--学科竞赛成果全局模糊查询-->
+    <select id="getSearchJingSai" resultMap="JingSai,JingSai_count">
+        <bind name="beginIndex" value="(pageIndex-1)*pageSize"></bind>
+        select c.*,t.tea_name from competition c,teacher t
+        where status=1 and c.badge=t.badeg and CONCAT(c.id,t.tea_name,c.badge,c.name,c.finishtime,c.grade,c.level,c.student) LIKE CONCAT('%',#{key},'%') limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER};select found_rows() JingSai_count;
+    </select>
+</mapper>
+
