@@ -3,9 +3,10 @@ package com.example.graduate_sever.entity;
 import java.io.Serializable;
 
 /*
-* 专利实体
+* 科研项目结项实体
 * */
-public class ZhuanLiEntity implements Serializable {
+
+public class HeBingEntity implements Serializable {
     private static final long serialVersionUID=1L;
 
     private Integer status=0;

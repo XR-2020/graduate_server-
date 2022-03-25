@@ -1,6 +1,7 @@
 package com.example.graduate_sever.common.UO;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 /*
 * 纵向科研项目实体
@@ -8,47 +9,32 @@ import java.io.Serializable;
 public class ZongXiangKeYanXiangMuUO implements Serializable {
     private static final long serialVersionUID=1L;
 
-    private Integer id;
-    private Integer status;
     private String finishtime;
     private String level;
     private String type;
     private String lixiang;
     private String partment;
     private String name;
-    private Integer badge;
-    private String tea_name;
+    private Integer[] people;
+    private Integer firstpeople;
+    private Integer role;
 
-    public String getTea_name() {
-        return tea_name;
+    public Integer getRole() {
+        return role;
     }
 
-    public void setTea_name(String tea_name) {
-        this.tea_name = tea_name;
-    }
-
-    public Integer getBadge() {
-        return badge;
-    }
-
-    public void setBadge(Integer badge) {
-        this.badge = badge;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
+    @Override
+    public String toString() {
+        return "ZongXiangKeYanXiangMuUO{" +
+                "finishtime='" + finishtime + '\'' +
+                ", level='" + level + '\'' +
+                ", type='" + type + '\'' +
+                ", lixiang='" + lixiang + '\'' +
+                ", partment='" + partment + '\'' +
+                ", name='" + name + '\'' +
+                ", people=" + Arrays.toString(people) +
+                ", firstpeople=" + firstpeople +
+                '}';
     }
 
     public String getFinishtime() {
@@ -97,5 +83,21 @@ public class ZongXiangKeYanXiangMuUO implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer[] getPeople() {
+        return people;
+    }
+
+    public void setPeople(Integer[] people) {
+        this.people = people;
+    }
+
+    public Integer getFirstpeople() {
+        return firstpeople;
+    }
+
+    public void setFirstpeople(Integer firstpeople) {
+        this.firstpeople = firstpeople;
     }
 }

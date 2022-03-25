@@ -4,12 +4,14 @@ package com.example.graduate_sever.controller;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.JsonBean;
 import com.example.graduate_sever.common.ResVO;
+import com.example.graduate_sever.common.UO.ChanXueYanUO;
+import com.example.graduate_sever.common.UO.CompetitionUO;
+import com.example.graduate_sever.entity.ChanXueYanEntity;
+import com.example.graduate_sever.entity.CompetitionEntity;
 import com.example.graduate_sever.service.XueKeJingSaiService;
 import com.example.graduate_sever.service.ZhuZuoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class XueKeJingSai {
@@ -37,5 +39,20 @@ public class XueKeJingSai {
         System.out.println(id);
 
         return service.getJingSaiDetial(id);}
+
+    @RequestMapping(value = "/updateCompetition", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public JsonBean updateCompetition(@RequestBody CompetitionUO uo){
+        System.out.println(uo);
+        CompetitionEntity element=new CompetitionEntity();
+        element.setFinishtime(uo.getFinishtime());
+        element.setGrade(uo.getGrade());
+        element.setLevel(uo.getLevel());
+        element.setName(uo.getName());
+        element.setStudent(uo.getStudent());
+        if(uo.getRole() ==3){
+            element.setStatus(1);
+        }
+        return service.insertJingSai(element);
+    }
 
 }

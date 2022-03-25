@@ -1,6 +1,7 @@
 package com.example.graduate_sever.common.UO;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 /*
 * 荣誉称号实体
@@ -8,36 +9,24 @@ import java.io.Serializable;
 public class HonorUO implements Serializable {
     private static final long serialVersionUID=1L;
 
-    private Integer id;
-    private Integer status;
     private String name;
-    private String badge;
     private String level;
     private String finishtime;
-    private String tea_name;
+    private Integer[] people;
+    private Integer role;
 
-    public String getTea_name() {
-        return tea_name;
+    public Integer getRole() {
+        return role;
     }
 
-    public void setTea_name(String tea_name) {
-        this.tea_name = tea_name;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
+    @Override
+    public String toString() {
+        return "HonorUO{" +
+                "name='" + name + '\'' +
+                ", level='" + level + '\'' +
+                ", finishtime='" + finishtime + '\'' +
+                ", people=" + Arrays.toString(people) +
+                '}';
     }
 
     public String getName() {
@@ -46,14 +35,6 @@ public class HonorUO implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getBadge() {
-        return badge;
-    }
-
-    public void setBadge(String badge) {
-        this.badge = badge;
     }
 
     public String getLevel() {
@@ -70,5 +51,13 @@ public class HonorUO implements Serializable {
 
     public void setFinishtime(String finishtime) {
         this.finishtime = finishtime;
+    }
+
+    public Integer[] getPeople() {
+        return people;
+    }
+
+    public void setPeople(Integer[] people) {
+        this.people = people;
     }
 }

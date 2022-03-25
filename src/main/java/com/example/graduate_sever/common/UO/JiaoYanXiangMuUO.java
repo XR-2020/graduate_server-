@@ -1,6 +1,7 @@
 package com.example.graduate_sever.common.UO;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 /*
 * 教研项目实体
@@ -8,47 +9,54 @@ import java.io.Serializable;
 
 public class JiaoYanXiangMuUO implements Serializable {
     private static final long serialVersionUID=1L;
-
-    private Integer id;
-    private Integer status;
+    private String name;
+    private Integer[] people;
+    private Integer firstpeople;
     private String finishtime;
     private String lianghua;
     private String wenhao;
     private String partment;
-    private String name;
-    private Integer badge;
-    private String tea_name;
+    private Integer role;
 
-    public String getTea_name() {
-        return tea_name;
+    public Integer getRole() {
+        return role;
     }
 
-    public void setTea_name(String tea_name) {
-        this.tea_name = tea_name;
+    @Override
+    public String toString() {
+        return "JiaoYanXiangMuUO{" +
+                "name='" + name + '\'' +
+                ", people=" + Arrays.toString(people) +
+                ", firstpeople=" + firstpeople +
+                ", finishtime='" + finishtime + '\'' +
+                ", lianghua='" + lianghua + '\'' +
+                ", wenhao='" + wenhao + '\'' +
+                ", partment='" + partment + '\'' +
+                '}';
     }
 
-    public Integer getBadge() {
-        return badge;
+    public String getName() {
+        return name;
     }
 
-    public void setBadge(Integer badge) {
-        this.badge = badge;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer[] getPeople() {
+        return people;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setPeople(Integer[] people) {
+        this.people = people;
     }
 
-    public Integer getStatus() {
-        return status;
+    public Integer getFirstpeople() {
+        return firstpeople;
     }
 
-    public void setStatus(Integer status) {
-        this.status = status;
+    public void setFirstpeople(Integer firstpeople) {
+        this.firstpeople = firstpeople;
     }
 
     public String getFinishtime() {
@@ -81,13 +89,5 @@ public class JiaoYanXiangMuUO implements Serializable {
 
     public void setPartment(String partment) {
         this.partment = partment;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 }

@@ -5,6 +5,7 @@ import com.example.graduate_sever.Dao.ZhuZuoMapper;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.JsonBean;
 import com.example.graduate_sever.common.ResVO;
+import com.example.graduate_sever.entity.CompetitionEntity;
 import com.example.graduate_sever.service.XueKeJingSaiService;
 import com.example.graduate_sever.service.ZhuZuoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,5 +52,11 @@ public class XueKeJingSaiimpl implements XueKeJingSaiService {
     @Override
     public JsonBean getJingSaiDetial(Integer id) {
         return new JsonBean(200,"",mapper.getJingSaiDetail(id));
+    }
+
+    @Override
+    public JsonBean insertJingSai(CompetitionEntity entity) {
+        int msg=mapper.insertJingSai(entity);
+        return new JsonBean(200,""+msg,"");
     }
 }

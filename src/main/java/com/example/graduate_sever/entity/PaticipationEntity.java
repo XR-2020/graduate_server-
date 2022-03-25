@@ -8,19 +8,9 @@ import java.io.Serializable;
 public class PaticipationEntity implements Serializable {
     private static final long serialVersionUID=1L;
 
-
-    private Integer id;
     private Integer badge;
     private Integer ach_id;
     private Integer type;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public Integer getBadge() {
         return badge;

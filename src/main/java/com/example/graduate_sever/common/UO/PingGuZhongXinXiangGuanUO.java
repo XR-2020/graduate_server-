@@ -1,6 +1,7 @@
 package com.example.graduate_sever.common.UO;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 /*
 * 评估中心项目实体
@@ -8,45 +9,28 @@ import java.io.Serializable;
 public class PingGuZhongXinXiangGuanUO implements Serializable {
     private static final long serialVersionUID=1L;
 
-    private Integer id;
-    private Integer status;
     private String finishtime;
     private String grade;
     private String partment;
     private String name;
-    private Integer badge;
-    private String tea_name;
+    private Integer[] people;
+    private Integer firstpeople;
+    private Integer role;
 
-    public String getGrade() {
-        return grade;
+    public Integer getRole() {
+        return role;
     }
 
-    public void setGrade(String grade) {
-        this.grade = grade;
-    }
-
-    public String getTea_name() {
-        return tea_name;
-    }
-
-    public void setTea_name(String tea_name) {
-        this.tea_name = tea_name;
-    }
-
-    public Integer getBadge() {
-        return badge;
-    }
-
-    public void setBadge(Integer badge) {
-        this.badge = badge;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
+    @Override
+    public String toString() {
+        return "PingGuZhongXinXiangGuanUO{" +
+                "finishtime='" + finishtime + '\'' +
+                ", grade='" + grade + '\'' +
+                ", partment='" + partment + '\'' +
+                ", name='" + name + '\'' +
+                ", people=" + Arrays.toString(people) +
+                ", firstpeople=" + firstpeople +
+                '}';
     }
 
     public String getFinishtime() {
@@ -55,6 +39,14 @@ public class PingGuZhongXinXiangGuanUO implements Serializable {
 
     public void setFinishtime(String finishtime) {
         this.finishtime = finishtime;
+    }
+
+    public String getGrade() {
+        return grade;
+    }
+
+    public void setGrade(String grade) {
+        this.grade = grade;
     }
 
     public String getPartment() {
@@ -73,11 +65,19 @@ public class PingGuZhongXinXiangGuanUO implements Serializable {
         this.name = name;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer[] getPeople() {
+        return people;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setPeople(Integer[] people) {
+        this.people = people;
+    }
+
+    public Integer getFirstpeople() {
+        return firstpeople;
+    }
+
+    public void setFirstpeople(Integer firstpeople) {
+        this.firstpeople = firstpeople;
     }
 }

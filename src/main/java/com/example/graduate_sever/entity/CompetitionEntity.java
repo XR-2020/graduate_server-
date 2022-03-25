@@ -7,30 +7,13 @@ import java.io.Serializable;
 * */
 public class CompetitionEntity implements Serializable {
     private static final long serialVersionUID=1L;
+
     private String name;
     private String grade;
     private String level;
-    private Integer status;
+    private Integer status=0;
     private String finishtime;
-    private Integer badge;
-    private String tea_name;
     private String student;
-
-    public Integer getBadge() {
-        return badge;
-    }
-
-    public void setBadge(Integer badge) {
-        this.badge = badge;
-    }
-
-    public String getTea_name() {
-        return tea_name;
-    }
-
-    public void setTea_name(String tea_name) {
-        this.tea_name = tea_name;
-    }
 
     public Integer getStatus() {
         return status;

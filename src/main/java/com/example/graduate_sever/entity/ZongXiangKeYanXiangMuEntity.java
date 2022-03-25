@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class ZongXiangKeYanXiangMuEntity implements Serializable {
     private static final long serialVersionUID=1L;
 
-    private Integer status;
+    private Integer status=0;
     private String finishtime;
     private String level;
     private String type;

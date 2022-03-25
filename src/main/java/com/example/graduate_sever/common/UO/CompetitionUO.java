@@ -1,44 +1,59 @@
 package com.example.graduate_sever.common.UO;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 /*
 * 学科竞赛实体
 * */
 public class CompetitionUO implements Serializable {
     private static final long serialVersionUID=1L;
-    private Integer id;
     private String name;
     private String grade;
     private String level;
-    private Integer status;
     private String finishtime;
-    private Integer badge;
-    private String tea_name;
     private String student;
+    private Integer[] people;
+    private Integer role;
 
-    public Integer getBadge() {
-        return badge;
+    public Integer getRole() {
+        return role;
     }
 
-    public void setBadge(Integer badge) {
-        this.badge = badge;
+    @Override
+    public String toString() {
+        return "CompetitionUO{" +
+                "name='" + name + '\'' +
+                ", grade='" + grade + '\'' +
+                ", level='" + level + '\'' +
+                ", finishtime='" + finishtime + '\'' +
+                ", student='" + student + '\'' +
+                ", people=" + Arrays.toString(people) +
+                '}';
     }
 
-    public String getTea_name() {
-        return tea_name;
+    public String getName() {
+        return name;
     }
 
-    public void setTea_name(String tea_name) {
-        this.tea_name = tea_name;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Integer getStatus() {
-        return status;
+    public String getGrade() {
+        return grade;
     }
 
-    public void setStatus(Integer status) {
-        this.status = status;
+    public void setGrade(String grade) {
+        this.grade = grade;
+    }
+
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
     }
 
     public String getFinishtime() {
@@ -57,35 +72,11 @@ public class CompetitionUO implements Serializable {
         this.student = student;
     }
 
-    public String getLevel() {
-        return level;
+    public Integer[] getPeople() {
+        return people;
     }
 
-    public void setLevel(String level) {
-        this.level = level;
-    }
-
-    public String getGrade() {
-        return grade;
-    }
-
-    public void setGrade(String grade) {
-        this.grade = grade;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
+    public void setPeople(Integer[] people) {
+        this.people = people;
     }
 }
