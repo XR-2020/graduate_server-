@@ -16,7 +16,6 @@ public class JiaoYanXiangMu implements Serializable {
     private String wenhao;
     private String partment;
     private String name;
-    private Integer badge;
     private String tea_name;
 
     public String getTea_name() {
@@ -25,14 +24,6 @@ public class JiaoYanXiangMu implements Serializable {
 
     public void setTea_name(String tea_name) {
         this.tea_name = tea_name;
-    }
-
-    public Integer getBadge() {
-        return badge;
-    }
-
-    public void setBadge(Integer badge) {
-        this.badge = badge;
     }
 
     public Integer getId() {

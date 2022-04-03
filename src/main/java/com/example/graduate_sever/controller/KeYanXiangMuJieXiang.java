@@ -38,4 +38,5 @@ public class KeYanXiangMuJieXiang {
 
         return service.getKeYanXiangMuJieXiangDetial(id);}
 
+
 }

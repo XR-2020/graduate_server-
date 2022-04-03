@@ -15,7 +15,6 @@ public class JiaoYuGuiHuaXiangMu implements Serializable {
     private String finishtime;
     private String partment;
     private String name;
-    private Integer badge;
     private String tea_name;
     private String grade;
     private String level;
@@ -51,15 +50,6 @@ public class JiaoYuGuiHuaXiangMu implements Serializable {
 
     public void setTea_name(String tea_name) {
         this.tea_name = tea_name;
-    }
-
-
-    public Integer getBadge() {
-        return badge;
-    }
-
-    public void setBadge(Integer badge) {
-        this.badge = badge;
     }
 
     public Integer getId() {

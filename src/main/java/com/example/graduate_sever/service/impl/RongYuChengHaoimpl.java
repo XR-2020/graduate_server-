@@ -5,6 +5,7 @@ import com.example.graduate_sever.Dao.ZhuZuoMapper;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.JsonBean;
 import com.example.graduate_sever.common.ResVO;
+import com.example.graduate_sever.entity.HonorEntity;
 import com.example.graduate_sever.service.RongYuChengHaoService;
 import com.example.graduate_sever.service.ZhuZuoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,11 @@ public class RongYuChengHaoimpl implements RongYuChengHaoService {
     public JsonBean deleteOneRongYu(Integer id) {
         mapper.deleteOneRongYu(id);
         return new JsonBean(200,"","");
+    }
+
+    @Override
+    public JsonBean insertRongYuChengHao(HonorEntity entity) {
+       return  new JsonBean(200,"",mapper.insertRongYuChengHao(entity));
     }
 
 //    @Override

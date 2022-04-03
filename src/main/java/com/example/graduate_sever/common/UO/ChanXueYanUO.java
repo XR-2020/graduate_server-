@@ -16,7 +16,6 @@ public class ChanXueYanUO implements Serializable{
     private String lianghua;
     private String wenhao;
     private Integer[] people;
-    private Integer firstpeople;
     private Integer role;
 
     public Integer getRole() {
@@ -71,13 +70,6 @@ public class ChanXueYanUO implements Serializable{
         this.people = people;
     }
 
-    public Integer getFirstpeople() {
-        return firstpeople;
-    }
-
-    public void setFirstpeople(Integer firstpeople) {
-        this.firstpeople = firstpeople;
-    }
 
     @Override
     public String toString() {
@@ -87,8 +79,7 @@ public class ChanXueYanUO implements Serializable{
                 ", finishtime='" + finishtime + '\'' +
                 ", lianghua='" + lianghua + '\'' +
                 ", wenhao='" + wenhao + '\'' +
-                ", people=" + Arrays.toString(people) +
-                ", firstpeople='" + firstpeople + '\'' +
+                ", people=" + Arrays.toString(people)  +
                 '}';
     }
 }

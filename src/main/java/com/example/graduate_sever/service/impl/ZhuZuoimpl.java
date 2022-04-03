@@ -5,6 +5,7 @@ import com.example.graduate_sever.Dao.ZhuZuoMapper;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.JsonBean;
 import com.example.graduate_sever.common.ResVO;
+import com.example.graduate_sever.entity.HeBingEntity;
 import com.example.graduate_sever.service.HengXiangKeYanService;
 import com.example.graduate_sever.service.ZhuZuoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,5 +52,10 @@ public class ZhuZuoimpl implements ZhuZuoService {
     @Override
     public JsonBean getZhuZuoDetial(Integer id) {
         return new JsonBean(200,"",mapper.getZhuZuoDetail(id));
+    }
+
+    @Override
+    public JsonBean insertZhuZuo(HeBingEntity entity) {
+        return new JsonBean(200,"",mapper.insertZhuZuo(entity));
     }
 }

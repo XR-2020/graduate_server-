@@ -13,7 +13,6 @@ public class JiaoYanLunWenUO implements Serializable {
     private String finishtime;
     private String partment;
     private Integer[] people;
-    private Integer firstpeople;
     private Integer role;
 
     public Integer getRole() {
@@ -27,7 +26,6 @@ public class JiaoYanLunWenUO implements Serializable {
                 ", finishtime='" + finishtime + '\'' +
                 ", partment='" + partment + '\'' +
                 ", people=" + Arrays.toString(people) +
-                ", firstpeople=" + firstpeople +
                 '}';
     }
 
@@ -61,13 +59,5 @@ public class JiaoYanLunWenUO implements Serializable {
 
     public void setPeople(Integer[] people) {
         this.people = people;
-    }
-
-    public Integer getFirstpeople() {
-        return firstpeople;
-    }
-
-    public void setFirstpeople(Integer firstpeople) {
-        this.firstpeople = firstpeople;
     }
 }

@@ -13,7 +13,6 @@ public class PingGuZhongXinXiangGuanEntity implements Serializable {
     private String grade;
     private String partment;
     private String name;
-    private Integer badge;
 
     public String getGrade() {
         return grade;
@@ -23,14 +22,6 @@ public class PingGuZhongXinXiangGuanEntity implements Serializable {
         this.grade = grade;
     }
 
-
-    public Integer getBadge() {
-        return badge;
-    }
-
-    public void setBadge(Integer badge) {
-        this.badge = badge;
-    }
 
     public Integer getStatus() {
         return status;

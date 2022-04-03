@@ -9,19 +9,18 @@ import java.io.Serializable;
 public class HeBingEntity implements Serializable {
     private static final long serialVersionUID=1L;
 
-    private Integer status=0;
+    private Integer status;
     private String finishtime;
     private String partment;
     private String name;
-    private Integer badge;
 
-    public Integer getBadge() {
-        return badge;
+    public HeBingEntity(Integer status, String finishtime, String partment, String name) {
+        this.status = status;
+        this.finishtime = finishtime;
+        this.partment = partment;
+        this.name = name;
     }
 
-    public void setBadge(Integer badge) {
-        this.badge = badge;
-    }
 
     public Integer getStatus() {
         return status;

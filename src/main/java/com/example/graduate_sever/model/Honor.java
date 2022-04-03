@@ -11,7 +11,6 @@ public class Honor implements Serializable {
     private Integer id;
     private Integer status;
     private String name;
-    private String badge;
     private String level;
     private String finishtime;
     private String tea_name;
@@ -46,14 +45,6 @@ public class Honor implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getBadge() {
-        return badge;
-    }
-
-    public void setBadge(String badge) {
-        this.badge = badge;
     }
 
     public String getLevel() {

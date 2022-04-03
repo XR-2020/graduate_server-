@@ -5,6 +5,7 @@ import com.example.graduate_sever.Dao.JiaoYanXiangMuMapper;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.JsonBean;
 import com.example.graduate_sever.common.ResVO;
+import com.example.graduate_sever.entity.JiaoYanLunWenEntity;
 import com.example.graduate_sever.service.JiaoYanLunWenMuService;
 import com.example.graduate_sever.service.JiaoYanXiangMuService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,5 +52,10 @@ public class JiaoYanLunWenimpl implements JiaoYanLunWenMuService {
     @Override
     public JsonBean getJiaoYanLunWenDetial(Integer id) {
         return new JsonBean(200,"",jiaoYanLunWenMapper.getJiaoYanLunWenDetail(id));
+    }
+
+    @Override
+    public JsonBean insertJiaoYanLunWen(JiaoYanLunWenEntity entity) {
+       return new JsonBean(200,"",jiaoYanLunWenMapper.insertChanXueYan(entity));
     }
 }

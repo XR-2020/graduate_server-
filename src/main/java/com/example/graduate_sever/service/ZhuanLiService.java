@@ -3,6 +3,7 @@ package com.example.graduate_sever.service;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.JsonBean;
 import com.example.graduate_sever.common.ResVO;
+import com.example.graduate_sever.entity.HeBingEntity;
 
 public interface ZhuanLiService {
      ResVO getAllZhuanLi(DTO jiaoYanXiangMuDTO);
@@ -10,4 +11,5 @@ public interface ZhuanLiService {
      JsonBean deleteZhuanLi(int[] ids);
      JsonBean deleteOneZhuanLi(Integer id);
      JsonBean getZhuanLiDetial(Integer id);
+     JsonBean insertZhuanLi(HeBingEntity entity);
 }

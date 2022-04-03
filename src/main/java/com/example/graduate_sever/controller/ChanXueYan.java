@@ -39,7 +39,6 @@ public class ChanXueYan {
     public JsonBean updateChanXueYan(@RequestBody ChanXueYanUO uo){
         System.out.println(uo);
         ChanXueYanEntity element=new ChanXueYanEntity();
-        element.setBadge(uo.getFirstpeople());
         element.setFinishtime(uo.getFinishtime());
         element.setName(uo.getName());
         element.setPartment(uo.getPartment());

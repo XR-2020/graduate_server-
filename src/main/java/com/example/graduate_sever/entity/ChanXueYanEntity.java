@@ -14,15 +14,6 @@ public class ChanXueYanEntity implements Serializable{
     private String wenhao;
     private String name;
     private String partment;
-    private Integer badge;
-
-    public Integer getBadge() {
-        return badge;
-    }
-
-    public void setBadge(Integer badge) {
-        this.badge = badge;
-    }
 
     public Integer getStatus() {
         return status;
@@ -80,8 +71,7 @@ public class ChanXueYanEntity implements Serializable{
                 ", lianghua='" + lianghua + '\'' +
                 ", wenhao='" + wenhao + '\'' +
                 ", name='" + name + '\'' +
-                ", partment='" + partment + '\'' +
-                ", badge=" + badge +
+                ", partment='" + partment + '\''  +
                 '}';
     }
 }

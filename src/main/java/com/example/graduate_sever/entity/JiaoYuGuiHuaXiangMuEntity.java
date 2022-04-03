@@ -13,7 +13,6 @@ public class JiaoYuGuiHuaXiangMuEntity implements Serializable {
     private String finishtime;
     private String partment;
     private String name;
-    private Integer badge;
     private String grade;
     private String level;
     private String danwei;
@@ -40,14 +39,6 @@ public class JiaoYuGuiHuaXiangMuEntity implements Serializable {
 
     public void setDanwei(String danwei) {
         this.danwei = danwei;
-    }
-
-    public Integer getBadge() {
-        return badge;
-    }
-
-    public void setBadge(Integer badge) {
-        this.badge = badge;
     }
 
     public Integer getStatus() {

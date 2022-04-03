@@ -38,4 +38,6 @@ public class ZhuanLi {
 
         return service.getZhuanLiDetial(id);}
 
+
+
 }

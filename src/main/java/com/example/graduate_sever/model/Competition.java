@@ -13,17 +13,8 @@ public class Competition implements Serializable {
     private String level;
     private Integer status;
     private String finishtime;
-    private Integer badge;
     private String tea_name;
     private String student;
-
-    public Integer getBadge() {
-        return badge;
-    }
-
-    public void setBadge(Integer badge) {
-        this.badge = badge;
-    }
 
     public String getTea_name() {
         return tea_name;

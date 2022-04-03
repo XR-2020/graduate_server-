@@ -5,6 +5,7 @@ import com.example.graduate_sever.Dao.ZhuZuoMapper;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.JsonBean;
 import com.example.graduate_sever.common.ResVO;
+import com.example.graduate_sever.entity.HeBingEntity;
 import com.example.graduate_sever.service.KeYanLunWenService;
 import com.example.graduate_sever.service.ZhuZuoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,5 +52,10 @@ public class KeYanLunWenimpl implements KeYanLunWenService {
     @Override
     public JsonBean getKeYanLunWenDetial(Integer id) {
         return new JsonBean(200,"",mapper.getKeYanLunWenDetail(id));
+    }
+
+    @Override
+    public JsonBean insertKeYanLunWen(HeBingEntity entity) {
+        return new JsonBean(200,"",mapper.insertKeYanLunWen(entity));
     }
 }

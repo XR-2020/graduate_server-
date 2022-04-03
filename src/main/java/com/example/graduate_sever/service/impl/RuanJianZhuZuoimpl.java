@@ -5,6 +5,7 @@ import com.example.graduate_sever.Dao.RuanJianZhuZuoMapper;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.JsonBean;
 import com.example.graduate_sever.common.ResVO;
+import com.example.graduate_sever.entity.HeBingEntity;
 import com.example.graduate_sever.service.HengXiangKeYanService;
 import com.example.graduate_sever.service.RuanJianZhuZuoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,5 +52,10 @@ public class RuanJianZhuZuoimpl implements RuanJianZhuZuoService {
     @Override
     public JsonBean getRuanJianZhuZuoDetial(Integer id) {
         return new JsonBean(200,"",mapper.getRuanJianZhuZuoDetail(id));
+    }
+
+    @Override
+    public JsonBean insertRuanJianZhuZuo(HeBingEntity entity) {
+        return new JsonBean(200,"",mapper.insertRuanJianZhuZuo(entity));
     }
 }

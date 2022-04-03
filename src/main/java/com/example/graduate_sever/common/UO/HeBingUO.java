@@ -13,7 +13,6 @@ public class HeBingUO implements Serializable {
     private String partment;
     private String finishtime;
     private Integer[] people;
-    private Integer firstpeople;
     private Integer role;
 
     public Integer getRole() {
@@ -60,14 +59,6 @@ public class HeBingUO implements Serializable {
         this.people = people;
     }
 
-    public Integer getFirstpeople() {
-        return firstpeople;
-    }
-
-    public void setFirstpeople(Integer firstpeople) {
-        this.firstpeople = firstpeople;
-    }
-
     @Override
     public String toString() {
         return "HeBingUO{" +
@@ -76,7 +67,6 @@ public class HeBingUO implements Serializable {
                 ", partment='" + partment + '\'' +
                 ", finishtime='" + finishtime + '\'' +
                 ", people=" + Arrays.toString(people) +
-                ", firstpeople='" + firstpeople + '\'' +
                 '}';
     }
 }

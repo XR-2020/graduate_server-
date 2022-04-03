@@ -17,25 +17,30 @@ public class KeYanLunWen {
     private KeYanLunWenService service;
 
     @GetMapping("/getAllKeYanLunWen")
-    public ResVO getAllKeYanLunWen(DTO dTO){
+    public ResVO getAllKeYanLunWen(DTO dTO) {
         return service.getAllKeYanLunWen(dTO);
     }
 
     @GetMapping("/getSearchKeYanLunWen")
-    public ResVO getSearchKeYanLunWen(DTO dTO){
+    public ResVO getSearchKeYanLunWen(DTO dTO) {
 //        System.out.println(chanXueYanDTO.getKey()+"______"+chanXueYanDTO.getPageIndex()+"_______"+chanXueYanDTO.getPageSize());
-        return service.getSearchKeYanLunWen(dTO);}
+        return service.getSearchKeYanLunWen(dTO);
+    }
 
     @PostMapping("/deleteKeYanLunWen")
-    public JsonBean deleteKeYanLunWen(int[] ids){return  service.deleteKeYanLunWen(ids);}
+    public JsonBean deleteKeYanLunWen(int[] ids) {
+        return service.deleteKeYanLunWen(ids);
+    }
 
     @PostMapping("/deleteOneKeYanLunWen")
-    public  JsonBean deleteOneKeYanLunWen(Integer id){return service.deleteOneKeYanLunWen(id);}
+    public JsonBean deleteOneKeYanLunWen(Integer id) {
+        return service.deleteOneKeYanLunWen(id);
+    }
 
     @GetMapping("/getKeYanLunWenDetail")
-    public JsonBean getKeYanLunWenDetail(Integer id){
+    public JsonBean getKeYanLunWenDetail(Integer id) {
         System.out.println(id);
 
-        return service.getKeYanLunWenDetial(id);}
-
+        return service.getKeYanLunWenDetial(id);
+    }
 }

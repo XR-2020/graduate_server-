@@ -2,6 +2,7 @@ package com.example.graduate_sever.Dao;
 
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.People;
+import com.example.graduate_sever.entity.HeBingEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -18,5 +19,7 @@ public interface ZhuZuoMapper {
     void deleteOneZhuZuo(int id);
 
     List<People> getZhuZuoDetail(Integer id);
+
+    int insertZhuZuo(HeBingEntity entity);
 
 }

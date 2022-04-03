@@ -33,11 +33,11 @@
     <select id="getJiaoYanDetail" parameterType="java.lang.Integer" resultMap="JiaoYan_people">
         select teacher.tea_name,teacher.badeg from participation,teacher where participation.badge=teacher.badeg and participation.ach_id=#{id} and participation.type=2
     </select>
-    <!--教研项目成果全局模糊查询-->
-    <select id="getSearchJiaoYan" resultMap="JiaoYan,count4">
-        <bind name="beginIndex" value="(pageIndex-1)*pageSize"></bind>
-        select c.*,t.tea_name from jiaoyanxiangmu c,teacher t
-        where status=1 and c.badge=t.badeg and CONCAT(c.id,t.tea_name,c.badge,c.partment,c.name,c.wenhao,c.lianghua,c.finishtime,c.status) LIKE CONCAT('%',#{key},'%') limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER};select found_rows() count4;
-    </select>
+<!--    &lt;!&ndash;教研项目成果全局模糊查询&ndash;&gt;-->
+<!--    <select id="getSearchJiaoYan" resultMap="JiaoYan,count4">-->
+<!--        <bind name="beginIndex" value="(pageIndex-1)*pageSize"></bind>-->
+<!--        select c.*,t.tea_name from jiaoyanxiangmu c,teacher t-->
+<!--        where status=1 and c.badge=t.badeg and CONCAT(c.id,t.tea_name,c.partment,c.name,c.wenhao,c.lianghua,c.finishtime,c.status) LIKE CONCAT('%',#{key},'%') limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER};select found_rows() count4;-->
+<!--    </select>-->
 </mapper>
 

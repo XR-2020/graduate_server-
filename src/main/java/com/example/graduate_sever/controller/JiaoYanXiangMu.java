@@ -37,4 +37,19 @@ public class JiaoYanXiangMu {
 
         return jiaoYanXiangMuService.getJiaoYanDetial(id);}
 
+    //    @RequestMapping(value = "/updateHonor", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+//    public JsonBean updateHonor(@RequestBody HonorUO uo){
+//        System.out.println(uo);
+//        HonorEntity element=null;
+//        JsonBean jsonBean=null;
+//        int role=uo.getRole();
+//        if (role!=4){
+//            element=new HonorEntity(0,uo.getName(),uo.getLevel(),uo.getFinishtime());
+//        }else {
+//            element=new HonorEntity(1,uo.getName(),uo.getLevel(),uo.getFinishtime());
+//        }
+//
+//        return  service.insertRongYuChengHao(element);
+//    }
+
 }

@@ -13,14 +13,12 @@ public class JiaoYanLunWenEntity implements Serializable {
     private String finishtime;
     private String partment;
     private String name;
-    private Integer badge;
 
-    public Integer getBadge() {
-        return badge;
-    }
-
-    public void setBadge(Integer badge) {
-        this.badge = badge;
+    public JiaoYanLunWenEntity(Integer status, String finishtime, String partment, String name) {
+        this.status = status;
+        this.finishtime = finishtime;
+        this.partment = partment;
+        this.name = name;
     }
 
     public Integer getStatus() {

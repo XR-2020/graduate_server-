@@ -15,15 +15,6 @@ public class ZongXiangKeYanXiangMuEntity implements Serializable {
     private String lixiang;
     private String partment;
     private String name;
-    private Integer badge;
-
-    public Integer getBadge() {
-        return badge;
-    }
-
-    public void setBadge(Integer badge) {
-        this.badge = badge;
-    }
 
     public Integer getStatus() {
         return status;

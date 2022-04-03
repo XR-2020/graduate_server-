@@ -4,12 +4,12 @@ package com.example.graduate_sever.controller;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.JsonBean;
 import com.example.graduate_sever.common.ResVO;
+import com.example.graduate_sever.common.UO.HonorUO;
+import com.example.graduate_sever.entity.HonorEntity;
 import com.example.graduate_sever.service.HengXiangKeYanService;
 import com.example.graduate_sever.service.ZhuanLiService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class HengXiangKeYan {
@@ -37,5 +37,7 @@ public class HengXiangKeYan {
         System.out.println(id);
 
         return service.getHengXiangKeYanDetial(id);}
+
+
 
 }

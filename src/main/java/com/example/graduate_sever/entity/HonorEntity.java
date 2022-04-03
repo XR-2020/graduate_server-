@@ -1,5 +1,6 @@
 package com.example.graduate_sever.entity;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.io.Serializable;
 
 /*
@@ -8,11 +9,17 @@ import java.io.Serializable;
 public class HonorEntity implements Serializable {
     private static final long serialVersionUID=1L;
 
-    private Integer status=0;
+    private Integer status;
     private String name;
-    private String badge;
     private String level;
     private String finishtime;
+
+    public HonorEntity(Integer status, String name, String level, String finishtime) {
+        this.status = status;
+        this.name = name;
+        this.level = level;
+        this.finishtime = finishtime;
+    }
 
     public Integer getStatus() {
         return status;
@@ -28,14 +35,6 @@ public class HonorEntity implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getBadge() {
-        return badge;
-    }
-
-    public void setBadge(String badge) {
-        this.badge = badge;
     }
 
     public String getLevel() {
