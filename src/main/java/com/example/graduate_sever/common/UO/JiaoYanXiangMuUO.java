@@ -11,7 +11,6 @@ public class JiaoYanXiangMuUO implements Serializable {
     private static final long serialVersionUID=1L;
     private String name;
     private Integer[] people;
-    private Integer firstpeople;
     private String finishtime;
     private String lianghua;
     private String wenhao;
@@ -27,7 +26,6 @@ public class JiaoYanXiangMuUO implements Serializable {
         return "JiaoYanXiangMuUO{" +
                 "name='" + name + '\'' +
                 ", people=" + Arrays.toString(people) +
-                ", firstpeople=" + firstpeople +
                 ", finishtime='" + finishtime + '\'' +
                 ", lianghua='" + lianghua + '\'' +
                 ", wenhao='" + wenhao + '\'' +
@@ -49,14 +47,6 @@ public class JiaoYanXiangMuUO implements Serializable {
 
     public void setPeople(Integer[] people) {
         this.people = people;
-    }
-
-    public Integer getFirstpeople() {
-        return firstpeople;
-    }
-
-    public void setFirstpeople(Integer firstpeople) {
-        this.firstpeople = firstpeople;
     }
 
     public String getFinishtime() {

@@ -8,13 +8,23 @@ import java.io.Serializable;
 public class ZongXiangKeYanXiangMuEntity implements Serializable {
     private static final long serialVersionUID=1L;
 
-    private Integer status=0;
+    private Integer status;
     private String finishtime;
     private String level;
     private String type;
     private String lixiang;
     private String partment;
     private String name;
+
+    public ZongXiangKeYanXiangMuEntity(Integer status, String finishtime, String level, String type, String lixiang, String partment, String name) {
+        this.status = status;
+        this.finishtime = finishtime;
+        this.level = level;
+        this.type = type;
+        this.lixiang = lixiang;
+        this.partment = partment;
+        this.name = name;
+    }
 
     public Integer getStatus() {
         return status;

@@ -36,7 +36,7 @@ public class ChanXueYan {
         System.out.println(id);
         return chanXueYanService.getChanXueYanDetail(id);}
     @RequestMapping(value = "/insertChanXueYan", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public JsonBean updateChanXueYan(@RequestBody ChanXueYanUO uo){
+    public JsonBean insertChanXueYan(@RequestBody ChanXueYanUO uo){
         System.out.println(uo);
         ChanXueYanEntity element=new ChanXueYanEntity();
         element.setFinishtime(uo.getFinishtime());

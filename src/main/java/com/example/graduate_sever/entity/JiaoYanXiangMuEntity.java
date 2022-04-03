@@ -9,12 +9,21 @@ import java.io.Serializable;
 public class JiaoYanXiangMuEntity implements Serializable {
     private static final long serialVersionUID=1L;
 
-    private Integer status=0;
+    private Integer status;
     private String finishtime;
     private String lianghua;
     private String wenhao;
     private String partment;
     private String name;
+
+    public JiaoYanXiangMuEntity(Integer status, String finishtime, String lianghua, String wenhao, String partment, String name) {
+        this.status = status;
+        this.finishtime = finishtime;
+        this.lianghua = lianghua;
+        this.wenhao = wenhao;
+        this.partment = partment;
+        this.name = name;
+    }
 
     public Integer getStatus() {
         return status;

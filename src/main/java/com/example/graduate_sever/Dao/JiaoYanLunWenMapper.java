@@ -21,5 +21,5 @@ public interface JiaoYanLunWenMapper {
 
     List<People> getJiaoYanLunWenDetail(Integer id);
 
-    int insertChanXueYan(JiaoYanLunWenEntity entity);
+    int insertJiaoYanLunWen(JiaoYanLunWenEntity entity);
 }

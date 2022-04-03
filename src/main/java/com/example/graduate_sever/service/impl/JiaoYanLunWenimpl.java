@@ -56,6 +56,6 @@ public class JiaoYanLunWenimpl implements JiaoYanLunWenMuService {
 
     @Override
     public JsonBean insertJiaoYanLunWen(JiaoYanLunWenEntity entity) {
-       return new JsonBean(200,"",jiaoYanLunWenMapper.insertChanXueYan(entity));
+       return new JsonBean(200,"",jiaoYanLunWenMapper.insertJiaoYanLunWen(entity));
     }
 }

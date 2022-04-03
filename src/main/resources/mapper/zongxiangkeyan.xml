@@ -24,7 +24,7 @@
     <!--application.yml 中通过 type-aliases-package 指定了实体类的为了，因此-->
     <select id="getAllZongXiangKeYan" resultMap="ZongXiangKeYan,count12">
         <bind name="beginIndex" value="(pageIndex-1)*pageSize"></bind>
-        select zongxiangkeyanxiangmu.*,teacher.tea_name from zongxiangkeyanxiangmu,teacher where status=1 and zongxiangkeyanxiangmu.badge=teacher.badeg limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER};select found_rows() count12;
+        select zongxiangkeyanxiangmu.* from zongxiangkeyanxiangmu where status=1 limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER};select found_rows() count12;
     </select>
     <!--删除一个教研项目-->
     <delete id="deleteOneZongXiangKeYan">
@@ -40,5 +40,9 @@
 <!--        select c.*,t.tea_name from zongxiangkeyanxiangmu c,teacher t-->
 <!--        where status=1 and c.badge=t.badeg and CONCAT(c.id,t.tea_name,c.badge,c.partment,c.name,c.finishtime,c.status,c.level,c.lixiang,c.level) LIKE CONCAT('%',#{key},'%') limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER};select found_rows() count12;-->
 <!--    </select>-->
+
+    <insert id="insertZongXiangKeYan" parameterType="com.example.graduate_sever.entity.ZongXiangKeYanXiangMuEntity" useGeneratedKeys="true">
+        INSERT INTO zongxiangkeyanxiangmu(`status`, `finishtime`, `level`, `type`, `lixiang`, `name`, `partment`) VALUES (#{status,jdbcType=INTEGER},#{finishtime,jdbcType=VARCHAR},#{level,jdbcType=VARCHAR},#{type,jdbcType=VARCHAR},#{lixiang,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR},#{partment,jdbcType=VARCHAR})
+    </insert>
 </mapper>
 

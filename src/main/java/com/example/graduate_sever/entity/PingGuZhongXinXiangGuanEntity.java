@@ -8,11 +8,19 @@ import java.io.Serializable;
 public class PingGuZhongXinXiangGuanEntity implements Serializable {
     private static final long serialVersionUID=1L;
 
-    private Integer status=0;
+    private Integer status;
     private String finishtime;
     private String grade;
     private String partment;
     private String name;
+
+    public PingGuZhongXinXiangGuanEntity(Integer status, String finishtime, String grade, String partment, String name) {
+        this.status = status;
+        this.finishtime = finishtime;
+        this.grade = grade;
+        this.partment = partment;
+        this.name = name;
+    }
 
     public String getGrade() {
         return grade;

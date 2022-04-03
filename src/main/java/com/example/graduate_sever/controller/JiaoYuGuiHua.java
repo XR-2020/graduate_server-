@@ -4,12 +4,12 @@ package com.example.graduate_sever.controller;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.JsonBean;
 import com.example.graduate_sever.common.ResVO;
+import com.example.graduate_sever.common.UO.JiaoYuGuiHuaXiangMuUO;
+import com.example.graduate_sever.entity.JiaoYuGuiHuaXiangMuEntity;
 import com.example.graduate_sever.service.JiaoYuGuiHuaService;
 import com.example.graduate_sever.service.PingGuZhongXinService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class JiaoYuGuiHua {
@@ -38,19 +38,19 @@ public class JiaoYuGuiHua {
 
         return pingGuZhongXinService.getJiaoYuGuiHuaDetial(id);}
 
-    //    @RequestMapping(value = "/updateHonor", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-//    public JsonBean updateHonor(@RequestBody HonorUO uo){
-//        System.out.println(uo);
-//        HonorEntity element=null;
-//        JsonBean jsonBean=null;
-//        int role=uo.getRole();
-//        if (role!=4){
-//            element=new HonorEntity(0,uo.getName(),uo.getLevel(),uo.getFinishtime());
-//        }else {
-//            element=new HonorEntity(1,uo.getName(),uo.getLevel(),uo.getFinishtime());
-//        }
-//
-//        return  service.insertRongYuChengHao(element);
-//    }
+    @RequestMapping(value = "/updateJiaoYuGuiHua", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public JsonBean updateJiaoYuGuiHua(@RequestBody JiaoYuGuiHuaXiangMuUO uo){
+        System.out.println(uo);
+        JiaoYuGuiHuaXiangMuEntity element=null;
+        JsonBean jsonBean=null;
+        int role=uo.getRole();
+        if (role!=4){
+            element=new JiaoYuGuiHuaXiangMuEntity(0,uo.getFinishtime(),uo.getPartment(),uo.getName(),uo.getGrade(),uo.getLevel(),uo.getDanwei());
+        }else {
+            element=new JiaoYuGuiHuaXiangMuEntity(1,uo.getFinishtime(),uo.getPartment(),uo.getName(),uo.getGrade(),uo.getLevel(),uo.getDanwei());
+        }
+
+        return  pingGuZhongXinService.insertJiaoYuGuiHua(element);
+    }
 
 }

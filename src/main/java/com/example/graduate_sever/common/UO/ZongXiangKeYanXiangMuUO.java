@@ -16,7 +16,6 @@ public class ZongXiangKeYanXiangMuUO implements Serializable {
     private String partment;
     private String name;
     private Integer[] people;
-    private Integer firstpeople;
     private Integer role;
 
     public Integer getRole() {
@@ -33,7 +32,6 @@ public class ZongXiangKeYanXiangMuUO implements Serializable {
                 ", partment='" + partment + '\'' +
                 ", name='" + name + '\'' +
                 ", people=" + Arrays.toString(people) +
-                ", firstpeople=" + firstpeople +
                 '}';
     }
 
@@ -93,11 +91,4 @@ public class ZongXiangKeYanXiangMuUO implements Serializable {
         this.people = people;
     }
 
-    public Integer getFirstpeople() {
-        return firstpeople;
-    }
-
-    public void setFirstpeople(Integer firstpeople) {
-        this.firstpeople = firstpeople;
-    }
 }

@@ -12,7 +12,6 @@ public class JiaoYuGuiHuaXiangMuUO implements Serializable {
     private String name;
     private String finishtime;
     private Integer[] people;
-    private Integer firstpeople;
     private String partment;
     private String grade;
     private String level;
@@ -29,7 +28,6 @@ public class JiaoYuGuiHuaXiangMuUO implements Serializable {
                 "name='" + name + '\'' +
                 ", finishtime='" + finishtime + '\'' +
                 ", people=" + Arrays.toString(people) +
-                ", firstpeople=" + firstpeople +
                 ", partment='" + partment + '\'' +
                 ", grade='" + grade + '\'' +
                 ", level='" + level + '\'' +
@@ -59,14 +57,6 @@ public class JiaoYuGuiHuaXiangMuUO implements Serializable {
 
     public void setPeople(Integer[] people) {
         this.people = people;
-    }
-
-    public Integer getFirstpeople() {
-        return firstpeople;
-    }
-
-    public void setFirstpeople(Integer firstpeople) {
-        this.firstpeople = firstpeople;
     }
 
     public String getPartment() {

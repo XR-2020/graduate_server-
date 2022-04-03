@@ -4,12 +4,12 @@ package com.example.graduate_sever.controller;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.JsonBean;
 import com.example.graduate_sever.common.ResVO;
+import com.example.graduate_sever.common.UO.ZongXiangKeYanXiangMuUO;
+import com.example.graduate_sever.entity.ZongXiangKeYanXiangMuEntity;
 import com.example.graduate_sever.service.HengXiangKeYanService;
 import com.example.graduate_sever.service.ZongXiangKeYanService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class ZongXiangKeYan {
@@ -37,18 +37,18 @@ public class ZongXiangKeYan {
         System.out.println(id);
         return service.getZongXiangKeYanDetial(id);}
 
-    //    @RequestMapping(value = "/updateHonor", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-//    public JsonBean updateHonor(@RequestBody HonorUO uo){
-//        System.out.println(uo);
-//        HonorEntity element=null;
-//        JsonBean jsonBean=null;
-//        int role=uo.getRole();
-//        if (role!=4){
-//            element=new HonorEntity(0,uo.getName(),uo.getLevel(),uo.getFinishtime());
-//        }else {
-//            element=new HonorEntity(1,uo.getName(),uo.getLevel(),uo.getFinishtime());
-//        }
-//
-//        return  service.insertRongYuChengHao(element);
-//    }
+    @RequestMapping(value = "/updateZongXiangKeYan", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public JsonBean updateZongXiangKeYan(@RequestBody ZongXiangKeYanXiangMuUO uo){
+        System.out.println(uo);
+        ZongXiangKeYanXiangMuEntity element=null;
+        JsonBean jsonBean=null;
+        int role=uo.getRole();
+        if (role!=4&&role!=1){
+            element=new ZongXiangKeYanXiangMuEntity(0,uo.getFinishtime(),uo.getLevel(),uo.getType(),uo.getLixiang(),uo.getPartment(),uo.getName());
+        }else {
+            element=new ZongXiangKeYanXiangMuEntity(1,uo.getFinishtime(),uo.getLevel(),uo.getType(),uo.getLixiang(),uo.getPartment(),uo.getName());
+        }
+
+        return  service.insertZongXiangKeYan(element);
+    }
 }

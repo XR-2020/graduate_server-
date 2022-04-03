@@ -23,7 +23,7 @@
     <!--application.yml 中通过 type-aliases-package 指定了实体类的为了，因此-->
     <select id="getAllJingSai" resultMap="JingSai,JingSai_count">
         <bind name="beginIndex" value="(pageIndex-1)*pageSize"></bind>
-        select competition.*,teacher.tea_name from competition,teacher where status=1 and competition.badge=teacher.badeg limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER};select found_rows() JingSai_count;
+        select competition.* from competition where status=1 limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER};select found_rows() JingSai_count;
     </select>
     <!--删除一个学科竞赛成果-->
     <delete id="deleteOneJingSai">
@@ -40,7 +40,7 @@
 <!--        where status=1 and c.badge=t.badeg and CONCAT(c.id,t.tea_name,c.badge,c.name,c.finishtime,c.grade,c.level,c.student) LIKE CONCAT('%',#{key},'%') limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER};select found_rows() JingSai_count;-->
 <!--    </select>-->
     <insert id="insertJingSai" parameterType="com.example.graduate_sever.entity.CompetitionEntity" useGeneratedKeys="true">
-        INSERT INTO `graduate`.`competition`( `status`, `finishtime`, `student`, `level`, `grade`, `name`, `badge`,`partment`)  VALUES (#{status,jdbcType=INTEGER},#{finishtime,jdbcType=VARCHAR},#{student,jdbcType=VARCHAR},#{level,jdbcType=VARCHAR},#{grade,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR},#{badge,jdbcType=INTEGER})
+        INSERT INTO `graduate`.`competition`( `status`, `finishtime`, `student`, `level`, `grade`, `name`,`partment`)  VALUES (#{status,jdbcType=INTEGER},#{finishtime,jdbcType=VARCHAR},#{student,jdbcType=VARCHAR},#{level,jdbcType=VARCHAR},#{grade,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR})
     </insert>
 </mapper>
 

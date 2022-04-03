@@ -5,6 +5,7 @@ import com.example.graduate_sever.Dao.PingGuZhongXinMapper;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.JsonBean;
 import com.example.graduate_sever.common.ResVO;
+import com.example.graduate_sever.entity.PingGuZhongXinXiangGuanEntity;
 import com.example.graduate_sever.service.JiaoYanXiangMuService;
 import com.example.graduate_sever.service.PingGuZhongXinService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,5 +52,10 @@ public class PingGuZhongXinimpl implements PingGuZhongXinService {
     @Override
     public JsonBean getPingGuZhongXinDetial(Integer id) {
         return new JsonBean(200,"",mapper.getPingGuZhongXinDetail(id));
+    }
+
+    @Override
+    public JsonBean insertPingGuZhongXin(PingGuZhongXinXiangGuanEntity entity) {
+        return new JsonBean(200,"",mapper.insertPingGuZhongXin(entity));
     }
 }

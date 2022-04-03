@@ -13,12 +13,14 @@ public class HonorEntity implements Serializable {
     private String name;
     private String level;
     private String finishtime;
+    private String partment;
 
-    public HonorEntity(Integer status, String name, String level, String finishtime) {
+    public HonorEntity(Integer status, String name, String level, String finishtime, String partment) {
         this.status = status;
         this.name = name;
         this.level = level;
         this.finishtime = finishtime;
+        this.partment = partment;
     }
 
     public Integer getStatus() {

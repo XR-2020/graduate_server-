@@ -21,7 +21,7 @@
     <!--application.yml 中通过 type-aliases-package 指定了实体类的为了，因此-->
     <select id="getAllRongYu" resultMap="RongYu,RongYucount">
         <bind name="beginIndex" value="(pageIndex-1)*pageSize"></bind>
-        select honor.*,teacher.tea_name from honor,teacher where status=1 and honor.badge=teacher.badeg limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER};select found_rows() RongYucount;
+        select honor.* from honor where status=1 limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER};select found_rows() RongYucount;
     </select>
     <!--删除一个教研项目-->
     <delete id="deleteOneRongYu">
@@ -39,7 +39,7 @@
 <!--    </select>-->
 
     <insert id="insertRongYuChengHao" parameterType="com.example.graduate_sever.entity.HonorEntity" useGeneratedKeys="true">
-        INSERT INTO honor(`status`, `name`, `finishtime`, `level`) VALUES (#{status,jdbcType=INTEGER},#{name,jdbcType=VARCHAR},#{finishtime,jdbcType=VARCHAR},#{partment,jdbcType=VARCHAR})
+        INSERT INTO honor(`status`, `name`, `finishtime`, `level`,`partment`) VALUES (#{status,jdbcType=INTEGER},#{name,jdbcType=VARCHAR},#{finishtime,jdbcType=VARCHAR},#{level,jdbcType=VARCHAR},#{partment,jdbcType=VARCHAR})
     </insert>
 </mapper>
 

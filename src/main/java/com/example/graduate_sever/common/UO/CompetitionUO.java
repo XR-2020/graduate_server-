@@ -20,6 +20,10 @@ public class CompetitionUO implements Serializable {
         return role;
     }
 
+    public void setRole(Integer role) {
+        this.role = role;
+    }
+
     @Override
     public String toString() {
         return "CompetitionUO{" +

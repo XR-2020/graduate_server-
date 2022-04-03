@@ -3,6 +3,7 @@ package com.example.graduate_sever.service;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.JsonBean;
 import com.example.graduate_sever.common.ResVO;
+import com.example.graduate_sever.entity.JiaoYuGuiHuaXiangMuEntity;
 
 public interface JiaoYuGuiHuaService {
      ResVO getAllJiaoYuGuiHua(DTO dTO);
@@ -10,4 +11,5 @@ public interface JiaoYuGuiHuaService {
      JsonBean deleteJiaoYuGuiHua(int[] ids);
      JsonBean deleteOneJiaoYuGuiHua(Integer id);
      JsonBean getJiaoYuGuiHuaDetial(Integer id);
+     JsonBean insertJiaoYuGuiHua(JiaoYuGuiHuaXiangMuEntity entity);
 }

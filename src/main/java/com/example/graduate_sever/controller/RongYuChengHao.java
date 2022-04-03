@@ -45,9 +45,9 @@ public class RongYuChengHao {
         JsonBean jsonBean=null;
         int role=uo.getRole();
         if (role!=4){
-            element=new HonorEntity(0,uo.getName(),uo.getLevel(),uo.getFinishtime());
+            element=new HonorEntity(0,uo.getName(),uo.getLevel(),uo.getFinishtime(),uo.getPartment());
         }else {
-            element=new HonorEntity(1,uo.getName(),uo.getLevel(),uo.getFinishtime());
+            element=new HonorEntity(1,uo.getName(),uo.getLevel(),uo.getFinishtime(),uo.getPartment());
         }
 
         return  service.insertRongYuChengHao(element);

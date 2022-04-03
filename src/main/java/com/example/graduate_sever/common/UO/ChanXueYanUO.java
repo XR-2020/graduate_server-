@@ -18,9 +18,14 @@ public class ChanXueYanUO implements Serializable{
     private Integer[] people;
     private Integer role;
 
+    public void setRole(Integer role) {
+        this.role = role;
+    }
+
     public Integer getRole() {
         return role;
     }
+
 
     public String getName() {
         return name;

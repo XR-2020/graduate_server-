@@ -44,8 +44,8 @@ public class JiaoYanLunWen {
         return jiaoYanLunWenMuService.getJiaoYanLunWenDetial(id);
     }
 
-    @RequestMapping(value = "/updateHonor", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public JsonBean updateHonor(@RequestBody JiaoYanLunWenUO uo){
+    @RequestMapping(value = "/updateJiaoYanLunWen", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public JsonBean updateJiaoYanLunWen(@RequestBody JiaoYanLunWenUO uo){
         System.out.println(uo);
         JiaoYanLunWenEntity element=null;
         JsonBean jsonBean=null;

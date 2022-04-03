@@ -9,13 +9,23 @@ import java.io.Serializable;
 public class JiaoYuGuiHuaXiangMuEntity implements Serializable {
     private static final long serialVersionUID=1L;
 
-    private Integer status=0;
+    private Integer status;
     private String finishtime;
     private String partment;
     private String name;
     private String grade;
     private String level;
     private String danwei;
+
+    public JiaoYuGuiHuaXiangMuEntity(Integer status, String finishtime, String partment, String name, String grade, String level, String danwei) {
+        this.status = status;
+        this.finishtime = finishtime;
+        this.partment = partment;
+        this.name = name;
+        this.grade = grade;
+        this.level = level;
+        this.danwei = danwei;
+    }
 
     public String getGrade() {
         return grade;

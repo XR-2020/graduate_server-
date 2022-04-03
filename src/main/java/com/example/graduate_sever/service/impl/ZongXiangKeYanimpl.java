@@ -5,6 +5,7 @@ import com.example.graduate_sever.Dao.ZongXiangKeYanMapper;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.JsonBean;
 import com.example.graduate_sever.common.ResVO;
+import com.example.graduate_sever.entity.ZongXiangKeYanXiangMuEntity;
 import com.example.graduate_sever.service.HengXiangKeYanService;
 import com.example.graduate_sever.service.ZongXiangKeYanService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,5 +52,10 @@ public class ZongXiangKeYanimpl implements ZongXiangKeYanService {
     @Override
     public JsonBean getZongXiangKeYanDetial(Integer id) {
         return new JsonBean(200,"",mapper.getZongXiangKeYanDetail(id));
+    }
+
+    @Override
+    public JsonBean insertZongXiangKeYan(ZongXiangKeYanXiangMuEntity entity) {
+        return new JsonBean(200,"",mapper.insertZongXiangKeYan(entity));
     }
 }
