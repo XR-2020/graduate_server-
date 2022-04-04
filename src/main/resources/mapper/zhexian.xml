@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.graduate_sever.Dao.StatisticalMapper">
+    <resultMap id="result" type="java.lang.Long"/>
+
+<!--    <select id="SearchDetail" resultMap="value">-->
+<!--        select teacher.tea_name,teacher.badeg from participation,teacher where participation.badge=teacher.badeg and participation.ach_id=#{id} and participation.type=1-->
+<!--    </select>-->
+
+    <select id="SearchAll" parameterType="com.example.graduate_sever.entity.ZheXianEntity" resultMap="result">
+        select COUNT(IF(`status`=1,true,null)) result from ${name} where finishtime between #{date1} and #{date2}
+    </select>
+
+</mapper>
+
