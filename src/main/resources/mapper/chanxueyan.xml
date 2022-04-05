@@ -20,6 +20,13 @@
     </resultMap>
     <resultMap id="ChanXueYan_count" type="java.lang.Long"/>
     <resultMap id="ChanXueYanid" type="java.lang.Integer"/>
+    <!--教师下拉列表映射-->
+    <resultMap id="Teacher" type="com.example.graduate_sever.model.Teacher">
+        <result column="badeg" jdbcType="INTEGER" javaType="int" property="badge"/>
+        <result column="tea_name" jdbcType="VARCHAR" javaType="string" property="name"/>
+        <result column="password" jdbcType="VARCHAR" javaType="string" property="password"/>
+        <result column="role" jdbcType="INTEGER" javaType="int" property="role"/>
+    </resultMap>
     <!--查询产学研所有成果-->
     <!--application.yml 中通过 type-aliases-package 指定了实体类的为了，因此-->
     <select id="getAll" resultMap="ChanXueYan,ChanXueYan_count">
@@ -48,5 +55,9 @@
     <insert id="insertChanXueYanParticipation" parameterType="com.example.graduate_sever.entity.ParticipationEntity" useGeneratedKeys="true">
         INSERT INTO participation(`badge`, `ach_id`, `type`) VALUES (#{badge,jdbcType=INTEGER},#{ach_id,jdbcType=INTEGER},#{type,jdbcType=INTEGER})
     </insert>
+
+    <select id="getTeacherList" resultMap="Teacher">
+        SELECT * from teacher
+    </select>
 </mapper>
 

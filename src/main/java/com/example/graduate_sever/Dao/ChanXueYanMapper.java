@@ -22,4 +22,6 @@ public interface ChanXueYanMapper {
     int insertChanXueYan(ChanXueYanEntity entity);
     int insertChanXueYanParticipation(ParticipationEntity participationEntity);
 
+    List<Object> getTeacherList();
+
 }

@@ -6,9 +6,12 @@ import com.example.graduate_sever.common.JsonBean;
 import com.example.graduate_sever.common.ResVO;
 import com.example.graduate_sever.common.UO.ChanXueYanUO;
 import com.example.graduate_sever.entity.ChanXueYanEntity;
+import com.example.graduate_sever.model.Teacher;
 import com.example.graduate_sever.service.ChanXueYanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class ChanXueYan {
@@ -52,5 +55,8 @@ public class ChanXueYan {
         }
         return  chanXueYanService.insertChanXueYan(element,people);
     }
-
+    @GetMapping("/getTeacherList")
+    public List<Object> getTeacherList(){
+        return chanXueYanService.getTeacherList();
+    }
 }
