@@ -16,6 +16,18 @@ public class ChanXueYanEntity implements Serializable{
     private String name;
     private String partment;
 
+    public ChanXueYanEntity(Integer status, String finishtime, String lianghua, String wenhao, String name, String partment) {
+        this.status = status;
+        this.finishtime = finishtime;
+        this.lianghua = lianghua;
+        this.wenhao = wenhao;
+        this.name = name;
+        this.partment = partment;
+    }
+
+    public ChanXueYanEntity() {
+    }
+
     public Integer getId() {
         return id;
     }
