@@ -3,6 +3,7 @@ package com.example.graduate_sever.Dao;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.People;
 import com.example.graduate_sever.entity.JiaoYanXiangMuEntity;
+import com.example.graduate_sever.entity.ParticipationEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -21,5 +22,7 @@ public interface JiaoYanXiangMuMapper {
     List<People> getJiaoYanDetail(Integer id);
 
     int insertJiaoYanXiangMu(JiaoYanXiangMuEntity entity);
+
+    int insertJiaoYanXiangMuParticipation(ParticipationEntity participationEntity);
 
 }

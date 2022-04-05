@@ -11,5 +11,5 @@ public interface JiaoYanXiangMuService {
      JsonBean deleteJiaoYan(int[] ids);
      JsonBean deleteOneJiaoYan(Integer id);
      JsonBean getJiaoYanDetial(Integer id);
-     JsonBean insertJiaoYan(JiaoYanXiangMuEntity entity);
+     JsonBean insertJiaoYan(JiaoYanXiangMuEntity entity,Integer[] people);
 }

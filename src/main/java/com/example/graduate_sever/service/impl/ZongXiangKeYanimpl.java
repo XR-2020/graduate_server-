@@ -5,6 +5,7 @@ import com.example.graduate_sever.Dao.ZongXiangKeYanMapper;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.JsonBean;
 import com.example.graduate_sever.common.ResVO;
+import com.example.graduate_sever.entity.ParticipationEntity;
 import com.example.graduate_sever.entity.ZongXiangKeYanXiangMuEntity;
 import com.example.graduate_sever.service.HengXiangKeYanService;
 import com.example.graduate_sever.service.ZongXiangKeYanService;
@@ -55,7 +56,11 @@ public class ZongXiangKeYanimpl implements ZongXiangKeYanService {
     }
 
     @Override
-    public JsonBean insertZongXiangKeYan(ZongXiangKeYanXiangMuEntity entity) {
-        return new JsonBean(200,"",mapper.insertZongXiangKeYan(entity));
+    public JsonBean insertZongXiangKeYan(ZongXiangKeYanXiangMuEntity entity,Integer[] people) {
+        mapper.insertZongXiangKeYan(entity);
+        for (Integer ach_id:people) {
+            mapper.insertZongXiangKeYanParticipation(new ParticipationEntity(ach_id,entity.getId(),8));
+        }
+        return new JsonBean(200,"","");
     }
 }

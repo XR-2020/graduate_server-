@@ -46,8 +46,8 @@ public class JiaoYanLunWen {
 
     @RequestMapping(value = "/updateJiaoYanLunWen", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public JsonBean updateJiaoYanLunWen(@RequestBody JiaoYanLunWenUO uo){
-        System.out.println(uo);
         JiaoYanLunWenEntity element=null;
+        Integer[] people=uo.getPeople();
         JsonBean jsonBean=null;
         int role=uo.getRole();
         if (role!=2&&role!=4){
@@ -56,6 +56,6 @@ public class JiaoYanLunWen {
             element=new JiaoYanLunWenEntity(1,uo.getFinishtime(),uo.getPartment(),uo.getName());
         }
 
-        return jiaoYanLunWenMuService.insertJiaoYanLunWen(element);
+        return jiaoYanLunWenMuService.insertJiaoYanLunWen(element,people);
     }
 }

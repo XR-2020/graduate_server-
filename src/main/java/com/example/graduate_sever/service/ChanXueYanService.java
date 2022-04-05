@@ -11,5 +11,5 @@ public interface  ChanXueYanService {
      JsonBean deleteChanXueYan(int[] ids);
      JsonBean deleteOneChanXueYan(Integer id);
      JsonBean getChanXueYanDetail(Integer id);
-     JsonBean insertChanXueYan(ChanXueYanEntity entity);
+     JsonBean insertChanXueYan(ChanXueYanEntity entity,Integer[] people);
 }

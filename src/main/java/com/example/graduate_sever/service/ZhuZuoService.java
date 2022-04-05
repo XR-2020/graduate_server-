@@ -11,5 +11,5 @@ public interface ZhuZuoService {
      JsonBean deleteZhuZuo(int[] ids);
      JsonBean deleteOneZhuZuo(Integer id);
      JsonBean getZhuZuoDetial(Integer id);
-     JsonBean insertZhuZuo(HeBingEntity entity);
+     JsonBean insertZhuZuo(HeBingEntity entity,Integer[] people);
 }

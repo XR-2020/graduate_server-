@@ -4,6 +4,7 @@ import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.People;
 import com.example.graduate_sever.entity.ChanXueYanEntity;
 import com.example.graduate_sever.entity.HeBingEntity;
+import com.example.graduate_sever.entity.ParticipationEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -22,4 +23,5 @@ public interface KeYanXiangMuJieXiangMapper {
     List<People> getKeYanXiangMuJieXiangDetail(Integer id);
     int insertKeYanXiangMuJieXiang(HeBingEntity entity);
 
+    int insertKeYanXiangMuJieXiangParticipation(ParticipationEntity participationEntity);
 }

@@ -4,6 +4,7 @@ import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.People;
 import com.example.graduate_sever.entity.HeBingEntity;
 import com.example.graduate_sever.entity.HonorEntity;
+import com.example.graduate_sever.entity.ParticipationEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -23,6 +24,6 @@ public interface RongYuChengHaoMapper {
 
     int insertRongYuChengHao(HonorEntity entity);
 
-
+    int insertRongYuChengHaoParticipation(ParticipationEntity participationEntity);
 
 }

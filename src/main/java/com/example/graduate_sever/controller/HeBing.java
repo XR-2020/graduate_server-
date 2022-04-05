@@ -27,10 +27,11 @@ public class HeBing {
     @Autowired
     private KeYanXiangMuJieXiangService keYanXiangMuJieXiangService;
     @RequestMapping(value = "/updateHeBing", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public JsonBean updateChanXueYan(@RequestBody HeBingUO uo){
+    public JsonBean updateHeBing(@RequestBody HeBingUO uo){
         Integer role=uo.getRole();
         HeBingEntity element=null;
         JsonBean jsonBean=null;
+        Integer[] people=uo.getPeople();
         if (role!=3&&role!=4) {
             element = new HeBingEntity(0, uo.getFinishtime(), uo.getPartment(), uo.getName());
         }else {
@@ -39,32 +40,32 @@ public class HeBing {
         switch (uo.getType()){
            //专利
            case 2:{
-               jsonBean=zhuanLiService.insertZhuanLi(element);
+               jsonBean=zhuanLiService.insertZhuanLi(element,people);
                break;
            }
            //横向科研项目
            case 3:{
-               jsonBean=hengXiangKeYanService.insertHengXiangKeYan(element);
+               jsonBean=hengXiangKeYanService.insertHengXiangKeYan(element,people);
                break;
            }
            //著作
            case 4:{
-               jsonBean=zhuZuoService.insertZhuZuo(element);
+               jsonBean=zhuZuoService.insertZhuZuo(element,people);
                break;
            }
            //科研论文
            case 5:{
-               jsonBean=keYanLunWenService.insertKeYanLunWen(element);
+               jsonBean=keYanLunWenService.insertKeYanLunWen(element,people);
                break;
            }
            //软件著作权
            case 6:{
-               jsonBean=ruanJianZhuZuoService.insertRuanJianZhuZuo(element);
+               jsonBean=ruanJianZhuZuoService.insertRuanJianZhuZuo(element,people);
                break;
            }
            //科研项目结项
            case 7:{
-               jsonBean=keYanLunWenService.insertKeYanLunWen(element);
+               jsonBean=keYanLunWenService.insertKeYanLunWen(element,people);
                break;
            }
        }

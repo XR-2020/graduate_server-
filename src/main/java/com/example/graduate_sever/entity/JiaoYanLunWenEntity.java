@@ -8,11 +8,19 @@ import java.io.Serializable;
 
 public class JiaoYanLunWenEntity implements Serializable {
     private static final long serialVersionUID=1L;
-
-    private Integer status=0;
+    private Integer id;
+    private Integer status;
     private String finishtime;
     private String partment;
     private String name;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public JiaoYanLunWenEntity(Integer status, String finishtime, String partment, String name) {
         this.status = status;

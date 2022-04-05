@@ -8,12 +8,21 @@ import java.io.Serializable;
 
 public class ChanXueYanEntity implements Serializable{
     private static final long serialVersionUID=1L;
-    private Integer status=0;
+    private Integer id;
+    private Integer status;
     private String finishtime;
     private String lianghua;
     private String wenhao;
     private String name;
     private String partment;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public Integer getStatus() {
         return status;

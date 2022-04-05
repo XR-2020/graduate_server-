@@ -19,6 +19,7 @@
         <result column="tea_name" jdbcType="VARCHAR" javaType="string" property="name"/>
     </resultMap>
     <resultMap id="ChanXueYan_count" type="java.lang.Long"/>
+    <resultMap id="ChanXueYanid" type="java.lang.Integer"/>
     <!--查询产学研所有成果-->
     <!--application.yml 中通过 type-aliases-package 指定了实体类的为了，因此-->
     <select id="getAll" resultMap="ChanXueYan,ChanXueYan_count">
@@ -40,8 +41,12 @@
 <!--        where status=1 and c.badge=t.badeg and CONCAT(c.id,t.tea_name,c.partment,c.name,c.wenhao,c.lianghua,c.finishtime,c.status) LIKE CONCAT('%',#{key},'%') limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER};select found_rows() ChanXueYan_count;-->
 <!--    </select>-->
     
-    <insert id="insertChanXueYan" parameterType="com.example.graduate_sever.entity.ChanXueYanEntity" useGeneratedKeys="true">
+    <insert id="insertChanXueYan" parameterType="com.example.graduate_sever.entity.ChanXueYanEntity" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO chanxueyan (`status`, `finishtime`, `lianghua`, `wenhao`, `name`, `partment`) VALUES (#{status,jdbcType=INTEGER},#{finishtime,jdbcType=VARCHAR},#{lianghua,jdbcType=VARCHAR},#{wenhao,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR},#{partment,jdbcType=VARCHAR})
+    </insert>
+
+    <insert id="insertChanXueYanParticipation" parameterType="com.example.graduate_sever.entity.ParticipationEntity" useGeneratedKeys="true">
+        INSERT INTO participation(`badge`, `ach_id`, `type`) VALUES (#{badge,jdbcType=INTEGER},#{ach_id,jdbcType=INTEGER},#{type,jdbcType=INTEGER})
     </insert>
 </mapper>
 

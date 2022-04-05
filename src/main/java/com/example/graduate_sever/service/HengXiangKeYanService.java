@@ -11,5 +11,5 @@ public interface HengXiangKeYanService {
      JsonBean deleteHengXiangKeYan(int[] ids);
      JsonBean deleteOneHengXiangKeYan(Integer id);
      JsonBean getHengXiangKeYanDetial(Integer id);
-     JsonBean insertHengXiangKeYan(HeBingEntity entity);
+     JsonBean insertHengXiangKeYan(HeBingEntity entity,Integer[] people);
 }

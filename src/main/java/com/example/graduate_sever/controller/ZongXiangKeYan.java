@@ -39,7 +39,7 @@ public class ZongXiangKeYan {
 
     @RequestMapping(value = "/updateZongXiangKeYan", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public JsonBean updateZongXiangKeYan(@RequestBody ZongXiangKeYanXiangMuUO uo){
-        System.out.println(uo);
+        Integer[] people=uo.getPeople();
         ZongXiangKeYanXiangMuEntity element=null;
         JsonBean jsonBean=null;
         int role=uo.getRole();
@@ -49,6 +49,6 @@ public class ZongXiangKeYan {
             element=new ZongXiangKeYanXiangMuEntity(1,uo.getFinishtime(),uo.getLevel(),uo.getType(),uo.getLixiang(),uo.getPartment(),uo.getName());
         }
 
-        return  service.insertZongXiangKeYan(element);
+        return  service.insertZongXiangKeYan(element,people);
     }
 }

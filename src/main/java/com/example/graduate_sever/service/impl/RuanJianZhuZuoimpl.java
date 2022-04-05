@@ -6,6 +6,7 @@ import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.JsonBean;
 import com.example.graduate_sever.common.ResVO;
 import com.example.graduate_sever.entity.HeBingEntity;
+import com.example.graduate_sever.entity.ParticipationEntity;
 import com.example.graduate_sever.service.HengXiangKeYanService;
 import com.example.graduate_sever.service.RuanJianZhuZuoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,7 +56,11 @@ public class RuanJianZhuZuoimpl implements RuanJianZhuZuoService {
     }
 
     @Override
-    public JsonBean insertRuanJianZhuZuo(HeBingEntity entity) {
-        return new JsonBean(200,"",mapper.insertRuanJianZhuZuo(entity));
+    public JsonBean insertRuanJianZhuZuo(HeBingEntity entity,Integer[] people) {
+        mapper.insertRuanJianZhuZuo(entity);
+        for (Integer ach_id:people) {
+            mapper.insertRuanJianZhuZuoParticipation(new ParticipationEntity(ach_id,entity.getId(),11));
+        }
+        return new JsonBean(200,"","");
     }
 }

@@ -6,6 +6,7 @@ import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.JsonBean;
 import com.example.graduate_sever.common.ResVO;
 import com.example.graduate_sever.entity.HeBingEntity;
+import com.example.graduate_sever.entity.ParticipationEntity;
 import com.example.graduate_sever.service.HengXiangKeYanService;
 import com.example.graduate_sever.service.ZhuanLiService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,7 +56,12 @@ public class HengXiangKeYanimpl implements HengXiangKeYanService {
     }
 
     @Override
-    public JsonBean insertHengXiangKeYan(HeBingEntity entity) {
-        return new JsonBean(200,"",mapper.insertHengXiangKeYan(entity));
+    public JsonBean insertHengXiangKeYan(HeBingEntity entity,Integer[] people) {
+        mapper.insertHengXiangKeYan(entity);
+        Integer ach_id=entity.getId();
+        for (Integer id:people) {
+            mapper.insertHengXiangKeYanParticipation(new ParticipationEntity(id,ach_id,7));
+        }
+        return new JsonBean(200,"","");
     }
 }

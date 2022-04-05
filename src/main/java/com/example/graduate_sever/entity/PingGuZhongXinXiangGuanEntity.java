@@ -13,6 +13,15 @@ public class PingGuZhongXinXiangGuanEntity implements Serializable {
     private String grade;
     private String partment;
     private String name;
+    private Integer id;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public PingGuZhongXinXiangGuanEntity(Integer status, String finishtime, String grade, String partment, String name) {
         this.status = status;

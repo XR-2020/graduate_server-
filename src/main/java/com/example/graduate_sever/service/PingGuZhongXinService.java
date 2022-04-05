@@ -11,5 +11,5 @@ public interface PingGuZhongXinService {
      JsonBean deletePingGuZhongXin(int[] ids);
      JsonBean deleteOnePingGuZhongXin(Integer id);
      JsonBean getPingGuZhongXinDetial(Integer id);
-     JsonBean insertPingGuZhongXin(PingGuZhongXinXiangGuanEntity entity);
+     JsonBean insertPingGuZhongXin(PingGuZhongXinXiangGuanEntity entity,Integer[] people);
 }

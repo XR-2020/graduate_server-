@@ -11,5 +11,5 @@ public interface ZongXiangKeYanService {
      JsonBean deleteZongXiangKeYan(int[] ids);
      JsonBean deleteOneZongXiangKeYan(Integer id);
      JsonBean getZongXiangKeYanDetial(Integer id);
-     JsonBean insertZongXiangKeYan(ZongXiangKeYanXiangMuEntity entity);
+     JsonBean insertZongXiangKeYan(ZongXiangKeYanXiangMuEntity entity,Integer[] people);
 }

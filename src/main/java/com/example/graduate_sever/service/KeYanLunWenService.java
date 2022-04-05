@@ -11,5 +11,5 @@ public interface KeYanLunWenService {
      JsonBean deleteKeYanLunWen(int[] ids);
      JsonBean deleteOneKeYanLunWen(Integer id);
      JsonBean getKeYanLunWenDetial(Integer id);
-     JsonBean insertKeYanLunWen(HeBingEntity entity);
+     JsonBean insertKeYanLunWen(HeBingEntity entity,Integer[] people);
 }

@@ -11,5 +11,5 @@ public interface ZhuanLiService {
      JsonBean deleteZhuanLi(int[] ids);
      JsonBean deleteOneZhuanLi(Integer id);
      JsonBean getZhuanLiDetial(Integer id);
-     JsonBean insertZhuanLi(HeBingEntity entity);
+     JsonBean insertZhuanLi(HeBingEntity entity,Integer[] people);
 }

@@ -15,6 +15,15 @@ public class ZongXiangKeYanXiangMuEntity implements Serializable {
     private String lixiang;
     private String partment;
     private String name;
+    private Integer id;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public ZongXiangKeYanXiangMuEntity(Integer status, String finishtime, String level, String type, String lixiang, String partment, String name) {
         this.status = status;

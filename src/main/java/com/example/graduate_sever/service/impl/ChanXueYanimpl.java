@@ -5,10 +5,12 @@ import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.JsonBean;
 import com.example.graduate_sever.common.ResVO;
 import com.example.graduate_sever.entity.ChanXueYanEntity;
+import com.example.graduate_sever.entity.ParticipationEntity;
 import com.example.graduate_sever.service.ChanXueYanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 @Service("ChanXueYanService")
@@ -53,7 +55,11 @@ public class ChanXueYanimpl implements ChanXueYanService {
     }
 
     @Override
-    public JsonBean insertChanXueYan(ChanXueYanEntity entity) {
-        return new JsonBean(200,"",chanxueyanMapper.insertChanXueYan(entity));
+    public JsonBean insertChanXueYan(ChanXueYanEntity entity, Integer[] people) {
+        chanxueyanMapper.insertChanXueYan(entity);
+        for (Integer ach_id:people) {
+            chanxueyanMapper.insertChanXueYanParticipation(new ParticipationEntity(ach_id,entity.getId(),1));
+        }
+        return new JsonBean(200,"","");
     }
 }

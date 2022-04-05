@@ -40,7 +40,7 @@ public class RongYuChengHao {
 
     @RequestMapping(value = "/updateHonor", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public JsonBean updateHonor(@RequestBody HonorUO uo){
-        System.out.println(uo);
+        Integer[] people=uo.getPeople();
         HonorEntity element=null;
         JsonBean jsonBean=null;
         int role=uo.getRole();
@@ -50,7 +50,7 @@ public class RongYuChengHao {
             element=new HonorEntity(1,uo.getName(),uo.getLevel(),uo.getFinishtime(),uo.getPartment());
         }
 
-        return  service.insertRongYuChengHao(element);
+        return  service.insertRongYuChengHao(element,people);
     }
 
 }

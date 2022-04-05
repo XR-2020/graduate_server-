@@ -14,6 +14,15 @@ public class HonorEntity implements Serializable {
     private String level;
     private String finishtime;
     private String partment;
+    private Integer id;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public HonorEntity(Integer status, String name, String level, String finishtime, String partment) {
         this.status = status;

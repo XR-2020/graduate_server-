@@ -39,7 +39,7 @@ public class JiaoYanXiangMu {
 
     @RequestMapping(value = "/updateJiaoYan", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public JsonBean updateJiaoYan(@RequestBody JiaoYanXiangMuUO uo){
-        System.out.println(uo);
+        Integer[] people=uo.getPeople();
         JiaoYanXiangMuEntity element=null;
         JsonBean jsonBean=null;
         int role=uo.getRole();
@@ -48,7 +48,7 @@ public class JiaoYanXiangMu {
         }else {
             element=new JiaoYanXiangMuEntity(1,uo.getFinishtime(),uo.getLianghua(),uo.getWenhao(),uo.getPartment(),uo.getName());}
 
-        return  jiaoYanXiangMuService.insertJiaoYan(element);
+        return  jiaoYanXiangMuService.insertJiaoYan(element,people);
     }
 
 }

@@ -42,7 +42,7 @@ public class XueKeJingSai {
 
     @RequestMapping(value = "/updateCompetition", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public JsonBean updateCompetition(@RequestBody CompetitionUO uo){
-        System.out.println(uo);
+        Integer[] people=uo.getPeople();
         CompetitionEntity element=new CompetitionEntity();
         element.setFinishtime(uo.getFinishtime());
         element.setGrade(uo.getGrade());
@@ -52,7 +52,7 @@ public class XueKeJingSai {
         if(uo.getRole() ==3){
             element.setStatus(1);
         }
-        return service.insertJingSai(element);
+        return service.insertJingSai(element,people);
     }
 
 }

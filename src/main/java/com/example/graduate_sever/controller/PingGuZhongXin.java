@@ -40,7 +40,7 @@ public class PingGuZhongXin {
 
     @RequestMapping(value = "/updatePingGuZhongXin", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public JsonBean updatePingGuZhongXin(@RequestBody PingGuZhongXinXiangGuanUO uo){
-        System.out.println(uo);
+        Integer[] people=uo.getPeople();
         PingGuZhongXinXiangGuanEntity element=null;
         JsonBean jsonBean=null;
         int role=uo.getRole();
@@ -50,7 +50,7 @@ public class PingGuZhongXin {
             element=new PingGuZhongXinXiangGuanEntity(1,uo.getFinishtime(),uo.getGrade(),uo.getPartment(),uo.getName());
         }
 
-        return  pingGuZhongXinService.insertPingGuZhongXin(element);
+        return  pingGuZhongXinService.insertPingGuZhongXin(element,people);
     }
 
 }

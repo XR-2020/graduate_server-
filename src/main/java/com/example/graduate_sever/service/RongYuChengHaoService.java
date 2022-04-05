@@ -12,5 +12,5 @@ public interface RongYuChengHaoService {
      JsonBean deleteOneRongYu(Integer id);
 //     JsonBean getRongYuDetial(Integer id);
 
-     JsonBean insertRongYuChengHao(HonorEntity entity);
+     JsonBean insertRongYuChengHao(HonorEntity entity,Integer[] people);
 }

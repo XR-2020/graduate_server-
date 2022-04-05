@@ -15,7 +15,15 @@ public class JiaoYanXiangMuEntity implements Serializable {
     private String wenhao;
     private String partment;
     private String name;
+    private Integer id;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
     public JiaoYanXiangMuEntity(Integer status, String finishtime, String lianghua, String wenhao, String partment, String name) {
         this.status = status;
         this.finishtime = finishtime;

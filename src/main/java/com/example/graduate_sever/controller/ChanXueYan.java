@@ -37,14 +37,20 @@ public class ChanXueYan {
         return chanXueYanService.getChanXueYanDetail(id);}
     @RequestMapping(value = "/insertChanXueYan", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public JsonBean insertChanXueYan(@RequestBody ChanXueYanUO uo){
-        System.out.println(uo);
         ChanXueYanEntity element=new ChanXueYanEntity();
+        Integer[] people=uo.getPeople();
+        Integer role=uo.getRole();
         element.setFinishtime(uo.getFinishtime());
         element.setName(uo.getName());
         element.setPartment(uo.getPartment());
         element.setLianghua(uo.getLianghua());
         element.setWenhao(uo.getWenhao());
-        return  chanXueYanService.insertChanXueYan(element);
+        if (role!=4&&role!=1){
+            element.setStatus(0);
+        }else {
+            element.setStatus(1);
+        }
+        return  chanXueYanService.insertChanXueYan(element,people);
     }
 
 }

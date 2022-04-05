@@ -6,6 +6,7 @@ import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.JsonBean;
 import com.example.graduate_sever.common.ResVO;
 import com.example.graduate_sever.entity.HeBingEntity;
+import com.example.graduate_sever.entity.ParticipationEntity;
 import com.example.graduate_sever.service.PingGuZhongXinService;
 import com.example.graduate_sever.service.ZhuanLiService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,7 +56,11 @@ public class ZhuanLiimpl implements ZhuanLiService {
     }
 
     @Override
-    public JsonBean insertZhuanLi(HeBingEntity entity) {
-        return new JsonBean(200,"",mapper.insertZhuanLi(entity));
+    public JsonBean insertZhuanLi(HeBingEntity entity,Integer[] people) {
+        Integer ach_id=entity.getId();
+        for (Integer id:people) {
+            mapper.insertZhuanLiParticipation(new ParticipationEntity(id,ach_id,6));
+        }
+        return new JsonBean(200,"","");
     }
 }

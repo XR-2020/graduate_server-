@@ -6,6 +6,7 @@ import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.JsonBean;
 import com.example.graduate_sever.common.ResVO;
 import com.example.graduate_sever.entity.JiaoYanLunWenEntity;
+import com.example.graduate_sever.entity.ParticipationEntity;
 import com.example.graduate_sever.service.JiaoYanLunWenMuService;
 import com.example.graduate_sever.service.JiaoYanXiangMuService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,7 +56,11 @@ public class JiaoYanLunWenimpl implements JiaoYanLunWenMuService {
     }
 
     @Override
-    public JsonBean insertJiaoYanLunWen(JiaoYanLunWenEntity entity) {
-       return new JsonBean(200,"",jiaoYanLunWenMapper.insertJiaoYanLunWen(entity));
+    public JsonBean insertJiaoYanLunWen(JiaoYanLunWenEntity entity,Integer[] people) {
+        jiaoYanLunWenMapper.insertJiaoYanLunWen(entity);
+        for (Integer ach_id:people) {
+            jiaoYanLunWenMapper.insertJiaoYanLunWenParticipation(new ParticipationEntity(ach_id,entity.getId(),3));
+        }
+        return new JsonBean(200,"","");
     }
 }

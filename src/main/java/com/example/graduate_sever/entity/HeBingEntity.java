@@ -9,6 +9,7 @@ import java.io.Serializable;
 public class HeBingEntity implements Serializable {
     private static final long serialVersionUID=1L;
 
+    private Integer id;
     private Integer status;
     private String finishtime;
     private String partment;
@@ -21,6 +22,13 @@ public class HeBingEntity implements Serializable {
         this.name = name;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public Integer getStatus() {
         return status;
