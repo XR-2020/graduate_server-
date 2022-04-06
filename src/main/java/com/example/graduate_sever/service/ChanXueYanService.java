@@ -5,6 +5,7 @@ import com.example.graduate_sever.common.JsonBean;
 import com.example.graduate_sever.common.ResVO;
 import com.example.graduate_sever.entity.ChanXueYanEntity;
 import com.example.graduate_sever.model.Teacher;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
 
 import java.util.List;
@@ -17,5 +18,5 @@ public interface  ChanXueYanService {
      JsonBean getChanXueYanDetail(Integer id);
      JsonBean insertChanXueYan(ChanXueYanEntity entity,Integer[] people);
      List<Object> getTeacherList();
-     void crawlerWebSite(String td, CloseableHttpClient httpClient,String cookie);
+     void ChanXueYancrawlerWebSite(String td, CloseableHttpClient httpClient, HttpPost list, HttpPost view);
 }

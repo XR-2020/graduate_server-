@@ -21,7 +21,7 @@
     <!--application.yml 中通过 type-aliases-package 指定了实体类的为了，因此-->
     <select id="getAllKeYanXiangMuJieXiang" resultMap="KeYanXiangMuJieXiang,count7">
         <bind name="beginIndex" value="(pageIndex-1)*pageSize"></bind>
-        select keyanxiangmujiexiang.* from keyanxiangmujiexiang where status=1 limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER};select found_rows() count7;
+        select keyanxiangmujiexiang.* from keyanxiangmujiexiang where status=1 limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER};select count(*) count7 from keyanxiangmujiexiang where status=1;
     </select>
     <!--删除一个教研项目-->
     <delete id="deleteOneKeYanXiangMuJieXiang">

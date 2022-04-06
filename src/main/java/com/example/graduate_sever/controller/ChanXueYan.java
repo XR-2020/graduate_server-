@@ -10,6 +10,7 @@ import com.example.graduate_sever.common.WebCookie;
 import com.example.graduate_sever.entity.ChanXueYanEntity;
 import com.example.graduate_sever.model.Teacher;
 import com.example.graduate_sever.service.ChanXueYanService;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,7 +68,14 @@ public class ChanXueYan {
     @GetMapping("/crawlerWebSite")
     public String crawlerWebSite(String crawlertd){
         CloseableHttpClient httpClient = HttpClients.createDefault();
-        chanXueYanService.crawlerWebSite(crawlertd,httpClient,WebCookie.getCookie());
+        String cookie=WebCookie.getCookie();
+        //获取对应项目列表
+        HttpPost list=new HttpPost("http://jx.zut.edu.cn/list.jsp");
+        list.setHeader("Cookie",cookie);
+        //获取小眼睛
+        HttpPost view=new HttpPost("http://jx.zut.edu.cn/view.jsp");
+        view.setHeader("Cookie",cookie);
+        chanXueYanService.ChanXueYancrawlerWebSite(crawlertd,httpClient,list,view);
         return "OK";
     }
 

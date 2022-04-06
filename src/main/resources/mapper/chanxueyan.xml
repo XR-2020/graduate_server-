@@ -31,7 +31,7 @@
     <!--application.yml 中通过 type-aliases-package 指定了实体类的为了，因此-->
     <select id="getAll" resultMap="ChanXueYan,ChanXueYan_count">
         <bind name="beginIndex" value="(pageIndex-1)*pageSize"></bind>
-        select chanxueyan.* from chanxueyan where status=1 limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER};select found_rows() ChanXueYan_count;
+        select chanxueyan.* from chanxueyan where status=1 limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER};select count(*) ChanXueYan_count from chanxueyan where status=1;
     </select>
     <!--删除一个产学研成果-->
     <delete id="deleteOneChanXueYan">

@@ -23,7 +23,7 @@
     <!--application.yml 中通过 type-aliases-package 指定了实体类的为了，因此-->
     <select id="getAllJingSai" resultMap="JingSai,JingSai_count">
         <bind name="beginIndex" value="(pageIndex-1)*pageSize"></bind>
-        select competition.* from competition where status=1 limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER};select found_rows() JingSai_count;
+        select competition.* from competition where status=1 limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER};select count(*) JingSai_count from competition where status=1;
     </select>
     <!--删除一个学科竞赛成果-->
     <delete id="deleteOneJingSai">
