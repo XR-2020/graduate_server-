@@ -65,18 +65,5 @@ public class ChanXueYan {
 //        System.out.println(WebCookie.getCookie());
         return chanXueYanService.getTeacherList();
     }
-    @GetMapping("/crawlerWebSite")
-    public String crawlerWebSite(String crawlertd){
-        CloseableHttpClient httpClient = HttpClients.createDefault();
-        String cookie=WebCookie.getCookie();
-        //获取对应项目列表
-        HttpPost list=new HttpPost("http://jx.zut.edu.cn/list.jsp");
-        list.setHeader("Cookie",cookie);
-        //获取小眼睛
-        HttpPost view=new HttpPost("http://jx.zut.edu.cn/view.jsp");
-        view.setHeader("Cookie",cookie);
-        chanXueYanService.ChanXueYancrawlerWebSite(crawlertd,httpClient,list,view);
-        return "OK";
-    }
 
 }

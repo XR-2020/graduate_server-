@@ -4,6 +4,8 @@ import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.JsonBean;
 import com.example.graduate_sever.common.ResVO;
 import com.example.graduate_sever.entity.HeBingEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.CloseableHttpClient;
 
 public interface ZhuanLiService {
      ResVO getAllZhuanLi(DTO jiaoYanXiangMuDTO);
@@ -12,4 +14,5 @@ public interface ZhuanLiService {
      JsonBean deleteOneZhuanLi(Integer id);
      JsonBean getZhuanLiDetial(Integer id);
      JsonBean insertZhuanLi(HeBingEntity entity,Integer[] people);
+     void ZhuanLiCrawlerWebSite(String td, CloseableHttpClient httpClient, HttpPost list, HttpPost view);
 }
