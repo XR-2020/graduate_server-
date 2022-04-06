@@ -99,17 +99,50 @@ public class HeBing {
         view.setHeader("Cookie",cookie);
         switch (crawlertd){
             case "教务处-实践科_产学研立项":{ chanXueYanService.ChanXueYancrawlerWebSite(crawlertd,httpClient,list,view);}
-            case "科技处_著作":{ zhuZuoService.ZhuZuoCrawlerWebSite(crawlertd,httpClient,list,view);}
-            case "社科处_教育规划项目纵向结题":{jiaoYuGuiHuaService.JiaoYuGuiHuaCrawlerWebSite(crawlertd,httpClient,list,view);}
-            case "科技处_横向科研项目业绩表":{ hengXiangKeYanService.HengXiangKeYanCrawlerWebSite(crawlertd,httpClient,list,view);}
-            case "科技处_纵向业绩量化汇总":{ zongXiangKeYanService.ZongXiangKeYanCrawlerWebSite(crawlertd,httpClient,list,view);}
-            case "科技处_论文":{ keYanLunWenService.KeYanLunWenCrawlerWebSite(crawlertd,httpClient,list,view);}
-            case "科技处_专利":{ zhuanLiService.ZhuanLiCrawlerWebSite(crawlertd,httpClient,list,view);}
-            case "科技处_项目结项":{ keYanXiangMuJieXiangService.KeYanXiangMuJieXiangCrawlerWebSite(crawlertd,httpClient,list,view);}
-            case "科技处_软件著作权":{ ruanJianZhuZuoService.RuanJianZhuZuoCrawlerWebSite(crawlertd,httpClient,list,view);}
-            case "教务处-教研科_教研论文":{jiaoYanLunWenMuService.JiaoYanLunWenCrawlerWebSite(crawlertd,httpClient,list,view);}
-            case "教务处-教研科_教研":{ jiaoYanXiangMuService.JiaoYanXiangMuCrawlerWebSite(crawlertd,httpClient,list,view);}
-            case "教务处-评估中心_模板":{ pingGuZhongXinService.PingGuZhongXinCrawlerWebSite(crawlertd,httpClient,list,view);}
+            case "科技处_著作":{
+                zhuZuoService.ZhuZuoCrawlerWebSite(crawlertd,httpClient,list,view);
+                break;
+            }
+            case "社科处_教育规划项目纵向结题":{
+                jiaoYuGuiHuaService.JiaoYuGuiHuaCrawlerWebSite(crawlertd,httpClient,list,view);
+                break;
+            }
+            case "科技处_横向科研项目业绩表":{
+                hengXiangKeYanService.HengXiangKeYanCrawlerWebSite(crawlertd,httpClient,list,view);
+                break;
+            }
+            case "科技处_纵向业绩量化汇总":{
+                zongXiangKeYanService.ZongXiangKeYanCrawlerWebSite(crawlertd,httpClient,list,view);
+                break;
+            }
+            case "科技处_论文":{
+                keYanLunWenService.KeYanLunWenCrawlerWebSite(crawlertd,httpClient,list,view);
+                break;
+            }
+            case "科技处_专利":{
+                zhuanLiService.ZhuanLiCrawlerWebSite(crawlertd,httpClient,list,view);
+                break;
+            }
+            case "科技处_项目结项":{
+                keYanXiangMuJieXiangService.KeYanXiangMuJieXiangCrawlerWebSite(crawlertd,httpClient,list,view);
+                break;
+            }
+            case "科技处_软件著作权":{
+                ruanJianZhuZuoService.RuanJianZhuZuoCrawlerWebSite(crawlertd,httpClient,list,view);
+                break;
+            }
+            case "教务处-教研科_教研论文":{
+                jiaoYanLunWenMuService.JiaoYanLunWenCrawlerWebSite(crawlertd,httpClient,list,view);
+                break;
+            }
+            case "教务处-教研科_教研":{
+                jiaoYanXiangMuService.JiaoYanXiangMuCrawlerWebSite(crawlertd,httpClient,list,view);
+                break;
+            }
+            case "教务处-评估中心_模板":{
+                pingGuZhongXinService.PingGuZhongXinCrawlerWebSite(crawlertd,httpClient,list,view);
+                break;
+            }
         }
         return "OK";
     }

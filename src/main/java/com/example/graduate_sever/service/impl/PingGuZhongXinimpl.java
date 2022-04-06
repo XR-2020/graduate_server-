@@ -100,7 +100,7 @@ public class PingGuZhongXinimpl implements PingGuZhongXinService {
             }
             System.out.println("entity.length"+parent.length);
             //设置除参与人外其他信息
-            for(int i=0;i<parent.length;i+=10){
+            for(int i=0;i<parent.length;i+=9){
 //                System.out.println("id="+entity[i]);
                 PingGuZhongXinXiangGuanEntity pingGuZhongXinXiangGuanEntity=new PingGuZhongXinXiangGuanEntity(1,formatter.format(date),parent[i+2],parent[i+7],parent[i+1]);
                 mapper.insertPingGuZhongXin(pingGuZhongXinXiangGuanEntity);

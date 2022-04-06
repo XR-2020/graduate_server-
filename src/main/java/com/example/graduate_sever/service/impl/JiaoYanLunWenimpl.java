@@ -95,16 +95,17 @@ public class JiaoYanLunWenimpl implements JiaoYanLunWenMuService {
 //                System.out.println(a);
 //            }
             String[] parent= Jsoup.parse(EntityUtils.toString(httpClient.execute(list).getEntity())).getElementsByTag("span").text().split("\\s+");
-            for (String a:parent) {
-                System.out.println(a);
-            }
+//            for (String a:parent) {
+//                System.out.println(a);
+//            }
             System.out.println("entity.length"+parent.length);
            //添加教研论文
-            for(int i=0;i<parent.length;i+=10){
-//                System.out.println("id="+entity[i]);
-                JiaoYanLunWenEntity jiaoYanLunWenEntity=new JiaoYanLunWenEntity(1,formatter.format(date),parent[i+7],parent[i+1]);
+            for(int i=0;i<parent.length;i+=8){
+                System.out.println(parent[i]+"____________________________________");
+                System.out.println("partment="+parent[i+6]+"name="+parent[i+1]);
+                JiaoYanLunWenEntity jiaoYanLunWenEntity=new JiaoYanLunWenEntity(1,formatter.format(date),parent[i+6],parent[i+1]);
                 jiaoYanLunWenMapper.insertJiaoYanLunWen(jiaoYanLunWenEntity);
-                jiaoYanLunWenMapper.insertJiaoYanLunWenParticipation(new ParticipationEntity(Integer.parseInt(parent[i+6]),jiaoYanLunWenEntity.getId(),3));
+                jiaoYanLunWenMapper.insertJiaoYanLunWenParticipation(new ParticipationEntity(Integer.parseInt(parent[i+5]),jiaoYanLunWenEntity.getId(),3));
             }
         } catch (IOException e) {
             e.printStackTrace();
