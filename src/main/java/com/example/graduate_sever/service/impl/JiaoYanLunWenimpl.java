@@ -95,6 +95,9 @@ public class JiaoYanLunWenimpl implements JiaoYanLunWenMuService {
 //                System.out.println(a);
 //            }
             String[] parent= Jsoup.parse(EntityUtils.toString(httpClient.execute(list).getEntity())).getElementsByTag("span").text().split("\\s+");
+            for (String a:parent) {
+                System.out.println(a);
+            }
             System.out.println("entity.length"+parent.length);
            //添加教研论文
             for(int i=0;i<parent.length;i+=10){

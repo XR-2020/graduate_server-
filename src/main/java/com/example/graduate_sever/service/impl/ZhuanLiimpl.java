@@ -80,9 +80,6 @@ public class ZhuanLiimpl implements ZhuanLiService {
     public void ZhuanLiCrawlerWebSite(String td, CloseableHttpClient httpClient, HttpPost list, HttpPost view) {
         List<NameValuePair> listparams= new ArrayList<NameValuePair>();
         //获取当前时间
-        Date date = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        // System.out.println(formatter.format(date).toString());
         //设置请求地址的参数
         listparams.add(new BasicNameValuePair("tb",td));
         listparams.add(new BasicNameValuePair("pageNum","0"));
@@ -95,12 +92,15 @@ public class ZhuanLiimpl implements ZhuanLiService {
 //                System.out.println(a);
 //            }
             String[] parent= Jsoup.parse(EntityUtils.toString(httpClient.execute(list).getEntity())).getElementsByTag("span").text().split("\\s+");
+            for (String a:parent) {
+                System.out.println(a);
+            }
             System.out.println("entity.length"+parent.length);
             //设置除参与人外其他信息
-            for(int i=0;i<parent.length;i+=11){
+            for(int i=0;i<parent.length;i+=10){
 //                System.out.println("id="+entity[i]);
-                ChanXueYanEntity chanXueYanEntity=new ChanXueYanEntity(1,formatter.format(date),parent[i+4],parent[i+3],parent[i+2],parent[i+1]);
-                mapper.insertZhuanLi(chanXueYanEntity);
+                HeBingEntity zhuanLiEntity=new HeBingEntity(1,parent[i+2],parent[i+7],parent[i+1]);
+                mapper.insertZhuanLi(zhuanLiEntity);
                 //设置小眼睛参数
                 List<NameValuePair> viewparams= new ArrayList<NameValuePair>();
                 viewparams.add(new BasicNameValuePair("tb",td));
@@ -110,7 +110,7 @@ public class ZhuanLiimpl implements ZhuanLiService {
                 view.setEntity(viewformEntity);
                 //获取小眼睛内容
                 String[] people=Jsoup.parse(EntityUtils.toString(httpClient.execute(view).getEntity())).getElementById("memTab").text().split("\\s+");
-                System.out.println("第一完成人工号="+parent[i+8]);
+                System.out.println("第一完成人工号="+parent[i+6]);
 //                System.out.println("____________________________________________");
 //                for (String b:people) {
 //                    System.out.println(b);
@@ -118,11 +118,11 @@ public class ZhuanLiimpl implements ZhuanLiService {
 //                System.out.println("____________________________________________")
                 for(int j=5;j<people.length;j+=4){
                     System.out.println("参与人id="+people[j]);
-                    mapper.insertZhuanLiParticipation(new ParticipationEntity(Integer.parseInt(people[j]),chanXueYanEntity.getId(),1));
+                    mapper.insertZhuanLiParticipation(new ParticipationEntity(Integer.parseInt(people[j]),zhuanLiEntity.getId(),6));
                 }
                 //            System.out.println(chanXueYanEntity.getId());
                 //添加第一完成人
-                mapper.insertZhuanLiParticipation(new ParticipationEntity(Integer.parseInt(parent[i+8]),chanXueYanEntity.getId(),1));
+                mapper.insertZhuanLiParticipation(new ParticipationEntity(Integer.parseInt(parent[i+6]),zhuanLiEntity.getId(),6));
             }
         } catch (IOException e) {
             e.printStackTrace();

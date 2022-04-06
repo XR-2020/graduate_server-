@@ -95,34 +95,17 @@ public class KeYanLunWenimpl implements KeYanLunWenService {
 //                System.out.println(a);
 //            }
             String[] parent= Jsoup.parse(EntityUtils.toString(httpClient.execute(list).getEntity())).getElementsByTag("span").text().split("\\s+");
+            for (String a:parent) {
+                System.out.println(a);
+            }
             System.out.println("entity.length"+parent.length);
             //设置除参与人外其他信息
-            for(int i=0;i<parent.length;i+=11){
+            for(int i=0;i<parent.length;i+=10){
 //                System.out.println("id="+entity[i]);
-                ChanXueYanEntity chanXueYanEntity=new ChanXueYanEntity(1,formatter.format(date),parent[i+4],parent[i+3],parent[i+2],parent[i+1]);
-                mapper.insertKeYanLunWen(chanXueYanEntity);
-                //设置小眼睛参数
-                List<NameValuePair> viewparams= new ArrayList<NameValuePair>();
-                viewparams.add(new BasicNameValuePair("tb",td));
-                viewparams.add(new BasicNameValuePair("id",parent[i]));
-                //       System.out.println(viewparams.toString());
-                UrlEncodedFormEntity viewformEntity = new UrlEncodedFormEntity(viewparams,"utf-8");
-                view.setEntity(viewformEntity);
-                //获取小眼睛内容
-                String[] people=Jsoup.parse(EntityUtils.toString(httpClient.execute(view).getEntity())).getElementById("memTab").text().split("\\s+");
-                System.out.println("第一完成人工号="+parent[i+8]);
-//                System.out.println("____________________________________________");
-//                for (String b:people) {
-//                    System.out.println(b);
-//                }
-//                System.out.println("____________________________________________")
-                for(int j=5;j<people.length;j+=4){
-                    System.out.println("参与人id="+people[j]);
-                    mapper.insertKeYanLunWenParticipation(new ParticipationEntity(Integer.parseInt(people[j]),chanXueYanEntity.getId(),1));
-                }
-                //            System.out.println(chanXueYanEntity.getId());
+                HeBingEntity keYanLunWenEntity=new HeBingEntity(1,parent[i+2],parent[i+7],parent[i+1]);
+                mapper.insertKeYanLunWen(keYanLunWenEntity);
                 //添加第一完成人
-                mapper.insertKeYanLunWenParticipation(new ParticipationEntity(Integer.parseInt(parent[i+8]),chanXueYanEntity.getId(),1));
+                mapper.insertKeYanLunWenParticipation(new ParticipationEntity(Integer.parseInt(parent[i+6]),keYanLunWenEntity.getId(),10));
             }
         } catch (IOException e) {
             e.printStackTrace();

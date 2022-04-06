@@ -93,6 +93,9 @@ public class JiaoYanXiangMuimpl implements JiaoYanXiangMuService {
 //                System.out.println(a);
 //            }
             String[] parent= Jsoup.parse(EntityUtils.toString(httpClient.execute(list).getEntity())).getElementsByTag("span").text().split("\\s+");
+            for (String a:parent) {
+                System.out.println(a);
+            }
             System.out.println("entity.length"+parent.length);
             //设置除参与人外其他信息
             for(int i=0;i<parent.length;i+=11){
