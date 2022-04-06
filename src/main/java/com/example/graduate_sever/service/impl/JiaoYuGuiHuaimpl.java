@@ -96,7 +96,7 @@ public class JiaoYuGuiHuaimpl implements JiaoYuGuiHuaService {
             }
             System.out.println("entity.length"+parent.length);
             //设置除参与人外其他信息
-            for(int i=0;i<parent.length;i+=13){
+            for(int i=0;i<parent.length;i+=12){
 //                System.out.println("id="+entity[i]);
                 JiaoYuGuiHuaXiangMuEntity jiaoYuGuiHuaXiangMuEntity=new JiaoYuGuiHuaXiangMuEntity(1,parent[i+1],parent[i+10],parent[i+2],parent[i+5],parent[i+4],parent[i+3]);
                 mapper.insertJiaoYuGuiHua(jiaoYuGuiHuaXiangMuEntity);
@@ -117,11 +117,11 @@ public class JiaoYuGuiHuaimpl implements JiaoYuGuiHuaService {
 //                System.out.println("____________________________________________")
                 for(int j=5;j<people.length;j+=4){
                     System.out.println("参与人id="+people[j]);
-                    mapper.insertJiaoYuGuiHuaParticipation(new ParticipationEntity(Integer.parseInt(people[j]),jiaoYuGuiHuaXiangMuEntity.getId(),1));
+                    mapper.insertJiaoYuGuiHuaParticipation(new ParticipationEntity(Integer.parseInt(people[j]),jiaoYuGuiHuaXiangMuEntity.getId(),5));
                 }
                 //            System.out.println(chanXueYanEntity.getId());
                 //添加第一完成人
-                mapper.insertJiaoYuGuiHuaParticipation(new ParticipationEntity(Integer.parseInt(parent[i+9]),jiaoYuGuiHuaXiangMuEntity.getId(),1));
+                mapper.insertJiaoYuGuiHuaParticipation(new ParticipationEntity(Integer.parseInt(parent[i+9]),jiaoYuGuiHuaXiangMuEntity.getId(),5));
             }
         } catch (IOException e) {
             e.printStackTrace();

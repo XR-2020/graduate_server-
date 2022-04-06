@@ -97,7 +97,7 @@ public class KeYanXiangMuJieXiangimpl implements KeYanXiangMuJieXiangService {
             String[] parent= Jsoup.parse(EntityUtils.toString(httpClient.execute(list).getEntity())).getElementsByTag("span").text().split("\\s+");
             System.out.println("entity.length"+parent.length);
             //设置除参与人外其他信息
-            for(int i=0;i<parent.length;i+=10){
+            for(int i=0;i<parent.length;i+=7){
 //                System.out.println("id="+entity[i]);
                 HeBingEntity keYanXiangMuJieXiangEntity=new HeBingEntity(1,formatter.format(date),parent[i+7],parent[i+1]);
                 mapper.insertKeYanXiangMuJieXiang(keYanXiangMuJieXiangEntity);
@@ -110,10 +110,10 @@ public class KeYanXiangMuJieXiangimpl implements KeYanXiangMuJieXiangService {
                 view.setEntity(viewformEntity);
                 //获取小眼睛内容
                 String[] people=Jsoup.parse(EntityUtils.toString(httpClient.execute(view).getEntity())).getElementById("memTab").text().split("\\s+");
-                for (String a:parent) {
-                    System.out.println(a);
-                }
-                System.out.println("第一完成人工号="+parent[i+6]);
+//                for (String a:parent) {
+//                    System.out.println(a);
+//                }
+                System.out.println("第一完成人工号="+parent[i+4]);
 //                System.out.println("____________________________________________");
 //                for (String b:people) {
 //                    System.out.println(b);
@@ -125,7 +125,7 @@ public class KeYanXiangMuJieXiangimpl implements KeYanXiangMuJieXiangService {
                 }
                 //            System.out.println(chanXueYanEntity.getId());
                 //添加第一完成人
-                mapper.insertKeYanXiangMuJieXiangParticipation(new ParticipationEntity(Integer.parseInt(parent[i+6]),keYanXiangMuJieXiangEntity.getId(),12));
+                mapper.insertKeYanXiangMuJieXiangParticipation(new ParticipationEntity(Integer.parseInt(parent[i+4]),keYanXiangMuJieXiangEntity.getId(),12));
             }
         } catch (IOException e) {
             e.printStackTrace();

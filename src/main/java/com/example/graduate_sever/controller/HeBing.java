@@ -98,7 +98,10 @@ public class HeBing {
         HttpPost view=new HttpPost("http://jx.zut.edu.cn/view.jsp");
         view.setHeader("Cookie",cookie);
         switch (crawlertd){
-            case "教务处-实践科_产学研立项":{ chanXueYanService.ChanXueYancrawlerWebSite(crawlertd,httpClient,list,view);}
+            case "教务处-实践科_产学研立项":{
+                chanXueYanService.ChanXueYancrawlerWebSite(crawlertd,httpClient,list,view);
+                break;
+            }
             case "科技处_著作":{
                 zhuZuoService.ZhuZuoCrawlerWebSite(crawlertd,httpClient,list,view);
                 break;

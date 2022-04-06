@@ -102,7 +102,7 @@ public class ZhuZuoimpl implements ZhuZuoService {
             //设置除参与人外其他信息
             for(int i=0;i<parent.length;i+=10){
 //                System.out.println("id="+entity[i]);
-                HeBingEntity zhuZuoEntity=new HeBingEntity(1,parent[i+2],parent[i+7],parent[i+1]);
+                HeBingEntity zhuZuoEntity=new HeBingEntity(1,parent[i+2],parent[i+6],parent[i+1]);
                 mapper.insertZhuZuo(zhuZuoEntity);
                 //设置小眼睛参数
                 List<NameValuePair> viewparams= new ArrayList<NameValuePair>();
@@ -113,7 +113,7 @@ public class ZhuZuoimpl implements ZhuZuoService {
                 view.setEntity(viewformEntity);
                 //获取小眼睛内容
                 String[] people=Jsoup.parse(EntityUtils.toString(httpClient.execute(view).getEntity())).getElementById("memTab").text().split("\\s+");
-                System.out.println("第一完成人工号="+parent[i+6]);
+                System.out.println("第一完成人工号="+parent[i+5]);
 //                System.out.println("____________________________________________");
 //                for (String b:people) {
 //                    System.out.println(b);
@@ -125,7 +125,7 @@ public class ZhuZuoimpl implements ZhuZuoService {
                 }
                 //            System.out.println(chanXueYanEntity.getId());
                 //添加第一完成人
-                mapper.insertZhuZuoParticipation(new ParticipationEntity(Integer.parseInt(parent[i+6]),zhuZuoEntity.getId(),9));
+                mapper.insertZhuZuoParticipation(new ParticipationEntity(Integer.parseInt(parent[i+5]),zhuZuoEntity.getId(),9));
             }
         } catch (IOException e) {
             e.printStackTrace();

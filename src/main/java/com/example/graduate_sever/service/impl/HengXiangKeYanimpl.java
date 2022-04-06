@@ -101,9 +101,9 @@ public class HengXiangKeYanimpl implements HengXiangKeYanService {
             }
             System.out.println("entity.length"+parent.length);
             //设置除参与人外其他信息
-            for(int i=0;i<parent.length;i+=10){
+            for(int i=0;i<parent.length;i+=8){
 //                System.out.println("id="+entity[i]);
-                HeBingEntity heBingEntity=new HeBingEntity(1,formatter.format(date),parent[i+7],parent[i+1]);
+                HeBingEntity heBingEntity=new HeBingEntity(1,formatter.format(date),parent[i+6],parent[i+1]);
                 mapper.insertHengXiangKeYan(heBingEntity);
                 //设置小眼睛参数
                 List<NameValuePair> viewparams= new ArrayList<NameValuePair>();
@@ -114,7 +114,7 @@ public class HengXiangKeYanimpl implements HengXiangKeYanService {
                 view.setEntity(viewformEntity);
                 //获取小眼睛内容
                 String[] people=Jsoup.parse(EntityUtils.toString(httpClient.execute(view).getEntity())).getElementById("memTab").text().split("\\s+");
-                System.out.println("第一完成人工号="+parent[i+6]);
+                System.out.println("第一完成人工号="+parent[i+5]);
 //                System.out.println("____________________________________________");
 //                for (String b:people) {
 //                    System.out.println(b);
@@ -126,7 +126,7 @@ public class HengXiangKeYanimpl implements HengXiangKeYanService {
                 }
                 //            System.out.println(chanXueYanEntity.getId());
                 //添加第一完成人
-                mapper.insertHengXiangKeYanParticipation(new ParticipationEntity(Integer.parseInt(parent[i+6]),heBingEntity.getId(),7));
+                mapper.insertHengXiangKeYanParticipation(new ParticipationEntity(Integer.parseInt(parent[i+5]),heBingEntity.getId(),7));
             }
         } catch (IOException e) {
             e.printStackTrace();
