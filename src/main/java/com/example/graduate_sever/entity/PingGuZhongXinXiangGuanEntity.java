@@ -14,6 +14,15 @@ public class PingGuZhongXinXiangGuanEntity implements Serializable {
     private String partment;
     private String name;
     private Integer id;
+    private Integer badge;
+
+    public Integer getBadge() {
+        return badge;
+    }
+
+    public void setBadge(Integer badge) {
+        this.badge = badge;
+    }
 
     public Integer getId() {
         return id;
@@ -23,13 +32,15 @@ public class PingGuZhongXinXiangGuanEntity implements Serializable {
         this.id = id;
     }
 
-    public PingGuZhongXinXiangGuanEntity(Integer status, String finishtime, String grade, String partment, String name) {
+    public PingGuZhongXinXiangGuanEntity(Integer status, String finishtime, String grade, String partment, String name, Integer badge) {
         this.status = status;
         this.finishtime = finishtime;
         this.grade = grade;
         this.partment = partment;
         this.name = name;
+        this.badge = badge;
     }
+
 
     public String getGrade() {
         return grade;

@@ -101,9 +101,13 @@ public class JiaoYanLunWenimpl implements JiaoYanLunWenMuService {
            //添加教研论文
             for(int i=0;i<ids.length;i++){
                 JiaoYanLunWenEntity jiaoYanLunWenEntity=new JiaoYanLunWenEntity(1,formatter.format(date),partment[i],name.get(i).text());
-                jiaoYanLunWenMapper.insertJiaoYanLunWen(jiaoYanLunWenEntity);
-                jiaoYanLunWenMapper.insertJiaoYanLunWenParticipation(new ParticipationEntity(Integer.parseInt(firstpeople[i]),jiaoYanLunWenEntity.getId(),3));
-            }
+                int ref=jiaoYanLunWenMapper.insertJiaoYanLunWen(jiaoYanLunWenEntity);
+                if(ref!=0){
+                    jiaoYanLunWenMapper.insertJiaoYanLunWenParticipation(new ParticipationEntity(Integer.parseInt(firstpeople[i]),jiaoYanLunWenEntity.getId(),3));
+                }else{
+                    continue;
+                }
+                }
         } catch (IOException e) {
             e.printStackTrace();
         }

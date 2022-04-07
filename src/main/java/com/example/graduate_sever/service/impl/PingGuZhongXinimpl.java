@@ -101,11 +101,15 @@ public class PingGuZhongXinimpl implements PingGuZhongXinService {
             String[] grade=doc.getElementsByAttributeValue("fd","获奖/获准/按期验收时间").text().split("\\s+");
             //设置除参与人外其他信息
             for(int i=0;i<ids.length;i++){
-                PingGuZhongXinXiangGuanEntity pingGuZhongXinXiangGuanEntity=new PingGuZhongXinXiangGuanEntity(1,formatter.format(date),grade[i],partment[i],name.get(i).text());
-                mapper.insertPingGuZhongXin(pingGuZhongXinXiangGuanEntity);
-                //添加第一完成人
-                mapper.insertPingGuZhongXinParticipation(new ParticipationEntity(Integer.parseInt(firstpeople[i]),pingGuZhongXinXiangGuanEntity.getId(),4));
-            }
+                PingGuZhongXinXiangGuanEntity pingGuZhongXinXiangGuanEntity=new PingGuZhongXinXiangGuanEntity(1,formatter.format(date),grade[i],partment[i],name.get(i).text(),Integer.parseInt(firstpeople[i]));
+                int ref=mapper.insertPingGuZhongXin(pingGuZhongXinXiangGuanEntity);
+                if(ref!=0){
+                    //添加第一完成人
+                    mapper.insertPingGuZhongXinParticipation(new ParticipationEntity(Integer.parseInt(firstpeople[i]),pingGuZhongXinXiangGuanEntity.getId(),4));
+                }else{
+                    continue;
+                }
+                }
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -45,9 +45,9 @@ public class PingGuZhongXin {
         JsonBean jsonBean=null;
         int role=uo.getRole();
         if (role!=4&&role!=1){
-            element=new PingGuZhongXinXiangGuanEntity(0,uo.getFinishtime(),uo.getGrade(),uo.getPartment(),uo.getName());
+            element=new PingGuZhongXinXiangGuanEntity(0,uo.getFinishtime(),uo.getGrade(),uo.getPartment(),uo.getName(),people[0]);
         }else {
-            element=new PingGuZhongXinXiangGuanEntity(1,uo.getFinishtime(),uo.getGrade(),uo.getPartment(),uo.getName());
+            element=new PingGuZhongXinXiangGuanEntity(1,uo.getFinishtime(),uo.getGrade(),uo.getPartment(),uo.getName(),people[0]);
         }
 
         return  pingGuZhongXinService.insertPingGuZhongXin(element,people);

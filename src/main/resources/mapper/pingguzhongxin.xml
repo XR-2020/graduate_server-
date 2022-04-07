@@ -40,7 +40,7 @@
     </select>
 
     <insert id="insertPingGuZhongXin" parameterType="com.example.graduate_sever.entity.PingGuZhongXinXiangGuanEntity" useGeneratedKeys="true" keyProperty="id">
-        INSERT IGNORE INTO pingguzhongxinxiangguan(`status`, `finishtime`, `partment`, `grade`, `name`) VALUES (#{status,jdbcType=INTEGER},#{finishtime,jdbcType=VARCHAR},#{partment,jdbcType=VARCHAR},#{grade,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR})
+        INSERT IGNORE INTO pingguzhongxinxiangguan(`status`, `finishtime`, `partment`, `grade`, `name`,`badge`) VALUES (#{status,jdbcType=INTEGER},#{finishtime,jdbcType=VARCHAR},#{partment,jdbcType=VARCHAR},#{grade,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR},#{badge,jdbcType=INTEGER})
     </insert>
 
     <insert id="insertPingGuZhongXinParticipation" parameterType="com.example.graduate_sever.entity.ParticipationEntity" useGeneratedKeys="true">

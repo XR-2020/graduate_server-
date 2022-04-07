@@ -103,10 +103,14 @@ public class KeYanLunWenimpl implements KeYanLunWenService {
             for(int i=0;i<ids.length;i++){
 //                System.out.println("id="+entity[i]);
                 HeBingEntity keYanLunWenEntity=new HeBingEntity(1,finishtime[i],partment[i],name.get(i).text());
-                mapper.insertKeYanLunWen(keYanLunWenEntity);
-                //添加第一完成人
-                mapper.insertKeYanLunWenParticipation(new ParticipationEntity(Integer.parseInt(firstpeople[i]),keYanLunWenEntity.getId(),10));
-            }
+                int ref=mapper.insertKeYanLunWen(keYanLunWenEntity);
+                if(ref!=0){
+                    //添加第一完成人
+                    mapper.insertKeYanLunWenParticipation(new ParticipationEntity(Integer.parseInt(firstpeople[i]),keYanLunWenEntity.getId(),10));
+                }else{
+                    continue;
+                }
+               }
         } catch (IOException e) {
             e.printStackTrace();
         }
