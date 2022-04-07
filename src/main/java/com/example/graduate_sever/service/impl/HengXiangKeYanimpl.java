@@ -17,6 +17,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -92,41 +93,32 @@ public class HengXiangKeYanimpl implements HengXiangKeYanService {
         try {
             formEntity = new UrlEncodedFormEntity(listparams,"utf-8");
             list.setEntity(formEntity);
-//            for (String a:doc.getElementsByTag("span").text().split("\\s+")) {
-//                System.out.println(a);
-//            }
-            String[] parent= Jsoup.parse(EntityUtils.toString(httpClient.execute(list).getEntity())).getElementsByTag("span").text().split("\\s+");
-            for (String a:parent) {
-                System.out.println(a);
-            }
-            System.out.println("entity.length"+parent.length);
+            Document doc=Jsoup.parse(EntityUtils.toString(httpClient.execute(list).getEntity()));
+            String[] ids=doc.getElementsByAttributeValue("fd","序号").text().split("\\s+");
+            String[] name=doc.getElementsByAttributeValue("fd","名称").text().split("\\s+");
+            String[] partment=doc.getElementsByAttributeValue("fd","部门").text().split("\\s+");
+            String[] firstpeople=doc.getElementsByAttributeValue("fd","工号").text().split("\\s+");
             //设置除参与人外其他信息
-            for(int i=0;i<parent.length;i+=8){
+            for(int i=0;i<ids.length;i++){
 //                System.out.println("id="+entity[i]);
-                HeBingEntity heBingEntity=new HeBingEntity(1,formatter.format(date),parent[i+6],parent[i+1]);
+                HeBingEntity heBingEntity=new HeBingEntity(1,formatter.format(date),partment[i],name[i]);
                 mapper.insertHengXiangKeYan(heBingEntity);
                 //设置小眼睛参数
                 List<NameValuePair> viewparams= new ArrayList<NameValuePair>();
                 viewparams.add(new BasicNameValuePair("tb",td));
-                viewparams.add(new BasicNameValuePair("id",parent[i]));
+                viewparams.add(new BasicNameValuePair("id",ids[i]));
                 //       System.out.println(viewparams.toString());
                 UrlEncodedFormEntity viewformEntity = new UrlEncodedFormEntity(viewparams,"utf-8");
                 view.setEntity(viewformEntity);
                 //获取小眼睛内容
                 String[] people=Jsoup.parse(EntityUtils.toString(httpClient.execute(view).getEntity())).getElementById("memTab").text().split("\\s+");
-                System.out.println("第一完成人工号="+parent[i+5]);
-//                System.out.println("____________________________________________");
-//                for (String b:people) {
-//                    System.out.println(b);
-//                }
-//                System.out.println("____________________________________________")
+                System.out.println("第一完成人工号="+firstpeople[i]);
                 for(int j=5;j<people.length;j+=4){
                     System.out.println("参与人id="+people[j]);
                     mapper.insertHengXiangKeYanParticipation(new ParticipationEntity(Integer.parseInt(people[j]),heBingEntity.getId(),7));
                 }
-                //            System.out.println(chanXueYanEntity.getId());
                 //添加第一完成人
-                mapper.insertHengXiangKeYanParticipation(new ParticipationEntity(Integer.parseInt(parent[i+5]),heBingEntity.getId(),7));
+                mapper.insertHengXiangKeYanParticipation(new ParticipationEntity(Integer.parseInt(firstpeople[i]),heBingEntity.getId(),7));
             }
         } catch (IOException e) {
             e.printStackTrace();

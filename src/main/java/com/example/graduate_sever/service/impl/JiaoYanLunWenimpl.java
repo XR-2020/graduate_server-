@@ -17,6 +17,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -91,21 +92,16 @@ public class JiaoYanLunWenimpl implements JiaoYanLunWenMuService {
         try {
             formEntity = new UrlEncodedFormEntity(listparams,"utf-8");
             list.setEntity(formEntity);
-//            for (String a:doc.getElementsByTag("span").text().split("\\s+")) {
-//                System.out.println(a);
-//            }
-            String[] parent= Jsoup.parse(EntityUtils.toString(httpClient.execute(list).getEntity())).getElementsByTag("span").text().split("\\s+");
-//            for (String a:parent) {
-//                System.out.println(a);
-//            }
-            System.out.println("entity.length"+parent.length);
+            Document doc=Jsoup.parse(EntityUtils.toString(httpClient.execute(list).getEntity()));
+            String[] ids=doc.getElementsByAttributeValue("fd","序号").text().split("\\s+");
+            String[] name=doc.getElementsByAttributeValue("fd","名称").text().split("\\s+");
+            String[] partment=doc.getElementsByAttributeValue("fd","部门").text().split("\\s+");
+            String[] firstpeople=doc.getElementsByAttributeValue("fd","工号").text().split("\\s+");
            //添加教研论文
-            for(int i=0;i<parent.length;i+=8){
-                System.out.println(parent[i]+"____________________________________");
-                System.out.println("partment="+parent[i+6]+"name="+parent[i+1]);
-                JiaoYanLunWenEntity jiaoYanLunWenEntity=new JiaoYanLunWenEntity(1,formatter.format(date),parent[i+6],parent[i+1]);
+            for(int i=0;i<ids.length;i++){
+                JiaoYanLunWenEntity jiaoYanLunWenEntity=new JiaoYanLunWenEntity(1,formatter.format(date),partment[i],name[i]);
                 jiaoYanLunWenMapper.insertJiaoYanLunWen(jiaoYanLunWenEntity);
-                jiaoYanLunWenMapper.insertJiaoYanLunWenParticipation(new ParticipationEntity(Integer.parseInt(parent[i+5]),jiaoYanLunWenEntity.getId(),3));
+                jiaoYanLunWenMapper.insertJiaoYanLunWenParticipation(new ParticipationEntity(Integer.parseInt(firstpeople[i]),jiaoYanLunWenEntity.getId(),3));
             }
         } catch (IOException e) {
             e.printStackTrace();

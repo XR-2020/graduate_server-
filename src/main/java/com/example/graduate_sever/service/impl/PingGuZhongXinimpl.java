@@ -17,6 +17,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -91,21 +92,18 @@ public class PingGuZhongXinimpl implements PingGuZhongXinService {
         try {
             formEntity = new UrlEncodedFormEntity(listparams,"utf-8");
             list.setEntity(formEntity);
-//            for (String a:doc.getElementsByTag("span").text().split("\\s+")) {
-//                System.out.println(a);
-//            }
-            String[] parent= Jsoup.parse(EntityUtils.toString(httpClient.execute(list).getEntity())).getElementsByTag("span").text().split("\\s+");
-            for (String a:parent) {
-                System.out.println(a);
-            }
-            System.out.println("entity.length"+parent.length);
+            Document doc=Jsoup.parse(EntityUtils.toString(httpClient.execute(list).getEntity()));
+            String[] ids=doc.getElementsByAttributeValue("fd","序号").text().split("\\s+");
+            String[] name=doc.getElementsByAttributeValue("fd","名称").text().split("\\s+");
+            String[] partment=doc.getElementsByAttributeValue("fd","部门").text().split("\\s+");
+            String[] firstpeople=doc.getElementsByAttributeValue("fd","工号").text().split("\\s+");
+            String[] grade=doc.getElementsByAttributeValue("fd","获奖/获准/按期验收时间").text().split("\\s+");
             //设置除参与人外其他信息
-            for(int i=0;i<parent.length;i+=9){
-//                System.out.println("id="+entity[i]);
-                PingGuZhongXinXiangGuanEntity pingGuZhongXinXiangGuanEntity=new PingGuZhongXinXiangGuanEntity(1,formatter.format(date),parent[i+2],parent[i+7],parent[i+1]);
+            for(int i=0;i<ids.length;i++){
+                PingGuZhongXinXiangGuanEntity pingGuZhongXinXiangGuanEntity=new PingGuZhongXinXiangGuanEntity(1,formatter.format(date),grade[i],partment[i],name[i]);
                 mapper.insertPingGuZhongXin(pingGuZhongXinXiangGuanEntity);
                 //添加第一完成人
-                mapper.insertPingGuZhongXinParticipation(new ParticipationEntity(Integer.parseInt(parent[i+6]),pingGuZhongXinXiangGuanEntity.getId(),4));
+                mapper.insertPingGuZhongXinParticipation(new ParticipationEntity(Integer.parseInt(firstpeople[i]),pingGuZhongXinXiangGuanEntity.getId(),4));
             }
         } catch (IOException e) {
             e.printStackTrace();

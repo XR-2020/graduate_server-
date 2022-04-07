@@ -89,7 +89,6 @@ public class ChanXueYanimpl implements ChanXueYanService {
         //获取当前时间
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-       // System.out.println(formatter.format(date).toString());
         //设置请求地址的参数
         listparams.add(new BasicNameValuePair("tb",td));
         listparams.add(new BasicNameValuePair("pageNum","0"));
@@ -113,24 +112,15 @@ public class ChanXueYanimpl implements ChanXueYanService {
                 List<NameValuePair> viewparams= new ArrayList<NameValuePair>();
                 viewparams.add(new BasicNameValuePair("tb",td));
                 viewparams.add(new BasicNameValuePair("id",ids[i]));
-         //       System.out.println(viewparams.toString());
                 UrlEncodedFormEntity viewformEntity = new UrlEncodedFormEntity(viewparams,"utf-8");
                 view.setEntity(viewformEntity);
                 //获取小眼睛内容
                 String[] people=Jsoup.parse(EntityUtils.toString(httpClient.execute(view).getEntity())).getElementById("memTab").text().split("\\s+");
-                System.out.println("第一完成人工号="+firstpeople[i]);
-//                System.out.println("____________________________________________");
-//                for (String b:people) {
-//                    System.out.println(b);
-//                }
-//                System.out.println("____________________________________________")
                 for(int j=5;j<people.length;j+=4){
-                    System.out.println("参与人id="+people[j]);
                     chanxueyanMapper.insertChanXueYanParticipation(new ParticipationEntity(Integer.parseInt(people[j]),chanXueYanEntity.getId(),1));
                 }
-                //            System.out.println(chanXueYanEntity.getId());
                 //添加第一完成人
-                chanxueyanMapper.insertChanXueYanParticipation(new ParticipationEntity(Integer.parseInt(ids[i]),chanXueYanEntity.getId(),1));
+                chanxueyanMapper.insertChanXueYanParticipation(new ParticipationEntity(Integer.parseInt(firstpeople[i]),chanXueYanEntity.getId(),1));
             }
         } catch (IOException e) {
             e.printStackTrace();

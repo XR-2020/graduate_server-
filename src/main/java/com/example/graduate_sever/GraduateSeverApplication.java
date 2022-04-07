@@ -1,5 +1,6 @@
 package com.example.graduate_sever;
 
+import com.example.graduate_sever.common.WebConfig;
 import com.example.graduate_sever.common.WebCookie;
 import net.sourceforge.tess4j.ITesseract;
 import net.sourceforge.tess4j.Tesseract;
@@ -46,9 +47,9 @@ public class GraduateSeverApplication {
         WebElement username=driver.findElement(By.id("inputEmail3"));
         WebElement password=driver.findElement(By.id("inputPassword3"));
         WebElement rand=driver.findElement(By.name("rand"));
-        username.sendKeys("000282");
+        username.sendKeys(WebConfig.getUsername());
         Thread.sleep(60);
-        password.sendKeys("000282");
+        password.sendKeys(WebConfig.getPassword());
         Thread.sleep(60);
         rand.sendKeys(code.substring(0,4));
         driver.findElement(By.tagName("button")).click();

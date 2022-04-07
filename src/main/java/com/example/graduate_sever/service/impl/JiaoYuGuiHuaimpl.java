@@ -17,6 +17,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -87,41 +88,32 @@ public class JiaoYuGuiHuaimpl implements JiaoYuGuiHuaService {
         try {
             formEntity = new UrlEncodedFormEntity(listparams,"utf-8");
             list.setEntity(formEntity);
-//            for (String a:doc.getElementsByTag("span").text().split("\\s+")) {
-//                System.out.println(a);
-//            }
-            String[] parent= Jsoup.parse(EntityUtils.toString(httpClient.execute(list).getEntity())).getElementsByTag("span").text().split("\\s+");
-            for (String a:parent) {
-                System.out.println(a);
-            }
-            System.out.println("entity.length"+parent.length);
+            Document doc=Jsoup.parse(EntityUtils.toString(httpClient.execute(list).getEntity()));
+            String[] ids=doc.getElementsByAttributeValue("fd","序号").text().split("\\s+");
+            String[] name=doc.getElementsByAttributeValue("fd","项目名称").text().split("\\s+");
+            String[] partment=doc.getElementsByAttributeValue("fd","部门").text().split("\\s+");
+            String[] firstpeople=doc.getElementsByAttributeValue("fd","工号").text().split("\\s+");
+            String[] finishtime=doc.getElementsByAttributeValue("fd","结题时间").text().split("\\s+");
+            String[] danwei=doc.getElementsByAttributeValue("fd","组织结题单位").text().split("\\s+");
+            String[] level=doc.getElementsByAttributeValue("fd","项目级别").text().split("\\s+");
+            String[] grade=doc.getElementsByAttributeValue("fd","结题等级").text().split("\\s+");
             //设置除参与人外其他信息
-            for(int i=0;i<parent.length;i+=12){
-//                System.out.println("id="+entity[i]);
-                JiaoYuGuiHuaXiangMuEntity jiaoYuGuiHuaXiangMuEntity=new JiaoYuGuiHuaXiangMuEntity(1,parent[i+1],parent[i+10],parent[i+2],parent[i+5],parent[i+4],parent[i+3]);
+            for(int i=0;i<ids.length;i++){
+                JiaoYuGuiHuaXiangMuEntity jiaoYuGuiHuaXiangMuEntity=new JiaoYuGuiHuaXiangMuEntity(1,finishtime[i],partment[i],name[i],grade[i],level[i],danwei[i]);
                 mapper.insertJiaoYuGuiHua(jiaoYuGuiHuaXiangMuEntity);
                 //设置小眼睛参数
                 List<NameValuePair> viewparams= new ArrayList<NameValuePair>();
                 viewparams.add(new BasicNameValuePair("tb",td));
-                viewparams.add(new BasicNameValuePair("id",parent[i]));
-                //       System.out.println(viewparams.toString());
+                viewparams.add(new BasicNameValuePair("id",ids[i]));
                 UrlEncodedFormEntity viewformEntity = new UrlEncodedFormEntity(viewparams,"utf-8");
                 view.setEntity(viewformEntity);
                 //获取小眼睛内容
                 String[] people=Jsoup.parse(EntityUtils.toString(httpClient.execute(view).getEntity())).getElementById("memTab").text().split("\\s+");
-                System.out.println("第一完成人工号="+parent[i+9]);
-//                System.out.println("____________________________________________");
-//                for (String b:people) {
-//                    System.out.println(b);
-//                }
-//                System.out.println("____________________________________________")
                 for(int j=5;j<people.length;j+=4){
-                    System.out.println("参与人id="+people[j]);
                     mapper.insertJiaoYuGuiHuaParticipation(new ParticipationEntity(Integer.parseInt(people[j]),jiaoYuGuiHuaXiangMuEntity.getId(),5));
                 }
-                //            System.out.println(chanXueYanEntity.getId());
                 //添加第一完成人
-                mapper.insertJiaoYuGuiHuaParticipation(new ParticipationEntity(Integer.parseInt(parent[i+9]),jiaoYuGuiHuaXiangMuEntity.getId(),5));
+                mapper.insertJiaoYuGuiHuaParticipation(new ParticipationEntity(Integer.parseInt(firstpeople[i]),jiaoYuGuiHuaXiangMuEntity.getId(),5));
             }
         } catch (IOException e) {
             e.printStackTrace();
