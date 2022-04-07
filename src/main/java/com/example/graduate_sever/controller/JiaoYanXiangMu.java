@@ -32,10 +32,10 @@ public class JiaoYanXiangMu {
     public  JsonBean deleteOneJiaoYan(Integer id){return jiaoYanXiangMuService.deleteOneJiaoYan(id);}
 
     @GetMapping("/getJiaoYanDetial")
-    public JsonBean getJiaoYanDetial(Integer id){
-        System.out.println(id);
+    public JsonBean getJiaoYanDetial(Integer ids){
+        System.out.println(ids);
 
-        return jiaoYanXiangMuService.getJiaoYanDetial(id);}
+        return jiaoYanXiangMuService.getJiaoYanDetial(ids);}
 
     @RequestMapping(value = "/updateJiaoYan", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public JsonBean updateJiaoYan(@RequestBody JiaoYanXiangMuUO uo){

@@ -98,26 +98,27 @@ public class ChanXueYanimpl implements ChanXueYanService {
         try {
             formEntity = new UrlEncodedFormEntity(listparams,"utf-8");
             list.setEntity(formEntity);
-//            for (String a:doc.getElementsByTag("span").text().split("\\s+")) {
-//                System.out.println(a);
-//            }
-            String[] parent=Jsoup.parse(EntityUtils.toString(httpClient.execute(list).getEntity())).getElementsByTag("span").text().split("\\s+");
-            System.out.println("entity.length"+parent.length);
+            Document doc=Jsoup.parse(EntityUtils.toString(httpClient.execute(list).getEntity()));
+            String[] ids=doc.getElementsByAttributeValue("fd","序号").text().split("\\s+");
+            String[] name=doc.getElementsByAttributeValue("fd","项目名称").text().split("\\s+");
+            String[] partment=doc.getElementsByAttributeValue("fd","所在部门").text().split("\\s+");
+            String[] firstpeople=doc.getElementsByAttributeValue("fd","工号").text().split("\\s+");
+            String[] lianghua=doc.getElementsByAttributeValue("fd","量化依据").text().split("\\s+");
+            String[] wenhao=doc.getElementsByAttributeValue("fd","立项文号").text().split("\\s+");
             //设置除参与人外其他信息
-            for(int i=0;i<parent.length;i+=11){
-//                System.out.println("id="+entity[i]);
-                ChanXueYanEntity chanXueYanEntity=new ChanXueYanEntity(1,formatter.format(date),parent[i+4],parent[i+3],parent[i+2],parent[i+1]);
+            for(int i=0;i<ids.length;i++){
+                ChanXueYanEntity chanXueYanEntity=new ChanXueYanEntity(1,formatter.format(date),lianghua[i],wenhao[i],name[i],partment[i]);
                 chanxueyanMapper.insertChanXueYan(chanXueYanEntity);
                 //设置小眼睛参数
                 List<NameValuePair> viewparams= new ArrayList<NameValuePair>();
                 viewparams.add(new BasicNameValuePair("tb",td));
-                viewparams.add(new BasicNameValuePair("id",parent[i]));
+                viewparams.add(new BasicNameValuePair("id",ids[i]));
          //       System.out.println(viewparams.toString());
                 UrlEncodedFormEntity viewformEntity = new UrlEncodedFormEntity(viewparams,"utf-8");
                 view.setEntity(viewformEntity);
                 //获取小眼睛内容
                 String[] people=Jsoup.parse(EntityUtils.toString(httpClient.execute(view).getEntity())).getElementById("memTab").text().split("\\s+");
-                System.out.println("第一完成人工号="+parent[i+8]);
+                System.out.println("第一完成人工号="+firstpeople[i]);
 //                System.out.println("____________________________________________");
 //                for (String b:people) {
 //                    System.out.println(b);
@@ -129,7 +130,7 @@ public class ChanXueYanimpl implements ChanXueYanService {
                 }
                 //            System.out.println(chanXueYanEntity.getId());
                 //添加第一完成人
-                chanxueyanMapper.insertChanXueYanParticipation(new ParticipationEntity(Integer.parseInt(parent[i+8]),chanXueYanEntity.getId(),1));
+                chanxueyanMapper.insertChanXueYanParticipation(new ParticipationEntity(Integer.parseInt(ids[i]),chanXueYanEntity.getId(),1));
             }
         } catch (IOException e) {
             e.printStackTrace();

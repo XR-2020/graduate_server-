@@ -99,7 +99,7 @@ public class KeYanXiangMuJieXiangimpl implements KeYanXiangMuJieXiangService {
             //设置除参与人外其他信息
             for(int i=0;i<parent.length;i+=7){
 //                System.out.println("id="+entity[i]);
-                HeBingEntity keYanXiangMuJieXiangEntity=new HeBingEntity(1,formatter.format(date),parent[i+7],parent[i+1]);
+                HeBingEntity keYanXiangMuJieXiangEntity=new HeBingEntity(1,formatter.format(date),parent[i+4],parent[i+1]);
                 mapper.insertKeYanXiangMuJieXiang(keYanXiangMuJieXiangEntity);
                 //设置小眼睛参数
                 List<NameValuePair> viewparams= new ArrayList<NameValuePair>();
