@@ -107,21 +107,25 @@ public class ChanXueYanimpl implements ChanXueYanService {
             //设置除参与人外其他信息
             for(int i=0;i<ids.length;i++){
                 ChanXueYanEntity chanXueYanEntity=new ChanXueYanEntity(1,formatter.format(date),lianghua[i],wenhao[i],name.get(i).text(),partment[i]);
-                chanxueyanMapper.insertChanXueYan(chanXueYanEntity);
-                //设置小眼睛参数
-                List<NameValuePair> viewparams= new ArrayList<NameValuePair>();
-                viewparams.add(new BasicNameValuePair("tb",td));
-                viewparams.add(new BasicNameValuePair("id",ids[i]));
-                UrlEncodedFormEntity viewformEntity = new UrlEncodedFormEntity(viewparams,"utf-8");
-                view.setEntity(viewformEntity);
-                //获取小眼睛内容
-                String[] people=Jsoup.parse(EntityUtils.toString(httpClient.execute(view).getEntity())).getElementById("memTab").text().split("\\s+");
-                for(int j=5;j<people.length;j+=4){
-                    chanxueyanMapper.insertChanXueYanParticipation(new ParticipationEntity(Integer.parseInt(people[j]),chanXueYanEntity.getId(),1));
+                int ref=chanxueyanMapper.insertChanXueYan(chanXueYanEntity);
+                if(ref!=0){
+                    //设置小眼睛参数
+                    List<NameValuePair> viewparams= new ArrayList<NameValuePair>();
+                    viewparams.add(new BasicNameValuePair("tb",td));
+                    viewparams.add(new BasicNameValuePair("id",ids[i]));
+                    UrlEncodedFormEntity viewformEntity = new UrlEncodedFormEntity(viewparams,"utf-8");
+                    view.setEntity(viewformEntity);
+                    //获取小眼睛内容
+                    String[] people=Jsoup.parse(EntityUtils.toString(httpClient.execute(view).getEntity())).getElementById("memTab").text().split("\\s+");
+                    for(int j=5;j<people.length;j+=4){
+                        chanxueyanMapper.insertChanXueYanParticipation(new ParticipationEntity(Integer.parseInt(people[j]),chanXueYanEntity.getId(),1));
+                    }
+                    //添加第一完成人
+                    chanxueyanMapper.insertChanXueYanParticipation(new ParticipationEntity(Integer.parseInt(firstpeople[i]),chanXueYanEntity.getId(),1));
+                }else{
+                    continue;
                 }
-                //添加第一完成人
-                chanxueyanMapper.insertChanXueYanParticipation(new ParticipationEntity(Integer.parseInt(firstpeople[i]),chanXueYanEntity.getId(),1));
-            }
+               }
         } catch (IOException e) {
             e.printStackTrace();
         }

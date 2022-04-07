@@ -104,22 +104,27 @@ public class ZongXiangKeYanimpl implements ZongXiangKeYanService {
             for(int i=0;i<ids.length;i++){
 //                System.out.println("id="+entity[i]);
                 ZongXiangKeYanXiangMuEntity zongXiangKeYanXiangMuEntity=new ZongXiangKeYanXiangMuEntity(1,finishtime[i],level[i],type[i],lixiang[i],partment[i],name.get(i).text());
-                mapper.insertZongXiangKeYan(zongXiangKeYanXiangMuEntity);
-                //设置小眼睛参数
-                List<NameValuePair> viewparams= new ArrayList<NameValuePair>();
-                viewparams.add(new BasicNameValuePair("tb",td));
-                viewparams.add(new BasicNameValuePair("id",ids[i]));
-                //       System.out.println(viewparams.toString());
-                UrlEncodedFormEntity viewformEntity = new UrlEncodedFormEntity(viewparams,"utf-8");
-                view.setEntity(viewformEntity);
-                //获取小眼睛内容
-                String[] people=Jsoup.parse(EntityUtils.toString(httpClient.execute(view).getEntity())).getElementById("memTab").text().split("\\s+");
-                for(int j=5;j<people.length;j+=4){
-                   mapper.insertZongXiangKeYanParticipation(new ParticipationEntity(Integer.parseInt(people[j]),zongXiangKeYanXiangMuEntity.getId(),8));
+                int ref=mapper.insertZongXiangKeYan(zongXiangKeYanXiangMuEntity);
+                if(ref!=0){
+                    //设置小眼睛参数
+                    List<NameValuePair> viewparams= new ArrayList<NameValuePair>();
+                    viewparams.add(new BasicNameValuePair("tb",td));
+                    viewparams.add(new BasicNameValuePair("id",ids[i]));
+                    //       System.out.println(viewparams.toString());
+                    UrlEncodedFormEntity viewformEntity = new UrlEncodedFormEntity(viewparams,"utf-8");
+                    view.setEntity(viewformEntity);
+                    //获取小眼睛内容
+                    String[] people=Jsoup.parse(EntityUtils.toString(httpClient.execute(view).getEntity())).getElementById("memTab").text().split("\\s+");
+                    for(int j=5;j<people.length;j+=4){
+                        mapper.insertZongXiangKeYanParticipation(new ParticipationEntity(Integer.parseInt(people[j]),zongXiangKeYanXiangMuEntity.getId(),8));
+                    }
+                    //添加第一完成人
+                    mapper.insertZongXiangKeYanParticipation(new ParticipationEntity(Integer.parseInt(firstpeople[i]),zongXiangKeYanXiangMuEntity.getId(),8));
+
+                }else{
+                    continue;
                 }
-                //添加第一完成人
-                mapper.insertZongXiangKeYanParticipation(new ParticipationEntity(Integer.parseInt(firstpeople[i]),zongXiangKeYanXiangMuEntity.getId(),8));
-            }
+               }
         } catch (IOException e) {
             e.printStackTrace();
         }

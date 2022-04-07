@@ -100,20 +100,23 @@ public class ZhuanLiimpl implements ZhuanLiService {
             for(int i=0;i<ids.length;i++){
 //                System.out.println("id="+entity[i]);
                 HeBingEntity zhuanLiEntity=new HeBingEntity(1,finishtime[i],partment[i],name.get(i).text());
-                mapper.insertZhuanLi(zhuanLiEntity);
-                //设置小眼睛参数
-                List<NameValuePair> viewparams= new ArrayList<NameValuePair>();
-                viewparams.add(new BasicNameValuePair("tb",td));
-                viewparams.add(new BasicNameValuePair("id",ids[i]));
-                UrlEncodedFormEntity viewformEntity = new UrlEncodedFormEntity(viewparams,"utf-8");
-                view.setEntity(viewformEntity);
-                //获取小眼睛内容
-                String[] people=Jsoup.parse(EntityUtils.toString(httpClient.execute(view).getEntity())).getElementById("memTab").text().split("\\s+");
-                for(int j=5;j<people.length;j+=4){
-                    mapper.insertZhuanLiParticipation(new ParticipationEntity(Integer.parseInt(people[j]),zhuanLiEntity.getId(),6));
+                int ref=mapper.insertZhuanLi(zhuanLiEntity);
+                if(ref!=0){
+                    //设置小眼睛参数
+                    List<NameValuePair> viewparams= new ArrayList<NameValuePair>();
+                    viewparams.add(new BasicNameValuePair("tb",td));
+                    viewparams.add(new BasicNameValuePair("id",ids[i]));
+                    UrlEncodedFormEntity viewformEntity = new UrlEncodedFormEntity(viewparams,"utf-8");
+                    view.setEntity(viewformEntity);
+                    //获取小眼睛内容
+                    String[] people=Jsoup.parse(EntityUtils.toString(httpClient.execute(view).getEntity())).getElementById("memTab").text().split("\\s+");
+                    for(int j=5;j<people.length;j+=4){
+                        mapper.insertZhuanLiParticipation(new ParticipationEntity(Integer.parseInt(people[j]),zhuanLiEntity.getId(),6));
+                    }
+                    //添加第一完成人
+                    mapper.insertZhuanLiParticipation(new ParticipationEntity(Integer.parseInt(firstpeople[i]),zhuanLiEntity.getId(),6));
+
                 }
-                //添加第一完成人
-                mapper.insertZhuanLiParticipation(new ParticipationEntity(Integer.parseInt(firstpeople[i]),zhuanLiEntity.getId(),6));
             }
         } catch (IOException e) {
             e.printStackTrace();

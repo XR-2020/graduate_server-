@@ -78,12 +78,12 @@ public class GraduateSeverApplication {
 
     public static void main(String[] args) throws Exception {
         SpringApplication.run(GraduateSeverApplication.class, args);
-//        System.getProperties().setProperty("webdriver.chrome.driver", "C:\\Users\\Administrator\\.cache\\selenium\\chromedriver\\win32\\99.0.4844.51\\chromedriver.exe");
+        System.getProperties().setProperty("webdriver.chrome.driver", "C:\\Users\\Administrator\\.cache\\selenium\\chromedriver\\win32\\99.0.4844.51\\chromedriver.exe");
 ////        ChromeOptions options = new ChromeOptions();
 ////        options.addArguments("--headless");
 ////        WebDriver driver=new ChromeDriver(options);
-//        WebDriver driver=new ChromeDriver();
-//        WebCookie.setCookie(saveImgToLocal(driver));
+        WebDriver driver=new ChromeDriver();
+        WebCookie.setCookie(saveImgToLocal(driver));
     }
 
 }

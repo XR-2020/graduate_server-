@@ -101,32 +101,30 @@ public class JiaoYanXiangMuimpl implements JiaoYanXiangMuService {
 
             //设置除参与人外其他信息
             for(int i=0;i<ids.length;i++){
-//                System.out.println("id="+entity[i]);
                 JiaoYanXiangMuEntity jiaoYanXiangMuEntity=new JiaoYanXiangMuEntity(1,formatter.format(date),lianghua[i],wenhao[i],partment[i],name.get(i).text());
-                mapper.insertJiaoYanXiangMu(jiaoYanXiangMuEntity);
-                //设置小眼睛参数
-                List<NameValuePair> viewparams= new ArrayList<NameValuePair>();
-                viewparams.add(new BasicNameValuePair("tb",td));
-                viewparams.add(new BasicNameValuePair("id",ids[i]));
-                //       System.out.println(viewparams.toString());
-                UrlEncodedFormEntity viewformEntity = new UrlEncodedFormEntity(viewparams,"utf-8");
-                view.setEntity(viewformEntity);
-                //获取小眼睛内容
-                String[] people=Jsoup.parse(EntityUtils.toString(httpClient.execute(view).getEntity())).getElementById("memTab").text().split("\\s+");
-                System.out.println("第一完成人工号="+firstpeople[i]);
-//                System.out.println("____________________________________________");
-//                for (String b:people) {
-//                    System.out.println(b);
-//                }
-//                System.out.println("____________________________________________")
-                for(int j=5;j<people.length;j+=4){
-                    System.out.println("参与人id="+people[j]);
-                    mapper.insertJiaoYanXiangMuParticipation(new ParticipationEntity(Integer.parseInt(people[j]),jiaoYanXiangMuEntity.getId(),2));
+                int ref=mapper.insertJiaoYanXiangMu(jiaoYanXiangMuEntity);
+                if(ref!=0){
+                    //设置小眼睛参数
+                    List<NameValuePair> viewparams= new ArrayList<NameValuePair>();
+                    viewparams.add(new BasicNameValuePair("tb",td));
+                    viewparams.add(new BasicNameValuePair("id",ids[i]));
+                    //       System.out.println(viewparams.toString());
+                    UrlEncodedFormEntity viewformEntity = new UrlEncodedFormEntity(viewparams,"utf-8");
+                    view.setEntity(viewformEntity);
+                    //获取小眼睛内容
+                    String[] people=Jsoup.parse(EntityUtils.toString(httpClient.execute(view).getEntity())).getElementById("memTab").text().split("\\s+");
+                    System.out.println("第一完成人工号="+firstpeople[i]);
+                    for(int j=5;j<people.length;j+=4){
+                        System.out.println("参与人id="+people[j]);
+                        mapper.insertJiaoYanXiangMuParticipation(new ParticipationEntity(Integer.parseInt(people[j]),jiaoYanXiangMuEntity.getId(),2));
+                    }
+                    //添加第一完成人
+                    mapper.insertJiaoYanXiangMuParticipation(new ParticipationEntity(Integer.parseInt(firstpeople[i]),jiaoYanXiangMuEntity.getId(),2));
+
+                }else{
+                    continue;
                 }
-                //            System.out.println(chanXueYanEntity.getId());
-                //添加第一完成人
-                mapper.insertJiaoYanXiangMuParticipation(new ParticipationEntity(Integer.parseInt(firstpeople[i]),jiaoYanXiangMuEntity.getId(),2));
-            }
+              }
         } catch (IOException e) {
             e.printStackTrace();
         }

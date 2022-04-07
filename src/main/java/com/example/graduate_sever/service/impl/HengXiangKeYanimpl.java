@@ -102,24 +102,29 @@ public class HengXiangKeYanimpl implements HengXiangKeYanService {
             //设置除参与人外其他信息
             for(int i=0;i<ids.length;i++){
                 HeBingEntity heBingEntity=new HeBingEntity(1,formatter.format(date),partment[i],name.get(i).text());
-                mapper.insertHengXiangKeYan(heBingEntity);
-                //设置小眼睛参数
-                List<NameValuePair> viewparams= new ArrayList<NameValuePair>();
-                viewparams.add(new BasicNameValuePair("tb",td));
-                viewparams.add(new BasicNameValuePair("id",ids[i]));
-                //       System.out.println(viewparams.toString());
-                UrlEncodedFormEntity viewformEntity = new UrlEncodedFormEntity(viewparams,"utf-8");
-                view.setEntity(viewformEntity);
-                //获取小眼睛内容
-                String[] people=Jsoup.parse(EntityUtils.toString(httpClient.execute(view).getEntity())).getElementById("memTab").text().split("\\s+");
-                System.out.println("第一完成人工号="+firstpeople[i]);
-                for(int j=5;j<people.length;j+=4){
-                    System.out.println("参与人id="+people[j]);
-                    mapper.insertHengXiangKeYanParticipation(new ParticipationEntity(Integer.parseInt(people[j]),heBingEntity.getId(),7));
-                }
-                //添加第一完成人
-                mapper.insertHengXiangKeYanParticipation(new ParticipationEntity(Integer.parseInt(firstpeople[i]),heBingEntity.getId(),7));
-            }
+               int ref=mapper.insertHengXiangKeYan(heBingEntity);
+               if(ref!=0){
+                   //设置小眼睛参数
+                   List<NameValuePair> viewparams= new ArrayList<NameValuePair>();
+                   viewparams.add(new BasicNameValuePair("tb",td));
+                   viewparams.add(new BasicNameValuePair("id",ids[i]));
+                   //       System.out.println(viewparams.toString());
+                   UrlEncodedFormEntity viewformEntity = new UrlEncodedFormEntity(viewparams,"utf-8");
+                   view.setEntity(viewformEntity);
+                   //获取小眼睛内容
+                   String[] people=Jsoup.parse(EntityUtils.toString(httpClient.execute(view).getEntity())).getElementById("memTab").text().split("\\s+");
+                   System.out.println("第一完成人工号="+firstpeople[i]);
+                   for(int j=5;j<people.length;j+=4){
+                       System.out.println("参与人id="+people[j]);
+                       mapper.insertHengXiangKeYanParticipation(new ParticipationEntity(Integer.parseInt(people[j]),heBingEntity.getId(),7));
+                   }
+                   //添加第一完成人
+                   mapper.insertHengXiangKeYanParticipation(new ParticipationEntity(Integer.parseInt(firstpeople[i]),heBingEntity.getId(),7));
+
+               }else{
+                   continue;
+               }
+               }
         } catch (IOException e) {
             e.printStackTrace();
         }

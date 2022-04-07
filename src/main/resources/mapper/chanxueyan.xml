@@ -49,11 +49,11 @@
     </select>
     
     <insert id="insertChanXueYan" parameterType="com.example.graduate_sever.entity.ChanXueYanEntity" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO chanxueyan (`status`, `finishtime`, `lianghua`, `wenhao`, `name`, `partment`) VALUES (#{status,jdbcType=INTEGER},#{finishtime,jdbcType=VARCHAR},#{lianghua,jdbcType=VARCHAR},#{wenhao,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR},#{partment,jdbcType=VARCHAR})
+        INSERT IGNORE INTO chanxueyan (`status`, `finishtime`, `lianghua`, `wenhao`, `name`, `partment`) VALUES (#{status,jdbcType=INTEGER},#{finishtime,jdbcType=VARCHAR},#{lianghua,jdbcType=VARCHAR},#{wenhao,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR},#{partment,jdbcType=VARCHAR})
     </insert>
 
     <insert id="insertChanXueYanParticipation" parameterType="com.example.graduate_sever.entity.ParticipationEntity" useGeneratedKeys="true">
-        INSERT INTO participation(`badge`, `ach_id`, `type`) VALUES (#{badge,jdbcType=INTEGER},#{ach_id,jdbcType=INTEGER},#{type,jdbcType=INTEGER})
+        INSERT IGNORE INTO participation(`badge`, `ach_id`, `type`) VALUES (#{badge,jdbcType=INTEGER},#{ach_id,jdbcType=INTEGER},#{type,jdbcType=INTEGER})
     </insert>
 
     <select id="getTeacherList" resultMap="Teacher">

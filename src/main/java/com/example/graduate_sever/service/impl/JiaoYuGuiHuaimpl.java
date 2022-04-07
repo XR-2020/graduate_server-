@@ -101,20 +101,25 @@ public class JiaoYuGuiHuaimpl implements JiaoYuGuiHuaService {
             //设置除参与人外其他信息
             for(int i=0;i<ids.length;i++){
                 JiaoYuGuiHuaXiangMuEntity jiaoYuGuiHuaXiangMuEntity=new JiaoYuGuiHuaXiangMuEntity(1,finishtime[i],partment[i],name.get(i).text(),grade[i],level[i],danwei[i]);
-                mapper.insertJiaoYuGuiHua(jiaoYuGuiHuaXiangMuEntity);
-                //设置小眼睛参数
-                List<NameValuePair> viewparams= new ArrayList<NameValuePair>();
-                viewparams.add(new BasicNameValuePair("tb",td));
-                viewparams.add(new BasicNameValuePair("id",ids[i]));
-                UrlEncodedFormEntity viewformEntity = new UrlEncodedFormEntity(viewparams,"utf-8");
-                view.setEntity(viewformEntity);
-                //获取小眼睛内容
-                String[] people=Jsoup.parse(EntityUtils.toString(httpClient.execute(view).getEntity())).getElementById("memTab").text().split("\\s+");
-                for(int j=5;j<people.length;j+=4){
-                    mapper.insertJiaoYuGuiHuaParticipation(new ParticipationEntity(Integer.parseInt(people[j]),jiaoYuGuiHuaXiangMuEntity.getId(),5));
+                int ref=mapper.insertJiaoYuGuiHua(jiaoYuGuiHuaXiangMuEntity);
+                if(ref!=0){
+                    //设置小眼睛参数
+                    List<NameValuePair> viewparams= new ArrayList<NameValuePair>();
+                    viewparams.add(new BasicNameValuePair("tb",td));
+                    viewparams.add(new BasicNameValuePair("id",ids[i]));
+                    UrlEncodedFormEntity viewformEntity = new UrlEncodedFormEntity(viewparams,"utf-8");
+                    view.setEntity(viewformEntity);
+                    //获取小眼睛内容
+                    String[] people=Jsoup.parse(EntityUtils.toString(httpClient.execute(view).getEntity())).getElementById("memTab").text().split("\\s+");
+                    for(int j=5;j<people.length;j+=4){
+                        mapper.insertJiaoYuGuiHuaParticipation(new ParticipationEntity(Integer.parseInt(people[j]),jiaoYuGuiHuaXiangMuEntity.getId(),5));
+                    }
+                    //添加第一完成人
+                    mapper.insertJiaoYuGuiHuaParticipation(new ParticipationEntity(Integer.parseInt(firstpeople[i]),jiaoYuGuiHuaXiangMuEntity.getId(),5));
+
+                }else{
+                    continue;
                 }
-                //添加第一完成人
-                mapper.insertJiaoYuGuiHuaParticipation(new ParticipationEntity(Integer.parseInt(firstpeople[i]),jiaoYuGuiHuaXiangMuEntity.getId(),5));
             }
         } catch (IOException e) {
             e.printStackTrace();

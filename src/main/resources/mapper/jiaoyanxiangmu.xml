@@ -41,11 +41,11 @@
     </select>
 
     <insert id="insertJiaoYanXiangMu" parameterType="com.example.graduate_sever.entity.JiaoYanXiangMuEntity" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO jiaoyanxiangmu(`status`, `finishtime`, `lianghua`, `wenhao`, `name`, `partment`) VALUES (#{status,jdbcType=INTEGER},#{finishtime,jdbcType=VARCHAR},#{lianghua,jdbcType=VARCHAR},#{wenhao,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR},#{partment,jdbcType=VARCHAR})
+        INSERT IGNORE INTO jiaoyanxiangmu(`status`, `finishtime`, `lianghua`, `wenhao`, `name`, `partment`) VALUES (#{status,jdbcType=INTEGER},#{finishtime,jdbcType=VARCHAR},#{lianghua,jdbcType=VARCHAR},#{wenhao,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR},#{partment,jdbcType=VARCHAR})
     </insert>
 
     <insert id="insertJiaoYanXiangMuParticipation" parameterType="com.example.graduate_sever.entity.ParticipationEntity" useGeneratedKeys="true">
-        INSERT INTO participation(`badge`, `ach_id`, `type`) VALUES (#{badge,jdbcType=INTEGER},#{ach_id,jdbcType=INTEGER},#{type,jdbcType=INTEGER})
+        INSERT IGNORE INTO participation(`badge`, `ach_id`, `type`) VALUES (#{badge,jdbcType=INTEGER},#{ach_id,jdbcType=INTEGER},#{type,jdbcType=INTEGER})
     </insert>
 </mapper>
 

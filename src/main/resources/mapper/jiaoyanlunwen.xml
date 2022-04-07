@@ -39,11 +39,11 @@
     </select>
 
     <insert id="insertJiaoYanLunWen" parameterType="com.example.graduate_sever.entity.JiaoYanLunWenEntity" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO jiaoyanlunwen(`name`, `partment`, `finishtime`, `status`) VALUES (#{name,jdbcType=VARCHAR},#{partment,jdbcType=VARCHAR},#{finishtime,jdbcType=VARCHAR},#{status,jdbcType=INTEGER})
+        INSERT IGNORE INTO jiaoyanlunwen(`name`, `partment`, `finishtime`, `status`) VALUES (#{name,jdbcType=VARCHAR},#{partment,jdbcType=VARCHAR},#{finishtime,jdbcType=VARCHAR},#{status,jdbcType=INTEGER})
     </insert>
 
     <insert id="insertJiaoYanLunWenParticipation" parameterType="com.example.graduate_sever.entity.ParticipationEntity" useGeneratedKeys="true">
-        INSERT INTO participation(`badge`, `ach_id`, `type`) VALUES (#{badge,jdbcType=INTEGER},#{ach_id,jdbcType=INTEGER},#{type,jdbcType=INTEGER})
+        INSERT IGNORE INTO participation(`badge`, `ach_id`, `type`) VALUES (#{badge,jdbcType=INTEGER},#{ach_id,jdbcType=INTEGER},#{type,jdbcType=INTEGER})
     </insert>
 </mapper>
 

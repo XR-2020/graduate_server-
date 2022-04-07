@@ -40,11 +40,11 @@
         select count(*) JingSai_count from competition c,teacher t,participation p where status=1 and p.badge=t.badeg and p.ach_id=c.id and CONCAT(c.id,t.tea_name,c.partment,c.name,c.finishtime,c.status,p.badge,c.student,c.level,c.grade)  LIKE CONCAT('%',#{key},'%');
     </select>
     <insert id="insertJingSai" parameterType="com.example.graduate_sever.entity.CompetitionEntity" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO `graduate`.`competition`( `status`, `finishtime`, `student`, `level`, `grade`, `name`,`partment`)  VALUES (#{status,jdbcType=INTEGER},#{finishtime,jdbcType=VARCHAR},#{student,jdbcType=VARCHAR},#{level,jdbcType=VARCHAR},#{grade,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR})
+        INSERT IGNORE INTO `graduate`.`competition`( `status`, `finishtime`, `student`, `level`, `grade`, `name`,`partment`)  VALUES (#{status,jdbcType=INTEGER},#{finishtime,jdbcType=VARCHAR},#{student,jdbcType=VARCHAR},#{level,jdbcType=VARCHAR},#{grade,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR})
     </insert>
 
     <insert id="insertJingSaiParticipation" parameterType="com.example.graduate_sever.entity.ParticipationEntity" useGeneratedKeys="true">
-        INSERT INTO participation(`badge`, `ach_id`, `type`) VALUES (#{badge,jdbcType=INTEGER},#{ach_id,jdbcType=INTEGER},#{type,jdbcType=INTEGER})
+        INSERT IGNORE INTO participation(`badge`, `ach_id`, `type`) VALUES (#{badge,jdbcType=INTEGER},#{ach_id,jdbcType=INTEGER},#{type,jdbcType=INTEGER})
     </insert>
 </mapper>
 

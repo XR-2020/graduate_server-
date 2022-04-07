@@ -98,21 +98,26 @@ public class RuanJianZhuZuoimpl implements RuanJianZhuZuoService {
             //设置除参与人外其他信息
             for(int i=0;i<ids.length;i++){
                 HeBingEntity ruanJianZhuZuoEntity=new HeBingEntity(1,finishtime[i],partment[i],name.get(i).text());
-                mapper.insertRuanJianZhuZuo(ruanJianZhuZuoEntity);
-                //设置小眼睛参数
-                List<NameValuePair> viewparams= new ArrayList<NameValuePair>();
-                viewparams.add(new BasicNameValuePair("tb",td));
-                viewparams.add(new BasicNameValuePair("id",ids[i]));
-                UrlEncodedFormEntity viewformEntity = new UrlEncodedFormEntity(viewparams,"utf-8");
-                view.setEntity(viewformEntity);
-                //获取小眼睛内容
-                String[] people=Jsoup.parse(EntityUtils.toString(httpClient.execute(view).getEntity())).getElementById("memTab").text().split("\\s+");
-                for(int j=5;j<people.length;j+=4){
-                    mapper.insertRuanJianZhuZuoParticipation(new ParticipationEntity(Integer.parseInt(people[j]),ruanJianZhuZuoEntity.getId(),11));
+                int ref=mapper.insertRuanJianZhuZuo(ruanJianZhuZuoEntity);
+                if(ref!=0){
+                    //设置小眼睛参数
+                    List<NameValuePair> viewparams= new ArrayList<NameValuePair>();
+                    viewparams.add(new BasicNameValuePair("tb",td));
+                    viewparams.add(new BasicNameValuePair("id",ids[i]));
+                    UrlEncodedFormEntity viewformEntity = new UrlEncodedFormEntity(viewparams,"utf-8");
+                    view.setEntity(viewformEntity);
+                    //获取小眼睛内容
+                    String[] people=Jsoup.parse(EntityUtils.toString(httpClient.execute(view).getEntity())).getElementById("memTab").text().split("\\s+");
+                    for(int j=5;j<people.length;j+=4){
+                        mapper.insertRuanJianZhuZuoParticipation(new ParticipationEntity(Integer.parseInt(people[j]),ruanJianZhuZuoEntity.getId(),11));
+                    }
+                    //添加第一完成人
+                    mapper.insertRuanJianZhuZuoParticipation(new ParticipationEntity(Integer.parseInt(firstpeople[i]),ruanJianZhuZuoEntity.getId(),11));
+
+                }else{
+                    continue;
                 }
-                //添加第一完成人
-                mapper.insertRuanJianZhuZuoParticipation(new ParticipationEntity(Integer.parseInt(firstpeople[i]),ruanJianZhuZuoEntity.getId(),11));
-            }
+               }
         } catch (IOException e) {
             e.printStackTrace();
         }
