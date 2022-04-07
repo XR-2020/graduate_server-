@@ -33,11 +33,11 @@
         select teacher.tea_name,teacher.badeg from participation,teacher where participation.badge=teacher.badeg and participation.ach_id=#{id} and participation.type=4
     </select>
 <!--    &lt;!&ndash;教研项目成果全局模糊查询&ndash;&gt;-->
-<!--    <select id="getSearchPingGuZhongXin" resultMap="PingGuZhongXin,count8">-->
-<!--        <bind name="beginIndex" value="(pageIndex-1)*pageSize"></bind>-->
-<!--        select c.*,t.tea_name from pingguzhongxinxiangguan c,teacher t-->
-<!--        where status=1 and c.badge=t.badeg and CONCAT(c.id,t.tea_name,c.badge,c.partment,c.name,c.finishtime,c.status) LIKE CONCAT('%',#{key},'%') limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER};select found_rows() count8;-->
-<!--    </select>-->
+    <select id="getSearchPingGuZhongXin" resultMap="PingGuZhongXin,count8">
+        <bind name="beginIndex" value="(pageIndex-1)*pageSize"></bind>
+        select c.* from pingguzhongxinxiangguan c,teacher t,participation p where status=1 and p.badge=t.badeg and p.ach_id=c.id and CONCAT(c.id,t.tea_name,c.partment,c.name,c.finishtime,c.status,p.badge,c.grade) LIKE CONCAT('%',#{key},'%') limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER};
+        select count(*) count8 from pingguzhongxinxiangguan c,teacher t,participation p where status=1 and p.badge=t.badeg and p.ach_id=c.id and CONCAT(c.id,t.tea_name,c.partment,c.name,c.finishtime,c.status,p.badge,c.grade) LIKE CONCAT('%',#{key},'%');
+    </select>
 
     <insert id="insertPingGuZhongXin" parameterType="com.example.graduate_sever.entity.PingGuZhongXinXiangGuanEntity" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO pingguzhongxinxiangguan(`status`, `finishtime`, `partment`, `grade`, `name`) VALUES (#{status,jdbcType=INTEGER},#{finishtime,jdbcType=VARCHAR},#{partment,jdbcType=VARCHAR},#{grade,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR})

@@ -32,11 +32,11 @@
         select teacher.tea_name,teacher.badeg from participation,teacher where participation.badge=teacher.badeg and participation.ach_id=#{id} and participation.type=10
     </select>
 <!--    &lt;!&ndash;产学研成果全局模糊查询&ndash;&gt;-->
-<!--    <select id="getSearchKeYanLunWen" resultMap="KeYanLunWen,count6">-->
-<!--        <bind name="beginIndex" value="(pageIndex-1)*pageSize"></bind>-->
-<!--        select c.*,t.tea_name from keyanlunwen c,teacher t-->
-<!--        where status=1 and c.badge=t.badeg and CONCAT(c.id,t.tea_name,c.badge,c.partment,c.name,c.finishtime,c.status) LIKE CONCAT('%',#{key},'%') limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER};select found_rows() count6;-->
-<!--    </select>-->
+    <select id="getSearchKeYanLunWen" resultMap="KeYanLunWen,count6">
+        <bind name="beginIndex" value="(pageIndex-1)*pageSize"></bind>
+        select c.* from keyanlunwen c,teacher t,participation p where status=1 and p.badge=t.badeg and p.ach_id=c.id and CONCAT(c.id,t.tea_name,c.partment,c.name,c.finishtime,c.status,p.badge) LIKE CONCAT('%',#{key},'%') limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER};
+        select count(*) count6 from keyanlunwen c,teacher t,participation p where status=1 and p.badge=t.badeg and p.ach_id=c.id and CONCAT(c.id,t.tea_name,c.partment,c.name,c.finishtime,c.status,p.badge) LIKE CONCAT('%',#{key},'%');
+    </select>
 
     <insert id="insertKeYanLunWen" parameterType="com.example.graduate_sever.entity.HeBingEntity" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO keyanlunwen( `status`, `name`, `finishtime`, `partment`) VALUES (#{status,jdbcType=INTEGER},#{name,jdbcType=VARCHAR},#{finishtime,jdbcType=VARCHAR},#{partment,jdbcType=VARCHAR})

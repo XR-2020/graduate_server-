@@ -39,14 +39,14 @@
     </delete>
     <!--查询指定产学研成果人员信息-->
     <select id="getChanXueYanDetail" parameterType="java.lang.Integer" resultMap="ChanXueYan_people">
-        select teacher.tea_name,teacher.badeg from participation,teacher where participation.badge=teacher.badeg and participation.ach_id=#{id} and participation.type=1
+        select teacher.tea_name,teacher.badeg from getJiaoYuGuiHuaDetail,teacher where participation.badge=teacher.badeg and participation.ach_id=#{id} and participation.type=1
     </select>
-<!--    &lt;!&ndash;产学研成果全局模糊查询&ndash;&gt;-->
-<!--    <select id="getSearchChanXueYan" resultMap="ChanXueYan,ChanXueYan_count">-->
-<!--        <bind name="beginIndex" value="(pageIndex-1)*pageSize"></bind>-->
-<!--        select c.*,t.tea_name from chanxueyan c,teacher t-->
-<!--        where status=1 and c.badge=t.badeg and CONCAT(c.id,t.tea_name,c.partment,c.name,c.wenhao,c.lianghua,c.finishtime,c.status) LIKE CONCAT('%',#{key},'%') limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER};select found_rows() ChanXueYan_count;-->
-<!--    </select>-->
+    <!--产学研成果全局模糊查询-->
+    <select id="getSearchChanXueYan" resultMap="ChanXueYan,ChanXueYan_count">
+        <bind name="beginIndex" value="(pageIndex-1)*pageSize"></bind>
+        select c.* from chanxueyan c,teacher t,participation p where status=1 and p.badge=t.badeg and p.ach_id=c.id and CONCAT(c.id,t.tea_name,c.partment,c.name,c.wenhao,c.lianghua,c.finishtime,c.status,p.badge) LIKE CONCAT('%',#{key},'%') limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER};
+        select count(*) ChanXueYan_count from chanxueyan c,teacher t,participation p where status=1 and p.badge=t.badeg and p.ach_id=c.id and CONCAT(c.id,t.tea_name,c.partment,c.name,c.wenhao,c.lianghua,c.finishtime,c.status,p.badge) LIKE CONCAT('%',#{key},'%');
+    </select>
     
     <insert id="insertChanXueYan" parameterType="com.example.graduate_sever.entity.ChanXueYanEntity" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO chanxueyan (`status`, `finishtime`, `lianghua`, `wenhao`, `name`, `partment`) VALUES (#{status,jdbcType=INTEGER},#{finishtime,jdbcType=VARCHAR},#{lianghua,jdbcType=VARCHAR},#{wenhao,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR},#{partment,jdbcType=VARCHAR})
