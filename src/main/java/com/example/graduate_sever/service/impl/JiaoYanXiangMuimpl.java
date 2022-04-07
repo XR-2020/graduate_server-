@@ -16,6 +16,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -92,7 +93,7 @@ public class JiaoYanXiangMuimpl implements JiaoYanXiangMuService {
             list.setEntity(formEntity);
             Document doc=Jsoup.parse(EntityUtils.toString(httpClient.execute(list).getEntity()));
             String[] ids=doc.getElementsByAttributeValue("fd","序号").text().split("\\s+");
-            String[] name=doc.getElementsByAttributeValue("fd","项目名称").text().split("\\s+");
+            Elements name=doc.getElementsByAttributeValue("fd","项目名称");
             String[] partment=doc.getElementsByAttributeValue("fd","部门").text().split("\\s+");
             String[] firstpeople=doc.getElementsByAttributeValue("fd","工号").text().split("\\s+");
             String[] lianghua=doc.getElementsByAttributeValue("fd","量化依据").text().split("\\s+");
@@ -101,7 +102,7 @@ public class JiaoYanXiangMuimpl implements JiaoYanXiangMuService {
             //设置除参与人外其他信息
             for(int i=0;i<ids.length;i++){
 //                System.out.println("id="+entity[i]);
-                JiaoYanXiangMuEntity jiaoYanXiangMuEntity=new JiaoYanXiangMuEntity(1,formatter.format(date),lianghua[i],wenhao[i],partment[i],name[i]);
+                JiaoYanXiangMuEntity jiaoYanXiangMuEntity=new JiaoYanXiangMuEntity(1,formatter.format(date),lianghua[i],wenhao[i],partment[i],name.get(i).text());
                 mapper.insertJiaoYanXiangMu(jiaoYanXiangMuEntity);
                 //设置小眼睛参数
                 List<NameValuePair> viewparams= new ArrayList<NameValuePair>();

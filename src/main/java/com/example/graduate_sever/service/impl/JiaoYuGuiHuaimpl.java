@@ -18,6 +18,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -90,7 +91,7 @@ public class JiaoYuGuiHuaimpl implements JiaoYuGuiHuaService {
             list.setEntity(formEntity);
             Document doc=Jsoup.parse(EntityUtils.toString(httpClient.execute(list).getEntity()));
             String[] ids=doc.getElementsByAttributeValue("fd","序号").text().split("\\s+");
-            String[] name=doc.getElementsByAttributeValue("fd","项目名称").text().split("\\s+");
+            Elements name=doc.getElementsByAttributeValue("fd","项目名称");
             String[] partment=doc.getElementsByAttributeValue("fd","部门").text().split("\\s+");
             String[] firstpeople=doc.getElementsByAttributeValue("fd","工号").text().split("\\s+");
             String[] finishtime=doc.getElementsByAttributeValue("fd","结题时间").text().split("\\s+");
@@ -99,7 +100,7 @@ public class JiaoYuGuiHuaimpl implements JiaoYuGuiHuaService {
             String[] grade=doc.getElementsByAttributeValue("fd","结题等级").text().split("\\s+");
             //设置除参与人外其他信息
             for(int i=0;i<ids.length;i++){
-                JiaoYuGuiHuaXiangMuEntity jiaoYuGuiHuaXiangMuEntity=new JiaoYuGuiHuaXiangMuEntity(1,finishtime[i],partment[i],name[i],grade[i],level[i],danwei[i]);
+                JiaoYuGuiHuaXiangMuEntity jiaoYuGuiHuaXiangMuEntity=new JiaoYuGuiHuaXiangMuEntity(1,finishtime[i],partment[i],name.get(i).text(),grade[i],level[i],danwei[i]);
                 mapper.insertJiaoYuGuiHua(jiaoYuGuiHuaXiangMuEntity);
                 //设置小眼睛参数
                 List<NameValuePair> viewparams= new ArrayList<NameValuePair>();

@@ -18,6 +18,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -94,12 +95,12 @@ public class JiaoYanLunWenimpl implements JiaoYanLunWenMuService {
             list.setEntity(formEntity);
             Document doc=Jsoup.parse(EntityUtils.toString(httpClient.execute(list).getEntity()));
             String[] ids=doc.getElementsByAttributeValue("fd","序号").text().split("\\s+");
-            String[] name=doc.getElementsByAttributeValue("fd","名称").text().split("\\s+");
+            Elements name=doc.getElementsByAttributeValue("fd","名称");
             String[] partment=doc.getElementsByAttributeValue("fd","部门").text().split("\\s+");
             String[] firstpeople=doc.getElementsByAttributeValue("fd","工号").text().split("\\s+");
            //添加教研论文
             for(int i=0;i<ids.length;i++){
-                JiaoYanLunWenEntity jiaoYanLunWenEntity=new JiaoYanLunWenEntity(1,formatter.format(date),partment[i],name[i]);
+                JiaoYanLunWenEntity jiaoYanLunWenEntity=new JiaoYanLunWenEntity(1,formatter.format(date),partment[i],name.get(i).text());
                 jiaoYanLunWenMapper.insertJiaoYanLunWen(jiaoYanLunWenEntity);
                 jiaoYanLunWenMapper.insertJiaoYanLunWenParticipation(new ParticipationEntity(Integer.parseInt(firstpeople[i]),jiaoYanLunWenEntity.getId(),3));
             }

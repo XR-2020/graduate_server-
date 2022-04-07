@@ -18,6 +18,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -92,7 +93,7 @@ public class ZongXiangKeYanimpl implements ZongXiangKeYanService {
             list.setEntity(formEntity);
             Document doc=Jsoup.parse(EntityUtils.toString(httpClient.execute(list).getEntity()));
             String[] ids=doc.getElementsByAttributeValue("fd","序号").text().split("\\s+");
-            String[] name=doc.getElementsByAttributeValue("fd","项目名称").text().split("\\s+");
+            Elements name=doc.getElementsByAttributeValue("fd","项目名称");
             String[] partment=doc.getElementsByAttributeValue("fd","部门").text().split("\\s+");
             String[] firstpeople=doc.getElementsByAttributeValue("fd","工号").text().split("\\s+");
             String[] finishtime=doc.getElementsByAttributeValue("fd","立项时间").text().split("\\s+");
@@ -102,7 +103,7 @@ public class ZongXiangKeYanimpl implements ZongXiangKeYanService {
             //设置除参与人外其他信息
             for(int i=0;i<ids.length;i++){
 //                System.out.println("id="+entity[i]);
-                ZongXiangKeYanXiangMuEntity zongXiangKeYanXiangMuEntity=new ZongXiangKeYanXiangMuEntity(1,finishtime[i],level[i],type[i],lixiang[i],partment[i],name[i]);
+                ZongXiangKeYanXiangMuEntity zongXiangKeYanXiangMuEntity=new ZongXiangKeYanXiangMuEntity(1,finishtime[i],level[i],type[i],lixiang[i],partment[i],name.get(i).text());
                 mapper.insertZongXiangKeYan(zongXiangKeYanXiangMuEntity);
                 //设置小眼睛参数
                 List<NameValuePair> viewparams= new ArrayList<NameValuePair>();
