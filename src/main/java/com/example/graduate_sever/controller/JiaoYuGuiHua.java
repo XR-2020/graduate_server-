@@ -14,29 +14,29 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class JiaoYuGuiHua {
     @Autowired
-    private JiaoYuGuiHuaService pingGuZhongXinService;
+    private JiaoYuGuiHuaService jiaoYuGuiHuaService;
 
     @GetMapping("/getAllJiaoYuGuiHua")
     public ResVO getAllJiaoYuGuiHua(DTO dTO){
-        return pingGuZhongXinService.getAllJiaoYuGuiHua(dTO);
+        return jiaoYuGuiHuaService.getAllJiaoYuGuiHua(dTO);
     }
 
     @GetMapping("/getSearchJiaoYuGuiHua")
     public ResVO getSearchJiaoYuGuiHua(DTO dTO){
 //        System.out.println(chanXueYanDTO.getKey()+"______"+chanXueYanDTO.getPageIndex()+"_______"+chanXueYanDTO.getPageSize());
-        return pingGuZhongXinService.getSearchJiaoYuGuiHua(dTO);}
+        return jiaoYuGuiHuaService.getSearchJiaoYuGuiHua(dTO);}
 
     @PostMapping("/deleteJiaoYuGuiHua")
-    public JsonBean deleteJiaoYuGuiHua(int[] ids){return  pingGuZhongXinService.deleteJiaoYuGuiHua(ids);}
+    public JsonBean deleteJiaoYuGuiHua(int[] ids){return  jiaoYuGuiHuaService.deleteJiaoYuGuiHua(ids);}
 
     @PostMapping("/deleteOneJiaoYuGuiHua")
-    public  JsonBean deleteOnePingGuZhongXin(Integer id){return pingGuZhongXinService.deleteOneJiaoYuGuiHua(id);}
+    public  JsonBean deleteOnePingGuZhongXin(Integer id){return jiaoYuGuiHuaService.deleteOneJiaoYuGuiHua(id);}
 
     @GetMapping("/getJiaoYuGuiHuaDetail")
-    public JsonBean getPingGuZhongXinDetail(Integer id){
+    public JsonBean getJiaoYuGuiHuaDetail(Integer id){
         System.out.println(id);
 
-        return pingGuZhongXinService.getJiaoYuGuiHuaDetial(id);}
+        return jiaoYuGuiHuaService.getJiaoYuGuiHuaDetial(id);}
 
     @RequestMapping(value = "/updateJiaoYuGuiHua", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public JsonBean updateJiaoYuGuiHua(@RequestBody JiaoYuGuiHuaXiangMuUO uo){
@@ -50,7 +50,7 @@ public class JiaoYuGuiHua {
             element=new JiaoYuGuiHuaXiangMuEntity(1,uo.getFinishtime(),uo.getPartment(),uo.getName(),uo.getGrade(),uo.getLevel(),uo.getDanwei());
         }
 
-        return  pingGuZhongXinService.insertJiaoYuGuiHua(element,people);
+        return  jiaoYuGuiHuaService.insertJiaoYuGuiHua(element,people);
     }
 
 }
