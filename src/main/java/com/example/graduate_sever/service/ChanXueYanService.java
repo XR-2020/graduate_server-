@@ -17,6 +17,7 @@ public interface  ChanXueYanService {
      JsonBean deleteOneChanXueYan(Integer id);
      JsonBean getChanXueYanDetail(Integer id);
      JsonBean insertChanXueYan(ChanXueYanEntity entity,Integer[] people);
+     JsonBean shenBaoChanXueYan(ChanXueYanEntity entity,Integer[] people);
      List<Object> getTeacherList();
      void ChanXueYancrawlerWebSite(String td, CloseableHttpClient httpClient, HttpPost list, HttpPost view);
 }

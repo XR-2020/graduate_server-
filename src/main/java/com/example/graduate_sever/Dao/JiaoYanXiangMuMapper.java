@@ -22,7 +22,7 @@ public interface JiaoYanXiangMuMapper {
     List<People> getJiaoYanDetail(Integer id);
 
     int insertJiaoYanXiangMu(JiaoYanXiangMuEntity entity);
-
+    int shenBaoJiaoYanXiangMu(JiaoYanXiangMuEntity entity);
     int insertJiaoYanXiangMuParticipation(ParticipationEntity participationEntity);
 
 }

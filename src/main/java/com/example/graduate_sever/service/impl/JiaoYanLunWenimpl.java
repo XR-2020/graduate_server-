@@ -79,6 +79,17 @@ public class JiaoYanLunWenimpl implements JiaoYanLunWenMuService {
     }
 
     @Override
+    public JsonBean shenBaoJiaoYanLunWen(JiaoYanLunWenEntity entity, Integer[] people) {
+       int ref= jiaoYanLunWenMapper.shenBaoJiaoYanLunWen(entity);
+       if(ref!=0){
+           for (Integer ach_id:people) {
+               jiaoYanLunWenMapper.insertJiaoYanLunWenParticipation(new ParticipationEntity(ach_id,entity.getId(),3));
+           }
+       }
+        return new JsonBean(200,"",ref);
+    }
+
+    @Override
     public void JiaoYanLunWenCrawlerWebSite(String td, CloseableHttpClient httpClient, HttpPost list, HttpPost view) {
         List<NameValuePair> listparams= new ArrayList<NameValuePair>();
         //获取当前时间
@@ -100,7 +111,7 @@ public class JiaoYanLunWenimpl implements JiaoYanLunWenMuService {
             String[] firstpeople=doc.getElementsByAttributeValue("fd","工号").text().split("\\s+");
            //添加教研论文
             for(int i=0;i<ids.length;i++){
-                JiaoYanLunWenEntity jiaoYanLunWenEntity=new JiaoYanLunWenEntity(1,formatter.format(date),partment[i],name.get(i).text());
+                JiaoYanLunWenEntity jiaoYanLunWenEntity=new JiaoYanLunWenEntity(1,formatter.format(date),partment[i],name.get(i).text(),Integer.parseInt(firstpeople[i]));
                 int ref=jiaoYanLunWenMapper.insertJiaoYanLunWen(jiaoYanLunWenEntity);
                 if(ref!=0){
                     jiaoYanLunWenMapper.insertJiaoYanLunWenParticipation(new ParticipationEntity(Integer.parseInt(firstpeople[i]),jiaoYanLunWenEntity.getId(),3));

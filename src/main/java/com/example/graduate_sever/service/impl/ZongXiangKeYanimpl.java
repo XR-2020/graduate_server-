@@ -81,6 +81,17 @@ public class ZongXiangKeYanimpl implements ZongXiangKeYanService {
     }
 
     @Override
+    public JsonBean shenBaoZongXiangKeYan(ZongXiangKeYanXiangMuEntity entity, Integer[] people) {
+        int ref=mapper.shenBaoZongXiangKeYan(entity);
+        if(ref!=0){
+            for (Integer ach_id : people) {
+                mapper.insertZongXiangKeYanParticipation(new ParticipationEntity(ach_id, entity.getId(), 8));
+            }
+        }
+        return new JsonBean(200, "", ref);
+    }
+
+    @Override
     public void ZongXiangKeYanCrawlerWebSite(String td, CloseableHttpClient httpClient, HttpPost list, HttpPost view) {
         List<NameValuePair> listparams= new ArrayList<NameValuePair>();
        //设置请求地址的参数
@@ -103,7 +114,7 @@ public class ZongXiangKeYanimpl implements ZongXiangKeYanService {
             //设置除参与人外其他信息
             for(int i=0;i<ids.length;i++){
 //                System.out.println("id="+entity[i]);
-                ZongXiangKeYanXiangMuEntity zongXiangKeYanXiangMuEntity=new ZongXiangKeYanXiangMuEntity(1,finishtime[i],level[i],type[i],lixiang[i],partment[i],name.get(i).text());
+                ZongXiangKeYanXiangMuEntity zongXiangKeYanXiangMuEntity=new ZongXiangKeYanXiangMuEntity(1,finishtime[i],level[i],type[i],lixiang[i],partment[i],name.get(i).text(),Integer.parseInt(firstpeople[i]));
                 int ref=mapper.insertZongXiangKeYan(zongXiangKeYanXiangMuEntity);
                 if(ref!=0){
                     //设置小眼睛参数

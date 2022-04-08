@@ -17,6 +17,15 @@ public class ChanXueYanUO implements Serializable{
     private String wenhao;
     private Integer[] people;
     private Integer role;
+    private Integer shenbao;
+
+    public Integer getShenbao() {
+        return shenbao;
+    }
+
+    public void setShenbao(Integer shenbao) {
+        this.shenbao = shenbao;
+    }
 
     public void setRole(Integer role) {
         this.role = role;

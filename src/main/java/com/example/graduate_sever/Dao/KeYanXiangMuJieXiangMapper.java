@@ -22,6 +22,6 @@ public interface KeYanXiangMuJieXiangMapper {
 
     List<People> getKeYanXiangMuJieXiangDetail(Integer id);
     int insertKeYanXiangMuJieXiang(HeBingEntity entity);
-
+    int shenBaoKeYanXiangMuJieXiang(HeBingEntity entity);
     int insertKeYanXiangMuJieXiangParticipation(ParticipationEntity participationEntity);
 }

@@ -13,4 +13,5 @@ public interface XueKeJingSaiService {
      JsonBean deleteOneJingSai(Integer id);
      JsonBean getJingSaiDetial(Integer id);
      JsonBean insertJingSai(CompetitionEntity entity,Integer[] people);
+     JsonBean shenBaoJingSai(CompetitionEntity entity,Integer[] people);
 }

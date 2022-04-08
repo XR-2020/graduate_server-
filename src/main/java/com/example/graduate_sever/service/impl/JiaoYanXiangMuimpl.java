@@ -77,6 +77,17 @@ public class JiaoYanXiangMuimpl implements JiaoYanXiangMuService {
     }
 
     @Override
+    public JsonBean shenBaoJiaoYan(JiaoYanXiangMuEntity entity, Integer[] people) {
+      int ref=mapper.shenBaoJiaoYanXiangMu(entity);
+      if(ref!=0){
+          for (Integer ach_id:people) {
+              mapper.insertJiaoYanXiangMuParticipation(new ParticipationEntity(ach_id,entity.getId(),2));
+          }
+      }
+        return new JsonBean(200,"",ref);
+    }
+
+    @Override
     public void JiaoYanXiangMuCrawlerWebSite(String td, CloseableHttpClient httpClient, HttpPost list, HttpPost view) {
         List<NameValuePair> listparams= new ArrayList<NameValuePair>();
         //获取当前时间
@@ -101,7 +112,7 @@ public class JiaoYanXiangMuimpl implements JiaoYanXiangMuService {
 
             //设置除参与人外其他信息
             for(int i=0;i<ids.length;i++){
-                JiaoYanXiangMuEntity jiaoYanXiangMuEntity=new JiaoYanXiangMuEntity(1,formatter.format(date),lianghua[i],wenhao[i],partment[i],name.get(i).text());
+                JiaoYanXiangMuEntity jiaoYanXiangMuEntity=new JiaoYanXiangMuEntity(1,formatter.format(date),lianghua[i],wenhao[i],partment[i],name.get(i).text(),Integer.parseInt(firstpeople[i]));
                 int ref=mapper.insertJiaoYanXiangMu(jiaoYanXiangMuEntity);
                 if(ref!=0){
                     //设置小眼睛参数

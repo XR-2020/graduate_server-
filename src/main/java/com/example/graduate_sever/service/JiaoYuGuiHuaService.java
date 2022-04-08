@@ -14,5 +14,6 @@ public interface JiaoYuGuiHuaService {
      JsonBean deleteOneJiaoYuGuiHua(Integer id);
      JsonBean getJiaoYuGuiHuaDetial(Integer id);
      JsonBean insertJiaoYuGuiHua(JiaoYuGuiHuaXiangMuEntity entity,Integer[] people);
+     JsonBean shenBaoJiaoYuGuiHua(JiaoYuGuiHuaXiangMuEntity entity,Integer[] people);
      void JiaoYuGuiHuaCrawlerWebSite(String td, CloseableHttpClient httpClient, HttpPost list, HttpPost view);
 }

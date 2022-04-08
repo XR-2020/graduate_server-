@@ -63,4 +63,15 @@ public class XueKeJingSaiimpl implements XueKeJingSaiService {
         }
         return new JsonBean(200,"","");
     }
+
+    @Override
+    public JsonBean shenBaoJingSai(CompetitionEntity entity, Integer[] people) {
+        int ref=mapper.shenBaoJingSai(entity);
+        if(ref!=0){
+            for (Integer ach_id:people) {
+                mapper.insertJingSaiParticipation(new ParticipationEntity(ach_id,entity.getId(),13));
+            }
+        }
+        return new JsonBean(200,"",ref);
+    }
 }

@@ -44,11 +44,11 @@ public class JiaoYanXiangMu {
         JsonBean jsonBean=null;
         int role=uo.getRole();
         if (role!=1&&role!=4){
-            element=new JiaoYanXiangMuEntity(0,uo.getFinishtime(),uo.getLianghua(),uo.getWenhao(),uo.getPartment(),uo.getName());
+            element=new JiaoYanXiangMuEntity(0,uo.getFinishtime(),uo.getLianghua(),uo.getWenhao(),uo.getPartment(),uo.getName(), uo.getShenbao());
         }else {
-            element=new JiaoYanXiangMuEntity(1,uo.getFinishtime(),uo.getLianghua(),uo.getWenhao(),uo.getPartment(),uo.getName());}
+            element=new JiaoYanXiangMuEntity(1,uo.getFinishtime(),uo.getLianghua(),uo.getWenhao(),uo.getPartment(),uo.getName(), uo.getShenbao());}
 
-        return  jiaoYanXiangMuService.insertJiaoYan(element,people);
+        return  jiaoYanXiangMuService.shenBaoJiaoYan(element,people);
     }
 
 }

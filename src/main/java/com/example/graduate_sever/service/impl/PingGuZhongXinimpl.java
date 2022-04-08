@@ -79,6 +79,17 @@ public class PingGuZhongXinimpl implements PingGuZhongXinService {
     }
 
     @Override
+    public JsonBean shenBaoPingGuZhongXin(PingGuZhongXinXiangGuanEntity entity, Integer[] people) {
+        int ref=mapper.shenBaoPingGuZhongXin(entity);
+        if(ref!=0){
+            for (Integer ach_id:people) {
+                mapper.insertPingGuZhongXinParticipation(new ParticipationEntity(ach_id,entity.getId(),4));
+            }
+        }
+        return new JsonBean(200,"",ref);
+    }
+
+    @Override
     public void PingGuZhongXinCrawlerWebSite(String td, CloseableHttpClient httpClient, HttpPost list, HttpPost view) {
         List<NameValuePair> listparams= new ArrayList<NameValuePair>();
         //获取当前时间

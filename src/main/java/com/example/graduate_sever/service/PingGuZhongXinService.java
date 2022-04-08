@@ -14,5 +14,6 @@ public interface PingGuZhongXinService {
      JsonBean deleteOnePingGuZhongXin(Integer id);
      JsonBean getPingGuZhongXinDetial(Integer id);
      JsonBean insertPingGuZhongXin(PingGuZhongXinXiangGuanEntity entity,Integer[] people);
+     JsonBean shenBaoPingGuZhongXin(PingGuZhongXinXiangGuanEntity entity,Integer[] people);
      void PingGuZhongXinCrawlerWebSite(String td, CloseableHttpClient httpClient, HttpPost list, HttpPost view);
 }

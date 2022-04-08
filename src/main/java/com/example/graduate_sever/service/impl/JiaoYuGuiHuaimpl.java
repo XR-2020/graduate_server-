@@ -79,6 +79,17 @@ public class JiaoYuGuiHuaimpl implements JiaoYuGuiHuaService {
     }
 
     @Override
+    public JsonBean shenBaoJiaoYuGuiHua(JiaoYuGuiHuaXiangMuEntity entity, Integer[] people) {
+        int ref=mapper.shenBaoJiaoYuGuiHua(entity);
+       if(ref!=0){
+           for (Integer ach_id:people) {
+               mapper.insertJiaoYuGuiHuaParticipation(new ParticipationEntity(ach_id,entity.getId(),5));
+           }
+       }
+        return new JsonBean(200,"",ref);
+    }
+
+    @Override
     public void JiaoYuGuiHuaCrawlerWebSite(String td, CloseableHttpClient httpClient, HttpPost list, HttpPost view) {
         List<NameValuePair> listparams= new ArrayList<NameValuePair>();
         //设置请求地址的参数
@@ -100,7 +111,7 @@ public class JiaoYuGuiHuaimpl implements JiaoYuGuiHuaService {
             String[] grade=doc.getElementsByAttributeValue("fd","结题等级").text().split("\\s+");
             //设置除参与人外其他信息
             for(int i=0;i<ids.length;i++){
-                JiaoYuGuiHuaXiangMuEntity jiaoYuGuiHuaXiangMuEntity=new JiaoYuGuiHuaXiangMuEntity(1,finishtime[i],partment[i],name.get(i).text(),grade[i],level[i],danwei[i]);
+                JiaoYuGuiHuaXiangMuEntity jiaoYuGuiHuaXiangMuEntity=new JiaoYuGuiHuaXiangMuEntity(1,finishtime[i],partment[i],name.get(i).text(),grade[i],level[i],danwei[i],Integer.parseInt(firstpeople[i]));
                 int ref=mapper.insertJiaoYuGuiHua(jiaoYuGuiHuaXiangMuEntity);
                 if(ref!=0){
                     //设置小眼睛参数

@@ -72,10 +72,22 @@ public class KeYanLunWenimpl implements KeYanLunWenService {
     @Override
     public JsonBean insertKeYanLunWen(HeBingEntity entity,Integer[] people) {
         mapper.insertKeYanLunWen(entity);
-        for (Integer ach_id:people) {
-            mapper.insertKeYanLunWenParticipation(new ParticipationEntity(ach_id,entity.getId(),10));
-        }
+
+           for (Integer ach_id:people) {
+               mapper.insertKeYanLunWenParticipation(new ParticipationEntity(ach_id,entity.getId(),10));
+       }
         return new JsonBean(200,"","");
+    }
+
+    @Override
+    public JsonBean shenBaoKeYanLunWen(HeBingEntity entity, Integer[] people) {
+        int ref=mapper.shenBaoKeYanLunWen(entity);
+        if(ref!=0){
+            for (Integer ach_id:people) {
+                mapper.insertKeYanLunWenParticipation(new ParticipationEntity(ach_id,entity.getId(),10));
+            }
+        }
+        return new JsonBean(200,"",ref);
     }
 
     @Override
@@ -102,7 +114,7 @@ public class KeYanLunWenimpl implements KeYanLunWenService {
             //设置除参与人外其他信息
             for(int i=0;i<ids.length;i++){
 //                System.out.println("id="+entity[i]);
-                HeBingEntity keYanLunWenEntity=new HeBingEntity(1,finishtime[i],partment[i],name.get(i).text());
+                HeBingEntity keYanLunWenEntity=new HeBingEntity(1,finishtime[i],partment[i],name.get(i).text(),Integer.parseInt(firstpeople[i]));
                 int ref=mapper.insertKeYanLunWen(keYanLunWenEntity);
                 if(ref!=0){
                     //添加第一完成人

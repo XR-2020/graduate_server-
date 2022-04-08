@@ -39,7 +39,10 @@
     </select>
 
     <insert id="insertRongYuChengHao" parameterType="com.example.graduate_sever.entity.HonorEntity" useGeneratedKeys="true" keyProperty="id">
-        INSERT IGNORE INTO honor(`status`, `name`, `finishtime`, `level`,`partment`) VALUES (#{status,jdbcType=INTEGER},#{name,jdbcType=VARCHAR},#{finishtime,jdbcType=VARCHAR},#{level,jdbcType=VARCHAR},#{partment,jdbcType=VARCHAR})
+        INSERT IGNORE INTO honor(`status`, `name`, `finishtime`, `level`,`partment`,`badge`) VALUES (#{status,jdbcType=INTEGER},#{name,jdbcType=VARCHAR},#{finishtime,jdbcType=VARCHAR},#{level,jdbcType=VARCHAR},#{partment,jdbcType=VARCHAR},#{badge,jdbcType=INTEGER})
+    </insert>
+    <insert id="shenBaoRongYuChengHao" parameterType="com.example.graduate_sever.entity.HonorEntity" useGeneratedKeys="true" keyProperty="id">
+        INSERT IGNORE INTO honor(`status`, `name`, `finishtime`, `level`,`partment`,`shenbao`) VALUES (#{status,jdbcType=INTEGER},#{name,jdbcType=VARCHAR},#{finishtime,jdbcType=VARCHAR},#{level,jdbcType=VARCHAR},#{partment,jdbcType=VARCHAR},#{badge,jdbcType=INTEGER})
     </insert>
 
     <insert id="insertRongYuChengHaoParticipation" parameterType="com.example.graduate_sever.entity.ParticipationEntity" useGeneratedKeys="true">

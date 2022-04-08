@@ -79,6 +79,17 @@ public class ZhuZuoimpl implements ZhuZuoService {
     }
 
     @Override
+    public JsonBean shenBaoZhuZuo(HeBingEntity entity, Integer[] people) {
+        int ref=mapper.shenBaoZhuZuo(entity);
+       if(ref!=0){
+           for (Integer ach_id:people) {
+               mapper.insertZhuZuoParticipation(new ParticipationEntity(ach_id,entity.getId(),9));
+           }
+       }
+        return new JsonBean(200,"",ref);
+    }
+
+    @Override
     public void ZhuZuoCrawlerWebSite(String td, CloseableHttpClient httpClient, HttpPost list, HttpPost view) {
         List<NameValuePair> listparams= new ArrayList<NameValuePair>();
         //获取当前时间
@@ -102,7 +113,7 @@ public class ZhuZuoimpl implements ZhuZuoService {
 
             //设置除参与人外其他信息
             for(int i=0;i<ids.length;i++){
-                HeBingEntity zhuZuoEntity=new HeBingEntity(1,finishtime[i],partment[i],name.get(i).text());
+                HeBingEntity zhuZuoEntity=new HeBingEntity(1,finishtime[i],partment[i],name.get(i).text(),Integer.parseInt(firstpeople[i]));
                 int ref=mapper.insertZhuZuo(zhuZuoEntity);
                 if(ref!=0){
                     //设置小眼睛参数

@@ -58,7 +58,8 @@ public class ChanXueYan {
         }else {
             element.setStatus(1);
         }
-        return  chanXueYanService.insertChanXueYan(element,people);
+        element.setBadge(uo.getShenbao());
+        return  chanXueYanService.shenBaoChanXueYan(element,people);
     }
     @GetMapping("/getTeacherList")
     public List<Object> getTeacherList(){

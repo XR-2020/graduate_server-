@@ -22,6 +22,6 @@ public interface XueKeJingSaiMapper {
     List<People> getJingSaiDetail(Integer id);
 
     int insertJingSai(CompetitionEntity entity);
-
+    int shenBaoJingSai(CompetitionEntity entity);
     int insertJingSaiParticipation(ParticipationEntity participationEntity);
 }

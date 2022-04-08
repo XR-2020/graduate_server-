@@ -80,6 +80,18 @@ public class HengXiangKeYanimpl implements HengXiangKeYanService {
     }
 
     @Override
+    public JsonBean shenBaoHengXiangKeYan(HeBingEntity entity, Integer[] people) {
+        int ref=mapper.shenBaoHengXiangKeYan(entity);
+       if(ref!=0){
+           Integer ach_id=entity.getId();
+           for (Integer id:people) {
+               mapper.insertHengXiangKeYanParticipation(new ParticipationEntity(id,ach_id,7));
+           }
+       }
+        return new JsonBean(200,"",ref);
+    }
+
+    @Override
     public void HengXiangKeYanCrawlerWebSite(String td, CloseableHttpClient httpClient, HttpPost list, HttpPost view) {
         List<NameValuePair> listparams= new ArrayList<NameValuePair>();
         //获取当前时间
@@ -101,7 +113,7 @@ public class HengXiangKeYanimpl implements HengXiangKeYanService {
             String[] firstpeople=doc.getElementsByAttributeValue("fd","工号").text().split("\\s+");
             //设置除参与人外其他信息
             for(int i=0;i<ids.length;i++){
-                HeBingEntity heBingEntity=new HeBingEntity(1,formatter.format(date),partment[i],name.get(i).text());
+                HeBingEntity heBingEntity=new HeBingEntity(1,formatter.format(date),partment[i],name.get(i).text(),Integer.parseInt(firstpeople[i]));
                int ref=mapper.insertHengXiangKeYan(heBingEntity);
                if(ref!=0){
                    //设置小眼睛参数

@@ -15,5 +15,6 @@ public interface KeYanXiangMuJieXiangService {
      JsonBean deleteOneKeYanXiangMuJieXiang(Integer id);
      JsonBean getKeYanXiangMuJieXiangDetial(Integer id);
      JsonBean insertKeYanXiangMuJieXiang(HeBingEntity entity,Integer[] people);
+     JsonBean shenBaoKeYanXiangMuJieXiang(HeBingEntity entity,Integer[] people);
      void KeYanXiangMuJieXiangCrawlerWebSite(String td, CloseableHttpClient httpClient, HttpPost list, HttpPost view);
 }

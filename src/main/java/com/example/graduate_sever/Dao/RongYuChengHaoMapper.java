@@ -23,7 +23,7 @@ public interface RongYuChengHaoMapper {
 //    List<People> getRongYuDetail(Integer id);
 
     int insertRongYuChengHao(HonorEntity entity);
-
+    int shenBaoRongYuChengHao(HonorEntity entity);
     int insertRongYuChengHaoParticipation(ParticipationEntity participationEntity);
 
 }

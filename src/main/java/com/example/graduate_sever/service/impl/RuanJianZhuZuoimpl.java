@@ -79,6 +79,17 @@ public class RuanJianZhuZuoimpl implements RuanJianZhuZuoService {
     }
 
     @Override
+    public JsonBean shenBaoRuanJianZhuZuo(HeBingEntity entity, Integer[] people) {
+        int ref=mapper.shenBaoRuanJianZhuZuo(entity);
+        if(ref!=0){
+            for (Integer ach_id:people) {
+                mapper.insertRuanJianZhuZuoParticipation(new ParticipationEntity(ach_id,entity.getId(),11));
+            }
+        }
+        return new JsonBean(200,"",ref);
+    }
+
+    @Override
     public void RuanJianZhuZuoCrawlerWebSite(String td, CloseableHttpClient httpClient, HttpPost list, HttpPost view) {
         List<NameValuePair> listparams= new ArrayList<NameValuePair>();
        //设置请求地址的参数
@@ -97,7 +108,7 @@ public class RuanJianZhuZuoimpl implements RuanJianZhuZuoService {
             String[] finishtime=doc.getElementsByAttributeValue("fd","获奖/获准/按期验收时间").text().split("\\s+");
             //设置除参与人外其他信息
             for(int i=0;i<ids.length;i++){
-                HeBingEntity ruanJianZhuZuoEntity=new HeBingEntity(1,finishtime[i],partment[i],name.get(i).text());
+                HeBingEntity ruanJianZhuZuoEntity=new HeBingEntity(1,finishtime[i],partment[i],name.get(i).text(),Integer.parseInt(firstpeople[i]));
                 int ref=mapper.insertRuanJianZhuZuo(ruanJianZhuZuoEntity);
                 if(ref!=0){
                     //设置小眼睛参数

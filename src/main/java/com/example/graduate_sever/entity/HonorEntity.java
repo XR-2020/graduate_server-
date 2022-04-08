@@ -15,6 +15,15 @@ public class HonorEntity implements Serializable {
     private String finishtime;
     private String partment;
     private Integer id;
+    private Integer badge;
+
+    public Integer getBadge() {
+        return badge;
+    }
+
+    public void setBadge(Integer badge) {
+        this.badge = badge;
+    }
 
     public Integer getId() {
         return id;
@@ -24,13 +33,15 @@ public class HonorEntity implements Serializable {
         this.id = id;
     }
 
-    public HonorEntity(Integer status, String name, String level, String finishtime, String partment) {
+    public HonorEntity(Integer status, String name, String level, String finishtime, String partment, Integer badge) {
         this.status = status;
         this.name = name;
         this.level = level;
         this.finishtime = finishtime;
         this.partment = partment;
+        this.badge = badge;
     }
+
 
     public Integer getStatus() {
         return status;

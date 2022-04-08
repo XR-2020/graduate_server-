@@ -52,6 +52,7 @@ public class XueKeJingSai {
         if(uo.getRole() ==3){
             element.setStatus(1);
         }
+        element.setBadge(uo.getShenbao());
         return service.insertJingSai(element,people);
     }
 

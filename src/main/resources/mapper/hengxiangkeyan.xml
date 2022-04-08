@@ -39,7 +39,11 @@
     </select>
 
     <insert id="insertHengXiangKeYan" parameterType="com.example.graduate_sever.entity.HeBingEntity" useGeneratedKeys="true" keyProperty="id">
-        INSERT IGNORE  INTO hengxiangkeyanxiangmu( `status`, `name`, `finishtime`, `partment`) VALUES (#{status,jdbcType=INTEGER},#{name,jdbcType=VARCHAR},#{finishtime,jdbcType=VARCHAR},#{partment,jdbcType=VARCHAR})
+        INSERT IGNORE  INTO hengxiangkeyanxiangmu( `status`, `name`, `finishtime`, `partment`,`badge`) VALUES (#{status,jdbcType=INTEGER},#{name,jdbcType=VARCHAR},#{finishtime,jdbcType=VARCHAR},#{partment,jdbcType=VARCHAR},#{badge,jdbcType=INTEGER})
+    </insert>
+
+    <insert id="shenBaoHengXiangKeYan" parameterType="com.example.graduate_sever.entity.HeBingEntity" useGeneratedKeys="true" keyProperty="id">
+        INSERT IGNORE  INTO hengxiangkeyanxiangmu( `status`, `name`, `finishtime`, `partment`,`shenbao`) VALUES (#{status,jdbcType=INTEGER},#{name,jdbcType=VARCHAR},#{finishtime,jdbcType=VARCHAR},#{partment,jdbcType=VARCHAR},#{badge,jdbcType=INTEGER})
     </insert>
 
     <insert id="insertHengXiangKeYanParticipation" parameterType="com.example.graduate_sever.entity.ParticipationEntity" useGeneratedKeys="true">

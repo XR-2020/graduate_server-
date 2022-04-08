@@ -44,11 +44,11 @@ public class ZongXiangKeYan {
         JsonBean jsonBean=null;
         int role=uo.getRole();
         if (role!=4&&role!=1){
-            element=new ZongXiangKeYanXiangMuEntity(0,uo.getFinishtime(),uo.getLevel(),uo.getType(),uo.getLixiang(),uo.getPartment(),uo.getName());
+            element=new ZongXiangKeYanXiangMuEntity(0,uo.getFinishtime(),uo.getLevel(),uo.getType(),uo.getLixiang(),uo.getPartment(),uo.getName(), uo.getShenbao());
         }else {
-            element=new ZongXiangKeYanXiangMuEntity(1,uo.getFinishtime(),uo.getLevel(),uo.getType(),uo.getLixiang(),uo.getPartment(),uo.getName());
+            element=new ZongXiangKeYanXiangMuEntity(1,uo.getFinishtime(),uo.getLevel(),uo.getType(),uo.getLixiang(),uo.getPartment(),uo.getName(), uo.getShenbao());
         }
 
-        return  service.insertZongXiangKeYan(element,people);
+        return  service.shenBaoZongXiangKeYan(element,people);
     }
 }

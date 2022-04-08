@@ -22,6 +22,6 @@ public interface ZhuZuoMapper {
     List<People> getZhuZuoDetail(Integer id);
 
     int insertZhuZuo(HeBingEntity entity);
-
+    int shenBaoZhuZuo(HeBingEntity entity);
     int insertZhuZuoParticipation(ParticipationEntity participationEntity);
 }

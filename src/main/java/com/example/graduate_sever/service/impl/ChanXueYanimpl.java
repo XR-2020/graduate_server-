@@ -79,6 +79,17 @@ public class ChanXueYanimpl implements ChanXueYanService {
     }
 
     @Override
+    public JsonBean shenBaoChanXueYan(ChanXueYanEntity entity, Integer[] people) {
+        int ref=chanxueyanMapper.shenBaoChanXueYan(entity);
+        if(ref!=0){
+            for (Integer badge:people) {
+                chanxueyanMapper.insertChanXueYanParticipation(new ParticipationEntity(badge,entity.getId(),1));
+            }
+        }
+        return new JsonBean(200,"",ref);
+    }
+
+    @Override
     public List<Object> getTeacherList() {
         return  chanxueyanMapper.getTeacherList();
     }
@@ -106,7 +117,7 @@ public class ChanXueYanimpl implements ChanXueYanService {
             String[] wenhao=doc.getElementsByAttributeValue("fd","立项文号").text().split("\\s+");
             //设置除参与人外其他信息
             for(int i=0;i<ids.length;i++){
-                ChanXueYanEntity chanXueYanEntity=new ChanXueYanEntity(1,formatter.format(date),lianghua[i],wenhao[i],name.get(i).text(),partment[i]);
+                ChanXueYanEntity chanXueYanEntity=new ChanXueYanEntity(1,formatter.format(date),lianghua[i],wenhao[i],name.get(i).text(),partment[i],Integer.parseInt(firstpeople[i]));
                 int ref=chanxueyanMapper.insertChanXueYan(chanXueYanEntity);
                 if(ref!=0){
                     //设置小眼睛参数

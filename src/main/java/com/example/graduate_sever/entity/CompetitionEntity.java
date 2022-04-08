@@ -14,6 +14,15 @@ public class CompetitionEntity implements Serializable {
     private String finishtime;
     private String student;
     private Integer id;
+    private Integer badge;
+
+    public Integer getBadge() {
+        return badge;
+    }
+
+    public void setBadge(Integer badge) {
+        this.badge = badge;
+    }
 
     public Integer getId() {
         return id;

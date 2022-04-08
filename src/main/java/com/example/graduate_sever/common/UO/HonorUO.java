@@ -15,6 +15,15 @@ public class HonorUO implements Serializable {
     private Integer[] people;
     private Integer role;
     private String partment;
+    private Integer shenbao;
+
+    public Integer getShenbao() {
+        return shenbao;
+    }
+
+    public void setShenbao(Integer shenbao) {
+        this.shenbao = shenbao;
+    }
 
     public void setRole(Integer role) {
         this.role = role;

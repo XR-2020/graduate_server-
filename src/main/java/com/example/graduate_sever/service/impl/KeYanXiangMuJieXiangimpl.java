@@ -71,11 +71,22 @@ public class KeYanXiangMuJieXiangimpl implements KeYanXiangMuJieXiangService {
 
     @Override
     public JsonBean insertKeYanXiangMuJieXiang(HeBingEntity entity,Integer[] people) {
-        mapper.insertKeYanXiangMuJieXiang(entity);
-        for (Integer ach_id:people) {
-            mapper.insertKeYanXiangMuJieXiangParticipation(new ParticipationEntity(ach_id,entity.getId(),12));
-        }
+       mapper.insertKeYanXiangMuJieXiang(entity);
+           for (Integer ach_id:people) {
+               mapper.insertKeYanXiangMuJieXiangParticipation(new ParticipationEntity(ach_id,entity.getId(),12));
+       }
         return new JsonBean(200,"","");
+    }
+
+    @Override
+    public JsonBean shenBaoKeYanXiangMuJieXiang(HeBingEntity entity, Integer[] people) {
+        int ref=mapper.shenBaoKeYanXiangMuJieXiang(entity);
+        if(ref!=0){
+           for (Integer ach_id:people) {
+               mapper.insertKeYanXiangMuJieXiangParticipation(new ParticipationEntity(ach_id,entity.getId(),12));
+           }
+       }
+        return new JsonBean(200,"",ref);
     }
 
     @Override
@@ -100,7 +111,7 @@ public class KeYanXiangMuJieXiangimpl implements KeYanXiangMuJieXiangService {
             String[] firstpeople=doc.getElementsByAttributeValue("fd","工号").text().split("\\s+");
             //设置除参与人外其他信息
             for(int i=0;i<ids.length;i++){
-                HeBingEntity keYanXiangMuJieXiangEntity=new HeBingEntity(1,formatter.format(date),partment[i],name.get(i).text());
+                HeBingEntity keYanXiangMuJieXiangEntity=new HeBingEntity(1,formatter.format(date),partment[i],name.get(i).text(),Integer.parseInt(firstpeople[i]));
                 int ref=mapper.insertKeYanXiangMuJieXiang(keYanXiangMuJieXiangEntity);
                 if(ref!=0){
                     //设置小眼睛参数

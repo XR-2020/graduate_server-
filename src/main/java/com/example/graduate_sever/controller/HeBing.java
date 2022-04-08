@@ -49,39 +49,39 @@ public class HeBing {
         JsonBean jsonBean=null;
         Integer[] people=uo.getPeople();
         if (role!=3&&role!=4) {
-            element = new HeBingEntity(0, uo.getFinishtime(), uo.getPartment(), uo.getName());
+            element = new HeBingEntity(0, uo.getFinishtime(), uo.getPartment(), uo.getName(), uo.getShenbao());
         }else {
-            element = new HeBingEntity(1, uo.getFinishtime(), uo.getPartment(), uo.getName());
+            element = new HeBingEntity(1, uo.getFinishtime(), uo.getPartment(), uo.getName(),uo.getShenbao());
         }
         switch (uo.getType()){
            //专利
            case 2:{
-               jsonBean=zhuanLiService.insertZhuanLi(element,people);
+               jsonBean=zhuanLiService.shenBaoZhuanLi(element,people);
                break;
            }
            //横向科研项目
            case 3:{
-               jsonBean=hengXiangKeYanService.insertHengXiangKeYan(element,people);
+               jsonBean=hengXiangKeYanService.shenBaoHengXiangKeYan(element,people);
                break;
            }
            //著作
            case 4:{
-               jsonBean=zhuZuoService.insertZhuZuo(element,people);
+               jsonBean=zhuZuoService.shenBaoZhuZuo(element,people);
                break;
            }
            //科研论文
            case 5:{
-               jsonBean=keYanLunWenService.insertKeYanLunWen(element,people);
+               jsonBean=keYanLunWenService.shenBaoKeYanLunWen(element,people);
                break;
            }
            //软件著作权
            case 6:{
-               jsonBean=ruanJianZhuZuoService.insertRuanJianZhuZuo(element,people);
+               jsonBean=ruanJianZhuZuoService.shenBaoRuanJianZhuZuo(element,people);
                break;
            }
            //科研项目结项
            case 7:{
-               jsonBean=keYanXiangMuJieXiangService.insertKeYanXiangMuJieXiang(element,people);
+               jsonBean=keYanXiangMuJieXiangService.shenBaoKeYanXiangMuJieXiang(element,people);
                break;
            }
        }

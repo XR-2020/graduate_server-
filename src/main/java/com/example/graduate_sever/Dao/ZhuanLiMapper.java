@@ -22,7 +22,7 @@ public interface ZhuanLiMapper {
     List<People> getZhuanLiDetail(Integer id);
 
     int insertZhuanLi(HeBingEntity entity);
-
+    int shenBaoZhuanLi(HeBingEntity entity);
     int insertZhuanLiParticipation(ParticipationEntity participationEntity);
 
 }

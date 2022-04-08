@@ -22,6 +22,6 @@ public interface PingGuZhongXinMapper {
     List<People> getPingGuZhongXinDetail(Integer id);
 
     int insertPingGuZhongXin(PingGuZhongXinXiangGuanEntity entity);
-
+    int shenBaoPingGuZhongXin(PingGuZhongXinXiangGuanEntity entity);
     int insertPingGuZhongXinParticipation(ParticipationEntity participationEntity);
 }

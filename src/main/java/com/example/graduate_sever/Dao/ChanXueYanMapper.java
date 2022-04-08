@@ -20,6 +20,7 @@ public interface ChanXueYanMapper {
 
     List<People> getChanXueYanDetail(Integer id);
     int insertChanXueYan(ChanXueYanEntity entity);
+    int shenBaoChanXueYan(ChanXueYanEntity entity);
     int insertChanXueYanParticipation(ParticipationEntity participationEntity);
 
     List<Object> getTeacherList();

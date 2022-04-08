@@ -45,12 +45,12 @@ public class JiaoYuGuiHua {
         JsonBean jsonBean=null;
         int role=uo.getRole();
         if (role!=4){
-            element=new JiaoYuGuiHuaXiangMuEntity(0,uo.getFinishtime(),uo.getPartment(),uo.getName(),uo.getGrade(),uo.getLevel(),uo.getDanwei());
+            element=new JiaoYuGuiHuaXiangMuEntity(0,uo.getFinishtime(),uo.getPartment(),uo.getName(),uo.getGrade(),uo.getLevel(),uo.getDanwei(), uo.getShenbao());
         }else {
-            element=new JiaoYuGuiHuaXiangMuEntity(1,uo.getFinishtime(),uo.getPartment(),uo.getName(),uo.getGrade(),uo.getLevel(),uo.getDanwei());
+            element=new JiaoYuGuiHuaXiangMuEntity(1,uo.getFinishtime(),uo.getPartment(),uo.getName(),uo.getGrade(),uo.getLevel(),uo.getDanwei(), uo.getShenbao());
         }
 
-        return  jiaoYuGuiHuaService.insertJiaoYuGuiHua(element,people);
+        return  jiaoYuGuiHuaService.shenBaoJiaoYuGuiHua(element,people);
     }
 
 }

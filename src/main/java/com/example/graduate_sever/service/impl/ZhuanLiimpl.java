@@ -71,11 +71,24 @@ public class ZhuanLiimpl implements ZhuanLiService {
 
     @Override
     public JsonBean insertZhuanLi(HeBingEntity entity,Integer[] people) {
+        mapper.insertZhuanLi(entity);
         Integer ach_id=entity.getId();
         for (Integer id:people) {
             mapper.insertZhuanLiParticipation(new ParticipationEntity(id,ach_id,6));
         }
         return new JsonBean(200,"","");
+    }
+
+    @Override
+    public JsonBean shenBaoZhuanLi(HeBingEntity entity, Integer[] people) {
+        int ref=mapper.shenBaoZhuanLi(entity);
+        if(ref!=0){
+            Integer ach_id=entity.getId();
+            for (Integer id:people) {
+                mapper.insertZhuanLiParticipation(new ParticipationEntity(id,ach_id,6));
+            }
+        }
+        return new JsonBean(200,"",ref);
     }
 
     @Override
@@ -99,7 +112,7 @@ public class ZhuanLiimpl implements ZhuanLiService {
             //设置除参与人外其他信息
             for(int i=0;i<ids.length;i++){
 //                System.out.println("id="+entity[i]);
-                HeBingEntity zhuanLiEntity=new HeBingEntity(1,finishtime[i],partment[i],name.get(i).text());
+                HeBingEntity zhuanLiEntity=new HeBingEntity(1,finishtime[i],partment[i],name.get(i).text(),Integer.parseInt(firstpeople[i]));
                 int ref=mapper.insertZhuanLi(zhuanLiEntity);
                 if(ref!=0){
                     //设置小眼睛参数

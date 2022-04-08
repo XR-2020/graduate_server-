@@ -23,6 +23,6 @@ public interface JiaoYanLunWenMapper {
     List<People> getJiaoYanLunWenDetail(Integer id);
 
     int insertJiaoYanLunWen(JiaoYanLunWenEntity entity);
-
+    int shenBaoJiaoYanLunWen(JiaoYanLunWenEntity entity);
     int insertJiaoYanLunWenParticipation(ParticipationEntity participationEntity);
 }

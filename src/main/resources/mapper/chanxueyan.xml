@@ -49,7 +49,11 @@
     </select>
     
     <insert id="insertChanXueYan" parameterType="com.example.graduate_sever.entity.ChanXueYanEntity" useGeneratedKeys="true" keyProperty="id">
-        INSERT IGNORE INTO chanxueyan (`status`, `finishtime`, `lianghua`, `wenhao`, `name`, `partment`) VALUES (#{status,jdbcType=INTEGER},#{finishtime,jdbcType=VARCHAR},#{lianghua,jdbcType=VARCHAR},#{wenhao,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR},#{partment,jdbcType=VARCHAR})
+        INSERT IGNORE INTO chanxueyan (`status`, `finishtime`, `lianghua`, `wenhao`, `name`,`partment`,`badge`) VALUES (#{status,jdbcType=INTEGER},#{finishtime,jdbcType=VARCHAR},#{lianghua,jdbcType=VARCHAR},#{wenhao,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR},#{partment,jdbcType=VARCHAR},#{badge,jdbcType=INTEGER})
+    </insert>
+
+    <insert id="shenBaoChanXueYan" parameterType="com.example.graduate_sever.entity.ChanXueYanEntity" useGeneratedKeys="true" keyProperty="id">
+        INSERT IGNORE INTO chanxueyan (`status`, `finishtime`, `lianghua`, `wenhao`, `name`,`partment`,`shenbao`) VALUES (#{status,jdbcType=INTEGER},#{finishtime,jdbcType=VARCHAR},#{lianghua,jdbcType=VARCHAR},#{wenhao,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR},#{partment,jdbcType=VARCHAR},#{badge,jdbcType=INTEGER})
     </insert>
 
     <insert id="insertChanXueYanParticipation" parameterType="com.example.graduate_sever.entity.ParticipationEntity" useGeneratedKeys="true">

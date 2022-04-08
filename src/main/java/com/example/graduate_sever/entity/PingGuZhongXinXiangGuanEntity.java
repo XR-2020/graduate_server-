@@ -15,6 +15,25 @@ public class PingGuZhongXinXiangGuanEntity implements Serializable {
     private String name;
     private Integer id;
     private Integer badge;
+    private Integer shenbao;
+
+    public PingGuZhongXinXiangGuanEntity(Integer status, String finishtime, String grade, String partment, String name, Integer badge, Integer shenbao) {
+        this.status = status;
+        this.finishtime = finishtime;
+        this.grade = grade;
+        this.partment = partment;
+        this.name = name;
+        this.badge = badge;
+        this.shenbao = shenbao;
+    }
+
+    public Integer getShenbao() {
+        return shenbao;
+    }
+
+    public void setShenbao(Integer shenbao) {
+        this.shenbao = shenbao;
+    }
 
     public Integer getBadge() {
         return badge;

@@ -43,6 +43,10 @@
         INSERT IGNORE INTO pingguzhongxinxiangguan(`status`, `finishtime`, `partment`, `grade`, `name`,`badge`) VALUES (#{status,jdbcType=INTEGER},#{finishtime,jdbcType=VARCHAR},#{partment,jdbcType=VARCHAR},#{grade,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR},#{badge,jdbcType=INTEGER})
     </insert>
 
+    <insert id="shenBaoPingGuZhongXin" parameterType="com.example.graduate_sever.entity.PingGuZhongXinXiangGuanEntity" useGeneratedKeys="true" keyProperty="id">
+        INSERT IGNORE INTO pingguzhongxinxiangguan(`status`, `finishtime`, `partment`, `grade`, `name`,`shenbao`,`badge`) VALUES (#{status,jdbcType=INTEGER},#{finishtime,jdbcType=VARCHAR},#{partment,jdbcType=VARCHAR},#{grade,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR},#{shenbao,jdbcType=INTEGER},#{badge,jdbcType=INTEGER})
+    </insert>
+
     <insert id="insertPingGuZhongXinParticipation" parameterType="com.example.graduate_sever.entity.ParticipationEntity" useGeneratedKeys="true">
         INSERT IGNORE INTO participation(`badge`, `ach_id`, `type`) VALUES (#{badge,jdbcType=INTEGER},#{ach_id,jdbcType=INTEGER},#{type,jdbcType=INTEGER})
     </insert>

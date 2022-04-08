@@ -51,11 +51,11 @@ public class JiaoYanLunWen {
         JsonBean jsonBean=null;
         int role=uo.getRole();
         if (role!=2&&role!=4){
-            element=new JiaoYanLunWenEntity(0,uo.getFinishtime(),uo.getPartment(),uo.getName());
+            element=new JiaoYanLunWenEntity(0,uo.getFinishtime(),uo.getPartment(),uo.getName(), uo.getShenbao());
         }else {
-            element=new JiaoYanLunWenEntity(1,uo.getFinishtime(),uo.getPartment(),uo.getName());
+            element=new JiaoYanLunWenEntity(1,uo.getFinishtime(),uo.getPartment(),uo.getName(), uo.getShenbao());
         }
 
-        return jiaoYanLunWenMuService.insertJiaoYanLunWen(element,people);
+        return jiaoYanLunWenMuService.shenBaoJiaoYanLunWen(element,people);
     }
 }

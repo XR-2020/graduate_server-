@@ -16,6 +16,15 @@ public class JiaoYanXiangMuUO implements Serializable {
     private String wenhao;
     private String partment;
     private Integer role;
+    private Integer shenbao;
+
+    public Integer getShenbao() {
+        return shenbao;
+    }
+
+    public void setShenbao(Integer shenbao) {
+        this.shenbao = shenbao;
+    }
 
     public Integer getRole() {
         return role;

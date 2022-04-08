@@ -15,6 +15,24 @@ public class PingGuZhongXinXiangGuanUO implements Serializable {
     private String name;
     private Integer[] people;
     private Integer role;
+    private Integer shenbao;
+    private Integer firstpeople;
+
+    public Integer getFirstpeople() {
+        return firstpeople;
+    }
+
+    public void setFirstpeople(Integer firstpeople) {
+        this.firstpeople = firstpeople;
+    }
+
+    public Integer getShenbao() {
+        return shenbao;
+    }
+
+    public void setShenbao(Integer shenbao) {
+        this.shenbao = shenbao;
+    }
 
     public Integer getRole() {
         return role;

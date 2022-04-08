@@ -22,6 +22,6 @@ public interface RuanJianZhuZuoMapper {
     List<People> getRuanJianZhuZuoDetail(Integer id);
 
     int insertRuanJianZhuZuo(HeBingEntity entity);
-
+    int shenBaoRuanJianZhuZuo(HeBingEntity entity);
     int insertRuanJianZhuZuoParticipation(ParticipationEntity participationEntity);
 }

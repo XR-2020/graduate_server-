@@ -15,14 +15,24 @@ public class ChanXueYanEntity implements Serializable{
     private String wenhao;
     private String name;
     private String partment;
+    private Integer badge;
 
-    public ChanXueYanEntity(Integer status, String finishtime, String lianghua, String wenhao, String name, String partment) {
+    public Integer getBadge() {
+        return badge;
+    }
+
+    public void setBadge(Integer badge) {
+        this.badge = badge;
+    }
+
+    public ChanXueYanEntity(Integer status, String finishtime, String lianghua, String wenhao, String name, String partment, Integer badge) {
         this.status = status;
         this.finishtime = finishtime;
         this.lianghua = lianghua;
         this.wenhao = wenhao;
         this.name = name;
         this.partment = partment;
+        this.badge = badge;
     }
 
     public ChanXueYanEntity() {

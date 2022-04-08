@@ -52,11 +52,24 @@ public class RongYuChengHaoimpl implements RongYuChengHaoService {
 
     @Override
     public JsonBean insertRongYuChengHao(HonorEntity entity,Integer[] people) {
-        mapper.insertRongYuChengHao(entity);
-        for (Integer ach_id:people) {
-            mapper.insertRongYuChengHaoParticipation(new ParticipationEntity(ach_id,entity.getId(),14));
+        int ref=mapper.insertRongYuChengHao(entity);
+        if(ref!=0){
+            for (Integer ach_id:people) {
+                mapper.insertRongYuChengHaoParticipation(new ParticipationEntity(ach_id,entity.getId(),14));
+            }
         }
-        return new JsonBean(200,"","");
+        return new JsonBean(200,"",ref);
+    }
+
+    @Override
+    public JsonBean shenbaoRongYuChengHao(HonorEntity entity, Integer[] people) {
+        int ref=mapper.shenBaoRongYuChengHao(entity);
+        if(ref!=0){
+            for (Integer ach_id:people) {
+                mapper.insertRongYuChengHaoParticipation(new ParticipationEntity(ach_id,entity.getId(),14));
+            }
+        }
+        return new JsonBean(200,"",ref);
     }
 
 //    @Override

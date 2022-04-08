@@ -16,8 +16,16 @@ public class JiaoYuGuiHuaXiangMuEntity implements Serializable {
     private String grade;
     private String level;
     private String danwei;
-
     private Integer id;
+    private Integer badge;
+
+    public Integer getBadge() {
+        return badge;
+    }
+
+    public void setBadge(Integer badge) {
+        this.badge = badge;
+    }
 
     public Integer getId() {
         return id;
@@ -27,7 +35,7 @@ public class JiaoYuGuiHuaXiangMuEntity implements Serializable {
         this.id = id;
     }
 
-    public JiaoYuGuiHuaXiangMuEntity(Integer status, String finishtime, String partment, String name, String grade, String level, String danwei) {
+    public JiaoYuGuiHuaXiangMuEntity(Integer status, String finishtime, String partment, String name, String grade, String level, String danwei, Integer badge) {
         this.status = status;
         this.finishtime = finishtime;
         this.partment = partment;
@@ -35,6 +43,7 @@ public class JiaoYuGuiHuaXiangMuEntity implements Serializable {
         this.grade = grade;
         this.level = level;
         this.danwei = danwei;
+        this.badge = badge;
     }
 
     public String getGrade() {

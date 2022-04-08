@@ -15,4 +15,5 @@ public interface RongYuChengHaoService {
 //     JsonBean getRongYuDetial(Integer id);
 
      JsonBean insertRongYuChengHao(HonorEntity entity,Integer[] people);
+     JsonBean shenbaoRongYuChengHao(HonorEntity entity,Integer[] people);
 }
