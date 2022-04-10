@@ -1,6 +1,7 @@
 package com.example.graduate_sever.Dao;
 
 import com.example.graduate_sever.common.DTO.DTO;
+import com.example.graduate_sever.common.Metails;
 import com.example.graduate_sever.common.People;
 import com.example.graduate_sever.entity.CompetitionEntity;
 import com.example.graduate_sever.entity.ParticipationEntity;
@@ -24,4 +25,5 @@ public interface XueKeJingSaiMapper {
     int insertJingSai(CompetitionEntity entity);
     int shenBaoJingSai(CompetitionEntity entity);
     int insertJingSaiParticipation(ParticipationEntity participationEntity);
+    Metails XueKeJingSaiMetails();
 }

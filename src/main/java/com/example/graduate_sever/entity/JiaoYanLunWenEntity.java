@@ -14,6 +14,15 @@ public class JiaoYanLunWenEntity implements Serializable {
     private String partment;
     private String name;
     private Integer badge;
+    private byte[] metails;
+
+    public byte[] getMetails() {
+        return metails;
+    }
+
+    public void setMetails(byte[] metails) {
+        this.metails = metails;
+    }
 
     public Integer getBadge() {
         return badge;
@@ -39,6 +48,14 @@ public class JiaoYanLunWenEntity implements Serializable {
         this.badge = badge;
     }
 
+    public JiaoYanLunWenEntity(Integer status, String finishtime, String partment, String name, Integer badge, byte[] metails) {
+        this.status = status;
+        this.finishtime = finishtime;
+        this.partment = partment;
+        this.name = name;
+        this.badge = badge;
+        this.metails = metails;
+    }
 
     public Integer getStatus() {
         return status;

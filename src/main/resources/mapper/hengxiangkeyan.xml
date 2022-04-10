@@ -17,6 +17,9 @@
         <result column="tea_name" jdbcType="VARCHAR" javaType="string" property="name"/>
     </resultMap>
     <resultMap id="count2" type="java.lang.Long"/>
+    <resultMap id="HengXiangKeYanMetails" type="com.example.graduate_sever.common.Metails">
+        <result column="metails" property="metails"></result>
+    </resultMap>
     <!--查询教研项目所有成果-->
     <!--application.yml 中通过 type-aliases-package 指定了实体类的为了，因此-->
     <select id="getAllHengXiangKeYan" resultMap="HengXiangKeYan,count2">
@@ -43,11 +46,15 @@
     </insert>
 
     <insert id="shenBaoHengXiangKeYan" parameterType="com.example.graduate_sever.entity.HeBingEntity" useGeneratedKeys="true" keyProperty="id">
-        INSERT IGNORE  INTO hengxiangkeyanxiangmu( `status`, `name`, `finishtime`, `partment`,`shenbao`) VALUES (#{status,jdbcType=INTEGER},#{name,jdbcType=VARCHAR},#{finishtime,jdbcType=VARCHAR},#{partment,jdbcType=VARCHAR},#{badge,jdbcType=INTEGER})
+        INSERT IGNORE  INTO hengxiangkeyanxiangmu( `status`, `name`, `finishtime`, `partment`,`shenbao`,`metails`) VALUES (#{status,jdbcType=INTEGER},#{name,jdbcType=VARCHAR},#{finishtime,jdbcType=VARCHAR},#{partment,jdbcType=VARCHAR},#{badge,jdbcType=INTEGER})
     </insert>
 
     <insert id="insertHengXiangKeYanParticipation" parameterType="com.example.graduate_sever.entity.ParticipationEntity" useGeneratedKeys="true">
         INSERT IGNORE  INTO participation(`badge`, `ach_id`, `type`) VALUES (#{badge,jdbcType=INTEGER},#{ach_id,jdbcType=INTEGER},#{type,jdbcType=INTEGER})
     </insert>
+    <select id="HengXiangKeYanMetails" parameterType="java.lang.Integer" resultMap="HengXiangKeYanMetails">
+        SELECT metails FROM `hengxiangkeyanxiangmu` where id=#{id}
+    </select>
+
 </mapper>
 

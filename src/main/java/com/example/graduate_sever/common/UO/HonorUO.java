@@ -16,6 +16,15 @@ public class HonorUO implements Serializable {
     private Integer role;
     private String partment;
     private Integer shenbao;
+    private String path;
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
 
     public Integer getShenbao() {
         return shenbao;

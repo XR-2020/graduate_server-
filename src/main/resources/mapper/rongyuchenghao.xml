@@ -17,6 +17,9 @@
         <result column="tea_name" jdbcType="VARCHAR" javaType="string" property="name"/>
     </resultMap>
     <resultMap id="RongYucount" type="java.lang.Long"/>
+    <resultMap id="RongYuMetails" type="com.example.graduate_sever.common.Metails">
+        <result column="metails" property="metails"></result>
+    </resultMap>
     <!--查询教研项目所有成果-->
     <!--application.yml 中通过 type-aliases-package 指定了实体类的为了，因此-->
     <select id="getAllRongYu" resultMap="RongYu,RongYucount">
@@ -42,11 +45,15 @@
         INSERT IGNORE INTO honor(`status`, `name`, `finishtime`, `level`,`partment`,`badge`) VALUES (#{status,jdbcType=INTEGER},#{name,jdbcType=VARCHAR},#{finishtime,jdbcType=VARCHAR},#{level,jdbcType=VARCHAR},#{partment,jdbcType=VARCHAR},#{badge,jdbcType=INTEGER})
     </insert>
     <insert id="shenBaoRongYuChengHao" parameterType="com.example.graduate_sever.entity.HonorEntity" useGeneratedKeys="true" keyProperty="id">
-        INSERT IGNORE INTO honor(`status`, `name`, `finishtime`, `level`,`partment`,`shenbao`) VALUES (#{status,jdbcType=INTEGER},#{name,jdbcType=VARCHAR},#{finishtime,jdbcType=VARCHAR},#{level,jdbcType=VARCHAR},#{partment,jdbcType=VARCHAR},#{badge,jdbcType=INTEGER})
+        INSERT IGNORE INTO honor(`status`, `name`, `finishtime`, `level`,`partment`,`shenbao`,`metails`) VALUES (#{status,jdbcType=INTEGER},#{name,jdbcType=VARCHAR},#{finishtime,jdbcType=VARCHAR},#{level,jdbcType=VARCHAR},#{partment,jdbcType=VARCHAR},#{badge,jdbcType=INTEGER})
     </insert>
 
     <insert id="insertRongYuChengHaoParticipation" parameterType="com.example.graduate_sever.entity.ParticipationEntity" useGeneratedKeys="true">
         INSERT IGNORE INTO participation(`badge`, `ach_id`, `type`) VALUES (#{badge,jdbcType=INTEGER},#{ach_id,jdbcType=INTEGER},#{type,jdbcType=INTEGER})
     </insert>
+
+    <select id="RongYuMetails" parameterType="java.lang.Integer" resultMap="RongYuMetails">
+        SELECT metails FROM `honor` where id=#{id}
+    </select>
 </mapper>
 

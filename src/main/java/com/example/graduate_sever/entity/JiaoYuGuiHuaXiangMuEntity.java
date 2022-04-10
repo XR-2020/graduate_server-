@@ -18,6 +18,15 @@ public class JiaoYuGuiHuaXiangMuEntity implements Serializable {
     private String danwei;
     private Integer id;
     private Integer badge;
+    private byte[] metails;
+
+    public byte[] getMetails() {
+        return metails;
+    }
+
+    public void setMetails(byte[] metails) {
+        this.metails = metails;
+    }
 
     public Integer getBadge() {
         return badge;
@@ -44,6 +53,18 @@ public class JiaoYuGuiHuaXiangMuEntity implements Serializable {
         this.level = level;
         this.danwei = danwei;
         this.badge = badge;
+    }
+
+    public JiaoYuGuiHuaXiangMuEntity(Integer status, String finishtime, String partment, String name, String grade, String level, String danwei, Integer badge, byte[] metails) {
+        this.status = status;
+        this.finishtime = finishtime;
+        this.partment = partment;
+        this.name = name;
+        this.grade = grade;
+        this.level = level;
+        this.danwei = danwei;
+        this.badge = badge;
+        this.metails = metails;
     }
 
     public String getGrade() {

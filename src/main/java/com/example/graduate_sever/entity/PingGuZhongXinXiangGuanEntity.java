@@ -16,6 +16,26 @@ public class PingGuZhongXinXiangGuanEntity implements Serializable {
     private Integer id;
     private Integer badge;
     private Integer shenbao;
+    private byte[] metails;
+
+    public byte[] getMetails() {
+        return metails;
+    }
+
+    public void setMetails(byte[] metails) {
+        this.metails = metails;
+    }
+
+    public PingGuZhongXinXiangGuanEntity(Integer status, String finishtime, String grade, String partment, String name, Integer badge, Integer shenbao, byte[] metails) {
+        this.status = status;
+        this.finishtime = finishtime;
+        this.grade = grade;
+        this.partment = partment;
+        this.name = name;
+        this.badge = badge;
+        this.shenbao = shenbao;
+        this.metails = metails;
+    }
 
     public PingGuZhongXinXiangGuanEntity(Integer status, String finishtime, String grade, String partment, String name, Integer badge, Integer shenbao) {
         this.status = status;

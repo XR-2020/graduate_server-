@@ -20,6 +20,11 @@
     </resultMap>
     <resultMap id="ChanXueYan_count" type="java.lang.Long"/>
     <resultMap id="ChanXueYanid" type="java.lang.Integer"/>
+    <resultMap id="ChanXueYanMetails" type="com.example.graduate_sever.common.Metails">
+        <result column="metails" property="metails"></result>
+    </resultMap>
+
+
     <!--教师下拉列表映射-->
     <resultMap id="Teacher" type="com.example.graduate_sever.model.Teacher">
         <result column="badeg" jdbcType="INTEGER" javaType="int" property="badge"/>
@@ -53,7 +58,7 @@
     </insert>
 
     <insert id="shenBaoChanXueYan" parameterType="com.example.graduate_sever.entity.ChanXueYanEntity" useGeneratedKeys="true" keyProperty="id">
-        INSERT IGNORE INTO chanxueyan (`status`, `finishtime`, `lianghua`, `wenhao`, `name`,`partment`,`shenbao`) VALUES (#{status,jdbcType=INTEGER},#{finishtime,jdbcType=VARCHAR},#{lianghua,jdbcType=VARCHAR},#{wenhao,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR},#{partment,jdbcType=VARCHAR},#{badge,jdbcType=INTEGER})
+        INSERT IGNORE INTO chanxueyan (`status`, `finishtime`, `lianghua`, `wenhao`, `name`,`partment`,`shenbao`,`metails`) VALUES (#{status,jdbcType=INTEGER},#{finishtime,jdbcType=VARCHAR},#{lianghua,jdbcType=VARCHAR},#{wenhao,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR},#{partment,jdbcType=VARCHAR},#{badge,jdbcType=INTEGER},#{metails,jdbcType=BINARY})
     </insert>
 
     <insert id="insertChanXueYanParticipation" parameterType="com.example.graduate_sever.entity.ParticipationEntity" useGeneratedKeys="true">
@@ -62,6 +67,10 @@
 
     <select id="getTeacherList" resultMap="Teacher">
         SELECT * from teacher
+    </select>
+
+    <select id="ChanXueYanMetails" parameterType="java.lang.Integer" resultMap="ChanXueYanMetails">
+        SELECT metails FROM `chanxueyan` where id=#{id}
     </select>
 </mapper>
 

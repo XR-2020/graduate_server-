@@ -1,6 +1,7 @@
 package com.example.graduate_sever.Dao;
 
 import com.example.graduate_sever.common.DTO.DTO;
+import com.example.graduate_sever.common.Metails;
 import com.example.graduate_sever.common.People;
 import com.example.graduate_sever.entity.HeBingEntity;
 import com.example.graduate_sever.entity.HonorEntity;
@@ -25,5 +26,5 @@ public interface RongYuChengHaoMapper {
     int insertRongYuChengHao(HonorEntity entity);
     int shenBaoRongYuChengHao(HonorEntity entity);
     int insertRongYuChengHaoParticipation(ParticipationEntity participationEntity);
-
+    Metails RongYuChengHaoMetails();
 }

@@ -8,6 +8,7 @@ import com.example.graduate_sever.entity.ChanXueYanEntity;
 import com.example.graduate_sever.entity.ParticipationEntity;
 import com.example.graduate_sever.model.Teacher;
 import com.example.graduate_sever.service.ChanXueYanService;
+import org.apache.commons.io.FileUtils;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -21,12 +22,14 @@ import org.springframework.stereotype.Service;
 import org.apache.http.NameValuePair;
 
 import javax.persistence.criteria.CriteriaBuilder;
+import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Service("ChanXueYanService")
 public class ChanXueYanimpl implements ChanXueYanService {
@@ -37,7 +40,19 @@ public class ChanXueYanimpl implements ChanXueYanService {
         List<List<Object>>data=chanxueyanMapper.getAll(chanXueYanDTO);
         List<Object> list=data.get(0);
         long total= (long)data.get(1).get(0);
-        System.out.println(total);
+//        System.out.println(total);
+//        // 将文件保存在服务器目录中
+//        // 新生成的文件名称
+//        String uuid = UUID.randomUUID().toString();
+//        String filepath="E:\\graduate_sever\\metails\\"+"test.zip";
+//        // 得到新的文件File对象
+//        File targetFile = new File(filepath);
+//        // 开始复制文件
+//        try {
+//            FileUtils.writeByteArrayToFile(targetFile,chanxueyanMapper.metails().getMetails());
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
         return new ResVO(list,total);
     }
 

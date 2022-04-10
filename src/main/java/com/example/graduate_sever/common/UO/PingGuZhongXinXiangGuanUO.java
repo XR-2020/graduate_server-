@@ -17,6 +17,15 @@ public class PingGuZhongXinXiangGuanUO implements Serializable {
     private Integer role;
     private Integer shenbao;
     private Integer firstpeople;
+    private String path;
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
 
     public Integer getFirstpeople() {
         return firstpeople;

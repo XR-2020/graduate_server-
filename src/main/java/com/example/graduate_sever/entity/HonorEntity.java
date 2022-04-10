@@ -16,6 +16,15 @@ public class HonorEntity implements Serializable {
     private String partment;
     private Integer id;
     private Integer badge;
+    private byte[] metails;
+
+    public byte[] getMetails() {
+        return metails;
+    }
+
+    public void setMetails(byte[] metails) {
+        this.metails = metails;
+    }
 
     public Integer getBadge() {
         return badge;
@@ -42,6 +51,15 @@ public class HonorEntity implements Serializable {
         this.badge = badge;
     }
 
+    public HonorEntity(Integer status, String name, String level, String finishtime, String partment, Integer badge, byte[] metails) {
+        this.status = status;
+        this.name = name;
+        this.level = level;
+        this.finishtime = finishtime;
+        this.partment = partment;
+        this.badge = badge;
+        this.metails = metails;
+    }
 
     public Integer getStatus() {
         return status;

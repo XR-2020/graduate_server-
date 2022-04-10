@@ -18,6 +18,15 @@ public class JiaoYuGuiHuaXiangMuUO implements Serializable {
     private String danwei;
     private Integer role;
     private Integer shenbao;
+    private String path;
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
 
     public Integer getShenbao() {
         return shenbao;

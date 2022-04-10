@@ -15,6 +15,18 @@ public class CompetitionEntity implements Serializable {
     private String student;
     private Integer id;
     private Integer badge;
+    private byte[] metails;
+
+    public CompetitionEntity() {
+    }
+
+    public byte[] getMetails() {
+        return metails;
+    }
+
+    public void setMetails(byte[] metails) {
+        this.metails = metails;
+    }
 
     public Integer getBadge() {
         return badge;
@@ -80,4 +92,14 @@ public class CompetitionEntity implements Serializable {
         this.name = name;
     }
 
+    public CompetitionEntity(String name, String grade, String level, Integer status, String finishtime, String student, Integer badge, byte[] metails) {
+        this.name = name;
+        this.grade = grade;
+        this.level = level;
+        this.status = status;
+        this.finishtime = finishtime;
+        this.student = student;
+        this.badge = badge;
+        this.metails = metails;
+    }
 }

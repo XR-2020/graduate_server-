@@ -16,6 +16,15 @@ public class ChanXueYanEntity implements Serializable{
     private String name;
     private String partment;
     private Integer badge;
+    private byte[] metails;
+
+    public byte[] getMetails() {
+        return metails;
+    }
+
+    public void setMetails(byte[] metails) {
+        this.metails = metails;
+    }
 
     public Integer getBadge() {
         return badge;
@@ -23,6 +32,17 @@ public class ChanXueYanEntity implements Serializable{
 
     public void setBadge(Integer badge) {
         this.badge = badge;
+    }
+
+    public ChanXueYanEntity(Integer status, String finishtime, String lianghua, String wenhao, String name, String partment, Integer badge, byte[] metails) {
+        this.status = status;
+        this.finishtime = finishtime;
+        this.lianghua = lianghua;
+        this.wenhao = wenhao;
+        this.name = name;
+        this.partment = partment;
+        this.badge = badge;
+        this.metails = metails;
     }
 
     public ChanXueYanEntity(Integer status, String finishtime, String lianghua, String wenhao, String name, String partment, Integer badge) {

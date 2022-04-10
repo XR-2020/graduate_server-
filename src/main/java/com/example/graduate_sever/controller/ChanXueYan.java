@@ -10,13 +10,18 @@ import com.example.graduate_sever.common.WebCookie;
 import com.example.graduate_sever.entity.ChanXueYanEntity;
 import com.example.graduate_sever.model.Teacher;
 import com.example.graduate_sever.service.ChanXueYanService;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.*;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 public class ChanXueYan {
@@ -44,7 +49,7 @@ public class ChanXueYan {
         System.out.println(id);
         return chanXueYanService.getChanXueYanDetail(id);}
     @RequestMapping(value = "/insertChanXueYan", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public JsonBean insertChanXueYan(@RequestBody ChanXueYanUO uo){
+    public JsonBean insertChanXueYan(@RequestBody ChanXueYanUO uo) throws Exception {
         ChanXueYanEntity element=new ChanXueYanEntity();
         Integer[] people=uo.getPeople();
         Integer role=uo.getRole();
@@ -59,6 +64,22 @@ public class ChanXueYan {
             element.setStatus(1);
         }
         element.setBadge(uo.getShenbao());
+        //读取证明材料
+        File file=new File(uo.getPath());
+        ByteArrayOutputStream bos = new ByteArrayOutputStream((int) file.length());
+        BufferedInputStream bin = null;
+        try {
+            bin = new BufferedInputStream(new FileInputStream(file));
+            byte[] buffer = new byte[1024];
+            while (bin.read(buffer) > 0) {
+                bos.write(buffer);
+            }
+        } finally {
+           bin.close();
+           bos.close();
+        }
+        element.setMetails(bos.toByteArray());
+        System.out.println("***********"+bos.toByteArray().length+"**************");
         return  chanXueYanService.shenBaoChanXueYan(element,people);
     }
     @GetMapping("/getTeacherList")
@@ -66,5 +87,25 @@ public class ChanXueYan {
 //        System.out.println(WebCookie.getCookie());
         return chanXueYanService.getTeacherList();
     }
+
+    @RequestMapping(value = "/ChanXueYanMetials")
+    public String ChanXueYanMetials(@RequestParam("file") MultipartFile file) throws IOException {
+        System.out.println(file.getBytes().length);
+        // 将文件保存在服务器目录中
+        // 新生成的文件名称
+                String uuid = UUID.randomUUID().toString();
+        // 得到上传文件后缀
+                String originalName = file.getOriginalFilename();
+                String ext = "." + FilenameUtils.getExtension(originalName);
+        // 新生成的文件名称
+                String fileName = uuid + ext;
+                String filepath="E:\\graduate_sever\\metails\\"+fileName;
+        // 得到新的文件File对象
+                File targetFile = new File(filepath);
+        // 开始复制文件
+                FileUtils.writeByteArrayToFile(targetFile, file.getBytes());
+        return filepath;
+    }
+
 
 }
