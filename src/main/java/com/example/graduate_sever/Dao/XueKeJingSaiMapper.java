@@ -3,8 +3,10 @@ package com.example.graduate_sever.Dao;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.Metails;
 import com.example.graduate_sever.common.People;
+import com.example.graduate_sever.controller.XueKeJingSai;
 import com.example.graduate_sever.entity.CompetitionEntity;
 import com.example.graduate_sever.entity.ParticipationEntity;
+import com.example.graduate_sever.model.Competition;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -26,4 +28,5 @@ public interface XueKeJingSaiMapper {
     int shenBaoJingSai(CompetitionEntity entity);
     int insertJingSaiParticipation(ParticipationEntity participationEntity);
     Metails XueKeJingSaiMetails();
+    List<Competition> selectXueKeJingSai(String date1, String date2);
 }

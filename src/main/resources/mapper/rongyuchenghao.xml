@@ -8,7 +8,8 @@
         <result column="finishtime" jdbcType="VARCHAR" property="finishtime"/>
         <result column="name" jdbcType="VARCHAR" property="name"/>
         <result column="badge" jdbcType="INTEGER" property="badge"/>
-        <result column="tea_name" jdbcType="VARCHAR" property="tea_name"/>
+        <result column="shenbao" property="shenbao"/>
+        <result column="metails" property="metails"/>
         <result column="level" jdbcType="VARCHAR" property="level"/>
     </resultMap>
     <!--参与人映射-->
@@ -54,6 +55,10 @@
 
     <select id="RongYuMetails" parameterType="java.lang.Integer" resultMap="RongYuMetails">
         SELECT metails FROM `honor` where id=#{id}
+    </select>
+
+    <select id="selectRongYuChengHao" parameterType="java.lang.String" resultMap="RongYu">
+        select * from `honor` where status=1 and finishtime between #{date1} and #{date2}
     </select>
 </mapper>
 

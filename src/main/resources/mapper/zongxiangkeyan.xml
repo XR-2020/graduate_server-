@@ -12,7 +12,8 @@
         <result column="name" jdbcType="VARCHAR" property="name"/>
         <result column="partment" jdbcType="VARCHAR" property="partment"/>
         <result column="badge" jdbcType="INTEGER" property="badge"/>
-        <result column="tea_name" jdbcType="VARCHAR" property="tea_name"/>
+        <result column="shenbao" property="shenbao"/>
+        <result column="metails" property="metails"/>
     </resultMap>
     <!--参与人映射-->
     <resultMap id="ZongXiangKeYan_people" type="com.example.graduate_sever.common.People">
@@ -58,6 +59,10 @@
 
     <select id="ZongXiangKeYanMetails" parameterType="java.lang.Integer" resultMap="ZongXiangKeYanMetails">
         SELECT metails FROM `zongxiangkeyanxiangmu` where id=#{id}
+    </select>
+
+    <select id="selectZongXiangKeYan" parameterType="java.lang.String" resultMap="ZongXiangKeYan">
+        select * from `zongxiangkeyanxiangmu` where status=1 and finishtime between #{date1} and #{date2}
     </select>
 </mapper>
 

@@ -6,6 +6,8 @@ import com.example.graduate_sever.common.People;
 import com.example.graduate_sever.entity.HeBingEntity;
 import com.example.graduate_sever.entity.HonorEntity;
 import com.example.graduate_sever.entity.ParticipationEntity;
+import com.example.graduate_sever.model.ChanXueYan;
+import com.example.graduate_sever.model.Honor;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -21,10 +23,11 @@ public interface RongYuChengHaoMapper {
 
     void deleteOneRongYu(int id);
 
-//    List<People> getRongYuDetail(Integer id);
+    List<People> getRongYuDetail(Integer id);
 
     int insertRongYuChengHao(HonorEntity entity);
     int shenBaoRongYuChengHao(HonorEntity entity);
     int insertRongYuChengHaoParticipation(ParticipationEntity participationEntity);
     Metails RongYuChengHaoMetails();
+    List<Honor> selectRongYuChengHao(String date1, String date2);
 }

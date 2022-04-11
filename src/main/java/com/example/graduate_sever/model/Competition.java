@@ -13,15 +13,41 @@ public class Competition implements Serializable {
     private String level;
     private Integer status;
     private String finishtime;
-    private String tea_name;
     private String student;
+    private Integer badge;
+    private String shenbao;
+    private byte[] metails;
 
-    public String getTea_name() {
-        return tea_name;
+    public Integer getId() {
+        return id;
     }
 
-    public void setTea_name(String tea_name) {
-        this.tea_name = tea_name;
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getGrade() {
+        return grade;
+    }
+
+    public void setGrade(String grade) {
+        this.grade = grade;
+    }
+
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
     }
 
     public Integer getStatus() {
@@ -48,35 +74,27 @@ public class Competition implements Serializable {
         this.student = student;
     }
 
-    public String getLevel() {
-        return level;
+    public Integer getBadge() {
+        return badge;
     }
 
-    public void setLevel(String level) {
-        this.level = level;
+    public void setBadge(Integer badge) {
+        this.badge = badge;
     }
 
-    public String getGrade() {
-        return grade;
+    public String getShenbao() {
+        return shenbao;
     }
 
-    public void setGrade(String grade) {
-        this.grade = grade;
+    public void setShenbao(String shenbao) {
+        this.shenbao = shenbao;
     }
 
-    public String getName() {
-        return name;
+    public byte[] getMetails() {
+        return metails;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
+    public void setMetails(byte[] metails) {
+        this.metails = metails;
     }
 }

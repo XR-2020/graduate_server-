@@ -16,15 +16,9 @@ public class JiaoYanXiangMu implements Serializable {
     private String wenhao;
     private String partment;
     private String name;
-    private String tea_name;
-
-    public String getTea_name() {
-        return tea_name;
-    }
-
-    public void setTea_name(String tea_name) {
-        this.tea_name = tea_name;
-    }
+    private Integer badge;
+    private String shenbao;
+    private byte[] metails;
 
     public Integer getId() {
         return id;
@@ -80,5 +74,29 @@ public class JiaoYanXiangMu implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getBadge() {
+        return badge;
+    }
+
+    public void setBadge(Integer badge) {
+        this.badge = badge;
+    }
+
+    public String getShenbao() {
+        return shenbao;
+    }
+
+    public void setShenbao(String shenbao) {
+        this.shenbao = shenbao;
+    }
+
+    public byte[] getMetails() {
+        return metails;
+    }
+
+    public void setMetails(byte[] metails) {
+        this.metails = metails;
     }
 }

@@ -14,22 +14,16 @@ public class PingGuZhongXinXiangGuan implements Serializable {
     private String grade;
     private String partment;
     private String name;
-    private String tea_name;
+    private Integer badge;
+    private String shenbao;
+    private byte[] metails;
 
-    public String getGrade() {
-        return grade;
+    public Integer getId() {
+        return id;
     }
 
-    public void setGrade(String grade) {
-        this.grade = grade;
-    }
-
-    public String getTea_name() {
-        return tea_name;
-    }
-
-    public void setTea_name(String tea_name) {
-        this.tea_name = tea_name;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Integer getStatus() {
@@ -48,6 +42,14 @@ public class PingGuZhongXinXiangGuan implements Serializable {
         this.finishtime = finishtime;
     }
 
+    public String getGrade() {
+        return grade;
+    }
+
+    public void setGrade(String grade) {
+        this.grade = grade;
+    }
+
     public String getPartment() {
         return partment;
     }
@@ -64,11 +66,27 @@ public class PingGuZhongXinXiangGuan implements Serializable {
         this.name = name;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getBadge() {
+        return badge;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setBadge(Integer badge) {
+        this.badge = badge;
+    }
+
+    public String getShenbao() {
+        return shenbao;
+    }
+
+    public void setShenbao(String shenbao) {
+        this.shenbao = shenbao;
+    }
+
+    public byte[] getMetails() {
+        return metails;
+    }
+
+    public void setMetails(byte[] metails) {
+        this.metails = metails;
     }
 }

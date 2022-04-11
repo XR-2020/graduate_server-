@@ -6,6 +6,8 @@ import com.example.graduate_sever.common.People;
 import com.example.graduate_sever.entity.ChanXueYanEntity;
 import com.example.graduate_sever.entity.JiaoYanLunWenEntity;
 import com.example.graduate_sever.entity.ParticipationEntity;
+import com.example.graduate_sever.model.ChanXueYan;
+import com.example.graduate_sever.model.JiaoYanLunWen;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -27,4 +29,5 @@ public interface JiaoYanLunWenMapper {
     int shenBaoJiaoYanLunWen(JiaoYanLunWenEntity entity);
     int insertJiaoYanLunWenParticipation(ParticipationEntity participationEntity);
     Metails JiaoYanLunWenMetails();
+    List<JiaoYanLunWen> selectJiaoYanLunWen(String date1, String date2);
 }

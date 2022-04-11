@@ -10,7 +10,8 @@
         <result column="grade" jdbcType="VARCHAR" property="grade"/>
         <result column="level" jdbcType="VARCHAR" property="level"/>
         <result column="badge" jdbcType="INTEGER" property="badge"/>
-        <result column="tea_name" jdbcType="VARCHAR" property="tea_name"/>
+        <result column="shenbao" property="shenbao"/>
+        <result column="metails" property="metails"/>
         <result column="student" jdbcType="VARCHAR" property="student"/>
     </resultMap>
     <!--参与人映射-->
@@ -56,6 +57,10 @@
 
     <select id="JingSaiMetails" parameterType="java.lang.Integer" resultMap="JingSaiMetails">
         SELECT metails FROM `competition` where id=#{id}
+    </select>
+
+    <select id="selectXueKeJingSai" parameterType="java.lang.String" resultMap="JingSai">
+        select * from `competition` where status=1 and finishtime between #{date1} and #{date2}
     </select>
 </mapper>
 

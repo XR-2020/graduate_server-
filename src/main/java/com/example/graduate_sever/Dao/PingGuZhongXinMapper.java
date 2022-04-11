@@ -5,6 +5,8 @@ import com.example.graduate_sever.common.Metails;
 import com.example.graduate_sever.common.People;
 import com.example.graduate_sever.entity.ParticipationEntity;
 import com.example.graduate_sever.entity.PingGuZhongXinXiangGuanEntity;
+import com.example.graduate_sever.model.ChanXueYan;
+import com.example.graduate_sever.model.PingGuZhongXinXiangGuan;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -26,4 +28,5 @@ public interface PingGuZhongXinMapper {
     int shenBaoPingGuZhongXin(PingGuZhongXinXiangGuanEntity entity);
     int insertPingGuZhongXinParticipation(ParticipationEntity participationEntity);
     Metails PingGuZhongXinMetails();
+    List<PingGuZhongXinXiangGuan> selectPingGuZhongXin(String date1, String date2);
 }

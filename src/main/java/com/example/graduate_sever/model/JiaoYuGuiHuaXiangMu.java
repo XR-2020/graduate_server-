@@ -9,48 +9,17 @@ import java.io.Serializable;
 public class JiaoYuGuiHuaXiangMu implements Serializable {
     private static final long serialVersionUID=1L;
 
-
     private Integer id;
     private Integer status;
     private String finishtime;
     private String partment;
     private String name;
-    private String tea_name;
     private String grade;
     private String level;
     private String danwei;
-
-    public String getGrade() {
-        return grade;
-    }
-
-    public void setGrade(String grade) {
-        this.grade = grade;
-    }
-
-    public String getLevel() {
-        return level;
-    }
-
-    public void setLevel(String level) {
-        this.level = level;
-    }
-
-    public String getDanwei() {
-        return danwei;
-    }
-
-    public void setDanwei(String danwei) {
-        this.danwei = danwei;
-    }
-
-    public String getTea_name() {
-        return tea_name;
-    }
-
-    public void setTea_name(String tea_name) {
-        this.tea_name = tea_name;
-    }
+    private Integer badge;
+    private String shenbao;
+    private byte[] metails;
 
     public Integer getId() {
         return id;
@@ -90,5 +59,53 @@ public class JiaoYuGuiHuaXiangMu implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getGrade() {
+        return grade;
+    }
+
+    public void setGrade(String grade) {
+        this.grade = grade;
+    }
+
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
+    }
+
+    public String getDanwei() {
+        return danwei;
+    }
+
+    public void setDanwei(String danwei) {
+        this.danwei = danwei;
+    }
+
+    public Integer getBadge() {
+        return badge;
+    }
+
+    public void setBadge(Integer badge) {
+        this.badge = badge;
+    }
+
+    public String getShenbao() {
+        return shenbao;
+    }
+
+    public void setShenbao(String shenbao) {
+        this.shenbao = shenbao;
+    }
+
+    public byte[] getMetails() {
+        return metails;
+    }
+
+    public void setMetails(byte[] metails) {
+        this.metails = metails;
     }
 }
