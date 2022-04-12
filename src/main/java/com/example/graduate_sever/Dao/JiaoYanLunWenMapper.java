@@ -30,4 +30,6 @@ public interface JiaoYanLunWenMapper {
     int insertJiaoYanLunWenParticipation(ParticipationEntity participationEntity);
     Metails JiaoYanLunWenMetails();
     List<JiaoYanLunWen> selectJiaoYanLunWen(String date1, String date2);
+
+    List<JiaoYanLunWen> waitingjiaoyanlunwen(DTO dTO);
 }

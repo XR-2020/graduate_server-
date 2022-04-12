@@ -4,11 +4,11 @@ import com.example.graduate_sever.Dao.ChanXueYanMapper;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.JsonBean;
 import com.example.graduate_sever.common.ResVO;
+import com.example.graduate_sever.common.TableData;
 import com.example.graduate_sever.entity.ChanXueYanEntity;
 import com.example.graduate_sever.entity.ParticipationEntity;
-import com.example.graduate_sever.model.Teacher;
+import com.example.graduate_sever.model.ChanXueYan;
 import com.example.graduate_sever.service.ChanXueYanService;
-import org.apache.commons.io.FileUtils;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -21,15 +21,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.apache.http.NameValuePair;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import java.io.File;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 @Service("ChanXueYanService")
 public class ChanXueYanimpl implements ChanXueYanService {
@@ -158,4 +154,80 @@ public class ChanXueYanimpl implements ChanXueYanService {
 
     }
 
+    @Override
+    public List<TableData> waitingChanXueYan(DTO dTO) {
+        List<ChanXueYan> list=chanxueyanMapper.waitingChanXueYan(dTO);
+        for (ChanXueYan b:list) {
+            System.out.println(b.getId());
+        }
+        List<TableData> tableData=new ArrayList<>();
+        for (ChanXueYan c:list) {
+            tableData.add(new TableData(c,chanxueyanMapper.getChanXueYanDetail(c.getId())));
+        }
+        return tableData;
+    }
+
+    @Override
+    public long waitingPageTotal(Integer type) {
+        long pageTotal=-1;
+        switch (type){
+            case 1:{
+                pageTotal=chanxueyanMapper.waitingPageTotal("chanxueyan");
+                break;
+            }
+            case 2:{
+                pageTotal=chanxueyanMapper.waitingPageTotal("jiaoyanxiangmu");
+                break;
+            }
+            case 3:{
+                pageTotal=chanxueyanMapper.waitingPageTotal("jiaoyanlunwen");
+                break;
+            }
+            case 4:{
+                pageTotal=chanxueyanMapper.waitingPageTotal("pingguzhongxinxiangguan");
+                break;
+            }
+            case 5:{
+                pageTotal=chanxueyanMapper.waitingPageTotal("jiaoyuguihuaxiangmu");
+                break;
+            }
+            case 6:{
+                pageTotal=chanxueyanMapper.waitingPageTotal("zhuanli");
+                break;
+            }
+            case 7:{
+                pageTotal=chanxueyanMapper.waitingPageTotal("hengxiangkeyanxiangmu");
+                break;
+            }
+            case 8:{
+                pageTotal=chanxueyanMapper.waitingPageTotal("zongxiangkeyanxiangmu");
+                break;
+            }
+            case 9:{
+                pageTotal=chanxueyanMapper.waitingPageTotal("zhuzuo");
+                break;
+            }
+            case 10:{
+                pageTotal=chanxueyanMapper.waitingPageTotal("keyanlunwen");
+                break;
+            }
+            case 11:{
+                pageTotal=chanxueyanMapper.waitingPageTotal("ruanjianzhuzuoquan");
+                break;
+            }
+            case 12:{
+                pageTotal=chanxueyanMapper.waitingPageTotal("keyanxiangmujiexiang");
+                break;
+            }
+            case 13:{
+                pageTotal=chanxueyanMapper.waitingPageTotal("competition");
+                break;
+            }
+            case 14:{
+                pageTotal=chanxueyanMapper.waitingPageTotal("honor");
+                break;
+            }
+        }
+        return pageTotal;
+    }
 }

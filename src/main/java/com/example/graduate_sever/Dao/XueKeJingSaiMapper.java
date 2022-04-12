@@ -29,4 +29,6 @@ public interface XueKeJingSaiMapper {
     int insertJingSaiParticipation(ParticipationEntity participationEntity);
     Metails XueKeJingSaiMetails();
     List<Competition> selectXueKeJingSai(String date1, String date2);
+
+    List<Competition> waitingxuekejingsai(DTO dTO);
 }

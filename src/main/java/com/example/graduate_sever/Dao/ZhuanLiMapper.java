@@ -29,4 +29,6 @@ public interface ZhuanLiMapper {
     int insertZhuanLiParticipation(ParticipationEntity participationEntity);
     Metails ZhuanLiMetails();
     List<ZhuanLi> selectZhuanLi(String date1, String date2);
+
+    List<ZhuanLi> waitingzhuanli(DTO dTO);
 }

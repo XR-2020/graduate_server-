@@ -1,14 +1,13 @@
 package com.example.graduate_sever.service.impl;
 
-import com.example.graduate_sever.Dao.HengXiangKeYanMapper;
 import com.example.graduate_sever.Dao.ZongXiangKeYanMapper;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.JsonBean;
 import com.example.graduate_sever.common.ResVO;
-import com.example.graduate_sever.entity.ChanXueYanEntity;
+import com.example.graduate_sever.common.TableData;
 import com.example.graduate_sever.entity.ParticipationEntity;
 import com.example.graduate_sever.entity.ZongXiangKeYanXiangMuEntity;
-import com.example.graduate_sever.service.HengXiangKeYanService;
+import com.example.graduate_sever.model.ZongXiangKeYanXiangMu;
 import com.example.graduate_sever.service.ZongXiangKeYanService;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -23,9 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Service("ZongXiangKeYanService")
@@ -140,5 +137,15 @@ public class ZongXiangKeYanimpl implements ZongXiangKeYanService {
             e.printStackTrace();
         }
 
+    }
+
+    @Override
+    public List<TableData> waitingzongxiangkeyan(DTO dTO) {
+        List<ZongXiangKeYanXiangMu> list=mapper.waitingzongxiangkeyan(dTO);
+        List<TableData> tableData=new ArrayList<>();
+        for (ZongXiangKeYanXiangMu c:list) {
+            tableData.add(new TableData(c,mapper.getZongXiangKeYanDetail(c.getId())));
+        }
+        return tableData;
     }
 }

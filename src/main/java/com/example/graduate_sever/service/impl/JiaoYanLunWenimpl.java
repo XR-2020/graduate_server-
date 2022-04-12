@@ -1,15 +1,14 @@
 package com.example.graduate_sever.service.impl;
 
 import com.example.graduate_sever.Dao.JiaoYanLunWenMapper;
-import com.example.graduate_sever.Dao.JiaoYanXiangMuMapper;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.JsonBean;
 import com.example.graduate_sever.common.ResVO;
-import com.example.graduate_sever.entity.ChanXueYanEntity;
+import com.example.graduate_sever.common.TableData;
 import com.example.graduate_sever.entity.JiaoYanLunWenEntity;
 import com.example.graduate_sever.entity.ParticipationEntity;
+import com.example.graduate_sever.model.JiaoYanLunWen;
 import com.example.graduate_sever.service.JiaoYanLunWenMuService;
-import com.example.graduate_sever.service.JiaoYanXiangMuService;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
@@ -123,5 +122,15 @@ public class JiaoYanLunWenimpl implements JiaoYanLunWenMuService {
             e.printStackTrace();
         }
 
+    }
+
+    @Override
+    public List<TableData> waitingjiaoyanlunwen(DTO dTO) {
+        List<JiaoYanLunWen> list=jiaoYanLunWenMapper.waitingjiaoyanlunwen(dTO);
+        List<TableData> tableData=new ArrayList<>();
+        for (JiaoYanLunWen c:list) {
+            tableData.add(new TableData(c,jiaoYanLunWenMapper.getJiaoYanLunWenDetail(c.getId())));
+        }
+        return tableData;
     }
 }

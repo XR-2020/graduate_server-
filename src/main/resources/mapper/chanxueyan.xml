@@ -76,5 +76,14 @@
     <select id="selectChanXueYan" parameterType="java.lang.String" resultMap="ChanXueYan">
         select * from `chanxueyan` where status=1 and finishtime between #{date1} and #{date2}
     </select>
+
+    <select id="waitingPageTotal" parameterType="java.lang.String" resultMap="ChanXueYan_count">
+      select count(*) ChanXueYan_count from ${type} where status=0;
+    </select>
+
+    <select id="waitingChanXueYan" resultMap="ChanXueYan">
+        <bind name="beginIndex" value="(pageIndex-1)*pageSize"></bind>
+        select * from `chanxueyan` where status=0 limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+    </select>
 </mapper>
 

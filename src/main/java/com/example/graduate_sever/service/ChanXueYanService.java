@@ -3,8 +3,8 @@ package com.example.graduate_sever.service;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.JsonBean;
 import com.example.graduate_sever.common.ResVO;
+import com.example.graduate_sever.common.TableData;
 import com.example.graduate_sever.entity.ChanXueYanEntity;
-import com.example.graduate_sever.model.Teacher;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
 
@@ -20,4 +20,8 @@ public interface  ChanXueYanService {
      JsonBean shenBaoChanXueYan(ChanXueYanEntity entity,Integer[] people);
      List<Object> getTeacherList();
      void ChanXueYancrawlerWebSite(String td, CloseableHttpClient httpClient, HttpPost list, HttpPost view);
+
+    List<TableData> waitingChanXueYan(DTO dTO);
+
+    long waitingPageTotal(Integer type);
 }

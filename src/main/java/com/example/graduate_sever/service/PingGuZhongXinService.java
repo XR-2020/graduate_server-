@@ -3,9 +3,12 @@ package com.example.graduate_sever.service;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.JsonBean;
 import com.example.graduate_sever.common.ResVO;
+import com.example.graduate_sever.common.TableData;
 import com.example.graduate_sever.entity.PingGuZhongXinXiangGuanEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
+
+import java.util.List;
 
 public interface PingGuZhongXinService {
      ResVO getAllPingGuZhongXin(DTO jiaoYanXiangMuDTO);
@@ -16,4 +19,6 @@ public interface PingGuZhongXinService {
      JsonBean insertPingGuZhongXin(PingGuZhongXinXiangGuanEntity entity,Integer[] people);
      JsonBean shenBaoPingGuZhongXin(PingGuZhongXinXiangGuanEntity entity,Integer[] people);
      void PingGuZhongXinCrawlerWebSite(String td, CloseableHttpClient httpClient, HttpPost list, HttpPost view);
+
+     List<TableData>  waitingpingguzhongxin(DTO dTO);
 }

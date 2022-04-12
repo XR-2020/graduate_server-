@@ -4,9 +4,10 @@ import com.example.graduate_sever.Dao.JiaoYanXiangMuMapper;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.JsonBean;
 import com.example.graduate_sever.common.ResVO;
-import com.example.graduate_sever.entity.ChanXueYanEntity;
+import com.example.graduate_sever.common.TableData;
 import com.example.graduate_sever.entity.JiaoYanXiangMuEntity;
 import com.example.graduate_sever.entity.ParticipationEntity;
+import com.example.graduate_sever.model.JiaoYanXiangMu;
 import com.example.graduate_sever.service.JiaoYanXiangMuService;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -140,5 +141,15 @@ public class JiaoYanXiangMuimpl implements JiaoYanXiangMuService {
             e.printStackTrace();
         }
 
+    }
+
+    @Override
+    public List<TableData> waitingjiaoyanxiangmu(DTO dTO) {
+        List<JiaoYanXiangMu> list=mapper.waitingjiaoyanxiangmu(dTO);
+        List<TableData> tableData=new ArrayList<>();
+        for (JiaoYanXiangMu c:list) {
+            tableData.add(new TableData(c,mapper.getJiaoYanDetail(c.getId())));
+        }
+        return tableData;
     }
 }

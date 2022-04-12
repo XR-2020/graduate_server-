@@ -29,4 +29,6 @@ public interface RuanJianZhuZuoMapper {
     int insertRuanJianZhuZuoParticipation(ParticipationEntity participationEntity);
     Metails RuanJianZhuZuoMetails();
     List<RuanJianZhuZuoQuan> selectRuanJianZhuZuo(String date1, String date2);
+
+    List<RuanJianZhuZuoQuan> waitingruanjianzhuzuo(DTO dTO);
 }

@@ -30,4 +30,6 @@ public interface RongYuChengHaoMapper {
     int insertRongYuChengHaoParticipation(ParticipationEntity participationEntity);
     Metails RongYuChengHaoMetails();
     List<Honor> selectRongYuChengHao(String date1, String date2);
+
+    List<Honor> waitingrongyuchenghao(DTO dTO);
 }

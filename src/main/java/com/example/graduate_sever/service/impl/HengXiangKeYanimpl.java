@@ -1,15 +1,14 @@
 package com.example.graduate_sever.service.impl;
 
 import com.example.graduate_sever.Dao.HengXiangKeYanMapper;
-import com.example.graduate_sever.Dao.ZhuanLiMapper;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.JsonBean;
 import com.example.graduate_sever.common.ResVO;
-import com.example.graduate_sever.entity.ChanXueYanEntity;
+import com.example.graduate_sever.common.TableData;
 import com.example.graduate_sever.entity.HeBingEntity;
 import com.example.graduate_sever.entity.ParticipationEntity;
+import com.example.graduate_sever.model.HengXiangKeYanXiangMu;
 import com.example.graduate_sever.service.HengXiangKeYanService;
-import com.example.graduate_sever.service.ZhuanLiService;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
@@ -141,5 +140,15 @@ public class HengXiangKeYanimpl implements HengXiangKeYanService {
             e.printStackTrace();
         }
 
+    }
+
+    @Override
+    public List<TableData>  waitinghengxiangkeyan(DTO dTO) {
+        List<HengXiangKeYanXiangMu> list=mapper.waitinghengxiangkeyan(dTO);
+        List<TableData> tableData=new ArrayList<>();
+        for (HengXiangKeYanXiangMu c:list) {
+            tableData.add(new TableData(c,mapper.getHengXiangKeYanDetail(c.getId())));
+        }
+        return tableData;
     }
 }

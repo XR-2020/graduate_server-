@@ -29,4 +29,6 @@ public interface ZhuZuoMapper {
     int insertZhuZuoParticipation(ParticipationEntity participationEntity);
     Metails ZhuZuoMetails();
     List<ZhuZuo> selectZhuZuo(String date1, String date2);
+
+    List<ZhuZuo> waitingzhuzuo(DTO dTO);
 }

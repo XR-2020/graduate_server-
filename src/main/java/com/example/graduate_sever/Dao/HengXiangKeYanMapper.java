@@ -31,4 +31,5 @@ public interface HengXiangKeYanMapper {
     Metails  HengXiangKeYanMetails();
     List<HengXiangKeYanXiangMu> selectHengXiangKeYan(String date1, String date2);
 
+    List<HengXiangKeYanXiangMu> waitinghengxiangkeyan(DTO dTO);
 }

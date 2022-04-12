@@ -29,4 +29,6 @@ public interface JiaoYuGuiHuaMapper {
     int insertJiaoYuGuiHuaParticipation(ParticipationEntity participationEntity);
     Metails JiaoYuGuiHuaMetails();
     List<JiaoYuGuiHuaXiangMu> selectJiaoYuGuiHua(String date1, String date2);
+
+    List<JiaoYuGuiHuaXiangMu> waitingjiaoyuguihua(DTO dTO);
 }

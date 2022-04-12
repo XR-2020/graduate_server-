@@ -1,15 +1,14 @@
 package com.example.graduate_sever.service.impl;
 
 import com.example.graduate_sever.Dao.KeYanLunWenMapper;
-import com.example.graduate_sever.Dao.ZhuZuoMapper;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.JsonBean;
 import com.example.graduate_sever.common.ResVO;
-import com.example.graduate_sever.entity.ChanXueYanEntity;
+import com.example.graduate_sever.common.TableData;
 import com.example.graduate_sever.entity.HeBingEntity;
 import com.example.graduate_sever.entity.ParticipationEntity;
+import com.example.graduate_sever.model.KeYanLunWen;
 import com.example.graduate_sever.service.KeYanLunWenService;
-import com.example.graduate_sever.service.ZhuZuoService;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
@@ -127,5 +126,15 @@ public class KeYanLunWenimpl implements KeYanLunWenService {
             e.printStackTrace();
         }
 
+    }
+
+    @Override
+    public List<TableData> waitingkeyanlunwen(DTO dTO) {
+        List<KeYanLunWen> list=mapper.waitingkeyanlunwen(dTO);
+        List<TableData> tableData=new ArrayList<>();
+        for (KeYanLunWen c:list) {
+            tableData.add(new TableData(c,mapper.getKeYanLunWenDetail(c.getId())));
+        }
+        return tableData;
     }
 }

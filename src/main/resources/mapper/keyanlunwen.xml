@@ -61,5 +61,10 @@
     <select id="selectKeYanLunWen" parameterType="java.lang.String" resultMap="KeYanLunWen">
         select * from `keyanlunwen` where status=1 and finishtime between #{date1} and #{date2}
     </select>
+
+    <select id="waitingkeyanlunwen" resultMap="KeYanLunWen">
+        <bind name="beginIndex" value="(pageIndex-1)*pageSize"></bind>
+        select * from `keyanlunwen` where status=0 limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+    </select>
 </mapper>
 

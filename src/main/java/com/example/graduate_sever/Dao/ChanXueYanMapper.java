@@ -29,4 +29,7 @@ public interface ChanXueYanMapper {
     Metails ChanXueYanmetails();
     List<ChanXueYan> selectChanXueYan(String date1,String date2);
 
+    List<ChanXueYan> waitingChanXueYan(DTO dTO);
+
+    long waitingPageTotal(String type);
 }

@@ -1,14 +1,13 @@
 package com.example.graduate_sever.service.impl;
 
-import com.example.graduate_sever.Dao.JiaoYanXiangMuMapper;
 import com.example.graduate_sever.Dao.PingGuZhongXinMapper;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.JsonBean;
 import com.example.graduate_sever.common.ResVO;
-import com.example.graduate_sever.entity.ChanXueYanEntity;
+import com.example.graduate_sever.common.TableData;
 import com.example.graduate_sever.entity.ParticipationEntity;
 import com.example.graduate_sever.entity.PingGuZhongXinXiangGuanEntity;
-import com.example.graduate_sever.service.JiaoYanXiangMuService;
+import com.example.graduate_sever.model.PingGuZhongXinXiangGuan;
 import com.example.graduate_sever.service.PingGuZhongXinService;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -125,5 +124,15 @@ public class PingGuZhongXinimpl implements PingGuZhongXinService {
             e.printStackTrace();
         }
 
+    }
+
+    @Override
+    public List<TableData> waitingpingguzhongxin(DTO dTO) {
+        List<PingGuZhongXinXiangGuan> list=mapper.waitingpingguzhongxin(dTO);
+        List<TableData> tableData=new ArrayList<>();
+        for (PingGuZhongXinXiangGuan c:list) {
+            tableData.add(new TableData(c,mapper.getPingGuZhongXinDetail(c.getId())));
+        }
+        return tableData;
     }
 }

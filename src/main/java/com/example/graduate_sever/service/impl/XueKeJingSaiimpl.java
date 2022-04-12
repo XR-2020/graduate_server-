@@ -1,17 +1,18 @@
 package com.example.graduate_sever.service.impl;
 
 import com.example.graduate_sever.Dao.XueKeJingSaiMapper;
-import com.example.graduate_sever.Dao.ZhuZuoMapper;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.JsonBean;
 import com.example.graduate_sever.common.ResVO;
+import com.example.graduate_sever.common.TableData;
 import com.example.graduate_sever.entity.CompetitionEntity;
 import com.example.graduate_sever.entity.ParticipationEntity;
+import com.example.graduate_sever.model.Competition;
 import com.example.graduate_sever.service.XueKeJingSaiService;
-import com.example.graduate_sever.service.ZhuZuoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service("XueKeJingSaiService")
@@ -73,5 +74,15 @@ public class XueKeJingSaiimpl implements XueKeJingSaiService {
             }
         }
         return new JsonBean(200,"",ref);
+    }
+
+    @Override
+    public List<TableData> waitingxuekejingsai(DTO dTO) {
+        List<Competition> list=mapper.waitingxuekejingsai(dTO);
+        List<TableData> tableData=new ArrayList<>();
+        for (Competition c:list) {
+            tableData.add(new TableData(c,mapper.getJingSaiDetail(c.getId())));
+        }
+        return tableData;
     }
 }

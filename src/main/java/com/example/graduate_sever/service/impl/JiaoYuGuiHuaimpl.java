@@ -1,15 +1,14 @@
 package com.example.graduate_sever.service.impl;
 
 import com.example.graduate_sever.Dao.JiaoYuGuiHuaMapper;
-import com.example.graduate_sever.Dao.PingGuZhongXinMapper;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.JsonBean;
 import com.example.graduate_sever.common.ResVO;
-import com.example.graduate_sever.entity.ChanXueYanEntity;
+import com.example.graduate_sever.common.TableData;
 import com.example.graduate_sever.entity.JiaoYuGuiHuaXiangMuEntity;
 import com.example.graduate_sever.entity.ParticipationEntity;
+import com.example.graduate_sever.model.JiaoYuGuiHuaXiangMu;
 import com.example.graduate_sever.service.JiaoYuGuiHuaService;
-import com.example.graduate_sever.service.PingGuZhongXinService;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
@@ -23,9 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Service("JiaoYuGuiHuaService")
@@ -136,5 +133,15 @@ public class JiaoYuGuiHuaimpl implements JiaoYuGuiHuaService {
             e.printStackTrace();
         }
 
+    }
+
+    @Override
+    public List<TableData> waitingjiaoyuguihua(DTO dTO) {
+        List<JiaoYuGuiHuaXiangMu> list=mapper.waitingjiaoyuguihua(dTO);
+        List<TableData> tableData=new ArrayList<>();
+        for (JiaoYuGuiHuaXiangMu c:list) {
+            tableData.add(new TableData(c,mapper.getJiaoYuGuiHuaDetail(c.getId())));
+        }
+        return tableData;
     }
 }

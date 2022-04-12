@@ -29,4 +29,6 @@ public interface ZongXiangKeYanMapper {
     int insertZongXiangKeYanParticipation(ParticipationEntity participationEntity);
     Metails ZongXiangKeYanMetails();
     List<ZongXiangKeYanXiangMu> selectZongXiangKeYan(String date1, String date2);
+
+    List<ZongXiangKeYanXiangMu> waitingzongxiangkeyan(DTO dTO);
 }

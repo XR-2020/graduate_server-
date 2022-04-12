@@ -1,17 +1,18 @@
 package com.example.graduate_sever.service.impl;
 
 import com.example.graduate_sever.Dao.RongYuChengHaoMapper;
-import com.example.graduate_sever.Dao.ZhuZuoMapper;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.JsonBean;
 import com.example.graduate_sever.common.ResVO;
+import com.example.graduate_sever.common.TableData;
 import com.example.graduate_sever.entity.HonorEntity;
 import com.example.graduate_sever.entity.ParticipationEntity;
+import com.example.graduate_sever.model.Honor;
 import com.example.graduate_sever.service.RongYuChengHaoService;
-import com.example.graduate_sever.service.ZhuZuoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service("RongYuChengHaoService")
@@ -70,6 +71,16 @@ public class RongYuChengHaoimpl implements RongYuChengHaoService {
             }
         }
         return new JsonBean(200,"",ref);
+    }
+
+    @Override
+    public List<TableData> waitingrongyuchenghao(DTO dTO) {
+        List<Honor> list=mapper.waitingrongyuchenghao(dTO);
+        List<TableData> tableData=new ArrayList<>();
+        for (Honor c:list) {
+            tableData.add(new TableData(c,mapper.getRongYuDetail(c.getId())));
+        }
+        return tableData;
     }
 
 //    @Override

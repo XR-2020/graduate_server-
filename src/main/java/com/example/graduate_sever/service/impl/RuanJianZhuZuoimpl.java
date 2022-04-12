@@ -1,14 +1,13 @@
 package com.example.graduate_sever.service.impl;
 
-import com.example.graduate_sever.Dao.HengXiangKeYanMapper;
 import com.example.graduate_sever.Dao.RuanJianZhuZuoMapper;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.JsonBean;
 import com.example.graduate_sever.common.ResVO;
-import com.example.graduate_sever.entity.ChanXueYanEntity;
+import com.example.graduate_sever.common.TableData;
 import com.example.graduate_sever.entity.HeBingEntity;
 import com.example.graduate_sever.entity.ParticipationEntity;
-import com.example.graduate_sever.service.HengXiangKeYanService;
+import com.example.graduate_sever.model.RuanJianZhuZuoQuan;
 import com.example.graduate_sever.service.RuanJianZhuZuoService;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -23,9 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Service("RuanJianZhuZuoService")
@@ -133,5 +130,15 @@ public class RuanJianZhuZuoimpl implements RuanJianZhuZuoService {
             e.printStackTrace();
         }
 
+    }
+
+    @Override
+    public List<TableData> waitingruanjianzhuzuo(DTO dTO) {
+        List<RuanJianZhuZuoQuan> list=mapper.waitingruanjianzhuzuo(dTO);
+        List<TableData> tableData=new ArrayList<>();
+        for (RuanJianZhuZuoQuan c:list) {
+            tableData.add(new TableData(c,mapper.getRuanJianZhuZuoDetail(c.getId())));
+        }
+        return tableData;
     }
 }

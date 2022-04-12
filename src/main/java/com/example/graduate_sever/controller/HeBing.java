@@ -1,12 +1,10 @@
 package com.example.graduate_sever.controller;
 
 
+import com.example.graduate_sever.common.*;
 import com.example.graduate_sever.common.DTO.DTO;
-import com.example.graduate_sever.common.JsonBean;
-import com.example.graduate_sever.common.ResVO;
 import com.example.graduate_sever.common.UO.ChanXueYanUO;
 import com.example.graduate_sever.common.UO.HeBingUO;
-import com.example.graduate_sever.common.WebCookie;
 import com.example.graduate_sever.entity.ChanXueYanEntity;
 import com.example.graduate_sever.entity.HeBingEntity;
 import com.example.graduate_sever.service.*;
@@ -48,6 +46,10 @@ public class HeBing {
     private RuanJianZhuZuoService ruanJianZhuZuoService;
     @Autowired
     private KeYanXiangMuJieXiangService keYanXiangMuJieXiangService;
+    @Autowired
+    private RongYuChengHaoService rongYuChengHaoService;
+    @Autowired
+    private XueKeJingSaiService xueKeJingSaiService;
     @RequestMapping(value = "/updateHeBing", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public JsonBean updateHeBing(@RequestBody HeBingUO uo) throws IOException {
         Integer role=uo.getRole();
@@ -187,5 +189,24 @@ public class HeBing {
         FileUtils.writeByteArrayToFile(targetFile, file.getBytes());
         return filepath;
     }
+    @GetMapping("/getAllWaiting")
+    public WaitingRes getAllWaiting(DTO dTO){
 
+        WaitingRes allData=new WaitingRes(
+                chanXueYanService.waitingChanXueYan(dTO),chanXueYanService.waitingPageTotal(1),
+                hengXiangKeYanService.waitinghengxiangkeyan(dTO),chanXueYanService.waitingPageTotal(7),
+                jiaoYanLunWenMuService.waitingjiaoyanlunwen(dTO),chanXueYanService.waitingPageTotal(3),
+                jiaoYanXiangMuService.waitingjiaoyanxiangmu(dTO),chanXueYanService.waitingPageTotal(2),
+                jiaoYuGuiHuaService.waitingjiaoyuguihua(dTO),chanXueYanService.waitingPageTotal(5),
+                keYanLunWenService.waitingkeyanlunwen(dTO),chanXueYanService.waitingPageTotal(10),
+                keYanXiangMuJieXiangService.waitingkeyanxiangmujiexiang(dTO),chanXueYanService.waitingPageTotal(12),
+                pingGuZhongXinService.waitingpingguzhongxin(dTO),chanXueYanService.waitingPageTotal(4),
+                rongYuChengHaoService.waitingrongyuchenghao(dTO),chanXueYanService.waitingPageTotal(14),
+                ruanJianZhuZuoService.waitingruanjianzhuzuo(dTO),chanXueYanService.waitingPageTotal(11),
+                xueKeJingSaiService.waitingxuekejingsai(dTO),chanXueYanService.waitingPageTotal(13),
+                zhuanLiService.waitingzhuanli(dTO),chanXueYanService.waitingPageTotal(6),
+                zhuZuoService.waitingzhuzuo(dTO),chanXueYanService.waitingPageTotal(9),
+                zongXiangKeYanService.waitingzongxiangkeyan(dTO),chanXueYanService.waitingPageTotal(8));
+        return allData;
+    }
 }

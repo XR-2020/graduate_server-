@@ -1,14 +1,13 @@
 package com.example.graduate_sever.service.impl;
 
-import com.example.graduate_sever.Dao.PingGuZhongXinMapper;
 import com.example.graduate_sever.Dao.ZhuanLiMapper;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.JsonBean;
 import com.example.graduate_sever.common.ResVO;
-import com.example.graduate_sever.entity.ChanXueYanEntity;
+import com.example.graduate_sever.common.TableData;
 import com.example.graduate_sever.entity.HeBingEntity;
 import com.example.graduate_sever.entity.ParticipationEntity;
-import com.example.graduate_sever.service.PingGuZhongXinService;
+import com.example.graduate_sever.model.ZhuanLi;
 import com.example.graduate_sever.service.ZhuanLiService;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -23,9 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Service("ZhuanLiService")
@@ -135,5 +132,15 @@ public class ZhuanLiimpl implements ZhuanLiService {
             e.printStackTrace();
         }
 
+    }
+
+    @Override
+    public List<TableData> waitingzhuanli(DTO dTO) {
+        List<ZhuanLi> list=mapper.waitingzhuanli(dTO);
+        List<TableData> tableData=new ArrayList<>();
+        for (ZhuanLi c:list) {
+            tableData.add(new TableData(c,mapper.getZhuanLiDetail(c.getId())));
+        }
+        return tableData;
     }
 }
