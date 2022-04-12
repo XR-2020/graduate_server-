@@ -22,4 +22,6 @@ public interface RuanJianZhuZuoService {
      void RuanJianZhuZuoCrawlerWebSite(String td, CloseableHttpClient httpClient, HttpPost list, HttpPost view);
      Metails getRuanJianZhuZuoMetails(Integer id);
      List<TableData>  waitingruanjianzhuzuo(DTO dTO);
+
+    int passRuanJianZhuZuo(Integer id, Integer ispass);
 }

@@ -158,4 +158,9 @@ public class JiaoYanXiangMuimpl implements JiaoYanXiangMuService {
     public Metails getJiaoYanXiangMuMetails(Integer id) {
         return mapper.JiaoYanXiangMetails(id);
     }
+
+    @Override
+    public int passJiaoYan(Integer id, Integer ispass) {
+        return mapper.passJiaoYan(id,ispass);
+    }
 }

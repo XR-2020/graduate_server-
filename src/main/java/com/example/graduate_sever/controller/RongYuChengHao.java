@@ -96,4 +96,8 @@ public class RongYuChengHao {
         return service.getRongYuChengHaoMetails(id).getMetails();
     }
 
+    @RequestMapping(value = "/passRongYuChengHao", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public int passRongYuChengHao(Integer id,Integer ispass){
+        return service.passRongYuChengHao(id,ispass);
+    }
 }

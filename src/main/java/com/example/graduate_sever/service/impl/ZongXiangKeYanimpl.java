@@ -154,4 +154,9 @@ public class ZongXiangKeYanimpl implements ZongXiangKeYanService {
         }
         return tableData;
     }
+
+    @Override
+    public int passZongXiangKeYan(Integer id, Integer ispass) {
+        return mapper.passZongXiangKeYan(id,ispass);
+    }
 }

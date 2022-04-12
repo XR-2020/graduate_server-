@@ -31,4 +31,6 @@ public interface XueKeJingSaiMapper {
     List<Competition> selectXueKeJingSai(String date1, String date2);
 
     List<Competition> waitingxuekejingsai(DTO dTO);
+
+    int passXueKeJingSai(Integer id, Integer ispass);
 }

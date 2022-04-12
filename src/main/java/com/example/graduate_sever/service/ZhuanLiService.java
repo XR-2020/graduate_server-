@@ -22,4 +22,6 @@ public interface ZhuanLiService {
      void ZhuanLiCrawlerWebSite(String td, CloseableHttpClient httpClient, HttpPost list, HttpPost view);
      Metails getZhuanLiMetails(Integer id);
      List<TableData>  waitingzhuanli(DTO dTO);
+
+    int passZhuanLi(Integer id, Integer ispass);
 }

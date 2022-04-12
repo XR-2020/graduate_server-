@@ -31,4 +31,6 @@ public interface RuanJianZhuZuoMapper {
     List<RuanJianZhuZuoQuan> selectRuanJianZhuZuo(String date1, String date2);
 
     List<RuanJianZhuZuoQuan> waitingruanjianzhuzuo(DTO dTO);
+
+    int passRuanJianZhuZuo(Integer id, Integer ispass);
 }

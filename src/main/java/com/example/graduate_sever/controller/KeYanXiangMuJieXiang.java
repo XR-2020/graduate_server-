@@ -7,9 +7,7 @@ import com.example.graduate_sever.common.ResVO;
 import com.example.graduate_sever.service.KeYanXiangMuJieXiangService;
 import com.example.graduate_sever.service.ZhuanLiService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class KeYanXiangMuJieXiang {
@@ -41,5 +39,10 @@ public class KeYanXiangMuJieXiang {
     @GetMapping("/getKeYanXiangMuJieXiangMetails")
     public byte[] getKeYanXiangMuJieXiangMetails(Integer id){
         return service.getKeYanXiangMuJieXiangMetails(id).getMetails();
+    }
+
+    @RequestMapping(value = "/passKeYanXiangMuJieXiang", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public int passKeYanXiangMuJieXiang(Integer id,Integer ispass){
+        return service.passKeYanXiangMuJieXiang(id,ispass);
     }
 }

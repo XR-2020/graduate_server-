@@ -150,4 +150,9 @@ public class JiaoYuGuiHuaimpl implements JiaoYuGuiHuaService {
         }
         return tableData;
     }
+
+    @Override
+    public int passJiaoYuGuiHua(Integer id, Integer ispass) {
+        return mapper.passJiaoYuGuiHua(id,ispass);
+    }
 }

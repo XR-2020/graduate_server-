@@ -112,5 +112,10 @@ public class ChanXueYan {
         return chanXueYanService.getchanxueyanMetails(id).getMetails();
     }
 
+    @RequestMapping(value = "/passChanXueYan", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public int passChanXueYan(Integer id,Integer ispass){
+        return chanXueYanService.passChanXueYan(id,ispass);
+    }
+
 
 }

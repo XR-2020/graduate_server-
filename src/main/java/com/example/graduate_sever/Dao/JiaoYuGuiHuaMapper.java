@@ -31,4 +31,6 @@ public interface JiaoYuGuiHuaMapper {
     List<JiaoYuGuiHuaXiangMu> selectJiaoYuGuiHua(String date1, String date2);
 
     List<JiaoYuGuiHuaXiangMu> waitingjiaoyuguihua(DTO dTO);
+
+    int passJiaoYuGuiHua(Integer id, Integer ispass);
 }

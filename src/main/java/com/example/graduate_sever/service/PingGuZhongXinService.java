@@ -22,4 +22,6 @@ public interface PingGuZhongXinService {
      void PingGuZhongXinCrawlerWebSite(String td, CloseableHttpClient httpClient, HttpPost list, HttpPost view);
      Metails getPingGuZhongXinMetails(Integer id);
      List<TableData>  waitingpingguzhongxin(DTO dTO);
+
+    int passPingGuZhongXin(Integer id, Integer ispass);
 }

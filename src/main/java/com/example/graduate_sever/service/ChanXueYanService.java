@@ -28,4 +28,6 @@ public interface  ChanXueYanService {
 
 
     Metails getchanxueyanMetails(Integer id);
+
+    int passChanXueYan(Integer id, Integer ispass);
 }

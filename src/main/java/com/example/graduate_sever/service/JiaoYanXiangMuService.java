@@ -24,4 +24,6 @@ public interface JiaoYanXiangMuService {
      List<TableData>  waitingjiaoyanxiangmu(DTO dTO);
 
      Metails getJiaoYanXiangMuMetails(Integer id);
+
+    int passJiaoYan(Integer id, Integer ispass);
 }

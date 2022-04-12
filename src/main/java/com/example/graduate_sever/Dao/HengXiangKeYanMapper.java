@@ -32,4 +32,6 @@ public interface HengXiangKeYanMapper {
     List<HengXiangKeYanXiangMu> selectHengXiangKeYan(String date1, String date2);
 
     List<HengXiangKeYanXiangMu> waitinghengxiangkeyan(DTO dTO);
+
+    int passHengXiangKeYan(Integer id, Integer ispass);
 }

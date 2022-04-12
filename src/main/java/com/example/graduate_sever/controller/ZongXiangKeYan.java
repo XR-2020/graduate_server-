@@ -94,4 +94,9 @@ public class ZongXiangKeYan {
     public byte[] getZongXiangKeYanMetails(Integer id){
         return service.getZongXiangKeYanMetails(id).getMetails();
     }
+
+    @RequestMapping(value = "/passZongXiangKeYan", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public int passZongXiangKeYan(Integer id,Integer ispass){
+        return service.passZongXiangKeYan(id,ispass);
+    }
 }

@@ -20,4 +20,6 @@ public interface RongYuChengHaoService {
      JsonBean shenbaoRongYuChengHao(HonorEntity entity,Integer[] people);
      Metails getRongYuChengHaoMetails(Integer id);
      List<TableData>  waitingrongyuchenghao(DTO dTO);
+
+    int passRongYuChengHao(Integer id, Integer ispass);
 }

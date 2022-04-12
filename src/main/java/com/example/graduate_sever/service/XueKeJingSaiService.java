@@ -19,4 +19,6 @@ public interface XueKeJingSaiService {
      JsonBean shenBaoJingSai(CompetitionEntity entity,Integer[] people);
      Metails getXueKeJingSaiMetails(Integer id);
      List<TableData>  waitingxuekejingsai(DTO dTO);
+
+    int passXueKeJingSai(Integer id, Integer ispass);
 }

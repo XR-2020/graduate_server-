@@ -31,4 +31,6 @@ public interface KeYanLunWenMapper {
     List<KeYanLunWen> selectKeYanLunWen(String date1, String date2);
 
     List<KeYanLunWen> waitingkeyanlunwen(DTO dTO);
+
+    int passKeYanLunWen(Integer id, Integer ispass);
 }

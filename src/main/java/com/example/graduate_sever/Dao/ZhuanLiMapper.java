@@ -31,4 +31,6 @@ public interface ZhuanLiMapper {
     List<ZhuanLi> selectZhuanLi(String date1, String date2);
 
     List<ZhuanLi> waitingzhuanli(DTO dTO);
+
+    int passZhuanLi(Integer id, Integer ispass);
 }

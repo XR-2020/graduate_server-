@@ -89,6 +89,11 @@ public class RongYuChengHaoimpl implements RongYuChengHaoService {
         return tableData;
     }
 
+    @Override
+    public int passRongYuChengHao(Integer id, Integer ispass) {
+        return mapper.passRongYuChengHao(id,ispass);
+    }
+
 //    @Override
 //    public JsonBean getRongYuDetial(Integer id) {
 //        return new JsonBean(200,"",mapper.getZhuZuoDetail(id));

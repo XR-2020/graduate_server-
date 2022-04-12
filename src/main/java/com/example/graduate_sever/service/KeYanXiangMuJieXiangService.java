@@ -22,4 +22,6 @@ public interface KeYanXiangMuJieXiangService {
      void KeYanXiangMuJieXiangCrawlerWebSite(String td, CloseableHttpClient httpClient, HttpPost list, HttpPost view);
      Metails getKeYanXiangMuJieXiangMetails(Integer id);
      List<TableData>  waitingkeyanxiangmujiexiang(DTO dTO);
+
+    int passKeYanXiangMuJieXiang(Integer id, Integer ispass);
 }

@@ -139,4 +139,9 @@ public class JiaoYanLunWenimpl implements JiaoYanLunWenMuService {
     public Metails getJiaoYanLunWenMetails(Integer id) {
         return jiaoYanLunWenMapper.JiaoYanLunWenMetails(id);
     }
+
+    @Override
+    public int passJiaoYanLunWen(Integer id, Integer ispass) {
+        return jiaoYanLunWenMapper.passJiaoYanLunWen(id,ispass);
+    }
 }

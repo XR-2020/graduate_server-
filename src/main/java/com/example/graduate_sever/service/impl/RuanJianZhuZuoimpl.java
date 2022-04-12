@@ -147,4 +147,9 @@ public class RuanJianZhuZuoimpl implements RuanJianZhuZuoService {
         }
         return tableData;
     }
+
+    @Override
+    public int passRuanJianZhuZuo(Integer id, Integer ispass) {
+        return mapper.passRuanJianZhuZuo(id,ispass);
+    }
 }

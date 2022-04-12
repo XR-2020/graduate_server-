@@ -43,4 +43,8 @@ public class HengXiangKeYan {
         return service.getHengXiangKeYanMetails(id).getMetails();
     }
 
+    @RequestMapping(value = "/passHengXiangKeYan", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public int passHengXiangKeYan(Integer id,Integer ispass){
+        return service.passHengXiangKeYan(id,ispass);
+    }
 }

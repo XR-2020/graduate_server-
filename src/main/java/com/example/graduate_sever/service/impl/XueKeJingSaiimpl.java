@@ -91,4 +91,9 @@ public class XueKeJingSaiimpl implements XueKeJingSaiService {
         }
         return tableData;
     }
+
+    @Override
+    public int passXueKeJingSai(Integer id, Integer ispass) {
+        return mapper.passXueKeJingSai(id,ispass);
+    }
 }

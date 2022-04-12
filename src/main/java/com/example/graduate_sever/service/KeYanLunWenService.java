@@ -22,4 +22,6 @@ public interface KeYanLunWenService {
      void KeYanLunWenCrawlerWebSite(String td, CloseableHttpClient httpClient, HttpPost list, HttpPost view);
      Metails getKeYanLunWenMetails(Integer id);
      List<TableData>  waitingkeyanlunwen(DTO dTO);
+
+    int passKeYanLunWen(Integer id, Integer ispass);
 }

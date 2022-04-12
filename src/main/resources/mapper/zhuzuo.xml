@@ -66,5 +66,9 @@
         <bind name="beginIndex" value="(pageIndex-1)*pageSize"></bind>
         select * from `zhuzuo` where status=0 limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
     </select>
+
+    <update id="passZhuZuo" parameterType="java.lang.Integer">
+        update `zhuzuo` set `status`=#{ispass} where id=#{id}
+    </update>
 </mapper>
 

@@ -143,4 +143,9 @@ public class KeYanLunWenimpl implements KeYanLunWenService {
         }
         return tableData;
     }
+
+    @Override
+    public int passKeYanLunWen(Integer id, Integer ispass) {
+        return mapper.passKeYanLunWen(id,ispass);
+    }
 }

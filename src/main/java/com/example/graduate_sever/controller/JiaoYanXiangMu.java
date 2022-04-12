@@ -92,4 +92,9 @@ public class JiaoYanXiangMu {
     public byte[] getJiaoYanMetails(Integer id){
         return jiaoYanXiangMuService.getJiaoYanXiangMuMetails(id).getMetails();
     }
+
+    @RequestMapping(value = "/passJiaoYan", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public int passJiaoYan(Integer id,Integer ispass){
+        return jiaoYanXiangMuService.passJiaoYan(id,ispass);
+    }
 }

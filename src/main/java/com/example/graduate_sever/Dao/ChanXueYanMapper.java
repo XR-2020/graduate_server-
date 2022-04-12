@@ -30,6 +30,6 @@ public interface ChanXueYanMapper {
     List<ChanXueYan> selectChanXueYan(String date1,String date2);
 
     List<ChanXueYan> waitingChanXueYan(DTO dTO);
-
+    int passChanXueYan(Integer id, Integer ispass);
     long waitingPageTotal(String type);
 }

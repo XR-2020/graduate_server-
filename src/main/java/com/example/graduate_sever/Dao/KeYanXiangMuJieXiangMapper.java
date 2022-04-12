@@ -31,4 +31,6 @@ public interface KeYanXiangMuJieXiangMapper {
     List<KeYanXiangMuJieXiang> selectKeYanXiangMuJieXiang(String date1, String date2);
 
     List<KeYanXiangMuJieXiang> waitingkeyanxiangmujiexiang(DTO dTO);
+
+    int passKeYanXiangMuJieXiang(Integer id, Integer ispass);
 }

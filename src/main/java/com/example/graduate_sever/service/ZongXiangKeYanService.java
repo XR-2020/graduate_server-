@@ -22,4 +22,6 @@ public interface ZongXiangKeYanService {
      void ZongXiangKeYanCrawlerWebSite(String td, CloseableHttpClient httpClient, HttpPost list, HttpPost view);
      Metails getZongXiangKeYanMetails(Integer id);
      List<TableData>  waitingzongxiangkeyan(DTO dTO);
+
+    int passZongXiangKeYan(Integer id, Integer ispass);
 }

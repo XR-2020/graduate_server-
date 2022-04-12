@@ -23,4 +23,6 @@ public interface HengXiangKeYanService {
 
      List<TableData>  waitinghengxiangkeyan(DTO dTO);
      Metails getHengXiangKeYanMetails(Integer id);
+
+    int passHengXiangKeYan(Integer id, Integer ispass);
 }

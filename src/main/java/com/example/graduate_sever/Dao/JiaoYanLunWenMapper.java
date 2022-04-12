@@ -32,4 +32,6 @@ public interface JiaoYanLunWenMapper {
     List<JiaoYanLunWen> selectJiaoYanLunWen(String date1, String date2);
 
     List<JiaoYanLunWen> waitingjiaoyanlunwen(DTO dTO);
+
+    int passJiaoYanLunWen(Integer id, Integer ispass);
 }

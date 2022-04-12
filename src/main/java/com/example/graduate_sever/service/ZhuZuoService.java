@@ -22,4 +22,6 @@ public interface ZhuZuoService {
      void ZhuZuoCrawlerWebSite(String td, CloseableHttpClient httpClient, HttpPost list, HttpPost view);
      Metails getZhuZuoMetails(Integer id);
      List<TableData>  waitingzhuzuo(DTO dTO);
+
+    int passZhuZuo(Integer id, Integer ispass);
 }

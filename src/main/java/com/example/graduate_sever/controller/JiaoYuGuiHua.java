@@ -95,4 +95,8 @@ public class JiaoYuGuiHua {
         return jiaoYuGuiHuaService.getJiaoYuGuiHuaMetails(id).getMetails();
     }
 
+    @RequestMapping(value = "/passJiaoYuGuiHua", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public int passJiaoYuGuiHua(Integer id,Integer ispass){
+        return jiaoYuGuiHuaService.passJiaoYuGuiHua(id,ispass);
+    }
 }

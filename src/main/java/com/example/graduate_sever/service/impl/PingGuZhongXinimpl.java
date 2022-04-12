@@ -141,4 +141,9 @@ public class PingGuZhongXinimpl implements PingGuZhongXinService {
         }
         return tableData;
     }
+
+    @Override
+    public int passPingGuZhongXin(Integer id, Integer ispass) {
+        return mapper.passPingGuZhongXin(id,ispass);
+    }
 }

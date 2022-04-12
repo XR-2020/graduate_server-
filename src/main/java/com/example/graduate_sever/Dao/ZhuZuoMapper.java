@@ -31,4 +31,6 @@ public interface ZhuZuoMapper {
     List<ZhuZuo> selectZhuZuo(String date1, String date2);
 
     List<ZhuZuo> waitingzhuzuo(DTO dTO);
+
+    int passZhuZuo(Integer id, Integer ispass);
 }

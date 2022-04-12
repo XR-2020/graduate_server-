@@ -31,4 +31,6 @@ public interface ZongXiangKeYanMapper {
     List<ZongXiangKeYanXiangMu> selectZongXiangKeYan(String date1, String date2);
 
     List<ZongXiangKeYanXiangMu> waitingzongxiangkeyan(DTO dTO);
+
+    int passZongXiangKeYan(Integer id, Integer ispass);
 }

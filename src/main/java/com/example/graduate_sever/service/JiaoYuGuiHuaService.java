@@ -22,4 +22,6 @@ public interface JiaoYuGuiHuaService {
      void JiaoYuGuiHuaCrawlerWebSite(String td, CloseableHttpClient httpClient, HttpPost list, HttpPost view);
      Metails getJiaoYuGuiHuaMetails(Integer id);
      List<TableData>  waitingjiaoyuguihua(DTO dTO);
+
+    int passJiaoYuGuiHua(Integer id, Integer ispass);
 }

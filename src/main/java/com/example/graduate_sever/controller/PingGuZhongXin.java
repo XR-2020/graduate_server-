@@ -95,4 +95,8 @@ public class PingGuZhongXin {
         return pingGuZhongXinService.getPingGuZhongXinMetails(id).getMetails();
     }
 
+    @RequestMapping(value = "/passPingGuZhongXin", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public int passPingGuZhongXin(Integer id,Integer ispass){
+        return pingGuZhongXinService.passPingGuZhongXin(id,ispass);
+    }
 }

@@ -149,4 +149,9 @@ public class ZhuanLiimpl implements ZhuanLiService {
         }
         return tableData;
     }
+
+    @Override
+    public int passZhuanLi(Integer id, Integer ispass) {
+        return mapper.passZhuanLi(id,ispass);
+    }
 }

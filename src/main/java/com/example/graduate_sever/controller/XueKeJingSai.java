@@ -100,4 +100,9 @@ public class XueKeJingSai {
     public byte[] getXueKeJingSaiMetails(Integer id){
         return service.getXueKeJingSaiMetails(id).getMetails();
     }
+
+    @RequestMapping(value = "/passXueKeJingSai", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public int passXueKeJingSai(Integer id,Integer ispass){
+        return service.passXueKeJingSai(id,ispass);
+    }
 }

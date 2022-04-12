@@ -236,4 +236,9 @@ public class ChanXueYanimpl implements ChanXueYanService {
     public Metails getchanxueyanMetails(Integer id) {
         return chanxueyanMapper.ChanXueYanmetails(id);
     }
+
+    @Override
+    public int passChanXueYan(Integer id, Integer ispass) {
+        return chanxueyanMapper.passChanXueYan(id,ispass);
+    }
 }

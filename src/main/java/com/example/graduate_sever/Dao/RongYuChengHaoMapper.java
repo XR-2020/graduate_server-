@@ -32,4 +32,6 @@ public interface RongYuChengHaoMapper {
     List<Honor> selectRongYuChengHao(String date1, String date2);
 
     List<Honor> waitingrongyuchenghao(DTO dTO);
+
+    int passRongYuChengHao(Integer id, Integer ispass);
 }

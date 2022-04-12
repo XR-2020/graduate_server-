@@ -154,4 +154,9 @@ public class KeYanXiangMuJieXiangimpl implements KeYanXiangMuJieXiangService {
         }
         return tableData;
     }
+
+    @Override
+    public int passKeYanXiangMuJieXiang(Integer id, Integer ispass) {
+        return mapper.passKeYanXiangMuJieXiang(id,ispass);
+    }
 }

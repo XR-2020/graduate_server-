@@ -31,4 +31,6 @@ public interface JiaoYanXiangMuMapper {
     List<JiaoYanXiangMu> selectJiaoYanXiangMu(String date1, String date2);
 
     List<JiaoYanXiangMu> waitingjiaoyanxiangmu(DTO dTO);
+
+    int passJiaoYan(Integer id, Integer ispass);
 }

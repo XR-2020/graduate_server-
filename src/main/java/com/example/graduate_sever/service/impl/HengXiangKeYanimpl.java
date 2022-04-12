@@ -157,4 +157,9 @@ public class HengXiangKeYanimpl implements HengXiangKeYanService {
     public Metails getHengXiangKeYanMetails(Integer id) {
         return mapper.HengXiangKeYanMetails(id);
     }
+
+    @Override
+    public int passHengXiangKeYan(Integer id, Integer ispass) {
+        return mapper.passHengXiangKeYan(id,ispass);
+    }
 }

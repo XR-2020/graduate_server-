@@ -155,4 +155,9 @@ public class ZhuZuoimpl implements ZhuZuoService {
         }
         return tableData;
     }
+
+    @Override
+    public int passZhuZuo(Integer id, Integer ispass) {
+        return mapper.passZhuZuo(id,ispass);
+    }
 }

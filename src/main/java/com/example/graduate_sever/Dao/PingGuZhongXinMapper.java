@@ -31,4 +31,6 @@ public interface PingGuZhongXinMapper {
     List<PingGuZhongXinXiangGuan> selectPingGuZhongXin(String date1, String date2);
 
     List<PingGuZhongXinXiangGuan> waitingpingguzhongxin(DTO dTO);
+
+    int passPingGuZhongXin(Integer id, Integer ispass);
 }

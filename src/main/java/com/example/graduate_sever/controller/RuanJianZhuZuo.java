@@ -7,9 +7,7 @@ import com.example.graduate_sever.common.ResVO;
 import com.example.graduate_sever.service.HengXiangKeYanService;
 import com.example.graduate_sever.service.RuanJianZhuZuoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class RuanJianZhuZuo {
@@ -43,4 +41,8 @@ public class RuanJianZhuZuo {
         return service.getRuanJianZhuZuoMetails(id).getMetails();
     }
 
+    @RequestMapping(value = "/passRuanJianZhuZuo", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public int passRuanJianZhuZuo(Integer id,Integer ispass){
+        return service.passRuanJianZhuZuo(id,ispass);
+    }
 }
