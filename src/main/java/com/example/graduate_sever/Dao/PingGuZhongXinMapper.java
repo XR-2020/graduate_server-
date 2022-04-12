@@ -27,7 +27,7 @@ public interface PingGuZhongXinMapper {
     int insertPingGuZhongXin(PingGuZhongXinXiangGuanEntity entity);
     int shenBaoPingGuZhongXin(PingGuZhongXinXiangGuanEntity entity);
     int insertPingGuZhongXinParticipation(ParticipationEntity participationEntity);
-    Metails PingGuZhongXinMetails();
+    Metails PingGuZhongXinMetails(Integer id);
     List<PingGuZhongXinXiangGuan> selectPingGuZhongXin(String date1, String date2);
 
     List<PingGuZhongXinXiangGuan> waitingpingguzhongxin(DTO dTO);

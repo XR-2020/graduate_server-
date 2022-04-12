@@ -27,7 +27,7 @@ public interface JiaoYanXiangMuMapper {
     int insertJiaoYanXiangMu(JiaoYanXiangMuEntity entity);
     int shenBaoJiaoYanXiangMu(JiaoYanXiangMuEntity entity);
     int insertJiaoYanXiangMuParticipation(ParticipationEntity participationEntity);
-    Metails JiaoYanXiangMetails();
+    Metails JiaoYanXiangMetails(Integer id);
     List<JiaoYanXiangMu> selectJiaoYanXiangMu(String date1, String date2);
 
     List<JiaoYanXiangMu> waitingjiaoyanxiangmu(DTO dTO);

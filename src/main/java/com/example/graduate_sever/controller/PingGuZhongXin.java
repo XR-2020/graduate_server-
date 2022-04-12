@@ -90,6 +90,9 @@ public class PingGuZhongXin {
         FileUtils.writeByteArrayToFile(targetFile, file.getBytes());
         return filepath;
     }
-
+    @GetMapping("/getPingGuZhongXinMetails")
+    public byte[] getPingGuZhongXinMetails(Integer id){
+        return pingGuZhongXinService.getPingGuZhongXinMetails(id).getMetails();
+    }
 
 }

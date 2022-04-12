@@ -2,6 +2,7 @@ package com.example.graduate_sever.service;
 
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.JsonBean;
+import com.example.graduate_sever.common.Metails;
 import com.example.graduate_sever.common.ResVO;
 import com.example.graduate_sever.common.TableData;
 import com.example.graduate_sever.entity.HeBingEntity;
@@ -19,6 +20,6 @@ public interface ZhuanLiService {
      JsonBean insertZhuanLi(HeBingEntity entity,Integer[] people);
      JsonBean shenBaoZhuanLi(HeBingEntity entity,Integer[] people);
      void ZhuanLiCrawlerWebSite(String td, CloseableHttpClient httpClient, HttpPost list, HttpPost view);
-
+     Metails getZhuanLiMetails(Integer id);
      List<TableData>  waitingzhuanli(DTO dTO);
 }

@@ -38,6 +38,9 @@ public class HengXiangKeYan {
 
         return service.getHengXiangKeYanDetial(id);}
 
-
+    @GetMapping("/getHengXiangKeYanMetails")
+    public byte[] getHengXiangKeYanMetails(Integer id){
+        return service.getHengXiangKeYanMetails(id).getMetails();
+    }
 
 }

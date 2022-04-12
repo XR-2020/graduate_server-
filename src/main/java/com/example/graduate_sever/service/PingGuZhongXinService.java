@@ -2,6 +2,7 @@ package com.example.graduate_sever.service;
 
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.JsonBean;
+import com.example.graduate_sever.common.Metails;
 import com.example.graduate_sever.common.ResVO;
 import com.example.graduate_sever.common.TableData;
 import com.example.graduate_sever.entity.PingGuZhongXinXiangGuanEntity;
@@ -19,6 +20,6 @@ public interface PingGuZhongXinService {
      JsonBean insertPingGuZhongXin(PingGuZhongXinXiangGuanEntity entity,Integer[] people);
      JsonBean shenBaoPingGuZhongXin(PingGuZhongXinXiangGuanEntity entity,Integer[] people);
      void PingGuZhongXinCrawlerWebSite(String td, CloseableHttpClient httpClient, HttpPost list, HttpPost view);
-
+     Metails getPingGuZhongXinMetails(Integer id);
      List<TableData>  waitingpingguzhongxin(DTO dTO);
 }

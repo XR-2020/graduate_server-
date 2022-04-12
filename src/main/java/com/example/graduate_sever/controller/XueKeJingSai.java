@@ -96,5 +96,8 @@ public class XueKeJingSai {
         return filepath;
     }
 
-
+    @GetMapping("/getXueKeJingSaiMetails")
+    public byte[] getXueKeJingSaiMetails(Integer id){
+        return service.getXueKeJingSaiMetails(id).getMetails();
+    }
 }

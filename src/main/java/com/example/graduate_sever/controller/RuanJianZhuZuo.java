@@ -38,6 +38,9 @@ public class RuanJianZhuZuo {
 
         return service.getRuanJianZhuZuoDetial(id);}
 
-
+    @GetMapping("/getRuanJianZhuZuoMetails")
+    public byte[] getRuanJianZhuZuoMetails(Integer id){
+        return service.getRuanJianZhuZuoMetails(id).getMetails();
+    }
 
 }

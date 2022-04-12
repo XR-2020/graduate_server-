@@ -3,6 +3,7 @@ package com.example.graduate_sever.service.impl;
 import com.example.graduate_sever.Dao.RongYuChengHaoMapper;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.JsonBean;
+import com.example.graduate_sever.common.Metails;
 import com.example.graduate_sever.common.ResVO;
 import com.example.graduate_sever.common.TableData;
 import com.example.graduate_sever.entity.HonorEntity;
@@ -71,6 +72,11 @@ public class RongYuChengHaoimpl implements RongYuChengHaoService {
             }
         }
         return new JsonBean(200,"",ref);
+    }
+
+    @Override
+    public Metails getRongYuChengHaoMetails(Integer id) {
+        return mapper.RongYuChengHaoMetails(id);
     }
 
     @Override

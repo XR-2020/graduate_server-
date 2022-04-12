@@ -2,6 +2,7 @@ package com.example.graduate_sever.service;
 
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.JsonBean;
+import com.example.graduate_sever.common.Metails;
 import com.example.graduate_sever.common.ResVO;
 import com.example.graduate_sever.common.TableData;
 import com.example.graduate_sever.entity.HeBingEntity;
@@ -19,6 +20,6 @@ public interface KeYanXiangMuJieXiangService {
      JsonBean insertKeYanXiangMuJieXiang(HeBingEntity entity,Integer[] people);
      JsonBean shenBaoKeYanXiangMuJieXiang(HeBingEntity entity,Integer[] people);
      void KeYanXiangMuJieXiangCrawlerWebSite(String td, CloseableHttpClient httpClient, HttpPost list, HttpPost view);
-
+     Metails getKeYanXiangMuJieXiangMetails(Integer id);
      List<TableData>  waitingkeyanxiangmujiexiang(DTO dTO);
 }

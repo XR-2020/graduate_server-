@@ -28,7 +28,7 @@ public interface HengXiangKeYanMapper {
     int shenBaoHengXiangKeYan(HeBingEntity entity);
 
     int insertHengXiangKeYanParticipation(ParticipationEntity participationEntity);
-    Metails  HengXiangKeYanMetails();
+    Metails  HengXiangKeYanMetails(Integer id);
     List<HengXiangKeYanXiangMu> selectHengXiangKeYan(String date1, String date2);
 
     List<HengXiangKeYanXiangMu> waitinghengxiangkeyan(DTO dTO);

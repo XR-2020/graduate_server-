@@ -3,6 +3,7 @@ package com.example.graduate_sever.service.impl;
 import com.example.graduate_sever.Dao.RuanJianZhuZuoMapper;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.JsonBean;
+import com.example.graduate_sever.common.Metails;
 import com.example.graduate_sever.common.ResVO;
 import com.example.graduate_sever.common.TableData;
 import com.example.graduate_sever.entity.HeBingEntity;
@@ -130,6 +131,11 @@ public class RuanJianZhuZuoimpl implements RuanJianZhuZuoService {
             e.printStackTrace();
         }
 
+    }
+
+    @Override
+    public Metails getRuanJianZhuZuoMetails(Integer id) {
+        return mapper.RuanJianZhuZuoMetails(id);
     }
 
     @Override

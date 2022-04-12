@@ -90,5 +90,8 @@ public class ZongXiangKeYan {
         FileUtils.writeByteArrayToFile(targetFile, file.getBytes());
         return filepath;
     }
-
+    @GetMapping("/getZongXiangKeYanMetails")
+    public byte[] getZongXiangKeYanMetails(Integer id){
+        return service.getZongXiangKeYanMetails(id).getMetails();
+    }
 }

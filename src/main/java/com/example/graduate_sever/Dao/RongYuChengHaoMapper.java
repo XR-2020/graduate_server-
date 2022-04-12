@@ -28,7 +28,7 @@ public interface RongYuChengHaoMapper {
     int insertRongYuChengHao(HonorEntity entity);
     int shenBaoRongYuChengHao(HonorEntity entity);
     int insertRongYuChengHaoParticipation(ParticipationEntity participationEntity);
-    Metails RongYuChengHaoMetails();
+    Metails RongYuChengHaoMetails(Integer id);
     List<Honor> selectRongYuChengHao(String date1, String date2);
 
     List<Honor> waitingrongyuchenghao(DTO dTO);

@@ -91,6 +91,9 @@ public class RongYuChengHao {
         FileUtils.writeByteArrayToFile(targetFile, file.getBytes());
         return filepath;
     }
-
+    @GetMapping("/getRongYuChengHaoMetails")
+    public byte[] getRongYuChengHaoMetails(Integer id){
+        return service.getRongYuChengHaoMetails(id).getMetails();
+    }
 
 }

@@ -27,7 +27,7 @@ public interface ZhuanLiMapper {
     int insertZhuanLi(HeBingEntity entity);
     int shenBaoZhuanLi(HeBingEntity entity);
     int insertZhuanLiParticipation(ParticipationEntity participationEntity);
-    Metails ZhuanLiMetails();
+    Metails ZhuanLiMetails(Integer id);
     List<ZhuanLi> selectZhuanLi(String date1, String date2);
 
     List<ZhuanLi> waitingzhuanli(DTO dTO);

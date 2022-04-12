@@ -3,6 +3,7 @@ package com.example.graduate_sever.service.impl;
 import com.example.graduate_sever.Dao.KeYanLunWenMapper;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.JsonBean;
+import com.example.graduate_sever.common.Metails;
 import com.example.graduate_sever.common.ResVO;
 import com.example.graduate_sever.common.TableData;
 import com.example.graduate_sever.entity.HeBingEntity;
@@ -126,6 +127,11 @@ public class KeYanLunWenimpl implements KeYanLunWenService {
             e.printStackTrace();
         }
 
+    }
+
+    @Override
+    public Metails getKeYanLunWenMetails(Integer id) {
+        return mapper.KeYanLunWenMetails(id);
     }
 
     @Override

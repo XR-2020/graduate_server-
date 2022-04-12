@@ -38,6 +38,9 @@ public class ZhuZuo {
 
         return service.getZhuZuoDetial(id);}
 
-
+    @GetMapping("/getZhuZuoMetails")
+    public byte[] getZhuZuoMetails(Integer id){
+        return service.getZhuZuoMetails(id).getMetails();
+    }
 
 }

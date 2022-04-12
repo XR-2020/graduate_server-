@@ -3,6 +3,7 @@ package com.example.graduate_sever.service.impl;
 import com.example.graduate_sever.Dao.HengXiangKeYanMapper;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.JsonBean;
+import com.example.graduate_sever.common.Metails;
 import com.example.graduate_sever.common.ResVO;
 import com.example.graduate_sever.common.TableData;
 import com.example.graduate_sever.entity.HeBingEntity;
@@ -150,5 +151,10 @@ public class HengXiangKeYanimpl implements HengXiangKeYanService {
             tableData.add(new TableData(c,mapper.getHengXiangKeYanDetail(c.getId())));
         }
         return tableData;
+    }
+
+    @Override
+    public Metails getHengXiangKeYanMetails(Integer id) {
+        return mapper.HengXiangKeYanMetails(id);
     }
 }

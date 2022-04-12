@@ -38,5 +38,8 @@ public class KeYanXiangMuJieXiang {
 
         return service.getKeYanXiangMuJieXiangDetial(id);}
 
-
+    @GetMapping("/getKeYanXiangMuJieXiangMetails")
+    public byte[] getKeYanXiangMuJieXiangMetails(Integer id){
+        return service.getKeYanXiangMuJieXiangMetails(id).getMetails();
+    }
 }

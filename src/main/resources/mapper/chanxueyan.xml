@@ -70,7 +70,7 @@
         SELECT * from teacher
     </select>
 
-    <select id="ChanXueYanMetails" parameterType="java.lang.Integer" resultMap="ChanXueYanMetails">
+    <select id="ChanXueYanmetails" parameterType="java.lang.Integer" resultMap="ChanXueYanMetails">
         SELECT metails FROM `chanxueyan` where id=#{id}
     </select>
     <select id="selectChanXueYan" parameterType="java.lang.String" resultMap="ChanXueYan">

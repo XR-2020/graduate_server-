@@ -26,7 +26,7 @@ public interface ChanXueYanMapper {
     int insertChanXueYanParticipation(ParticipationEntity participationEntity);
 
     List<Object> getTeacherList();
-    Metails ChanXueYanmetails();
+    Metails ChanXueYanmetails(Integer id);
     List<ChanXueYan> selectChanXueYan(String date1,String date2);
 
     List<ChanXueYan> waitingChanXueYan(DTO dTO);

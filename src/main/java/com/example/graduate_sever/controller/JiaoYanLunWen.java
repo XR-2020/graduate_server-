@@ -96,5 +96,8 @@ public class JiaoYanLunWen {
         FileUtils.writeByteArrayToFile(targetFile, file.getBytes());
         return filepath;
     }
-
+    @GetMapping("/getJiaoYanLunWenMetails")
+    public byte[] getJiaoYanLunWenMetails(Integer id){
+        return jiaoYanLunWenMuService.getJiaoYanLunWenMetails(id).getMetails();
+    }
 }

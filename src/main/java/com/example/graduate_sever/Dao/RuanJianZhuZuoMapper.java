@@ -27,7 +27,7 @@ public interface RuanJianZhuZuoMapper {
     int insertRuanJianZhuZuo(HeBingEntity entity);
     int shenBaoRuanJianZhuZuo(HeBingEntity entity);
     int insertRuanJianZhuZuoParticipation(ParticipationEntity participationEntity);
-    Metails RuanJianZhuZuoMetails();
+    Metails RuanJianZhuZuoMetails(Integer id);
     List<RuanJianZhuZuoQuan> selectRuanJianZhuZuo(String date1, String date2);
 
     List<RuanJianZhuZuoQuan> waitingruanjianzhuzuo(DTO dTO);

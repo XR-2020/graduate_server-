@@ -3,6 +3,7 @@ package com.example.graduate_sever.service.impl;
 import com.example.graduate_sever.Dao.ZhuanLiMapper;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.JsonBean;
+import com.example.graduate_sever.common.Metails;
 import com.example.graduate_sever.common.ResVO;
 import com.example.graduate_sever.common.TableData;
 import com.example.graduate_sever.entity.HeBingEntity;
@@ -132,6 +133,11 @@ public class ZhuanLiimpl implements ZhuanLiService {
             e.printStackTrace();
         }
 
+    }
+
+    @Override
+    public Metails getZhuanLiMetails(Integer id) {
+        return mapper.ZhuanLiMetails(id);
     }
 
     @Override

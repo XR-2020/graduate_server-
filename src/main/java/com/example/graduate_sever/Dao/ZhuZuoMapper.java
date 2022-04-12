@@ -27,7 +27,7 @@ public interface ZhuZuoMapper {
     int insertZhuZuo(HeBingEntity entity);
     int shenBaoZhuZuo(HeBingEntity entity);
     int insertZhuZuoParticipation(ParticipationEntity participationEntity);
-    Metails ZhuZuoMetails();
+    Metails ZhuZuoMetails(Integer id);
     List<ZhuZuo> selectZhuZuo(String date1, String date2);
 
     List<ZhuZuo> waitingzhuzuo(DTO dTO);

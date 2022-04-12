@@ -3,6 +3,7 @@ package com.example.graduate_sever.service.impl;
 import com.example.graduate_sever.Dao.JiaoYuGuiHuaMapper;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.JsonBean;
+import com.example.graduate_sever.common.Metails;
 import com.example.graduate_sever.common.ResVO;
 import com.example.graduate_sever.common.TableData;
 import com.example.graduate_sever.entity.JiaoYuGuiHuaXiangMuEntity;
@@ -133,6 +134,11 @@ public class JiaoYuGuiHuaimpl implements JiaoYuGuiHuaService {
             e.printStackTrace();
         }
 
+    }
+
+    @Override
+    public Metails getJiaoYuGuiHuaMetails(Integer id) {
+        return mapper.JiaoYuGuiHuaMetails(id);
     }
 
     @Override

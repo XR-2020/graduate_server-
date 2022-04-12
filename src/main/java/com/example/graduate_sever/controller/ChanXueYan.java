@@ -4,6 +4,7 @@ package com.example.graduate_sever.controller;
 import com.example.graduate_sever.GraduateSeverApplication;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.JsonBean;
+import com.example.graduate_sever.common.Metails;
 import com.example.graduate_sever.common.ResVO;
 import com.example.graduate_sever.common.UO.ChanXueYanUO;
 import com.example.graduate_sever.common.WebCookie;
@@ -105,6 +106,10 @@ public class ChanXueYan {
         // 开始复制文件
                 FileUtils.writeByteArrayToFile(targetFile, file.getBytes());
         return filepath;
+    }
+    @GetMapping("/getChanXueYanMetails")
+    public byte[] getChanXueYanMetails(Integer id){
+        return chanXueYanService.getchanxueyanMetails(id).getMetails();
     }
 
 

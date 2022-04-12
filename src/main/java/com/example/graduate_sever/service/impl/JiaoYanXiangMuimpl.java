@@ -3,6 +3,7 @@ package com.example.graduate_sever.service.impl;
 import com.example.graduate_sever.Dao.JiaoYanXiangMuMapper;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.JsonBean;
+import com.example.graduate_sever.common.Metails;
 import com.example.graduate_sever.common.ResVO;
 import com.example.graduate_sever.common.TableData;
 import com.example.graduate_sever.entity.JiaoYanXiangMuEntity;
@@ -151,5 +152,10 @@ public class JiaoYanXiangMuimpl implements JiaoYanXiangMuService {
             tableData.add(new TableData(c,mapper.getJiaoYanDetail(c.getId())));
         }
         return tableData;
+    }
+
+    @Override
+    public Metails getJiaoYanXiangMuMetails(Integer id) {
+        return mapper.JiaoYanXiangMetails(id);
     }
 }

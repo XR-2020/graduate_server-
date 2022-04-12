@@ -88,5 +88,8 @@ public class JiaoYanXiangMu {
         FileUtils.writeByteArrayToFile(targetFile, file.getBytes());
         return filepath;
     }
-
+    @GetMapping("/getJiaoYanMetails")
+    public byte[] getJiaoYanMetails(Integer id){
+        return jiaoYanXiangMuService.getJiaoYanXiangMuMetails(id).getMetails();
+    }
 }

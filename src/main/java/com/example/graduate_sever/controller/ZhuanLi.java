@@ -37,7 +37,10 @@ public class ZhuanLi {
         System.out.println(id);
 
         return service.getZhuanLiDetial(id);}
-
+    @GetMapping("/getZhuanLiMetails")
+    public byte[] getZhuanLiMetails(Integer id){
+        return service.getZhuanLiMetails(id).getMetails();
+    }
 
 
 }

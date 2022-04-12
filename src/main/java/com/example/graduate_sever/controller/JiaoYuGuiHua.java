@@ -90,6 +90,9 @@ public class JiaoYuGuiHua {
         FileUtils.writeByteArrayToFile(targetFile, file.getBytes());
         return filepath;
     }
-
+    @GetMapping("/getJiaoYuGuiHuaMetails")
+    public byte[] getJiaoYuGuiHuaMetails(Integer id){
+        return jiaoYuGuiHuaService.getJiaoYuGuiHuaMetails(id).getMetails();
+    }
 
 }

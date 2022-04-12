@@ -3,6 +3,7 @@ package com.example.graduate_sever.service.impl;
 import com.example.graduate_sever.Dao.ChanXueYanMapper;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.JsonBean;
+import com.example.graduate_sever.common.Metails;
 import com.example.graduate_sever.common.ResVO;
 import com.example.graduate_sever.common.TableData;
 import com.example.graduate_sever.entity.ChanXueYanEntity;
@@ -229,5 +230,10 @@ public class ChanXueYanimpl implements ChanXueYanService {
             }
         }
         return pageTotal;
+    }
+
+    @Override
+    public Metails getchanxueyanMetails(Integer id) {
+        return chanxueyanMapper.ChanXueYanmetails(id);
     }
 }

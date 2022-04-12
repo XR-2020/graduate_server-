@@ -27,7 +27,7 @@ public interface XueKeJingSaiMapper {
     int insertJingSai(CompetitionEntity entity);
     int shenBaoJingSai(CompetitionEntity entity);
     int insertJingSaiParticipation(ParticipationEntity participationEntity);
-    Metails XueKeJingSaiMetails();
+    Metails XueKeJingSaiMetails(Integer id);
     List<Competition> selectXueKeJingSai(String date1, String date2);
 
     List<Competition> waitingxuekejingsai(DTO dTO);

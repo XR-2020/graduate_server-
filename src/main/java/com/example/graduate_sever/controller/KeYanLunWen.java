@@ -43,4 +43,9 @@ public class KeYanLunWen {
 
         return service.getKeYanLunWenDetial(id);
     }
+
+    @GetMapping("/getKeYanLunWenMetails")
+    public byte[] getKeYanLunWenMetails(Integer id){
+        return service.getKeYanLunWenMetails(id).getMetails();
+    }
 }

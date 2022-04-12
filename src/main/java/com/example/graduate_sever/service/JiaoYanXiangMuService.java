@@ -2,6 +2,7 @@ package com.example.graduate_sever.service;
 
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.JsonBean;
+import com.example.graduate_sever.common.Metails;
 import com.example.graduate_sever.common.ResVO;
 import com.example.graduate_sever.common.TableData;
 import com.example.graduate_sever.entity.JiaoYanXiangMuEntity;
@@ -21,4 +22,6 @@ public interface JiaoYanXiangMuService {
      void JiaoYanXiangMuCrawlerWebSite(String td, CloseableHttpClient httpClient, HttpPost list, HttpPost view);
 
      List<TableData>  waitingjiaoyanxiangmu(DTO dTO);
+
+     Metails getJiaoYanXiangMuMetails(Integer id);
 }

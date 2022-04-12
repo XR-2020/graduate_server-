@@ -3,6 +3,7 @@ package com.example.graduate_sever.service.impl;
 import com.example.graduate_sever.Dao.PingGuZhongXinMapper;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.JsonBean;
+import com.example.graduate_sever.common.Metails;
 import com.example.graduate_sever.common.ResVO;
 import com.example.graduate_sever.common.TableData;
 import com.example.graduate_sever.entity.ParticipationEntity;
@@ -124,6 +125,11 @@ public class PingGuZhongXinimpl implements PingGuZhongXinService {
             e.printStackTrace();
         }
 
+    }
+
+    @Override
+    public Metails getPingGuZhongXinMetails(Integer id) {
+        return mapper.PingGuZhongXinMetails(id);
     }
 
     @Override
