@@ -2,6 +2,7 @@ package com.example.graduate_sever.service.impl;
 
 import com.example.graduate_sever.Dao.KeYanLunWenMapper;
 import com.example.graduate_sever.common.DTO.DTO;
+import com.example.graduate_sever.common.DTO.MyShenBaoDTO;
 import com.example.graduate_sever.common.JsonBean;
 import com.example.graduate_sever.common.Metails;
 import com.example.graduate_sever.common.ResVO;
@@ -9,6 +10,7 @@ import com.example.graduate_sever.common.TableData;
 import com.example.graduate_sever.entity.HeBingEntity;
 import com.example.graduate_sever.entity.ParticipationEntity;
 import com.example.graduate_sever.model.KeYanLunWen;
+import com.example.graduate_sever.model.MyShenBaoModel;
 import com.example.graduate_sever.service.KeYanLunWenService;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -147,5 +149,18 @@ public class KeYanLunWenimpl implements KeYanLunWenService {
     @Override
     public int passKeYanLunWen(Integer id, Integer ispass) {
         return mapper.passKeYanLunWen(id,ispass);
+    }
+
+    @Override
+    public List<TableData> getDisData(MyShenBaoDTO dto) {
+        List<MyShenBaoModel> list=mapper.getKeYanLunWenDisData(dto);
+        for (MyShenBaoModel b:list) {
+            System.out.println(b.getId());
+        }
+        List<TableData> tableData=new ArrayList<>();
+        for (MyShenBaoModel c:list) {
+            tableData.add(new TableData(c,mapper.getKeYanLunWenDetail(c.getId())));
+        }
+        return tableData;
     }
 }

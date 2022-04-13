@@ -1,6 +1,7 @@
 package com.example.graduate_sever.service;
 
 import com.example.graduate_sever.common.DTO.DTO;
+import com.example.graduate_sever.common.DTO.MyShenBaoDTO;
 import com.example.graduate_sever.common.JsonBean;
 import com.example.graduate_sever.common.Metails;
 import com.example.graduate_sever.common.ResVO;
@@ -22,4 +23,6 @@ public interface RongYuChengHaoService {
      List<TableData>  waitingrongyuchenghao(DTO dTO);
 
     int passRongYuChengHao(Integer id, Integer ispass);
+
+    List<TableData> getDisData(MyShenBaoDTO dto);
 }

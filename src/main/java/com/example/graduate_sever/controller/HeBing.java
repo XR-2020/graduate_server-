@@ -3,6 +3,7 @@ package com.example.graduate_sever.controller;
 
 import com.example.graduate_sever.common.*;
 import com.example.graduate_sever.common.DTO.DTO;
+import com.example.graduate_sever.common.DTO.MyShenBaoDTO;
 import com.example.graduate_sever.common.UO.ChanXueYanUO;
 import com.example.graduate_sever.common.UO.HeBingUO;
 import com.example.graduate_sever.entity.ChanXueYanEntity;
@@ -18,6 +19,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -209,4 +212,27 @@ public class HeBing {
                 zongXiangKeYanService.waitingzongxiangkeyan(dTO),chanXueYanService.waitingPageTotal(8));
         return allData;
     }
+
+    @GetMapping("/getDisData")
+    public MyShenBaoRes getDisData(MyShenBaoDTO dto){
+        List<List<TableData>> list=new ArrayList<>();
+        long pageTotal=chanXueYanService.getPageTotal();
+        list.add(chanXueYanService.getDisData(dto));
+        list.add(hengXiangKeYanService.getDisData(dto));
+        list.add(jiaoYuGuiHuaService.getDisData(dto));
+        list.add(jiaoYanXiangMuService.getDisData(dto));
+        list.add(jiaoYanLunWenMuService.getDisData(dto));
+        list.add(keYanXiangMuJieXiangService.getDisData(dto));
+        list.add(keYanLunWenService.getDisData(dto));
+        list.add(pingGuZhongXinService.getDisData(dto));
+        list.add(xueKeJingSaiService.getDisData(dto));
+        list.add(rongYuChengHaoService.getDisData(dto));
+        list.add(ruanJianZhuZuoService.getDisData(dto));
+        list.add(zhuanLiService.getDisData(dto));
+        list.add(zongXiangKeYanService.getDisData(dto));
+        list.add(zhuZuoService.getDisData(dto));
+        return new MyShenBaoRes(list,pageTotal);
+    }
+
+
 }

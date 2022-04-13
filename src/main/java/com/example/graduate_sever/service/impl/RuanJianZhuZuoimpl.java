@@ -2,12 +2,14 @@ package com.example.graduate_sever.service.impl;
 
 import com.example.graduate_sever.Dao.RuanJianZhuZuoMapper;
 import com.example.graduate_sever.common.DTO.DTO;
+import com.example.graduate_sever.common.DTO.MyShenBaoDTO;
 import com.example.graduate_sever.common.JsonBean;
 import com.example.graduate_sever.common.Metails;
 import com.example.graduate_sever.common.ResVO;
 import com.example.graduate_sever.common.TableData;
 import com.example.graduate_sever.entity.HeBingEntity;
 import com.example.graduate_sever.entity.ParticipationEntity;
+import com.example.graduate_sever.model.MyShenBaoModel;
 import com.example.graduate_sever.model.RuanJianZhuZuoQuan;
 import com.example.graduate_sever.service.RuanJianZhuZuoService;
 import org.apache.http.NameValuePair;
@@ -151,5 +153,18 @@ public class RuanJianZhuZuoimpl implements RuanJianZhuZuoService {
     @Override
     public int passRuanJianZhuZuo(Integer id, Integer ispass) {
         return mapper.passRuanJianZhuZuo(id,ispass);
+    }
+
+    @Override
+    public List<TableData> getDisData(MyShenBaoDTO dto) {
+        List<MyShenBaoModel> list=mapper.getRuanJianZhuZuoDisData(dto);
+        for (MyShenBaoModel b:list) {
+            System.out.println(b.getId());
+        }
+        List<TableData> tableData=new ArrayList<>();
+        for (MyShenBaoModel c:list) {
+            tableData.add(new TableData(c,mapper.getRuanJianZhuZuoDetail(c.getId())));
+        }
+        return tableData;
     }
 }

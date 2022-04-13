@@ -1,12 +1,15 @@
 package com.example.graduate_sever.Dao;
 
 import com.example.graduate_sever.common.DTO.DTO;
+import com.example.graduate_sever.common.DTO.MyShenBaoDTO;
 import com.example.graduate_sever.common.Metails;
 import com.example.graduate_sever.common.People;
+import com.example.graduate_sever.common.TableData;
 import com.example.graduate_sever.controller.XueKeJingSai;
 import com.example.graduate_sever.entity.CompetitionEntity;
 import com.example.graduate_sever.entity.ParticipationEntity;
 import com.example.graduate_sever.model.Competition;
+import com.example.graduate_sever.model.MyShenBaoModel;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -33,4 +36,6 @@ public interface XueKeJingSaiMapper {
     List<Competition> waitingxuekejingsai(DTO dTO);
 
     int passXueKeJingSai(Integer id, Integer ispass);
+
+    List<MyShenBaoModel> getXueKeJingSaiDisData(MyShenBaoDTO dto);
 }

@@ -2,6 +2,7 @@ package com.example.graduate_sever.service.impl;
 
 import com.example.graduate_sever.Dao.ChanXueYanMapper;
 import com.example.graduate_sever.common.DTO.DTO;
+import com.example.graduate_sever.common.DTO.MyShenBaoDTO;
 import com.example.graduate_sever.common.JsonBean;
 import com.example.graduate_sever.common.Metails;
 import com.example.graduate_sever.common.ResVO;
@@ -9,6 +10,7 @@ import com.example.graduate_sever.common.TableData;
 import com.example.graduate_sever.entity.ChanXueYanEntity;
 import com.example.graduate_sever.entity.ParticipationEntity;
 import com.example.graduate_sever.model.ChanXueYan;
+import com.example.graduate_sever.model.MyShenBaoModel;
 import com.example.graduate_sever.service.ChanXueYanService;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
@@ -240,5 +242,23 @@ public class ChanXueYanimpl implements ChanXueYanService {
     @Override
     public int passChanXueYan(Integer id, Integer ispass) {
         return chanxueyanMapper.passChanXueYan(id,ispass);
+    }
+
+    @Override
+    public List<TableData> getDisData(MyShenBaoDTO dto) {
+        List<MyShenBaoModel> list=chanxueyanMapper.getChanXueYanDisData(dto);
+        for (MyShenBaoModel b:list) {
+            System.out.println(b.getId());
+        }
+        List<TableData> tableData=new ArrayList<>();
+        for (MyShenBaoModel c:list) {
+            tableData.add(new TableData(c,chanxueyanMapper.getChanXueYanDetail(c.getId())));
+        }
+        return tableData;
+    }
+
+    @Override
+    public long getPageTotal() {
+        return chanxueyanMapper.getPageTotal();
     }
 }

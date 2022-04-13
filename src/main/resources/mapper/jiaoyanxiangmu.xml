@@ -14,6 +14,13 @@
         <result column="shenbao" property="shenbao"/>
         <result column="metails" property="metails"/>
     </resultMap>
+
+    <resultMap id="JiaoYanMyShenBaoModel" type="com.example.graduate_sever.common.People">
+        <result column="name" property="name"/>
+        <result column="id" property="id"/>
+        <result column="partment" property="partment"/>
+        <result column="finishtime" property="finishtime"/>
+    </resultMap>
     <!--参与人映射-->
     <resultMap id="JiaoYan_people" type="com.example.graduate_sever.common.People">
         <result column="badeg" jdbcType="INTEGER" javaType="int" property="badge"/>
@@ -71,5 +78,10 @@
     <update id="passJiaoYan" parameterType="java.lang.Integer">
         update `jiaoyanxiangmu` set `status`=#{ispass} where id=#{id}
     </update>
+
+    <select id="getJiaoYanXiangDisData" resultMap="JiaoYanMyShenBaoModel">
+        <bind name="beginIndex" value="(pageIndex-1)*pageSize"></bind>
+        select c.name,c.id,c.partment,c.finishtime from `jiaoyanxiangmu` c,participation p where status=-1 and c.shenbao=p.badge and c.shenbao=#{badge} and p.type=1 limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+    </select>
 </mapper>
 

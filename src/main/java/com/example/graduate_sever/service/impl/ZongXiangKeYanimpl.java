@@ -2,12 +2,14 @@ package com.example.graduate_sever.service.impl;
 
 import com.example.graduate_sever.Dao.ZongXiangKeYanMapper;
 import com.example.graduate_sever.common.DTO.DTO;
+import com.example.graduate_sever.common.DTO.MyShenBaoDTO;
 import com.example.graduate_sever.common.JsonBean;
 import com.example.graduate_sever.common.Metails;
 import com.example.graduate_sever.common.ResVO;
 import com.example.graduate_sever.common.TableData;
 import com.example.graduate_sever.entity.ParticipationEntity;
 import com.example.graduate_sever.entity.ZongXiangKeYanXiangMuEntity;
+import com.example.graduate_sever.model.MyShenBaoModel;
 import com.example.graduate_sever.model.ZongXiangKeYanXiangMu;
 import com.example.graduate_sever.service.ZongXiangKeYanService;
 import org.apache.http.NameValuePair;
@@ -158,5 +160,18 @@ public class ZongXiangKeYanimpl implements ZongXiangKeYanService {
     @Override
     public int passZongXiangKeYan(Integer id, Integer ispass) {
         return mapper.passZongXiangKeYan(id,ispass);
+    }
+
+    @Override
+    public List<TableData> getDisData(MyShenBaoDTO dto) {
+        List<MyShenBaoModel> list=mapper.getZongXiangKeYanDisData(dto);
+        for (MyShenBaoModel b:list) {
+            System.out.println(b.getId());
+        }
+        List<TableData> tableData=new ArrayList<>();
+        for (MyShenBaoModel c:list) {
+            tableData.add(new TableData(c,mapper.getZongXiangKeYanDetail(c.getId())));
+        }
+        return tableData;
     }
 }

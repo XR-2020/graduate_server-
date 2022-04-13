@@ -2,6 +2,7 @@ package com.example.graduate_sever.service.impl;
 
 import com.example.graduate_sever.Dao.RongYuChengHaoMapper;
 import com.example.graduate_sever.common.DTO.DTO;
+import com.example.graduate_sever.common.DTO.MyShenBaoDTO;
 import com.example.graduate_sever.common.JsonBean;
 import com.example.graduate_sever.common.Metails;
 import com.example.graduate_sever.common.ResVO;
@@ -9,6 +10,7 @@ import com.example.graduate_sever.common.TableData;
 import com.example.graduate_sever.entity.HonorEntity;
 import com.example.graduate_sever.entity.ParticipationEntity;
 import com.example.graduate_sever.model.Honor;
+import com.example.graduate_sever.model.MyShenBaoModel;
 import com.example.graduate_sever.service.RongYuChengHaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -92,6 +94,19 @@ public class RongYuChengHaoimpl implements RongYuChengHaoService {
     @Override
     public int passRongYuChengHao(Integer id, Integer ispass) {
         return mapper.passRongYuChengHao(id,ispass);
+    }
+
+    @Override
+    public List<TableData> getDisData(MyShenBaoDTO dto) {
+        List<MyShenBaoModel> list=mapper.getRongYuChengHaoDisData(dto);
+        for (MyShenBaoModel b:list) {
+            System.out.println(b.getId());
+        }
+        List<TableData> tableData=new ArrayList<>();
+        for (MyShenBaoModel c:list) {
+            tableData.add(new TableData(c,mapper.getRongYuDetail(c.getId())));
+        }
+        return tableData;
     }
 
 //    @Override

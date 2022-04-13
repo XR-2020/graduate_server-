@@ -2,12 +2,14 @@ package com.example.graduate_sever.service.impl;
 
 import com.example.graduate_sever.Dao.ZhuZuoMapper;
 import com.example.graduate_sever.common.DTO.DTO;
+import com.example.graduate_sever.common.DTO.MyShenBaoDTO;
 import com.example.graduate_sever.common.JsonBean;
 import com.example.graduate_sever.common.Metails;
 import com.example.graduate_sever.common.ResVO;
 import com.example.graduate_sever.common.TableData;
 import com.example.graduate_sever.entity.HeBingEntity;
 import com.example.graduate_sever.entity.ParticipationEntity;
+import com.example.graduate_sever.model.MyShenBaoModel;
 import com.example.graduate_sever.model.ZhuZuo;
 import com.example.graduate_sever.service.ZhuZuoService;
 import org.apache.http.NameValuePair;
@@ -159,5 +161,18 @@ public class ZhuZuoimpl implements ZhuZuoService {
     @Override
     public int passZhuZuo(Integer id, Integer ispass) {
         return mapper.passZhuZuo(id,ispass);
+    }
+
+    @Override
+    public List<TableData> getDisData(MyShenBaoDTO dto) {
+        List<MyShenBaoModel> list=mapper.getZhuZuoDisData(dto);
+        for (MyShenBaoModel b:list) {
+            System.out.println(b.getId());
+        }
+        List<TableData> tableData=new ArrayList<>();
+        for (MyShenBaoModel c:list) {
+            tableData.add(new TableData(c,mapper.getZhuZuoDetail(c.getId())));
+        }
+        return tableData;
     }
 }
