@@ -38,5 +38,5 @@ public interface ChanXueYanMapper {
 
     List<MyShenBaoModel> getChanXueYanDisData(MyShenBaoDTO dto);
 
-    long getPageTotal();
+    long getPageTotal(Integer badge,String tablename,Integer type);
 }

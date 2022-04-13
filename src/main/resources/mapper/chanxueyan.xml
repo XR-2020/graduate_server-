@@ -14,7 +14,7 @@
         <result column="shenbao" property="shenbao"/>
         <result column="metails" property="metails"/>
     </resultMap>
-    <resultMap id="ChanXueYanMyShenBaoModel" type="com.example.graduate_sever.common.People">
+    <resultMap id="ChanXueYanMyShenBaoModel" type="com.example.graduate_sever.common.DTO.MyShenBaoDTO">
         <result column="name" property="name"/>
         <result column="id" property="id"/>
         <result column="partment" property="partment"/>
@@ -100,6 +100,6 @@
         select c.name,c.id,c.partment,c.finishtime from `chanxueyan` c,participation p where status=-1 and c.shenbao=p.badge and c.shenbao=#{badge} and p.type=1 limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
     </select>
     <select id="getPageTotal" resultMap="ChanXueYan_count">
-        select count(*) from `chanxueyan` c,participation p where status=-1 and c.shenbao=p.badge and c.shenbao=#{badge} and p.type=1</select>
+        select count(*) from ${tablename} c,participation p where status=-1 and c.shenbao=p.badge and c.shenbao=#{badge} and p.type=#{type}</select>
 </mapper>
 

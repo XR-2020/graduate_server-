@@ -216,7 +216,7 @@ public class HeBing {
     @GetMapping("/getDisData")
     public MyShenBaoRes getDisData(MyShenBaoDTO dto){
         List<List<TableData>> list=new ArrayList<>();
-        long pageTotal=chanXueYanService.getPageTotal();
+        long pageTotal=chanXueYanService.getPageTotal(dto.getBadge());
         list.add(chanXueYanService.getDisData(dto));
         list.add(hengXiangKeYanService.getDisData(dto));
         list.add(jiaoYuGuiHuaService.getDisData(dto));
@@ -231,6 +231,7 @@ public class HeBing {
         list.add(zhuanLiService.getDisData(dto));
         list.add(zongXiangKeYanService.getDisData(dto));
         list.add(zhuZuoService.getDisData(dto));
+       // System.out.println(pageTotal);
         return new MyShenBaoRes(list,pageTotal);
     }
 

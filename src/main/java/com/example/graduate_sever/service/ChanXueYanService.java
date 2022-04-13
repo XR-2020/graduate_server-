@@ -34,5 +34,5 @@ public interface  ChanXueYanService {
 
     List<TableData> getDisData(MyShenBaoDTO dto);
 
-    long getPageTotal();
+    long getPageTotal(Integer badge);
 }

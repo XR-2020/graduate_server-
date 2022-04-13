@@ -1,12 +1,9 @@
 package com.example.graduate_sever.service.impl;
 
 import com.example.graduate_sever.Dao.ChanXueYanMapper;
+import com.example.graduate_sever.common.*;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.DTO.MyShenBaoDTO;
-import com.example.graduate_sever.common.JsonBean;
-import com.example.graduate_sever.common.Metails;
-import com.example.graduate_sever.common.ResVO;
-import com.example.graduate_sever.common.TableData;
 import com.example.graduate_sever.entity.ChanXueYanEntity;
 import com.example.graduate_sever.entity.ParticipationEntity;
 import com.example.graduate_sever.model.ChanXueYan;
@@ -26,9 +23,7 @@ import org.apache.http.NameValuePair;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Service("ChanXueYanService")
 public class ChanXueYanimpl implements ChanXueYanService {
@@ -258,7 +253,26 @@ public class ChanXueYanimpl implements ChanXueYanService {
     }
 
     @Override
-    public long getPageTotal() {
-        return chanxueyanMapper.getPageTotal();
+    public long getPageTotal(Integer badge) {
+        int pageTotal=0;
+        List<GetPageTotal> list=new ArrayList<>();
+        list.add(new GetPageTotal("chanxueyan",1));
+        list.add(new GetPageTotal("jiaoyanxiangmu",2));
+        list.add(new GetPageTotal("jiaoyanlunwen",3));
+        list.add(new GetPageTotal("pingguzhongxinxiangguan",4));
+        list.add(new GetPageTotal("jiaoyuguihuaxiangmu",5));
+        list.add(new GetPageTotal("zhuanli",6));
+        list.add(new GetPageTotal("hengxiangkeyanxiangmu",7));
+        list.add(new GetPageTotal("zongxiangkeyanxiangmu",8));
+        list.add(new GetPageTotal("zhuzuo",9));
+        list.add(new GetPageTotal("keyanlunwen",10));
+        list.add(new GetPageTotal("ruanjianzhuzuoquan",11));
+        list.add(new GetPageTotal("keyanxiangmujiexiang",12));
+        list.add(new GetPageTotal("competition",13));
+        list.add(new GetPageTotal("honor",14));
+        for (GetPageTotal g:list) {
+            pageTotal+=chanxueyanMapper.getPageTotal(badge,g.getTablename(),g.getType());
+        }
+        return pageTotal;
     }
 }
