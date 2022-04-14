@@ -1,12 +1,11 @@
 package com.example.graduate_sever.controller;
 
 
+import com.example.graduate_sever.common.MyDaiShenBaoRes;
 import com.example.graduate_sever.common.*;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.DTO.MyShenBaoDTO;
-import com.example.graduate_sever.common.UO.ChanXueYanUO;
 import com.example.graduate_sever.common.UO.HeBingUO;
-import com.example.graduate_sever.entity.ChanXueYanEntity;
 import com.example.graduate_sever.entity.HeBingEntity;
 import com.example.graduate_sever.service.*;
 import org.apache.commons.io.FileUtils;
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -214,26 +212,27 @@ public class HeBing {
     }
 
     @GetMapping("/getDisData")
-    public MyShenBaoRes getDisData(MyShenBaoDTO dto){
-        List<List<TableData>> list=new ArrayList<>();
+    public MyDaiShenBaoRes getDisData(MyShenBaoDTO dto){
+        List<DaiShenHeTableData> list=chanXueYanService.getDisData(dto);
         long pageTotal=chanXueYanService.getPageTotal(dto.getBadge());
-        list.add(chanXueYanService.getDisData(dto));
-        list.add(hengXiangKeYanService.getDisData(dto));
-        list.add(jiaoYuGuiHuaService.getDisData(dto));
-        list.add(jiaoYanXiangMuService.getDisData(dto));
-        list.add(jiaoYanLunWenMuService.getDisData(dto));
-        list.add(keYanXiangMuJieXiangService.getDisData(dto));
-        list.add(keYanLunWenService.getDisData(dto));
-        list.add(pingGuZhongXinService.getDisData(dto));
-        list.add(xueKeJingSaiService.getDisData(dto));
-        list.add(rongYuChengHaoService.getDisData(dto));
-        list.add(ruanJianZhuZuoService.getDisData(dto));
-        list.add(zhuanLiService.getDisData(dto));
-        list.add(zongXiangKeYanService.getDisData(dto));
-        list.add(zhuZuoService.getDisData(dto));
-       // System.out.println(pageTotal);
-        return new MyShenBaoRes(list,pageTotal);
+        return new MyDaiShenBaoRes(list,pageTotal);
     }
 
+    @GetMapping("/getDaiShenHeData")
+    public MyDaiShenBaoRes getDaiShenHeData(MyShenBaoDTO dto){
+        List<DaiShenHeTableData> list=chanXueYanService.getDaiShenHeData(dto);
+        long pageTotal=chanXueYanService.getDaiShenHePageTotal(dto.getBadge());
+        return new MyDaiShenBaoRes(list,pageTotal);
+    }
+    @GetMapping("/getHadPassData")
+    public MyDaiShenBaoRes getHadPassData(MyShenBaoDTO dto){
+        List<DaiShenHeTableData> list=chanXueYanService.getHadPassData(dto);
+        long pageTotal=chanXueYanService.getHadPassPageTotal(dto.getBadge());
+        return new MyDaiShenBaoRes(list,pageTotal);
+    }
+    @RequestMapping(value = "/deleteMyShenBao", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public int deleteMyShenBao(Integer id,String tablename){
+        return chanXueYanService.deleteMyShenBao(id,tablename);
+    }
 
 }

@@ -1,11 +1,8 @@
 package com.example.graduate_sever.service;
 
+import com.example.graduate_sever.common.*;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.DTO.MyShenBaoDTO;
-import com.example.graduate_sever.common.JsonBean;
-import com.example.graduate_sever.common.Metails;
-import com.example.graduate_sever.common.ResVO;
-import com.example.graduate_sever.common.TableData;
 import com.example.graduate_sever.entity.ChanXueYanEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -32,7 +29,13 @@ public interface  ChanXueYanService {
 
     int passChanXueYan(Integer id, Integer ispass);
 
-    List<TableData> getDisData(MyShenBaoDTO dto);
+    List<DaiShenHeTableData>getDisData(MyShenBaoDTO dto);
+    List<DaiShenHeTableData>getHadPassData(MyShenBaoDTO dto);
+    List<DaiShenHeTableData>getDaiShenHeData(MyShenBaoDTO dto);
 
     long getPageTotal(Integer badge);
+    long getHadPassPageTotal(Integer badge);
+    long getDaiShenHePageTotal(Integer badge);
+
+    int deleteMyShenBao(Integer id, String tablename);
 }

@@ -34,19 +34,6 @@ public class ChanXueYanimpl implements ChanXueYanService {
         List<List<Object>>data=chanxueyanMapper.getAll(chanXueYanDTO);
         List<Object> list=data.get(0);
         long total= (long)data.get(1).get(0);
-//        System.out.println(total);
-//        // 将文件保存在服务器目录中
-//        // 新生成的文件名称
-//        String uuid = UUID.randomUUID().toString();
-//        String filepath="E:\\graduate_sever\\metails\\"+"test.zip";
-//        // 得到新的文件File对象
-//        File targetFile = new File(filepath);
-//        // 开始复制文件
-//        try {
-//            FileUtils.writeByteArrayToFile(targetFile,chanxueyanMapper.metails().getMetails());
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
         return new ResVO(list,total);
     }
 
@@ -240,15 +227,39 @@ public class ChanXueYanimpl implements ChanXueYanService {
     }
 
     @Override
-    public List<TableData> getDisData(MyShenBaoDTO dto) {
-        List<MyShenBaoModel> list=chanxueyanMapper.getChanXueYanDisData(dto);
-        for (MyShenBaoModel b:list) {
-            System.out.println(b.getId());
+    public List<DaiShenHeTableData> getDisData(MyShenBaoDTO dto) {
+        Integer badge=dto.getBadge();
+        Integer pageIndex=dto.getPageIndex();
+        Integer pageSize=dto.getPageSize();
+        List<GetPageTotal> paramslist=new ArrayList<>();
+        paramslist.add(new GetPageTotal("chanxueyan",1));
+        paramslist.add(new GetPageTotal("jiaoyanxiangmu",2));
+        paramslist.add(new GetPageTotal("jiaoyanlunwen",3));
+        paramslist.add(new GetPageTotal("pingguzhongxinxiangguan",4));
+        paramslist.add(new GetPageTotal("jiaoyuguihuaxiangmu",5));
+        paramslist.add(new GetPageTotal("zhuanli",6));
+        paramslist.add(new GetPageTotal("hengxiangkeyanxiangmu",7));
+        paramslist.add(new GetPageTotal("zongxiangkeyanxiangmu",8));
+        paramslist.add(new GetPageTotal("zhuzuo",9));
+        paramslist.add(new GetPageTotal("keyanlunwen",10));
+        paramslist.add(new GetPageTotal("ruanjianzhuzuoquan",11));
+        paramslist.add(new GetPageTotal("keyanxiangmujiexiang",12));
+        paramslist.add(new GetPageTotal("competition",13));
+        paramslist.add(new GetPageTotal("honor",14));
+        List<List<MyShenBaoModel>> list=new ArrayList<>();
+        List<MyShenBaoModel> myShenBaoModelList=new ArrayList<>();
+        List<DaiShenHeTableData> tableData=new ArrayList<>();
+        for (GetPageTotal g:paramslist) {
+            myShenBaoModelList=chanxueyanMapper.getDisData(g.getTablename(),badge,g.getType(),pageIndex,pageSize);
+            for (MyShenBaoModel m:myShenBaoModelList) {
+                tableData.add(new DaiShenHeTableData(m,chanxueyanMapper.getDetail(m.getId(),g.getType()),g.getTablename()));
+            }
         }
-        List<TableData> tableData=new ArrayList<>();
-        for (MyShenBaoModel c:list) {
-            tableData.add(new TableData(c,chanxueyanMapper.getChanXueYanDetail(c.getId())));
-        }
+//        System.out.println("*********************************");
+//        for (TableData t:tableData) {
+//            System.out.println(t.toString());
+//        }
+//        System.out.println("*********************************");
         return tableData;
     }
 
@@ -272,6 +283,185 @@ public class ChanXueYanimpl implements ChanXueYanService {
         list.add(new GetPageTotal("honor",14));
         for (GetPageTotal g:list) {
             pageTotal+=chanxueyanMapper.getPageTotal(badge,g.getTablename(),g.getType());
+        }
+        return pageTotal;
+    }
+
+    @Override
+    public List<DaiShenHeTableData> getDaiShenHeData(MyShenBaoDTO dto) {
+        Integer badge=dto.getBadge();
+        Integer pageIndex=dto.getPageIndex();
+        Integer pageSize=dto.getPageSize();
+        List<GetPageTotal> paramslist=new ArrayList<>();
+        paramslist.add(new GetPageTotal("chanxueyan",1));
+        paramslist.add(new GetPageTotal("jiaoyanxiangmu",2));
+        paramslist.add(new GetPageTotal("jiaoyanlunwen",3));
+        paramslist.add(new GetPageTotal("pingguzhongxinxiangguan",4));
+        paramslist.add(new GetPageTotal("jiaoyuguihuaxiangmu",5));
+        paramslist.add(new GetPageTotal("zhuanli",6));
+        paramslist.add(new GetPageTotal("hengxiangkeyanxiangmu",7));
+        paramslist.add(new GetPageTotal("zongxiangkeyanxiangmu",8));
+        paramslist.add(new GetPageTotal("zhuzuo",9));
+        paramslist.add(new GetPageTotal("keyanlunwen",10));
+        paramslist.add(new GetPageTotal("ruanjianzhuzuoquan",11));
+        paramslist.add(new GetPageTotal("keyanxiangmujiexiang",12));
+        paramslist.add(new GetPageTotal("competition",13));
+        paramslist.add(new GetPageTotal("honor",14));
+        List<List<MyShenBaoModel>> list=new ArrayList<>();
+        List<MyShenBaoModel> myShenBaoModelList=new ArrayList<>();
+        List<DaiShenHeTableData> tableData=new ArrayList<>();
+        for (GetPageTotal g:paramslist) {
+            myShenBaoModelList=chanxueyanMapper.getDaiShenHeData(g.getTablename(),badge,g.getType(),pageIndex,pageSize);
+            for (MyShenBaoModel m:myShenBaoModelList) {
+                tableData.add(new DaiShenHeTableData(m,chanxueyanMapper.getDetail(m.getId(),g.getType()),g.getTablename()));
+            }
+        }
+        return tableData;
+    }
+
+    @Override
+    public long getDaiShenHePageTotal(Integer badge) {
+        int pageTotal=0;
+        List<GetPageTotal> list=new ArrayList<>();
+        list.add(new GetPageTotal("chanxueyan",1));
+        list.add(new GetPageTotal("jiaoyanxiangmu",2));
+        list.add(new GetPageTotal("jiaoyanlunwen",3));
+        list.add(new GetPageTotal("pingguzhongxinxiangguan",4));
+        list.add(new GetPageTotal("jiaoyuguihuaxiangmu",5));
+        list.add(new GetPageTotal("zhuanli",6));
+        list.add(new GetPageTotal("hengxiangkeyanxiangmu",7));
+        list.add(new GetPageTotal("zongxiangkeyanxiangmu",8));
+        list.add(new GetPageTotal("zhuzuo",9));
+        list.add(new GetPageTotal("keyanlunwen",10));
+        list.add(new GetPageTotal("ruanjianzhuzuoquan",11));
+        list.add(new GetPageTotal("keyanxiangmujiexiang",12));
+        list.add(new GetPageTotal("competition",13));
+        list.add(new GetPageTotal("honor",14));
+        for (GetPageTotal g:list) {
+            pageTotal+=chanxueyanMapper.getDaiShenHePageTotal(badge,g.getTablename(),g.getType());
+        }
+        return pageTotal;
+    }
+
+    @Override
+    public int deleteMyShenBao(Integer id, String tablename) {
+        int ref=chanxueyanMapper.deleteMyShenBao(id,tablename);
+        Integer type=0;
+        switch (tablename){
+            case "chanxueyan":{
+                type=1;
+                break;
+            }
+            case "jiaoyanxiangmu":{
+                type=2;
+                break;
+            }
+            case "jiaoyanlunwen":{
+                type=3;
+                break;
+            }
+            case "pingguzhongxinxiangguan":{
+                type=4;
+                break;
+            }
+            case "jiaoyuguihuaxiangmu":{
+                type=5;
+                break;
+            }
+            case "zhuanli":{
+                type=6;
+                break;
+            }
+            case "hengxiangkeyanxiangmu":{
+                type=7;
+                break;
+            }
+            case "zongxiangkeyanxiangmu":{
+                type=8;
+                break;
+            }
+            case "zhuzuo":{
+                type=9;
+                break;
+            }
+            case "keyanlunwen":{
+                type=10;
+                break;
+            }
+            case "ruanjianzhuzuoquan":{
+                type=11;
+                break;
+            }
+            case "keyanxiangmujiexiang":{
+                type=12;
+                break;
+            }
+            case "competition":{
+                type=13;
+                break;
+            }
+            case "honor":{
+                type=14;
+                break;
+            }
+        }
+        if(ref==1){
+                chanxueyanMapper.deleteDaiShenHePartipation(id,type);
+        }
+        return ref;
+    }
+
+    @Override
+    public List<DaiShenHeTableData> getHadPassData(MyShenBaoDTO dto) {
+        Integer badge=dto.getBadge();
+        Integer pageIndex=dto.getPageIndex();
+        Integer pageSize=dto.getPageSize();
+        List<GetPageTotal> paramslist=new ArrayList<>();
+        paramslist.add(new GetPageTotal("chanxueyan",1));
+        paramslist.add(new GetPageTotal("jiaoyanxiangmu",2));
+        paramslist.add(new GetPageTotal("jiaoyanlunwen",3));
+        paramslist.add(new GetPageTotal("pingguzhongxinxiangguan",4));
+        paramslist.add(new GetPageTotal("jiaoyuguihuaxiangmu",5));
+        paramslist.add(new GetPageTotal("zhuanli",6));
+        paramslist.add(new GetPageTotal("hengxiangkeyanxiangmu",7));
+        paramslist.add(new GetPageTotal("zongxiangkeyanxiangmu",8));
+        paramslist.add(new GetPageTotal("zhuzuo",9));
+        paramslist.add(new GetPageTotal("keyanlunwen",10));
+        paramslist.add(new GetPageTotal("ruanjianzhuzuoquan",11));
+        paramslist.add(new GetPageTotal("keyanxiangmujiexiang",12));
+        paramslist.add(new GetPageTotal("competition",13));
+        paramslist.add(new GetPageTotal("honor",14));
+        List<MyShenBaoModel> myShenBaoModelList=new ArrayList<>();
+        List<DaiShenHeTableData> tableData=new ArrayList<>();
+        for (GetPageTotal g:paramslist) {
+            myShenBaoModelList=chanxueyanMapper.getHadPassData(g.getTablename(),badge,g.getType(),pageIndex,pageSize);
+            for (MyShenBaoModel m:myShenBaoModelList) {
+                tableData.add(new DaiShenHeTableData(m,chanxueyanMapper.getDetail(m.getId(),g.getType()),g.getTablename()));
+            }
+        }
+        return tableData;
+    }
+
+    @Override
+    public long getHadPassPageTotal(Integer badge) {
+        int pageTotal=0;
+        List<GetPageTotal> list=new ArrayList<>();
+        list.add(new GetPageTotal("chanxueyan",1));
+        list.add(new GetPageTotal("jiaoyanxiangmu",2));
+        list.add(new GetPageTotal("jiaoyanlunwen",3));
+        list.add(new GetPageTotal("pingguzhongxinxiangguan",4));
+        list.add(new GetPageTotal("jiaoyuguihuaxiangmu",5));
+        list.add(new GetPageTotal("zhuanli",6));
+        list.add(new GetPageTotal("hengxiangkeyanxiangmu",7));
+        list.add(new GetPageTotal("zongxiangkeyanxiangmu",8));
+        list.add(new GetPageTotal("zhuzuo",9));
+        list.add(new GetPageTotal("keyanlunwen",10));
+        list.add(new GetPageTotal("ruanjianzhuzuoquan",11));
+        list.add(new GetPageTotal("keyanxiangmujiexiang",12));
+        list.add(new GetPageTotal("competition",13));
+        list.add(new GetPageTotal("honor",14));
+        for (GetPageTotal g:list) {
+            pageTotal+=chanxueyanMapper.getHadPassPageTotal(badge,g.getTablename(),g.getType());
         }
         return pageTotal;
     }

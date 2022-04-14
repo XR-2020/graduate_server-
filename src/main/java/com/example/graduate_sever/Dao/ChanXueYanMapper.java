@@ -35,8 +35,15 @@ public interface ChanXueYanMapper {
     List<ChanXueYan> waitingChanXueYan(DTO dTO);
     int passChanXueYan(Integer id, Integer ispass);
     long waitingPageTotal(String type);
-
-    List<MyShenBaoModel> getChanXueYanDisData(MyShenBaoDTO dto);
-
+    List<People> getDetail(Integer id,Integer type);
+    List<MyShenBaoModel> getDisData(String tablename,Integer badge,Integer type,Integer pageIndex,Integer pageSize);
     long getPageTotal(Integer badge,String tablename,Integer type);
+    List<MyShenBaoModel> getDaiShenHeData(String tablename,Integer badge,Integer type,Integer pageIndex,Integer pageSize);
+    long getDaiShenHePageTotal(Integer badge,String tablename,Integer type);
+    List<MyShenBaoModel> getHadPassData(String tablename,Integer badge,Integer type,Integer pageIndex,Integer pageSize);
+    long getHadPassPageTotal(Integer badge,String tablename,Integer type);
+
+    int deleteMyShenBao(Integer id, String tablename);
+
+    int deleteDaiShenHePartipation(Integer id, Integer type);
 }
