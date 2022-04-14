@@ -1,12 +1,9 @@
 package com.example.graduate_sever.service.impl;
 
 import com.example.graduate_sever.Dao.JiaoYanLunWenMapper;
+import com.example.graduate_sever.common.*;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.DTO.MyShenBaoDTO;
-import com.example.graduate_sever.common.JsonBean;
-import com.example.graduate_sever.common.Metails;
-import com.example.graduate_sever.common.ResVO;
-import com.example.graduate_sever.common.TableData;
 import com.example.graduate_sever.entity.JiaoYanLunWenEntity;
 import com.example.graduate_sever.entity.ParticipationEntity;
 import com.example.graduate_sever.model.JiaoYanLunWen;
@@ -158,5 +155,15 @@ public class JiaoYanLunWenimpl implements JiaoYanLunWenMuService {
             tableData.add(new TableData(c,jiaoYanLunWenMapper.getJiaoYanLunWenDetail(c.getId())));
         }
         return tableData;
+    }
+
+    @Override
+    public List<Integer> getJiaoYanLunWenDetailBadge(Integer id) {
+        List<People> people=jiaoYanLunWenMapper.getJiaoYanLunWenDetail(id);
+        List<Integer> badges=new ArrayList<>();
+        for (People p:people) {
+            badges.add(p.getBadge());
+        }
+        return badges;
     }
 }

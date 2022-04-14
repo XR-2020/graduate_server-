@@ -27,4 +27,6 @@ public interface RuanJianZhuZuoService {
     int passRuanJianZhuZuo(Integer id, Integer ispass);
 
      List<TableData> getDisData(MyShenBaoDTO dto);
+
+    List<Integer> getRuanJianZhuZuoDetailBadge(Integer id);
 }

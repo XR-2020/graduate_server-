@@ -42,6 +42,11 @@ public class JiaoYanXiangMu {
         System.out.println(ids);
 
         return jiaoYanXiangMuService.getJiaoYanDetial(ids);}
+    @GetMapping("/getJiaoYanDetialBadge")
+    public JsonBean getJiaoYanDetialBadge(Integer ids){
+        System.out.println(ids);
+
+        return new JsonBean(200,"",jiaoYanXiangMuService.getJiaoYanDetialBadge(ids));}
 
     @RequestMapping(value = "/updateJiaoYan", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public JsonBean updateJiaoYan(@RequestBody JiaoYanXiangMuUO uo) throws IOException {

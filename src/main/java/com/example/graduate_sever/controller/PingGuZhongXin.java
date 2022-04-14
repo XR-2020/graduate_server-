@@ -44,6 +44,12 @@ public class PingGuZhongXin {
 
         return pingGuZhongXinService.getPingGuZhongXinDetial(id);}
 
+    @GetMapping("/getPingGuZhongXinDetailBadge")
+    public JsonBean getPingGuZhongXinDetailBadge(Integer id){
+        System.out.println(id);
+
+        return new JsonBean(200,"",pingGuZhongXinService.getPingGuZhongXinDetailBadge(id));}
+
     @RequestMapping(value = "/updatePingGuZhongXin", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public JsonBean updatePingGuZhongXin(@RequestBody PingGuZhongXinXiangGuanUO uo) throws IOException {
         Integer[] people=uo.getPeople();

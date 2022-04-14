@@ -24,4 +24,6 @@ public interface XueKeJingSaiService {
     int passXueKeJingSai(Integer id, Integer ispass);
 
      List<TableData> getDisData(MyShenBaoDTO dto);
+
+    List<Integer> getJingSaiDetailBadge(Integer id);
 }

@@ -1,12 +1,9 @@
 package com.example.graduate_sever.service.impl;
 
 import com.example.graduate_sever.Dao.PingGuZhongXinMapper;
+import com.example.graduate_sever.common.*;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.DTO.MyShenBaoDTO;
-import com.example.graduate_sever.common.JsonBean;
-import com.example.graduate_sever.common.Metails;
-import com.example.graduate_sever.common.ResVO;
-import com.example.graduate_sever.common.TableData;
 import com.example.graduate_sever.entity.ParticipationEntity;
 import com.example.graduate_sever.entity.PingGuZhongXinXiangGuanEntity;
 import com.example.graduate_sever.model.MyShenBaoModel;
@@ -160,5 +157,15 @@ public class PingGuZhongXinimpl implements PingGuZhongXinService {
             tableData.add(new TableData(c,mapper.getPingGuZhongXinDetail(c.getId())));
         }
         return tableData;
+    }
+
+    @Override
+    public List<Integer> getPingGuZhongXinDetailBadge(Integer id) {
+        List<People> people=mapper.getPingGuZhongXinDetail(id);
+        List<Integer> badges=new ArrayList<>();
+        for (People p:people) {
+            badges.add(p.getBadge());
+        }
+        return badges;
     }
 }

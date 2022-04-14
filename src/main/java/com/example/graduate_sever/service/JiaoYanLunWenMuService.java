@@ -28,4 +28,6 @@ public interface JiaoYanLunWenMuService {
     int passJiaoYanLunWen(Integer id, Integer ispass);
 
      List<TableData> getDisData(MyShenBaoDTO dto);
+
+    List<Integer> getJiaoYanLunWenDetailBadge(Integer id);
 }

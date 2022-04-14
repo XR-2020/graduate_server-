@@ -1,12 +1,9 @@
 package com.example.graduate_sever.service.impl;
 
 import com.example.graduate_sever.Dao.ZhuanLiMapper;
+import com.example.graduate_sever.common.*;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.DTO.MyShenBaoDTO;
-import com.example.graduate_sever.common.JsonBean;
-import com.example.graduate_sever.common.Metails;
-import com.example.graduate_sever.common.ResVO;
-import com.example.graduate_sever.common.TableData;
 import com.example.graduate_sever.entity.HeBingEntity;
 import com.example.graduate_sever.entity.ParticipationEntity;
 import com.example.graduate_sever.model.MyShenBaoModel;
@@ -168,5 +165,15 @@ public class ZhuanLiimpl implements ZhuanLiService {
             tableData.add(new TableData(c,mapper.getZhuanLiDetail(c.getId())));
         }
         return tableData;
+    }
+
+    @Override
+    public List<Integer> getZhuanLiDetailBadge(Integer id) {
+        List<People> people=mapper.getZhuanLiDetail(id);
+        List<Integer> badges=new ArrayList<>();
+        for (People p:people) {
+            badges.add(p.getBadge());
+        }
+        return badges;
     }
 }

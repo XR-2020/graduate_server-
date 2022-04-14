@@ -36,6 +36,12 @@ public class RuanJianZhuZuo {
 
         return service.getRuanJianZhuZuoDetial(id);}
 
+    @GetMapping("/getRuanJianZhuZuoDetailBadge")
+    public JsonBean getRuanJianZhuZuoDetailBadge(Integer id){
+        System.out.println(id);
+
+        return new JsonBean(200,"",service.getRuanJianZhuZuoDetailBadge(id));}
+
     @GetMapping("/getRuanJianZhuZuoMetails")
     public byte[] getRuanJianZhuZuoMetails(Integer id){
         return service.getRuanJianZhuZuoMetails(id).getMetails();

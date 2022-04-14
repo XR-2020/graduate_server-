@@ -27,4 +27,6 @@ public interface KeYanXiangMuJieXiangService {
     int passKeYanXiangMuJieXiang(Integer id, Integer ispass);
 
      List<TableData> getDisData(MyShenBaoDTO dto);
+
+    List<Integer> getKeYanXiangMuJieXiangDetailBadge(Integer id);
 }

@@ -27,4 +27,6 @@ public interface PingGuZhongXinService {
     int passPingGuZhongXin(Integer id, Integer ispass);
 
      List<TableData> getDisData(MyShenBaoDTO dto);
+
+    List<Integer> getPingGuZhongXinDetailBadge(Integer id);
 }

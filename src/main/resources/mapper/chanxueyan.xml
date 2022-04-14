@@ -52,6 +52,7 @@
     <select id="getChanXueYanDetail" parameterType="java.lang.Integer" resultMap="ChanXueYan_people">
         select teacher.tea_name,teacher.badeg from  participation,teacher where participation.badge=teacher.badeg and participation.ach_id=#{id} and participation.type=1
     </select>
+
     <!--产学研成果全局模糊查询-->
     <select id="getSearchChanXueYan" resultMap="ChanXueYan,ChanXueYan_count">
         <bind name="beginIndex" value="(pageIndex-1)*pageSize"></bind>

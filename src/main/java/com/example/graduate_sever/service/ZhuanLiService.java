@@ -27,4 +27,6 @@ public interface ZhuanLiService {
     int passZhuanLi(Integer id, Integer ispass);
 
      List<TableData> getDisData(MyShenBaoDTO dto);
+
+    List<Integer> getZhuanLiDetailBadge(Integer id);
 }

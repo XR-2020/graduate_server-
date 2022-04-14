@@ -38,4 +38,6 @@ public interface  ChanXueYanService {
     long getDaiShenHePageTotal(Integer badge);
 
     int deleteMyShenBao(Integer id, String tablename);
+
+    List<Integer> getChanXueYanDetailBadge(Integer id);
 }

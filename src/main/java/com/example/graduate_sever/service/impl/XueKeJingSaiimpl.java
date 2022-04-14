@@ -1,12 +1,9 @@
 package com.example.graduate_sever.service.impl;
 
 import com.example.graduate_sever.Dao.XueKeJingSaiMapper;
+import com.example.graduate_sever.common.*;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.DTO.MyShenBaoDTO;
-import com.example.graduate_sever.common.JsonBean;
-import com.example.graduate_sever.common.Metails;
-import com.example.graduate_sever.common.ResVO;
-import com.example.graduate_sever.common.TableData;
 import com.example.graduate_sever.entity.CompetitionEntity;
 import com.example.graduate_sever.entity.ParticipationEntity;
 import com.example.graduate_sever.model.Competition;
@@ -110,5 +107,15 @@ public class XueKeJingSaiimpl implements XueKeJingSaiService {
             tableData.add(new TableData(c,mapper.getJingSaiDetail(c.getId())));
         }
         return tableData;
+    }
+
+    @Override
+    public List<Integer> getJingSaiDetailBadge(Integer id) {
+        List<People> people=mapper.getJingSaiDetail(id);
+        List<Integer> badges=new ArrayList<>();
+        for (People p:people) {
+            badges.add(p.getBadge());
+        }
+        return badges;
     }
 }

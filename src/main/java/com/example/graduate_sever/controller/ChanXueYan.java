@@ -117,5 +117,7 @@ public class ChanXueYan {
         return chanXueYanService.passChanXueYan(id,ispass);
     }
 
-
+    @GetMapping("/getChanXueYanDetailBadge")
+    public JsonBean getChanXueYanDetailBadge(Integer id){
+        return new JsonBean(200,"",chanXueYanService.getChanXueYanDetailBadge(id));}
 }

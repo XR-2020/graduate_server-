@@ -46,6 +46,12 @@ public class XueKeJingSai {
 
         return service.getJingSaiDetial(id);}
 
+    @GetMapping("/getJingSaiDetailBadge")
+    public JsonBean getJingSaiDetailBadge(Integer id){
+        System.out.println(id);
+
+        return new JsonBean(200,"",service.getJingSaiDetailBadge(id));}
+
     @RequestMapping(value = "/updateCompetition", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public JsonBean updateCompetition(@RequestBody CompetitionUO uo) throws IOException {
         Integer[] people=uo.getPeople();

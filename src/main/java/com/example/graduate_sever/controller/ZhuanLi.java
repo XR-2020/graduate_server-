@@ -35,6 +35,12 @@ public class ZhuanLi {
         System.out.println(id);
 
         return service.getZhuanLiDetial(id);}
+
+    @GetMapping("/getZhuanLiDetailBadge")
+    public JsonBean getZhuanLiDetailBadge(Integer id){
+        System.out.println(id);
+
+        return new JsonBean(200,"",service.getZhuanLiDetailBadge(id));}
     @GetMapping("/getZhuanLiMetails")
     public byte[] getZhuanLiMetails(Integer id){
         return service.getZhuanLiMetails(id).getMetails();

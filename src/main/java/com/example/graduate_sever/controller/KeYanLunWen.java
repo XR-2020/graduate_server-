@@ -37,9 +37,14 @@ public class KeYanLunWen {
 
     @GetMapping("/getKeYanLunWenDetail")
     public JsonBean getKeYanLunWenDetail(Integer id) {
-        System.out.println(id);
 
         return service.getKeYanLunWenDetial(id);
+    }
+
+    @GetMapping("/getKeYanLunWenDetailBadge")
+    public JsonBean getKeYanLunWenDetailBadge(Integer id) {
+
+        return new JsonBean(200,"",service.getKeYanLunWenDetailBadge(id));
     }
 
     @GetMapping("/getKeYanLunWenMetails")

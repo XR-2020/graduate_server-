@@ -412,6 +412,16 @@ public class ChanXueYanimpl implements ChanXueYanService {
     }
 
     @Override
+    public List<Integer> getChanXueYanDetailBadge(Integer id) {
+        List<People> people=chanxueyanMapper.getChanXueYanDetail(id);
+        List<Integer> badges=new ArrayList<>();
+        for (People p:people) {
+            badges.add(p.getBadge());
+        }
+        return badges;
+    }
+
+    @Override
     public List<DaiShenHeTableData> getHadPassData(MyShenBaoDTO dto) {
         Integer badge=dto.getBadge();
         Integer pageIndex=dto.getPageIndex();

@@ -36,6 +36,12 @@ public class KeYanXiangMuJieXiang {
 
         return service.getKeYanXiangMuJieXiangDetial(id);}
 
+    @GetMapping("/getKeYanXiangMuJieXiangDetailBadge")
+    public JsonBean getKeYanXiangMuJieXiangDetailBadge(Integer id){
+        System.out.println(id);
+
+        return new JsonBean(200,"",service.getKeYanXiangMuJieXiangDetailBadge(id));}
+
     @GetMapping("/getKeYanXiangMuJieXiangMetails")
     public byte[] getKeYanXiangMuJieXiangMetails(Integer id){
         return service.getKeYanXiangMuJieXiangMetails(id).getMetails();

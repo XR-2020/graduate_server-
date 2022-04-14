@@ -1,12 +1,9 @@
 package com.example.graduate_sever.service.impl;
 
 import com.example.graduate_sever.Dao.JiaoYuGuiHuaMapper;
+import com.example.graduate_sever.common.*;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.DTO.MyShenBaoDTO;
-import com.example.graduate_sever.common.JsonBean;
-import com.example.graduate_sever.common.Metails;
-import com.example.graduate_sever.common.ResVO;
-import com.example.graduate_sever.common.TableData;
 import com.example.graduate_sever.entity.JiaoYuGuiHuaXiangMuEntity;
 import com.example.graduate_sever.entity.ParticipationEntity;
 import com.example.graduate_sever.model.JiaoYuGuiHuaXiangMu;
@@ -169,5 +166,15 @@ public class JiaoYuGuiHuaimpl implements JiaoYuGuiHuaService {
             tableData.add(new TableData(c,mapper.getJiaoYuGuiHuaDetail(c.getId())));
         }
         return tableData;
+    }
+
+    @Override
+    public List<Integer> getJiaoYuGuiHuaDetailBadge(Integer id) {
+        List<People> people=mapper.getJiaoYuGuiHuaDetail(id);
+        List<Integer> badges=new ArrayList<>();
+        for (People p:people) {
+            badges.add(p.getBadge());
+        }
+        return badges;
     }
 }

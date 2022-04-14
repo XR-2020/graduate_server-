@@ -36,6 +36,12 @@ public class ZhuZuo {
 
         return service.getZhuZuoDetial(id);}
 
+    @GetMapping("/getZhuZuoDetailBadge")
+    public JsonBean getZhuZuoDetailBadge(Integer id){
+        System.out.println(id);
+
+        return new JsonBean(200,"",service.getZhuZuoDetailBadge(id));}
+
     @GetMapping("/getZhuZuoMetails")
     public byte[] getZhuZuoMetails(Integer id){
         return service.getZhuZuoMetails(id).getMetails();

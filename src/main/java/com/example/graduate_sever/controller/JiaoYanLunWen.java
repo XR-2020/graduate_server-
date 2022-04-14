@@ -49,6 +49,11 @@ public class JiaoYanLunWen {
         System.out.println(id);
         return jiaoYanLunWenMuService.getJiaoYanLunWenDetial(id);
     }
+    @GetMapping("/getJiaoYanLunWenDetailBadge")
+    public JsonBean getJiaoYanLunWenDetailBadge(Integer id) {
+        System.out.println(id);
+        return new JsonBean(200,"",jiaoYanLunWenMuService.getJiaoYanLunWenDetailBadge(id));
+    }
 
     @RequestMapping(value = "/updateJiaoYanLunWen", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public JsonBean updateJiaoYanLunWen(@RequestBody JiaoYanLunWenUO uo) throws IOException {

@@ -27,4 +27,6 @@ public interface KeYanLunWenService {
     int passKeYanLunWen(Integer id, Integer ispass);
 
      List<TableData> getDisData(MyShenBaoDTO dto);
+
+    List<Integer> getKeYanLunWenDetailBadge(Integer id);
 }
