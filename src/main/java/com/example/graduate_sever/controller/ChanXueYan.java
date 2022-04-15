@@ -49,6 +49,7 @@ public class ChanXueYan {
     public JsonBean getChanXueYanDetail(Integer id){
         System.out.println(id);
         return chanXueYanService.getChanXueYanDetail(id);}
+
     @RequestMapping(value = "/insertChanXueYan", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public JsonBean insertChanXueYan(@RequestBody ChanXueYanUO uo) throws Exception {
         ChanXueYanEntity element=new ChanXueYanEntity();
@@ -83,6 +84,7 @@ public class ChanXueYan {
         System.out.println("***********"+bos.toByteArray().length+"**************");
         return  chanXueYanService.shenBaoChanXueYan(element,people);
     }
+
     @GetMapping("/getTeacherList")
     public List<Object> getTeacherList(){
 //        System.out.println(WebCookie.getCookie());
@@ -107,6 +109,7 @@ public class ChanXueYan {
                 FileUtils.writeByteArrayToFile(targetFile, file.getBytes());
         return filepath;
     }
+
     @GetMapping("/getChanXueYanMetails")
     public byte[] getChanXueYanMetails(Integer id){
         return chanXueYanService.getchanxueyanMetails(id).getMetails();
@@ -120,4 +123,39 @@ public class ChanXueYan {
     @GetMapping("/getChanXueYanDetailBadge")
     public JsonBean getChanXueYanDetailBadge(Integer id){
         return new JsonBean(200,"",chanXueYanService.getChanXueYanDetailBadge(id));}
+
+//    @RequestMapping(value = "/editChanXueYan", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+//    public JsonBean editChanXueYan(@RequestBody ChanXueYanUO uo) throws Exception {
+//        ChanXueYanEntity element=new ChanXueYanEntity();
+//        Integer[] people=uo.getPeople();
+//        Integer role=uo.getRole();
+//        element.setFinishtime(uo.getFinishtime());
+//        element.setName(uo.getName());
+//        element.setPartment(uo.getPartment());
+//        element.setLianghua(uo.getLianghua());
+//        element.setWenhao(uo.getWenhao());
+//        if (role!=4&&role!=1){
+//            element.setStatus(0);
+//        }else {
+//            element.setStatus(1);
+//        }
+//        element.setBadge(uo.getShenbao());
+//        //读取证明材料
+//        File file=new File(uo.getPath());
+//        ByteArrayOutputStream bos = new ByteArrayOutputStream((int) file.length());
+//        BufferedInputStream bin = null;
+//        try {
+//            bin = new BufferedInputStream(new FileInputStream(file));
+//            byte[] buffer = new byte[1024];
+//            while (bin.read(buffer) > 0) {
+//                bos.write(buffer);
+//            }
+//        } finally {
+//            bin.close();
+//            bos.close();
+//        }
+//        element.setMetails(bos.toByteArray());
+//        System.out.println("***********"+bos.toByteArray().length+"**************");
+//        return  chanXueYanService.shenBaoChanXueYan(element,people);
+//    }
 }
