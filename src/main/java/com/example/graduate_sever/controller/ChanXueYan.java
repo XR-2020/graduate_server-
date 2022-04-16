@@ -129,4 +129,8 @@ public class ChanXueYan {
     public JsonBean editChanXueYan(@RequestBody EditChanXueYanUO uo) throws Exception {
         return  new JsonBean(200,"",chanXueYanService.editChanXueYan(uo.getId(),uo.getName(),uo.getFinishtime(),uo.getPartment(),uo.getLianghua(),uo.getPeople(),uo.getWenhao()));
     }
+
+    @GetMapping("/selectProject")
+    public JsonBean selectProject(Integer id,String tablename){
+        return new JsonBean(200,"",chanXueYanService.selectProject(id,tablename));}
 }

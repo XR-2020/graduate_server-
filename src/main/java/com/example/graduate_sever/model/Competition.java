@@ -17,6 +17,15 @@ public class Competition implements Serializable {
     private Integer badge;
     private String shenbao;
     private byte[] metails;
+    private String partment;
+
+    public String getPartment() {
+        return partment;
+    }
+
+    public void setPartment(String partment) {
+        this.partment = partment;
+    }
 
     public Integer getId() {
         return id;

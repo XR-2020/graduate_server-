@@ -38,6 +38,10 @@
     <delete id="deleteOneKeYanXiangMuJieXiang">
         delete * from keyanxiangmujiexiang where keyanxiangmujiexiang.id=#{id}
     </delete>
+
+    <select id="selectOneKeYanXiangMu" resultMap="KeYanXiangMuJieXiang">
+        select * from `keyanxiangmujiexiang` where id=#{id}
+    </select>
     <!--查询指定教研项目成果人员信息-->
     <select id="getKeYanXiangMuJieXiangDetail" parameterType="java.lang.Integer" resultMap="KeYanXiangMuJieXiang_people">
         select teacher.tea_name,teacher.badeg from participation,teacher where participation.badge=teacher.badeg and participation.ach_id=#{id} and participation.type=12
@@ -53,7 +57,7 @@
         INSERT IGNORE INTO keyanxiangmujiexiang( `status`, `name`, `finishtime`, `partment`,`badge`) VALUES (#{status,jdbcType=INTEGER},#{name,jdbcType=VARCHAR},#{finishtime,jdbcType=VARCHAR},#{partment,jdbcType=VARCHAR},#{badge,jdbcType=INTEGER})
     </insert>
     <insert id="shenBaoKeYanXiangMuJieXiang" parameterType="com.example.graduate_sever.entity.HeBingEntity" useGeneratedKeys="true" keyProperty="id">
-        INSERT IGNORE INTO keyanxiangmujiexiang( `status`, `name`, `finishtime`, `partment`,`shenbao`,`metails`) VALUES (#{status,jdbcType=INTEGER},#{name,jdbcType=VARCHAR},#{finishtime,jdbcType=VARCHAR},#{partment,jdbcType=VARCHAR},#{badge,jdbcType=INTEGER})
+        INSERT IGNORE INTO keyanxiangmujiexiang( `status`, `name`, `finishtime`, `partment`,`shenbao`,`metails`) VALUES (#{status,jdbcType=INTEGER},#{name,jdbcType=VARCHAR},#{finishtime,jdbcType=VARCHAR},#{partment,jdbcType=VARCHAR},#{badge,jdbcType=INTEGER},#{metails,jdbcType=BINARY})
     </insert>
 
     <insert id="insertKeYanXiangMuJieXiangParticipation" parameterType="com.example.graduate_sever.entity.ParticipationEntity" useGeneratedKeys="true">

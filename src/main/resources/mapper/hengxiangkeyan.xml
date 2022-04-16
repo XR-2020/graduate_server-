@@ -54,7 +54,7 @@
     </insert>
 
     <insert id="shenBaoHengXiangKeYan" parameterType="com.example.graduate_sever.entity.HeBingEntity" useGeneratedKeys="true" keyProperty="id">
-        INSERT IGNORE  INTO hengxiangkeyanxiangmu( `status`, `name`, `finishtime`, `partment`,`shenbao`,`metails`) VALUES (#{status,jdbcType=INTEGER},#{name,jdbcType=VARCHAR},#{finishtime,jdbcType=VARCHAR},#{partment,jdbcType=VARCHAR},#{badge,jdbcType=INTEGER})
+        INSERT IGNORE  INTO hengxiangkeyanxiangmu( `status`, `name`, `finishtime`, `partment`,`shenbao`,`metails`) VALUES (#{status,jdbcType=INTEGER},#{name,jdbcType=VARCHAR},#{finishtime,jdbcType=VARCHAR},#{partment,jdbcType=VARCHAR},#{badge,jdbcType=INTEGER},#{metails,jdbcType=BINARY})
     </insert>
 
     <insert id="insertHengXiangKeYanParticipation" parameterType="com.example.graduate_sever.entity.ParticipationEntity" useGeneratedKeys="true">
@@ -71,7 +71,9 @@
         <bind name="beginIndex" value="(pageIndex-1)*pageSize"></bind>
         select * from `hengxiangkeyanxiangmu` where status=0 limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
     </select>
-
+    <select id="selectOneHengXiangKeYan" resultMap="HengXiangKeYan">
+        select * from `hengxiangkeyanxiangmu` where id=#{id}
+    </select>
     <update id="passHengXiangKeYan" parameterType="java.lang.Integer">
         update `hengxiangkeyanxiangmu` set `status`=#{ispass} where id=#{id}
     </update>

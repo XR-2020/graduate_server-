@@ -38,4 +38,6 @@ public interface KeYanLunWenMapper {
     int passKeYanLunWen(Integer id, Integer ispass);
 
     List<MyShenBaoModel> getKeYanLunWenDisData(MyShenBaoDTO dto);
+
+    KeYanLunWen selectOneKeYanLunWen(Integer id);
 }

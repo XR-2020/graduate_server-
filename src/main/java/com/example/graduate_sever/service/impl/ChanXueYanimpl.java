@@ -1,6 +1,6 @@
 package com.example.graduate_sever.service.impl;
 
-import com.example.graduate_sever.Dao.ChanXueYanMapper;
+import com.example.graduate_sever.Dao.*;
 import com.example.graduate_sever.common.*;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.DTO.MyShenBaoDTO;
@@ -29,6 +29,33 @@ import java.util.*;
 public class ChanXueYanimpl implements ChanXueYanService {
     @Autowired
     private ChanXueYanMapper chanxueyanMapper;
+    @Autowired
+    private HengXiangKeYanMapper hengXiangKeYanMapper;
+    @Autowired
+    private JiaoYanLunWenMapper jiaoYanLunWenMapper;
+    @Autowired
+    private JiaoYanXiangMuMapper jiaoYanXiangMuMapper;
+    @Autowired
+    private JiaoYuGuiHuaMapper jiaoYuGuiHuaMapper;
+    @Autowired
+    private KeYanLunWenMapper keYanLunWenMapper;
+    @Autowired
+    private KeYanXiangMuJieXiangMapper keYanXiangMuJieXiangMapper;
+    @Autowired
+    private PingGuZhongXinMapper pingGuZhongXinMapper;
+    @Autowired
+    private RongYuChengHaoMapper rongYuChengHaoMapper;
+    @Autowired
+    private RuanJianZhuZuoMapper ruanJianZhuZuoMapper;
+    @Autowired
+    private XueKeJingSaiMapper xueKeJingSaiMapper;
+    @Autowired
+    private ZhuanLiMapper zhuanLiMapper;
+    @Autowired
+    private ZhuZuoMapper zhuZuoMapper;
+    @Autowired
+    private ZongXiangKeYanMapper zongXiangKeYanMapper;
+
     @Override
     public ResVO selectAll(DTO chanXueYanDTO) {
         List<List<Object>>data=chanxueyanMapper.getAll(chanXueYanDTO);
@@ -96,6 +123,85 @@ public class ChanXueYanimpl implements ChanXueYanService {
             }
         }
         return ref;
+    }
+
+    @Override
+    public DaiShenHeEditTableData selectProject(Integer id, String tablename) {
+        Integer type=null;
+        DaiShenHeEditTableData tableData=null;
+        switch (tablename){
+            case "honor":{
+                type=14;
+                tableData=new DaiShenHeEditTableData(rongYuChengHaoMapper.selectHonor(id),chanxueyanMapper.getBadge(id,type));
+                break;
+            }
+            case "jiaoyanlunwen":{
+                type=3;
+                tableData=new DaiShenHeEditTableData(jiaoYanLunWenMapper.selectOneJiaoYanLunWen(id),chanxueyanMapper.getBadge(id,type));
+                break;
+            }
+            case "jiaoyanxiangmu":{
+                type=2;
+                tableData=new DaiShenHeEditTableData(jiaoYanXiangMuMapper.selectOneJiaoYanXiangMu(id),chanxueyanMapper.getBadge(id,type));
+                break;
+            }
+            case "jiaoyuguihuaxiangmu":{
+                type=5;
+                tableData=new DaiShenHeEditTableData(jiaoYuGuiHuaMapper.selectOneJiaoYuGuiHua(id),chanxueyanMapper.getBadge(id,type));
+                break;
+            }
+            case "keyanlunwen":{
+                type=10;
+                tableData=new DaiShenHeEditTableData(keYanLunWenMapper.selectOneKeYanLunWen(id),chanxueyanMapper.getBadge(id,type));
+                break;
+            }
+            case "keyanxiangmujiexiang":{
+                type=12;
+                tableData=new DaiShenHeEditTableData(keYanXiangMuJieXiangMapper.selectOneKeYanXiangMu(id),chanxueyanMapper.getBadge(id,type));
+                break;
+            }
+            case "pingguzhongxinxiangguan":{
+                type=4;
+                tableData=new DaiShenHeEditTableData(pingGuZhongXinMapper.selectOnePingGuZhongXin(id),chanxueyanMapper.getBadge(id,type));
+                break;
+            }
+            case "ruanjianzhuzuoquan":{
+                type=11;
+                tableData=new DaiShenHeEditTableData(ruanJianZhuZuoMapper.selectOneRuanJianZhuZuoQuan(id),chanxueyanMapper.getBadge(id,type));
+                break;
+            }
+            case "zhuanli":{
+                type=6;
+                tableData=new DaiShenHeEditTableData(zhuanLiMapper.selectOneZhuanLi(id),chanxueyanMapper.getBadge(id,type));
+                break;
+            }
+            case "zhuzuo":{
+                type=9;
+                tableData=new DaiShenHeEditTableData(zhuZuoMapper.selectOneZhuZuo(id),chanxueyanMapper.getBadge(id,type));
+                break;
+            }
+            case "zongxiangkeyanxiangmu":{
+                type=8;
+                tableData=new DaiShenHeEditTableData(zongXiangKeYanMapper.selectOneZongXiangKeYan(id),chanxueyanMapper.getBadge(id,type));
+                break;
+            }
+            case "hengxiangkeyanxiangmu":{
+                type=7;
+                tableData=new DaiShenHeEditTableData(hengXiangKeYanMapper.selectOneHengXiangKeYan(id),chanxueyanMapper.getBadge(id,type));
+                break;
+            }
+            case "competition":{
+                type=13;
+                tableData=new DaiShenHeEditTableData(xueKeJingSaiMapper.selectOneCompetition(id),chanxueyanMapper.getBadge(id,type));
+                break;
+            }
+            case "chanxueyan":{
+                type=1;
+                tableData=new DaiShenHeEditTableData(chanxueyanMapper.selectOneChanXueYan(id),chanxueyanMapper.getBadge(id,type));
+                break;
+            }
+        }
+        return tableData;
     }
 
     @Override

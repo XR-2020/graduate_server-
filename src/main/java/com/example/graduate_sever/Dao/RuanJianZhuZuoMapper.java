@@ -38,4 +38,6 @@ public interface RuanJianZhuZuoMapper {
     int passRuanJianZhuZuo(Integer id, Integer ispass);
 
     List<MyShenBaoModel> getRuanJianZhuZuoDisData(MyShenBaoDTO dto);
+
+    RuanJianZhuZuoQuan selectOneRuanJianZhuZuoQuan(Integer id);
 }

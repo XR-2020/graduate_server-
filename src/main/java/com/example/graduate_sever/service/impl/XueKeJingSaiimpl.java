@@ -1,5 +1,6 @@
 package com.example.graduate_sever.service.impl;
 
+import com.example.graduate_sever.Dao.ChanXueYanMapper;
 import com.example.graduate_sever.Dao.XueKeJingSaiMapper;
 import com.example.graduate_sever.common.*;
 import com.example.graduate_sever.common.DTO.DTO;
@@ -7,6 +8,7 @@ import com.example.graduate_sever.common.DTO.MyShenBaoDTO;
 import com.example.graduate_sever.entity.CompetitionEntity;
 import com.example.graduate_sever.entity.ParticipationEntity;
 import com.example.graduate_sever.model.Competition;
+import com.example.graduate_sever.model.Honor;
 import com.example.graduate_sever.model.MyShenBaoModel;
 import com.example.graduate_sever.service.XueKeJingSaiService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,22 +21,26 @@ import java.util.List;
 public class XueKeJingSaiimpl implements XueKeJingSaiService {
     @Autowired
     private XueKeJingSaiMapper mapper;
+    @Autowired
+    private ChanXueYanMapper chanXueYanMapper;
     @Override
     public ResVO getAllJingSai(DTO dTO) {
-        List<List<Object>>data=mapper.getAllJingSai(dTO);
-        List<Object> list=data.get(0);
-        long total= (long)data.get(1).get(0);
-        System.out.println(total);
-        return new ResVO(list,total);
+        List<Competition> list=mapper.getAllJingSai(dTO);
+        List<TableData> tableData=new ArrayList<>();
+        for (Competition c:list) {
+            tableData.add(new TableData(c,mapper.getJingSaiDetail(c.getId())));
+        }
+        return new ResVO(tableData, mapper.getAllJingSaiPageTotal());
     }
 
     @Override
     public ResVO getSearchJingSai(DTO dTO) {
-        List<List<Object>>data=mapper.getSearchJingSai(dTO);
-        List<Object> list=data.get(0);
-        long total= (long)data.get(1).get(0);
-        System.out.println(total);
-        return new ResVO(list,total);
+        List<Competition> list=mapper.getSearchJingSai(dTO);
+        List<TableData> tableData=new ArrayList<>();
+        for (Competition c:list) {
+            tableData.add(new TableData(c,mapper.getJingSaiDetail(c.getId())));
+        }
+        return new ResVO(tableData, mapper.getSearchJingSaiPageTotal());
     }
 
     @Override
@@ -117,5 +123,27 @@ public class XueKeJingSaiimpl implements XueKeJingSaiService {
             badges.add(p.getBadge());
         }
         return badges;
+    }
+
+    @Override
+    public List<Integer> getComputitionBadge(Integer id) {
+        List<People> people=mapper.getJingSaiDetail(id);
+        List<Integer> badges=new ArrayList<>();
+        for (People p:people) {
+            badges.add(p.getBadge());
+        }
+        return badges;
+    }
+
+    @Override
+    public int editCompetition(Integer id, String name, String partment, String finishtime, Integer[] people, String grade, String student, String level) {
+        int ref=mapper.editCompetition(id,name,finishtime,grade,student,level,partment);
+        if(ref==1){
+            chanXueYanMapper.deletePeople(id,13);
+            for (Integer p:people) {
+                chanXueYanMapper.editPeople(id,p,13);
+            }
+        }
+        return ref;
     }
 }

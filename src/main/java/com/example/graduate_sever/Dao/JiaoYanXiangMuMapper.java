@@ -40,4 +40,6 @@ public interface JiaoYanXiangMuMapper {
     List<MyShenBaoModel> getJiaoYanXiangDisData(MyShenBaoDTO dto);
 
     int editJiaoYan(Integer id, String name, String finishtime, String partment, String lianghua, String wenhao);
+
+    JiaoYanXiangMu selectOneJiaoYanXiangMu(Integer id);
 }

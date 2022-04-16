@@ -26,4 +26,8 @@ public interface XueKeJingSaiService {
      List<TableData> getDisData(MyShenBaoDTO dto);
 
     List<Integer> getJingSaiDetailBadge(Integer id);
+
+    List<Integer> getComputitionBadge(Integer id);
+
+    int editCompetition(Integer id, String name, String partment, String finishtime, Integer[] people, String grade, String student, String level);
 }

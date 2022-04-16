@@ -34,6 +34,10 @@
         <bind name="beginIndex" value="(pageIndex-1)*pageSize"></bind>
         select jiaoyanlunwen.* from jiaoyanlunwen where status=1 limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER};select count(*) count3 from jiaoyanlunwen where status=1;
     </select>
+
+    <select id="selectOneJiaoYanLunWen" resultMap="JiaoYanLunWen">
+        select * from `jiaoyanlunwen` where id=#{id}
+    </select>
     <!--删除一个教研项目-->
     <delete id="deleteOneJiaoYanLunWen">
         delete * from jiaoyanlunwen where jiaoyanlunwen.id=#{id}
@@ -54,7 +58,7 @@
     </insert>
 
     <insert id="shenBaoJiaoYanLunWen" parameterType="com.example.graduate_sever.entity.JiaoYanLunWenEntity" useGeneratedKeys="true" keyProperty="id">
-        INSERT IGNORE INTO jiaoyanlunwen(`name`, `partment`, `finishtime`, `status`,`shenbao`,`metails`) VALUES (#{name,jdbcType=VARCHAR},#{partment,jdbcType=VARCHAR},#{finishtime,jdbcType=VARCHAR},#{status,jdbcType=INTEGER},#{badge,jdbcType=INTEGER})
+        INSERT IGNORE INTO jiaoyanlunwen(`name`, `partment`, `finishtime`, `status`,`shenbao`,`metails`) VALUES (#{name,jdbcType=VARCHAR},#{partment,jdbcType=VARCHAR},#{finishtime,jdbcType=VARCHAR},#{status,jdbcType=INTEGER},#{badge,jdbcType=INTEGER},#{metails,jdbcType=BINARY})
     </insert>
 
     <insert id="insertJiaoYanLunWenParticipation" parameterType="com.example.graduate_sever.entity.ParticipationEntity" useGeneratedKeys="true">

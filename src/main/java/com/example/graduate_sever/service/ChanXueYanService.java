@@ -44,4 +44,6 @@ public interface  ChanXueYanService {
     int editChanXueYan(Integer id, String name, String finishtime, String partment, String lianghua, Integer[] people, String wenhao);
 
     int editHeBing(Integer id, String tablename, String name, String finishtime, String partment, Integer[] people, Integer type);
+
+    DaiShenHeEditTableData selectProject(Integer id, String tablename);
 }

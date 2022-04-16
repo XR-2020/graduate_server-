@@ -40,4 +40,6 @@ public interface JiaoYuGuiHuaMapper {
     List<MyShenBaoModel> getJiaoYuGuiHuaDisData(MyShenBaoDTO dto);
 
     int editJiaoYuGuiHua(Integer id, String name, String finishtime, String partment, String danwei, String grade, String level);
+
+    JiaoYuGuiHuaXiangMu selectOneJiaoYuGuiHua(Integer id);
 }

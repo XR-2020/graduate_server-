@@ -2,6 +2,8 @@ package com.example.graduate_sever.controller;
 
 
 import com.example.graduate_sever.common.DTO.DTO;
+import com.example.graduate_sever.common.EditUO.EditCompetitionUO;
+import com.example.graduate_sever.common.EditUO.EditHonorUO;
 import com.example.graduate_sever.common.JsonBean;
 import com.example.graduate_sever.common.ResVO;
 import com.example.graduate_sever.common.UO.ChanXueYanUO;
@@ -110,5 +112,13 @@ public class XueKeJingSai {
     @RequestMapping(value = "/passXueKeJingSai", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public int passXueKeJingSai(Integer id,Integer ispass){
         return service.passXueKeJingSai(id,ispass);
+    }
+    @GetMapping("/getComputitionBadge")
+    public JsonBean getComputitionBadge(Integer id){
+        return new JsonBean(200,"",service.getComputitionBadge(id));}
+
+    @RequestMapping(value = "/editCompetition", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public JsonBean editCompetition(@RequestBody EditCompetitionUO uo) throws Exception {
+        return  new JsonBean(200,"",service.editCompetition(uo.getId(),uo.getName(),uo.getPartment(),uo.getFinishtime(),uo.getPeople(),uo.getGrade(),uo.getStudent(),uo.getLevel()));
     }
 }

@@ -34,6 +34,7 @@ public interface ChanXueYanMapper {
     int passChanXueYan(Integer id, Integer ispass);
     long waitingPageTotal(String type);
     List<People> getDetail(Integer id,Integer type);
+    List<Integer> getBadge(Integer id,Integer type);
     List<MyShenBaoModel> getDisData(String tablename,Integer badge,Integer type,Integer pageIndex,Integer pageSize);
     long getPageTotal(Integer badge,String tablename,Integer type);
     List<MyShenBaoModel> getDaiShenHeData(String tablename,Integer badge,Integer type,Integer pageIndex,Integer pageSize);
@@ -51,4 +52,6 @@ public interface ChanXueYanMapper {
     int editPeople(Integer ach_id, Integer badge,Integer type);
 
     int editHeBing(Integer id, String tablename, String name, String finishtime, String partment);
+
+    ChanXueYan selectOneChanXueYan(Integer id);
 }

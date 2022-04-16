@@ -19,9 +19,10 @@ import java.util.List;
 @Repository
 public interface XueKeJingSaiMapper {
 
-    List<List<Object>> getAllJingSai(DTO dTO);
+    List<Competition> getAllJingSai(DTO dTO);
+    long getAllJingSaiPageTotal();
 
-    List<List<Object>> getSearchJingSai(DTO dTO);
+    List<Competition> getSearchJingSai(DTO dTO);
 
     void deleteOneJingSai(int id);
 
@@ -38,4 +39,10 @@ public interface XueKeJingSaiMapper {
     int passXueKeJingSai(Integer id, Integer ispass);
 
     List<MyShenBaoModel> getXueKeJingSaiDisData(MyShenBaoDTO dto);
+
+    int editCompetition(Integer id, String name, String finishtime, String grade, String student, String level, String partment);
+
+    long getSearchJingSaiPageTotal();
+
+    Competition selectOneCompetition(Integer id);
 }

@@ -41,4 +41,8 @@ public interface JiaoYanLunWenMapper {
     List<MyShenBaoModel> getJiaoYanLunWenDisData(MyShenBaoDTO dto);
 
     int editJiaoYanLunWen(Integer id, String name, String finishtime, String partment);
+
+    JiaoYanLunWen selectOneJiaoYanLunWen(Integer id);
+
+    JiaoYanLunWen selectOneJiaoYanXiangMu(Integer id);
 }

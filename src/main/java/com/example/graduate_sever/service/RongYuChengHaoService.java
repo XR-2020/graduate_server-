@@ -25,4 +25,8 @@ public interface RongYuChengHaoService {
     int passRongYuChengHao(Integer id, Integer ispass);
 
     List<TableData> getDisData(MyShenBaoDTO dto);
+
+    List<Integer> getHonorBadge(Integer id);
+
+    int editHonor(Integer id, String name, String partment, String finishtime, Integer[] people, String level);
 }

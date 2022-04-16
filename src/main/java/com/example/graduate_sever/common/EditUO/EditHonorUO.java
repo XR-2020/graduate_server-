@@ -1,5 +1,7 @@
 package com.example.graduate_sever.common.EditUO;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import java.io.Serializable;
 import java.util.Arrays;
 
@@ -8,57 +10,16 @@ import java.util.Arrays;
 * */
 public class EditHonorUO implements Serializable {
     private static final long serialVersionUID=1L;
-
     private String name;
     private String level;
     private String finishtime;
     private Integer[] people;
-    private Integer role;
-    private String partment;
     private Integer shenbao;
-    private String path;
-
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
-    }
-
-    public Integer getShenbao() {
-        return shenbao;
-    }
-
-    public void setShenbao(Integer shenbao) {
-        this.shenbao = shenbao;
-    }
-
-    public void setRole(Integer role) {
-        this.role = role;
-    }
-
-    public String getPartment() {
-        return partment;
-    }
-
-    public void setPartment(String partment) {
-        this.partment = partment;
-    }
-
-    public Integer getRole() {
-        return role;
-    }
-
-    @Override
-    public String toString() {
-        return "HonorUO{" +
-                "name='" + name + '\'' +
-                ", level='" + level + '\'' +
-                ", finishtime='" + finishtime + '\'' +
-                ", people=" + Arrays.toString(people) +
-                '}';
-    }
+    private Integer id;
+    private MultipartFile metails;
+    private Integer status;
+    private String partment;
+    private Integer badge;
 
     public String getName() {
         return name;
@@ -90,5 +51,53 @@ public class EditHonorUO implements Serializable {
 
     public void setPeople(Integer[] people) {
         this.people = people;
+    }
+
+    public Integer getShenbao() {
+        return shenbao;
+    }
+
+    public void setShenbao(Integer shenbao) {
+        this.shenbao = shenbao;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public MultipartFile getMetails() {
+        return metails;
+    }
+
+    public void setMetails(MultipartFile metails) {
+        this.metails = metails;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public String getPartment() {
+        return partment;
+    }
+
+    public void setPartment(String partment) {
+        this.partment = partment;
+    }
+
+    public Integer getBadge() {
+        return badge;
+    }
+
+    public void setBadge(Integer badge) {
+        this.badge = badge;
     }
 }

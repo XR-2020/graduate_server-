@@ -33,6 +33,10 @@
         <bind name="beginIndex" value="(pageIndex-1)*pageSize"></bind>
         select zhuzuo.* from zhuzuo where status=1 limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER};select count(*) count11 from zhuzuo where status=1 ;
     </select>
+
+    <select id="selectOneZhuZuo" resultMap="ZhuZuo">
+        select * from `zhuzuo` where id=#{id}
+    </select>
     <!--删除一个教研项目-->
     <delete id="deleteOneZhuZuo">
         delete * from zhuzuo where zhuzuo.id=#{id}
@@ -53,7 +57,7 @@
     </insert>
 
     <insert id="shenBaoZhuZuo" parameterType="com.example.graduate_sever.entity.HeBingEntity" useGeneratedKeys="true" keyProperty="id">
-        INSERT IGNORE INTO zhuzuo( `status`, `name`, `finishtime`, `partment`,`shenbao`,`metails`) VALUES (#{status,jdbcType=INTEGER},#{name,jdbcType=VARCHAR},#{finishtime,jdbcType=VARCHAR},#{partment,jdbcType=VARCHAR},#{badge,jdbcType=INTEGER})
+        INSERT IGNORE INTO zhuzuo( `status`, `name`, `finishtime`, `partment`,`shenbao`,`metails`) VALUES (#{status,jdbcType=INTEGER},#{name,jdbcType=VARCHAR},#{finishtime,jdbcType=VARCHAR},#{partment,jdbcType=VARCHAR},#{badge,jdbcType=INTEGER},#{metails,jdbcType=BINARY})
     </insert>
 
     <insert id="insertZhuZuoParticipation" parameterType="com.example.graduate_sever.entity.ParticipationEntity" useGeneratedKeys="true">

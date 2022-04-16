@@ -41,6 +41,10 @@
     <select id="getKeYanLunWenDetail" parameterType="java.lang.Integer" resultMap="KeYanLunWenz_people">
         select teacher.tea_name,teacher.badeg from participation,teacher where participation.badge=teacher.badeg and participation.ach_id=#{id} and participation.type=10
     </select>
+
+    <select id="selectOneKeYanLunWen" resultMap="KeYanLunWen">
+        select * from `keyanlunwen` where id=#{id}
+    </select>
 <!--    &lt;!&ndash;产学研成果全局模糊查询&ndash;&gt;-->
     <select id="getSearchKeYanLunWen" resultMap="KeYanLunWen,count6">
         <bind name="beginIndex" value="(pageIndex-1)*pageSize"></bind>
@@ -53,7 +57,7 @@
     </insert>
 
     <insert id="shenBaoKeYanLunWen" parameterType="com.example.graduate_sever.entity.HeBingEntity" useGeneratedKeys="true" keyProperty="id">
-        INSERT IGNORE INTO keyanlunwen( `status`, `name`, `finishtime`, `partment`,`shenBao`,`metails`) VALUES (#{status,jdbcType=INTEGER},#{name,jdbcType=VARCHAR},#{finishtime,jdbcType=VARCHAR},#{partment,jdbcType=VARCHAR},#{badge,jdbcType=INTEGER})
+        INSERT IGNORE INTO keyanlunwen( `status`, `name`, `finishtime`, `partment`,`shenBao`,`metails`) VALUES (#{status,jdbcType=INTEGER},#{name,jdbcType=VARCHAR},#{finishtime,jdbcType=VARCHAR},#{partment,jdbcType=VARCHAR},#{badge,jdbcType=INTEGER},#{metails,jdbcType=BINARY})
     </insert>
 
     <insert id="insertKeYanLunWenParticipation" parameterType="com.example.graduate_sever.entity.ParticipationEntity" useGeneratedKeys="true">

@@ -1,12 +1,10 @@
 package com.example.graduate_sever.service.impl;
 
+import com.example.graduate_sever.Dao.ChanXueYanMapper;
 import com.example.graduate_sever.Dao.RongYuChengHaoMapper;
+import com.example.graduate_sever.common.*;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.DTO.MyShenBaoDTO;
-import com.example.graduate_sever.common.JsonBean;
-import com.example.graduate_sever.common.Metails;
-import com.example.graduate_sever.common.ResVO;
-import com.example.graduate_sever.common.TableData;
 import com.example.graduate_sever.entity.HonorEntity;
 import com.example.graduate_sever.entity.ParticipationEntity;
 import com.example.graduate_sever.model.Honor;
@@ -22,22 +20,26 @@ import java.util.List;
 public class RongYuChengHaoimpl implements RongYuChengHaoService {
     @Autowired
     private RongYuChengHaoMapper mapper;
+    @Autowired
+    private ChanXueYanMapper chanXueYanMapper;
     @Override
     public ResVO getAllRongYu(DTO dTO) {
-        List<List<Object>>data=mapper.getAllRongYu(dTO);
-        List<Object> list=data.get(0);
-        long total= (long)data.get(1).get(0);
-        System.out.println(total);
-        return new ResVO(list,total);
+        List<Honor> list=mapper.selectAllRongYuChengHao(dTO);
+        List<TableData> tableData=new ArrayList<>();
+        for (Honor c:list) {
+            tableData.add(new TableData(c,mapper.getRongYuDetail(c.getId())));
+        }
+        return new ResVO(tableData, mapper.selectAllRongYuChengHaoPageTotal());
     }
 
     @Override
     public ResVO getSearchRongYu(DTO dTO) {
-        List<List<Object>>data=mapper.getSearchRongYu(dTO);
-        List<Object> list=data.get(0);
-        long total= (long)data.get(1).get(0);
-        System.out.println(total);
-        return new ResVO(list,total);
+        List<Honor> list=mapper.getSearchRongYu(dTO);
+        List<TableData> tableData=new ArrayList<>();
+        for (Honor c:list) {
+            tableData.add(new TableData(c,mapper.getRongYuDetail(c.getId())));
+        }
+        return new ResVO(tableData, mapper.getSearchRongYuPageTotal());
     }
 
     @Override
@@ -107,6 +109,28 @@ public class RongYuChengHaoimpl implements RongYuChengHaoService {
             tableData.add(new TableData(c,mapper.getRongYuDetail(c.getId())));
         }
         return tableData;
+    }
+
+    @Override
+    public List<Integer> getHonorBadge(Integer id) {
+        List<People> people=mapper.getRongYuDetail(id);
+        List<Integer> badges=new ArrayList<>();
+        for (People p:people) {
+            badges.add(p.getBadge());
+        }
+        return badges;
+    }
+
+    @Override
+    public int editHonor(Integer id, String name, String partment, String finishtime, Integer[] people, String level) {
+        int ref=mapper.editHonor(id,name,finishtime,partment,level);
+        if(ref==1){
+            chanXueYanMapper.deletePeople(id,14);
+            for (Integer p:people) {
+                chanXueYanMapper.editPeople(id,p,14);
+            }
+        }
+        return ref;
     }
 
 //    @Override

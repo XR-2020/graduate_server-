@@ -40,4 +40,6 @@ public interface ZongXiangKeYanMapper {
     List<MyShenBaoModel> getZongXiangKeYanDisData(MyShenBaoDTO dto);
 
     int editZongXiangKeYan(Integer id, String name, String finishtime, String partment, String level);
+
+    ZongXiangKeYanXiangMu selectOneZongXiangKeYan(Integer id);
 }

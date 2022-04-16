@@ -6,6 +6,9 @@ public class TableData {
     private Object object;
     private List<People> people;
 
+    public TableData() {
+    }
+
     public TableData(Object object, List<People> people) {
         this.object = object;
         this.people = people;

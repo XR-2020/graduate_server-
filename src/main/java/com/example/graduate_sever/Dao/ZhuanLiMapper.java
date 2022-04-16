@@ -38,4 +38,6 @@ public interface ZhuanLiMapper {
     int passZhuanLi(Integer id, Integer ispass);
 
     List<MyShenBaoModel> getZhuanLiDisData(MyShenBaoDTO dto);
+
+    ZhuanLi selectOneZhuanLi(Integer id);
 }

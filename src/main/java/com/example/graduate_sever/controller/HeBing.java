@@ -215,22 +215,28 @@ public class HeBing {
 
     @GetMapping("/getDisData")
     public MyDaiShenBaoRes getDisData(MyShenBaoDTO dto){
+        Integer pageIndex=dto.getPageIndex()-1;
+        Integer pageEnd=pageIndex+dto.getPageSize();
         List<DaiShenHeTableData> list=chanXueYanService.getDisData(dto);
         long pageTotal=chanXueYanService.getPageTotal(dto.getBadge());
-        return new MyDaiShenBaoRes(list,pageTotal);
+        return new MyDaiShenBaoRes(list.subList(pageIndex,pageEnd),pageTotal);
     }
 
     @GetMapping("/getDaiShenHeData")
     public MyDaiShenBaoRes getDaiShenHeData(MyShenBaoDTO dto){
+        Integer pageIndex=dto.getPageIndex()-1;
+        Integer pageEnd=pageIndex+dto.getPageSize();
         List<DaiShenHeTableData> list=chanXueYanService.getDaiShenHeData(dto);
         long pageTotal=chanXueYanService.getDaiShenHePageTotal(dto.getBadge());
-        return new MyDaiShenBaoRes(list,pageTotal);
+        return new MyDaiShenBaoRes(list.subList(pageIndex,pageEnd),pageTotal);
     }
     @GetMapping("/getHadPassData")
     public MyDaiShenBaoRes getHadPassData(MyShenBaoDTO dto){
+        Integer pageIndex=dto.getPageIndex()-1;
+        Integer pageEnd=pageIndex+dto.getPageSize();
         List<DaiShenHeTableData> list=chanXueYanService.getHadPassData(dto);
         long pageTotal=chanXueYanService.getHadPassPageTotal(dto.getBadge());
-        return new MyDaiShenBaoRes(list,pageTotal);
+        return new MyDaiShenBaoRes(list.subList(pageIndex,pageEnd),pageTotal);
     }
     @RequestMapping(value = "/deleteMyShenBao", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public int deleteMyShenBao(Integer id,String tablename){

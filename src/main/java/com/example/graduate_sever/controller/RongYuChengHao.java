@@ -2,6 +2,9 @@ package com.example.graduate_sever.controller;
 
 
 import com.example.graduate_sever.common.DTO.DTO;
+import com.example.graduate_sever.common.EditUO.EditChanXueYanUO;
+import com.example.graduate_sever.common.EditUO.EditCompetitionUO;
+import com.example.graduate_sever.common.EditUO.EditHonorUO;
 import com.example.graduate_sever.common.JsonBean;
 import com.example.graduate_sever.common.ResVO;
 import com.example.graduate_sever.common.UO.HonorUO;
@@ -29,20 +32,13 @@ public class RongYuChengHao {
 
     @GetMapping("/getSearchRongYu")
     public ResVO getSearchRongYu(DTO dTO){
-//        System.out.println(chanXueYanDTO.getKey()+"______"+chanXueYanDTO.getPageIndex()+"_______"+chanXueYanDTO.getPageSize());
-        return service.getSearchRongYu(dTO);}
+     return service.getSearchRongYu(dTO);}
 
     @PostMapping("/deleteRongYu")
     public JsonBean deleteRongYu(int[] ids){return  service.deleteRongYu(ids);}
 
     @PostMapping("/deleteOneRongYu")
     public  JsonBean deleteOneRongYu(Integer id){return service.deleteOneRongYu(id);}
-
-//    @GetMapping("/getRongYuDetail")
-//    public JsonBean getRongYuDetail(Integer id){
-//        System.out.println(id);
-//
-//        return service.getZhuanLiDetial(id);}
 
     @RequestMapping(value = "/updateHonor", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public JsonBean updateHonor(@RequestBody HonorUO uo) throws IOException {
@@ -99,5 +95,15 @@ public class RongYuChengHao {
     @RequestMapping(value = "/passRongYuChengHao", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public int passRongYuChengHao(Integer id,Integer ispass){
         return service.passRongYuChengHao(id,ispass);
+    }
+
+
+    @GetMapping("/getHonorBadge")
+    public JsonBean getHonorBadge(Integer id){
+        return new JsonBean(200,"",service.getHonorBadge(id));}
+
+    @RequestMapping(value = "/editHonor", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public JsonBean editHonor(@RequestBody EditHonorUO uo) throws Exception {
+        return  new JsonBean(200,"",service.editHonor(uo.getId(),uo.getName(),uo.getPartment(),uo.getFinishtime(),uo.getPeople(),uo.getLevel()));
     }
 }

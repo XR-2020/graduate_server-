@@ -39,4 +39,6 @@ public interface HengXiangKeYanMapper {
     int passHengXiangKeYan(Integer id, Integer ispass);
 
     List<MyShenBaoModel> getHengXiangKeYanDisData(MyShenBaoDTO dto);
+
+    HengXiangKeYanXiangMu selectOneHengXiangKeYan(Integer id);
 }

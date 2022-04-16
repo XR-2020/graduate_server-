@@ -44,6 +44,10 @@
     <select id="getJiaoYuGuiHuaDetail" parameterType="java.lang.Integer" resultMap="JiaoYuGuiHua_people">
         select teacher.tea_name,teacher.badeg from participation,teacher where participation.badge=teacher.badeg and participation.ach_id=#{id} and participation.type=5
     </select>
+
+    <select id="selectOneJiaoYuGuiHua" resultMap="JiaoYuGuiHua">
+        select * from `jiaoyuguihuaxiangmu` where id=#{id}
+    </select>
 <!--    &lt;!&ndash;教研项目成果全局模糊查询&ndash;&gt;-->
     <select id="getSearchJiaoYuGuiHua" resultMap="JiaoYuGuiHua,count5">
         <bind name="beginIndex" value="(pageIndex-1)*pageSize"></bind>
@@ -56,7 +60,7 @@
     </insert>
 
     <insert id="shenBaoJiaoYuGuiHua" parameterType="com.example.graduate_sever.entity.JiaoYuGuiHuaXiangMuEntity" useGeneratedKeys="true" keyProperty="id">
-        INSERT IGNORE INTO jiaoyuguihuaxiangmu(`status`, `finishtime`, `partment`, `grade`, `level`, `danwei`, `name`,`shenbao`,`metails`) VALUES (#{status,jdbcType=INTEGER},#{finishtime,jdbcType=VARCHAR},#{partment,jdbcType=VARCHAR},#{grade,jdbcType=VARCHAR},#{level,jdbcType=VARCHAR},#{danwei,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR},#{badge,jdbcType=INTEGER})
+        INSERT IGNORE INTO jiaoyuguihuaxiangmu(`status`, `finishtime`, `partment`, `grade`, `level`, `danwei`, `name`,`shenbao`,`metails`) VALUES (#{status,jdbcType=INTEGER},#{finishtime,jdbcType=VARCHAR},#{partment,jdbcType=VARCHAR},#{grade,jdbcType=VARCHAR},#{level,jdbcType=VARCHAR},#{danwei,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR},#{badge,jdbcType=INTEGER},#{metails,jdbcType=BINARY})
     </insert>
 
     <insert id="insertJiaoYuGuiHuaParticipation" parameterType="com.example.graduate_sever.entity.ParticipationEntity" useGeneratedKeys="true">

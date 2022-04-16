@@ -20,9 +20,7 @@ import java.util.List;
 @Repository
 public interface RongYuChengHaoMapper {
 
-    List<List<Object>> getAllRongYu(DTO dTO);
-
-    List<List<Object>> getSearchRongYu(DTO dTO);
+    List<Honor> getSearchRongYu(DTO dTO);
 
     void deleteOneRongYu(int id);
 
@@ -39,4 +37,13 @@ public interface RongYuChengHaoMapper {
     int passRongYuChengHao(Integer id, Integer ispass);
 
     List<MyShenBaoModel> getRongYuChengHaoDisData(MyShenBaoDTO dto);
+
+    List<Honor> selectAllRongYuChengHao(DTO dTO);
+    long selectAllRongYuChengHaoPageTotal();
+
+    int editHonor(Integer id, String name, String finishtime, String partment, String level);
+
+    long getSearchRongYuPageTotal();
+
+    Honor selectHonor(Integer id);
 }
