@@ -1,10 +1,12 @@
 package com.example.graduate_sever.controller;
 
 
+import com.example.graduate_sever.common.EditUO.EditHeBingUO;
 import com.example.graduate_sever.common.MyDaiShenBaoRes;
 import com.example.graduate_sever.common.*;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.DTO.MyShenBaoDTO;
+import com.example.graduate_sever.common.UO.ChanXueYanUO;
 import com.example.graduate_sever.common.UO.HeBingUO;
 import com.example.graduate_sever.entity.HeBingEntity;
 import com.example.graduate_sever.service.*;
@@ -235,4 +237,41 @@ public class HeBing {
         return chanXueYanService.deleteMyShenBao(id,tablename);
     }
 
+    @RequestMapping(value = "/editHeBing", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public JsonBean editHeBing(@RequestBody EditHeBingUO uo) throws Exception {
+        String tablename = null;
+        switch (uo.getType()){
+            //专利
+            case 2:{
+                tablename="zhuanli";
+                break;
+            }
+            //横向科研项目
+            case 3:{
+                tablename="hengxiangkeyanxiangmu";
+                break;
+            }
+            //著作
+            case 4:{
+                tablename="zhuzuo";
+                break;
+            }
+            //科研论文
+            case 5:{
+                tablename="keyanlunwen";
+                break;
+            }
+            //软件著作权
+            case 6:{
+                tablename="ruanjianzhuzuoquan";
+                break;
+            }
+            //科研项目结项
+            case 7:{
+                tablename="keyanxiangmujiexiang";
+                break;
+            }
+        }
+        return  new JsonBean(200,"",chanXueYanService.editHeBing(uo.getId(),tablename,uo.getName(),uo.getFinishtime(),uo.getPartment(),uo.getPeople(),uo.getType()));
+    }
 }

@@ -29,4 +29,6 @@ public interface PingGuZhongXinService {
      List<TableData> getDisData(MyShenBaoDTO dto);
 
     List<Integer> getPingGuZhongXinDetailBadge(Integer id);
+
+    int editPingGuZhongXin(Integer id, String name, String finishtime, String partment, Integer[] people, String grade);
 }

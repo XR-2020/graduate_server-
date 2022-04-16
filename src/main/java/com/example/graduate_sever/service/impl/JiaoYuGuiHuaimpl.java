@@ -1,5 +1,6 @@
 package com.example.graduate_sever.service.impl;
 
+import com.example.graduate_sever.Dao.ChanXueYanMapper;
 import com.example.graduate_sever.Dao.JiaoYuGuiHuaMapper;
 import com.example.graduate_sever.common.*;
 import com.example.graduate_sever.common.DTO.DTO;
@@ -29,6 +30,8 @@ import java.util.List;
 public class JiaoYuGuiHuaimpl implements JiaoYuGuiHuaService {
     @Autowired
     private JiaoYuGuiHuaMapper mapper;
+    @Autowired
+    private ChanXueYanMapper chanXueYanMapper;
     @Override
     public ResVO getAllJiaoYuGuiHua(DTO dTO) {
         List<List<Object>>data=mapper.getAllJiaoYuGuiHua(dTO);
@@ -176,5 +179,17 @@ public class JiaoYuGuiHuaimpl implements JiaoYuGuiHuaService {
             badges.add(p.getBadge());
         }
         return badges;
+    }
+
+    @Override
+    public int editJiaoYuGuiHua(Integer id, String name, String finishtime, String partment, String danwei, String grade, String level, Integer[] people) {
+        int ref=mapper.editJiaoYuGuiHua(id,name,finishtime,partment,danwei,grade,level);
+        if(ref==1){
+            chanXueYanMapper.deletePeople(id,5);
+            for (Integer p:people) {
+                chanXueYanMapper.editPeople(id,p,5);
+            }
+        }
+        return ref;
     }
 }

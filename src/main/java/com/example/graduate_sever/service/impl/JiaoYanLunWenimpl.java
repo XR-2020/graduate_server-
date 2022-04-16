@@ -1,5 +1,6 @@
 package com.example.graduate_sever.service.impl;
 
+import com.example.graduate_sever.Dao.ChanXueYanMapper;
 import com.example.graduate_sever.Dao.JiaoYanLunWenMapper;
 import com.example.graduate_sever.common.*;
 import com.example.graduate_sever.common.DTO.DTO;
@@ -31,6 +32,8 @@ import java.util.List;
 public class JiaoYanLunWenimpl implements JiaoYanLunWenMuService {
     @Autowired
     private JiaoYanLunWenMapper jiaoYanLunWenMapper;
+    @Autowired
+    private ChanXueYanMapper chanXueYanMapper;
     @Override
     public ResVO getAllJiaoYanLunWen(DTO jiaoYanXiangMuDTO) {
         List<List<Object>>data=jiaoYanLunWenMapper.getAllJiaoYanLunWen(jiaoYanXiangMuDTO);
@@ -93,7 +96,7 @@ public class JiaoYanLunWenimpl implements JiaoYanLunWenMuService {
         List<NameValuePair> listparams= new ArrayList<NameValuePair>();
         //获取当前时间
         Date date = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         // System.out.println(formatter.format(date).toString());
         //设置请求地址的参数
         listparams.add(new BasicNameValuePair("tb",td));
@@ -165,5 +168,17 @@ public class JiaoYanLunWenimpl implements JiaoYanLunWenMuService {
             badges.add(p.getBadge());
         }
         return badges;
+    }
+
+    @Override
+    public int editJiaoYanLunWen(Integer id, String name, String finishtime, String partment, Integer[] people) {
+        int ref=jiaoYanLunWenMapper.editJiaoYanLunWen(id,name,finishtime,partment);
+        if(ref==1){
+            chanXueYanMapper.deletePeople(id,3);
+            for (Integer p:people) {
+                chanXueYanMapper.editPeople(id,p,3);
+            }
+        }
+        return ref;
     }
 }

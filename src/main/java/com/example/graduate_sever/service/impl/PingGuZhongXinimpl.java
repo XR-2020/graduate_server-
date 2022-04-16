@@ -1,5 +1,6 @@
 package com.example.graduate_sever.service.impl;
 
+import com.example.graduate_sever.Dao.ChanXueYanMapper;
 import com.example.graduate_sever.Dao.PingGuZhongXinMapper;
 import com.example.graduate_sever.common.*;
 import com.example.graduate_sever.common.DTO.DTO;
@@ -31,6 +32,8 @@ import java.util.List;
 public class PingGuZhongXinimpl implements PingGuZhongXinService {
     @Autowired
     private PingGuZhongXinMapper mapper;
+    @Autowired
+    private ChanXueYanMapper chanXueYanMapper;
     @Override
     public ResVO getAllPingGuZhongXin(DTO dTO) {
         List<List<Object>>data=mapper.getAllPingGuZhongXin(dTO);
@@ -93,7 +96,7 @@ public class PingGuZhongXinimpl implements PingGuZhongXinService {
         List<NameValuePair> listparams= new ArrayList<NameValuePair>();
         //获取当前时间
         Date date = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         // System.out.println(formatter.format(date).toString());
         //设置请求地址的参数
         listparams.add(new BasicNameValuePair("tb",td));
@@ -167,5 +170,17 @@ public class PingGuZhongXinimpl implements PingGuZhongXinService {
             badges.add(p.getBadge());
         }
         return badges;
+    }
+
+    @Override
+    public int editPingGuZhongXin(Integer id, String name, String finishtime, String partment, Integer[] people, String grade) {
+        int ref=mapper.editPingGuZhongXin(id,name,finishtime,partment,grade);
+        if(ref==1){
+            chanXueYanMapper.deletePeople(id,4);
+            for (Integer p:people) {
+                chanXueYanMapper.editPeople(id,p,4);
+            }
+        }
+        return ref;
     }
 }

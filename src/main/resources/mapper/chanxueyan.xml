@@ -130,5 +130,19 @@
     <delete id="deleteDaiShenHePartipation">
         delete from participation where ach_id=#{id} and type=#{type}
     </delete>
+
+    <update id="editChanXueYan">
+        update `chanxueyan` set `wenhao`=#{wenhao},lianghua=#{lianghua},partment=#{partment},finishtime=#{finishtime},name=#{name} where id=#{id}
+    </update>
+    <update id="editHeBing">
+        update ${tablename} set partment=#{partment},finishtime=#{finishtime},name=#{name} where id=#{id}
+    </update>
+    <insert id="editPeople">
+        INSERT IGNORE INTO participation(`badge`, `ach_id`, `type`) VALUES (#{badge,jdbcType=INTEGER},#{ach_id,jdbcType=INTEGER},#{type,jdbcType=INTEGER})
+    </insert>
+
+    <delete id="deletePeople">
+        delete from participation where ach_id=#{id} and type=#{type}
+    </delete>
 </mapper>
 

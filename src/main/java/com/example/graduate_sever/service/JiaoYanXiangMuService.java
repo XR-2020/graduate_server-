@@ -31,4 +31,6 @@ public interface JiaoYanXiangMuService {
      List<TableData> getDisData(MyShenBaoDTO dto);
 
     List<Integer> getJiaoYanDetialBadge(Integer id);
+
+    int editJiaoYan(Integer id, String name, String finishtime, String partment, String lianghua, Integer[] people, String wenhao);
 }

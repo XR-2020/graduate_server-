@@ -40,4 +40,8 @@ public interface  ChanXueYanService {
     int deleteMyShenBao(Integer id, String tablename);
 
     List<Integer> getChanXueYanDetailBadge(Integer id);
+
+    int editChanXueYan(Integer id, String name, String finishtime, String partment, String lianghua, Integer[] people, String wenhao);
+
+    int editHeBing(Integer id, String tablename, String name, String finishtime, String partment, Integer[] people, Integer type);
 }

@@ -95,7 +95,7 @@ public class HengXiangKeYanimpl implements HengXiangKeYanService {
         List<NameValuePair> listparams= new ArrayList<NameValuePair>();
         //获取当前时间
         Date date = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         // System.out.println(formatter.format(date).toString());
         //设置请求地址的参数
         listparams.add(new BasicNameValuePair("tb",td));

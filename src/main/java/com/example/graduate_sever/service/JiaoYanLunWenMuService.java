@@ -30,4 +30,6 @@ public interface JiaoYanLunWenMuService {
      List<TableData> getDisData(MyShenBaoDTO dto);
 
     List<Integer> getJiaoYanLunWenDetailBadge(Integer id);
+
+    int editJiaoYanLunWen(Integer id, String name, String finishtime, String partment, Integer[] people);
 }

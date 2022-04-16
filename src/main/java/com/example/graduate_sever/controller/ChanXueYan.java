@@ -3,6 +3,7 @@ package com.example.graduate_sever.controller;
 
 import com.example.graduate_sever.GraduateSeverApplication;
 import com.example.graduate_sever.common.DTO.DTO;
+import com.example.graduate_sever.common.EditUO.EditChanXueYanUO;
 import com.example.graduate_sever.common.JsonBean;
 import com.example.graduate_sever.common.Metails;
 import com.example.graduate_sever.common.ResVO;
@@ -124,38 +125,8 @@ public class ChanXueYan {
     public JsonBean getChanXueYanDetailBadge(Integer id){
         return new JsonBean(200,"",chanXueYanService.getChanXueYanDetailBadge(id));}
 
-//    @RequestMapping(value = "/editChanXueYan", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-//    public JsonBean editChanXueYan(@RequestBody ChanXueYanUO uo) throws Exception {
-//        ChanXueYanEntity element=new ChanXueYanEntity();
-//        Integer[] people=uo.getPeople();
-//        Integer role=uo.getRole();
-//        element.setFinishtime(uo.getFinishtime());
-//        element.setName(uo.getName());
-//        element.setPartment(uo.getPartment());
-//        element.setLianghua(uo.getLianghua());
-//        element.setWenhao(uo.getWenhao());
-//        if (role!=4&&role!=1){
-//            element.setStatus(0);
-//        }else {
-//            element.setStatus(1);
-//        }
-//        element.setBadge(uo.getShenbao());
-//        //读取证明材料
-//        File file=new File(uo.getPath());
-//        ByteArrayOutputStream bos = new ByteArrayOutputStream((int) file.length());
-//        BufferedInputStream bin = null;
-//        try {
-//            bin = new BufferedInputStream(new FileInputStream(file));
-//            byte[] buffer = new byte[1024];
-//            while (bin.read(buffer) > 0) {
-//                bos.write(buffer);
-//            }
-//        } finally {
-//            bin.close();
-//            bos.close();
-//        }
-//        element.setMetails(bos.toByteArray());
-//        System.out.println("***********"+bos.toByteArray().length+"**************");
-//        return  chanXueYanService.shenBaoChanXueYan(element,people);
-//    }
+    @RequestMapping(value = "/editChanXueYan", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public JsonBean editChanXueYan(@RequestBody EditChanXueYanUO uo) throws Exception {
+        return  new JsonBean(200,"",chanXueYanService.editChanXueYan(uo.getId(),uo.getName(),uo.getFinishtime(),uo.getPartment(),uo.getLianghua(),uo.getPeople(),uo.getWenhao()));
+    }
 }

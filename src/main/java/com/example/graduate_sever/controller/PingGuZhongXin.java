@@ -2,6 +2,7 @@ package com.example.graduate_sever.controller;
 
 
 import com.example.graduate_sever.common.DTO.DTO;
+import com.example.graduate_sever.common.EditUO.EditPingGuZhongXinXiangGuanUO;
 import com.example.graduate_sever.common.JsonBean;
 import com.example.graduate_sever.common.ResVO;
 import com.example.graduate_sever.common.UO.PingGuZhongXinXiangGuanUO;
@@ -104,5 +105,10 @@ public class PingGuZhongXin {
     @RequestMapping(value = "/passPingGuZhongXin", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public int passPingGuZhongXin(Integer id,Integer ispass){
         return pingGuZhongXinService.passPingGuZhongXin(id,ispass);
+    }
+
+    @RequestMapping(value = "/editPingGuZhongXin", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public JsonBean editPingGuZhongXin(@RequestBody EditPingGuZhongXinXiangGuanUO uo) throws Exception {
+        return  new JsonBean(200,"",pingGuZhongXinService.editPingGuZhongXin(uo.getId(),uo.getName(),uo.getFinishtime(),uo.getPartment(),uo.getPeople(),uo.getGrade()));
     }
 }

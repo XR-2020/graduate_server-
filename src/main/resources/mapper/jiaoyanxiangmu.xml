@@ -83,5 +83,9 @@
         <bind name="beginIndex" value="(pageIndex-1)*pageSize"></bind>
         select c.name,c.id,c.partment,c.finishtime from `jiaoyanxiangmu` c,participation p where status=-1 and c.shenbao=p.badge and c.shenbao=#{badge} and p.type=1 limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
     </select>
+
+    <update id="editJiaoYan">
+        update `jiaoyanxiangmu` set `wenhao`=#{wenhao},lianghua=#{lianghua},partment=#{partment},finishtime=#{finishtime},name=#{name} where id=#{id}
+    </update>
 </mapper>
 

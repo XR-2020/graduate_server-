@@ -38,4 +38,6 @@ public interface PingGuZhongXinMapper {
     int passPingGuZhongXin(Integer id, Integer ispass);
 
     List<MyShenBaoModel> getPingGuZhongXinDisData(MyShenBaoDTO dto);
+
+    int editPingGuZhongXin(Integer id, String name, String finishtime, String partment, String grade);
 }

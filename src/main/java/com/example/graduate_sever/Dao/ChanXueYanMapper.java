@@ -1,9 +1,7 @@
 package com.example.graduate_sever.Dao;
 import com.example.graduate_sever.common.DTO.DTO;
-import com.example.graduate_sever.common.DTO.MyShenBaoDTO;
 import com.example.graduate_sever.common.People;
 import com.example.graduate_sever.common.Metails;
-import com.example.graduate_sever.common.TableData;
 import com.example.graduate_sever.entity.ChanXueYanEntity;
 import com.example.graduate_sever.entity.ParticipationEntity;
 import com.example.graduate_sever.model.ChanXueYan;
@@ -46,4 +44,11 @@ public interface ChanXueYanMapper {
     int deleteMyShenBao(Integer id, String tablename);
 
     int deleteDaiShenHePartipation(Integer id, Integer type);
+    void deletePeople(Integer id, Integer type);
+
+    int editChanXueYan(Integer id, String name, String finishtime, String partment, String lianghua, String wenhao);
+
+    int editPeople(Integer ach_id, Integer badge,Integer type);
+
+    int editHeBing(Integer id, String tablename, String name, String finishtime, String partment);
 }

@@ -75,6 +75,30 @@ public class ChanXueYanimpl implements ChanXueYanService {
     }
 
     @Override
+    public int editChanXueYan(Integer id, String name, String finishtime, String partment, String lianghua, Integer[] people, String wenhao) {
+        int ref=chanxueyanMapper.editChanXueYan(id,name,finishtime,partment,lianghua,wenhao);
+       if(ref==1){
+           chanxueyanMapper.deletePeople(id,1);
+           for (Integer p:people) {
+               chanxueyanMapper.editPeople(id,p,1);
+           }
+       }
+        return ref;
+    }
+
+    @Override
+    public int editHeBing(Integer id, String tablename, String name, String finishtime, String partment, Integer[] people, Integer type) {
+        int ref=chanxueyanMapper.editHeBing(id,tablename,name,finishtime,partment);
+        if(ref==1){
+//            chanxueyanMapper.deletePeople(id,type);
+            for (Integer p:people) {
+                chanxueyanMapper.editPeople(id,p,type);
+            }
+        }
+        return ref;
+    }
+
+    @Override
     public JsonBean shenBaoChanXueYan(ChanXueYanEntity entity, Integer[] people) {
         int ref=chanxueyanMapper.shenBaoChanXueYan(entity);
         if(ref!=0){
@@ -95,7 +119,7 @@ public class ChanXueYanimpl implements ChanXueYanService {
         List<NameValuePair> listparams= new ArrayList<NameValuePair>();
         //获取当前时间
         Date date = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         //设置请求地址的参数
         listparams.add(new BasicNameValuePair("tb",td));
         listparams.add(new BasicNameValuePair("pageNum","0"));

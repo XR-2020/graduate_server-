@@ -1,5 +1,6 @@
 package com.example.graduate_sever.service.impl;
 
+import com.example.graduate_sever.Dao.ChanXueYanMapper;
 import com.example.graduate_sever.Dao.ZongXiangKeYanMapper;
 import com.example.graduate_sever.common.*;
 import com.example.graduate_sever.common.DTO.DTO;
@@ -30,6 +31,8 @@ public class ZongXiangKeYanimpl implements ZongXiangKeYanService {
 
     @Autowired
     private ZongXiangKeYanMapper mapper;
+    @Autowired
+    private ChanXueYanMapper chanXueYanMapper;
 
     @Override
     public ResVO getAllZongXiangKeYan(DTO dTO) {
@@ -180,5 +183,17 @@ public class ZongXiangKeYanimpl implements ZongXiangKeYanService {
             badges.add(p.getBadge());
         }
         return badges;
+    }
+
+    @Override
+    public int editZongXiangKeYan(Integer id, String name, String finishtime, String partment, String level, Integer[] people) {
+        int ref=mapper.editZongXiangKeYan(id,name,finishtime,partment,level);
+        if(ref==1){
+            chanXueYanMapper.deletePeople(id,8);
+            for (Integer p:people) {
+                chanXueYanMapper.editPeople(id,p,8);
+            }
+        }
+        return ref;
     }
 }

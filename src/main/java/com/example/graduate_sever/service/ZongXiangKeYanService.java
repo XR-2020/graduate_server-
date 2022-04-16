@@ -29,4 +29,6 @@ public interface ZongXiangKeYanService {
      List<TableData> getDisData(MyShenBaoDTO dto);
 
     List<Integer> getZongXiangKeYanDetailBadge(Integer id);
+
+    int editZongXiangKeYan(Integer id, String name, String finishtime, String partment, String level, Integer[] people);
 }
