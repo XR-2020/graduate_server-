@@ -104,7 +104,7 @@
         select c.name,c.id,c.partment,c.finishtime from ${tablename} c where status=-1 and c.shenbao=#{badge}
     </select>
     <select id="getPageTotal" resultMap="ChanXueYan_count">
-        select count(*) from ${tablename} c,participation p where status=-1 and c.shenbao=p.badge and p.ach_id=c.id and c.shenbao=#{badge} and p.type=#{type}
+        select count(*) ChanXueYan_count from ${tablename}  where status=-1  and shenbao=#{badge}
     </select>
 
     <select id="getDetail" parameterType="java.lang.Integer" resultMap="ChanXueYan_people">
@@ -119,14 +119,14 @@
         select c.name,c.id,c.partment,c.finishtime from ${tablename} c where status=1 and c.shenbao=#{badge}
     </select>
     <select id="getHadPassPageTotal" resultMap="ChanXueYan_count">
-        select count(*) from ${tablename} c,participation p where status=1 and c.shenbao=p.badge and p.ach_id=c.id and  c.shenbao=#{badge} and p.type=#{type}
+        select count(*) ChanXueYan_count from ${tablename} c where status=1 and  c.shenbao=#{badge}
     </select>
 
     <select id="getDaiShenHeData" resultMap="MyShenBaoModel">
         select c.name,c.id,c.partment,c.finishtime from ${tablename} c where status=0 and c.shenbao=#{badge}
     </select>
     <select id="getDaiShenHePageTotal" resultMap="ChanXueYan_count">
-        select count(*) from ${tablename} c where status=0 and c.shenbao=#{badge}
+        select count(*) ChanXueYan_count from ${tablename} c where status=0 and c.shenbao=#{badge}
     </select>
 
     <delete id="deleteMyShenBao">

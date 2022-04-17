@@ -63,12 +63,8 @@ public class XueKeJingSaiimpl implements XueKeJingSaiService {
     }
 
     @Override
-    public JsonBean insertJingSai(CompetitionEntity entity,Integer[] people) {
-        mapper.insertJingSai(entity);
-        for (Integer ach_id:people) {
-            mapper.insertJingSaiParticipation(new ParticipationEntity(ach_id,entity.getId(),13));
-        }
-        return new JsonBean(200,"","");
+    public JsonBean insertJingSai(CompetitionEntity entity) {
+        return new JsonBean(200,"",  mapper.insertJingSai(entity));
     }
 
     @Override
@@ -136,14 +132,14 @@ public class XueKeJingSaiimpl implements XueKeJingSaiService {
     }
 
     @Override
-    public int editCompetition(Integer id, String name, String partment, String finishtime, Integer[] people, String grade, String student, String level) {
-        int ref=mapper.editCompetition(id,name,finishtime,grade,student,level,partment);
-        if(ref==1){
-            chanXueYanMapper.deletePeople(id,13);
-            for (Integer p:people) {
-                chanXueYanMapper.editPeople(id,p,13);
-            }
-        }
+    public int editCompetition(Integer id, String name, String partment, String finishtime, String teacher, String grade, String student, String level) {
+        int ref=mapper.editCompetition(id,name,finishtime,grade,student,level,teacher,partment);
+//        if(ref==1){
+//            chanXueYanMapper.deletePeople(id,13);
+//            for (Integer p:people) {
+//                chanXueYanMapper.editPeople(id,p,13);
+//            }
+//        }
         return ref;
     }
 }

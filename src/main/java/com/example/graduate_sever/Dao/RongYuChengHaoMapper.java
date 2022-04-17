@@ -41,7 +41,7 @@ public interface RongYuChengHaoMapper {
     List<Honor> selectAllRongYuChengHao(DTO dTO);
     long selectAllRongYuChengHaoPageTotal();
 
-    int editHonor(Integer id, String name, String finishtime, String partment, String level);
+    int editHonor(Integer id, String name, String finishtime, String partment, String teacher,String level);
 
     long getSearchRongYuPageTotal();
 

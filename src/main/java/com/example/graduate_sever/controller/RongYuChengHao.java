@@ -42,7 +42,11 @@ public class RongYuChengHao {
 
     @RequestMapping(value = "/updateHonor", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public JsonBean updateHonor(@RequestBody HonorUO uo) throws IOException {
-        Integer[] people=uo.getPeople();
+        StringBuffer str=new StringBuffer();
+        for (String s:uo.getPeople()) {
+            str.append(s+" ");
+        }
+        String people=str.toString();
         HonorEntity element=null;
         JsonBean jsonBean=null;
         int role=uo.getRole();
@@ -61,12 +65,12 @@ public class RongYuChengHao {
             bos.close();
         }
         if (role!=4){
-            element=new HonorEntity(0,uo.getName(),uo.getLevel(),uo.getFinishtime(),uo.getPartment(), uo.getShenbao(),bos.toByteArray());
+            element=new HonorEntity(0,uo.getName(),uo.getLevel(),uo.getFinishtime(),uo.getPartment(), people,bos.toByteArray(),uo.getShenbao());
         }else {
-            element=new HonorEntity(1,uo.getName(),uo.getLevel(),uo.getFinishtime(),uo.getPartment(), uo.getShenbao(),bos.toByteArray());
+            element=new HonorEntity(1,uo.getName(),uo.getLevel(),uo.getFinishtime(),uo.getPartment(),people,bos.toByteArray(),uo.getShenbao());
         }
 
-        return  service.shenbaoRongYuChengHao(element,people);
+        return  service.shenbaoRongYuChengHao(element);
     }
 
     @RequestMapping(value = "/RongYuChengHaoMetials")
@@ -104,6 +108,6 @@ public class RongYuChengHao {
 
     @RequestMapping(value = "/editHonor", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public JsonBean editHonor(@RequestBody EditHonorUO uo) throws Exception {
-        return  new JsonBean(200,"",service.editHonor(uo.getId(),uo.getName(),uo.getPartment(),uo.getFinishtime(),uo.getPeople(),uo.getLevel()));
+        return  new JsonBean(200,"",service.editHonor(uo.getId(),uo.getName(),uo.getPartment(),uo.getFinishtime(),uo.getTeacher(),uo.getLevel()));
     }
 }

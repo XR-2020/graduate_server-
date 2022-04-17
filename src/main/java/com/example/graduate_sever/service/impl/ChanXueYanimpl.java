@@ -437,8 +437,7 @@ public class ChanXueYanimpl implements ChanXueYanService {
         paramslist.add(new GetPageTotal("keyanxiangmujiexiang",12));
         paramslist.add(new GetPageTotal("competition",13));
         paramslist.add(new GetPageTotal("honor",14));
-        List<List<MyShenBaoModel>> list=new ArrayList<>();
-        List<MyShenBaoModel> myShenBaoModelList=new ArrayList<>();
+        List<MyShenBaoModel> myShenBaoModelList;
         List<DaiShenHeTableData> tableData=new ArrayList<>();
         for (GetPageTotal g:paramslist) {
             myShenBaoModelList=chanxueyanMapper.getDaiShenHeData(g.getTablename(),badge,g.getType(),pageIndex,pageSize);

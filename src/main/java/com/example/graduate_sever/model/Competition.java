@@ -14,7 +14,7 @@ public class Competition implements Serializable {
     private Integer status;
     private String finishtime;
     private String student;
-    private Integer badge;
+    private String teacher;
     private String shenbao;
     private byte[] metails;
     private String partment;
@@ -83,12 +83,12 @@ public class Competition implements Serializable {
         this.student = student;
     }
 
-    public Integer getBadge() {
-        return badge;
+    public String getTeacher() {
+        return teacher;
     }
 
-    public void setBadge(Integer badge) {
-        this.badge = badge;
+    public void setTeacher(String teacher) {
+        this.teacher = teacher;
     }
 
     public String getShenbao() {

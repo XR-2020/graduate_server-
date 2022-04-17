@@ -15,8 +15,9 @@ public class HonorEntity implements Serializable {
     private String finishtime;
     private String partment;
     private Integer id;
-    private Integer badge;
+    private String  teacher;
     private byte[] metails;
+    private Integer badge;
 
     public byte[] getMetails() {
         return metails;
@@ -26,12 +27,20 @@ public class HonorEntity implements Serializable {
         this.metails = metails;
     }
 
-    public Integer getBadge() {
-        return badge;
+    public String getPartment() {
+        return partment;
     }
 
-    public void setBadge(Integer badge) {
-        this.badge = badge;
+    public void setPartment(String partment) {
+        this.partment = partment;
+    }
+
+    public String getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(String teacher) {
+        this.teacher = teacher;
     }
 
     public Integer getId() {
@@ -40,25 +49,6 @@ public class HonorEntity implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public HonorEntity(Integer status, String name, String level, String finishtime, String partment, Integer badge) {
-        this.status = status;
-        this.name = name;
-        this.level = level;
-        this.finishtime = finishtime;
-        this.partment = partment;
-        this.badge = badge;
-    }
-
-    public HonorEntity(Integer status, String name, String level, String finishtime, String partment, Integer badge, byte[] metails) {
-        this.status = status;
-        this.name = name;
-        this.level = level;
-        this.finishtime = finishtime;
-        this.partment = partment;
-        this.badge = badge;
-        this.metails = metails;
     }
 
     public Integer getStatus() {
@@ -91,5 +81,34 @@ public class HonorEntity implements Serializable {
 
     public void setFinishtime(String finishtime) {
         this.finishtime = finishtime;
+    }
+
+    public Integer getBadge() {
+        return badge;
+    }
+
+    public void setBadge(Integer badge) {
+        this.badge = badge;
+    }
+
+    public HonorEntity(Integer status, String name, String level, String finishtime, String partment, String teacher, byte[] metails, Integer badge) {
+        this.status = status;
+        this.name = name;
+        this.level = level;
+        this.finishtime = finishtime;
+        this.partment = partment;
+        this.teacher = teacher;
+        this.metails = metails;
+        this.badge = badge;
+    }
+
+    public HonorEntity(Integer status, String name, String level, String finishtime, String partment, String teacher, Integer badge) {
+        this.status = status;
+        this.name = name;
+        this.level = level;
+        this.finishtime = finishtime;
+        this.partment = partment;
+        this.teacher = teacher;
+        this.badge = badge;
     }
 }

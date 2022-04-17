@@ -40,7 +40,7 @@ public interface XueKeJingSaiMapper {
 
     List<MyShenBaoModel> getXueKeJingSaiDisData(MyShenBaoDTO dto);
 
-    int editCompetition(Integer id, String name, String finishtime, String grade, String student, String level, String partment);
+    int editCompetition(Integer id, String name, String finishtime, String grade, String student, String level,String teacher,String partment);
 
     long getSearchJingSaiPageTotal();
 

@@ -15,29 +15,12 @@ public class EditCompetitionUO implements Serializable {
     private String level;
     private String finishtime;
     private String student;
-    private Integer[] people;
+    private String teacher;
     private Integer shenbao;
     private Integer id;
     private MultipartFile metails;
     private Integer status;
-    private Integer badge;
     private String partment;
-
-    public String getPartment() {
-        return partment;
-    }
-
-    public void setPartment(String partment) {
-        this.partment = partment;
-    }
-
-    public Integer getBadge() {
-        return badge;
-    }
-
-    public void setBadge(Integer badge) {
-        this.badge = badge;
-    }
 
     public String getName() {
         return name;
@@ -79,12 +62,12 @@ public class EditCompetitionUO implements Serializable {
         this.student = student;
     }
 
-    public Integer[] getPeople() {
-        return people;
+    public String getTeacher() {
+        return teacher;
     }
 
-    public void setPeople(Integer[] people) {
-        this.people = people;
+    public void setTeacher(String teacher) {
+        this.teacher = teacher;
     }
 
     public Integer getShenbao() {
@@ -117,5 +100,13 @@ public class EditCompetitionUO implements Serializable {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public String getPartment() {
+        return partment;
+    }
+
+    public void setPartment(String partment) {
+        this.partment = partment;
     }
 }

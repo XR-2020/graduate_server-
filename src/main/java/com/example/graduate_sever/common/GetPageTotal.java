@@ -24,4 +24,5 @@ public class GetPageTotal {
     public void setType(Integer type) {
         this.type = type;
     }
+
 }

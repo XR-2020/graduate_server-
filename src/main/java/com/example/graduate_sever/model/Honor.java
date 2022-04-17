@@ -13,7 +13,7 @@ public class Honor implements Serializable {
     private String name;
     private String level;
     private String finishtime;
-    private Integer badge;
+    private String teacher;
     private String shenbao;
     private byte[] metails;
     private String partment;
@@ -66,12 +66,12 @@ public class Honor implements Serializable {
         this.finishtime = finishtime;
     }
 
-    public Integer getBadge() {
-        return badge;
+    public String getTeacher() {
+        return teacher;
     }
 
-    public void setBadge(Integer badge) {
-        this.badge = badge;
+    public void setTeacher(String teacher) {
+        this.teacher = teacher;
     }
 
     public String getShenbao() {

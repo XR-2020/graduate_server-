@@ -13,13 +13,12 @@ public class EditHonorUO implements Serializable {
     private String name;
     private String level;
     private String finishtime;
-    private Integer[] people;
+    private String teacher;
     private Integer shenbao;
     private Integer id;
     private MultipartFile metails;
     private Integer status;
     private String partment;
-    private Integer badge;
 
     public String getName() {
         return name;
@@ -45,12 +44,12 @@ public class EditHonorUO implements Serializable {
         this.finishtime = finishtime;
     }
 
-    public Integer[] getPeople() {
-        return people;
+    public String getTeacher() {
+        return teacher;
     }
 
-    public void setPeople(Integer[] people) {
-        this.people = people;
+    public void setTeacher(String teacher) {
+        this.teacher = teacher;
     }
 
     public Integer getShenbao() {
@@ -91,13 +90,5 @@ public class EditHonorUO implements Serializable {
 
     public void setPartment(String partment) {
         this.partment = partment;
-    }
-
-    public Integer getBadge() {
-        return badge;
-    }
-
-    public void setBadge(Integer badge) {
-        this.badge = badge;
     }
 }

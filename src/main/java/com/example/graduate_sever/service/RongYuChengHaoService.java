@@ -18,7 +18,7 @@ public interface RongYuChengHaoService {
 //     JsonBean getRongYuDetial(Integer id);
 
      JsonBean insertRongYuChengHao(HonorEntity entity,Integer[] people);
-     JsonBean shenbaoRongYuChengHao(HonorEntity entity,Integer[] people);
+     JsonBean shenbaoRongYuChengHao(HonorEntity entity);
      Metails getRongYuChengHaoMetails(Integer id);
      List<TableData>  waitingrongyuchenghao(DTO dTO);
 
@@ -28,5 +28,5 @@ public interface RongYuChengHaoService {
 
     List<Integer> getHonorBadge(Integer id);
 
-    int editHonor(Integer id, String name, String partment, String finishtime, Integer[] people, String level);
+    int editHonor(Integer id, String name, String partment, String finishtime, String teacher, String level);
 }

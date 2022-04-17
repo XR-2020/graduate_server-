@@ -9,7 +9,7 @@
         <result column="name" jdbcType="VARCHAR" property="name"/>
         <result column="grade" jdbcType="VARCHAR" property="grade"/>
         <result column="level" jdbcType="VARCHAR" property="level"/>
-        <result column="badge" jdbcType="INTEGER" property="badge"/>
+        <result column="teacher" property="teacher"/>
         <result column="shenbao" property="shenbao"/>
         <result column="metails" property="metails"/>
         <result column="partment" property="partment"/>
@@ -61,11 +61,11 @@
         select count(*) JingSai_count from competition c,teacher t,participation p where status=1 and p.badge=t.badeg and p.ach_id=c.id and CONCAT(c.id,t.tea_name,c.partment,c.name,c.finishtime,c.status,p.badge,c.student,c.level,c.grade)  LIKE CONCAT('%',#{key},'%');
     </select>
     <insert id="insertJingSai" parameterType="com.example.graduate_sever.entity.CompetitionEntity" useGeneratedKeys="true" keyProperty="id">
-        INSERT IGNORE INTO `graduate`.`competition`( `status`, `finishtime`, `student`, `level`, `grade`, `name`,`partment`,`badge`)  VALUES (#{status,jdbcType=INTEGER},#{finishtime,jdbcType=VARCHAR},#{student,jdbcType=VARCHAR},#{level,jdbcType=VARCHAR},#{grade,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR},'软件学院',#{badge,jdbcType=INTEGER})
+        INSERT IGNORE INTO `graduate`.`competition`( `status`, `finishtime`, `student`, `level`, `grade`, `name`,`partment`,`teacher`)  VALUES (#{status,jdbcType=INTEGER},#{finishtime,jdbcType=VARCHAR},#{student,jdbcType=VARCHAR},#{level,jdbcType=VARCHAR},#{grade,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR},'软件学院',#{teacher,jdbcType=VARCHAR})
     </insert>
 
     <insert id="shenBaoJingSai" parameterType="com.example.graduate_sever.entity.CompetitionEntity" useGeneratedKeys="true" keyProperty="id">
-        INSERT IGNORE INTO `graduate`.`competition`( `status`, `finishtime`, `student`, `level`, `grade`, `name`,`partment`,`shenbao`,`metails`)  VALUES (#{status,jdbcType=INTEGER},#{finishtime,jdbcType=VARCHAR},#{student,jdbcType=VARCHAR},#{level,jdbcType=VARCHAR},#{grade,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR},#{badge,jdbcType=INTEGER},#{metails,jdbcType=BINARY})
+        INSERT IGNORE INTO `graduate`.`competition`( `status`, `finishtime`, `student`, `level`, `teacher`,`grade`, `name`,`partment`,`shenbao`,`metails`)  VALUES (#{status,jdbcType=INTEGER},#{finishtime,jdbcType=VARCHAR},#{student,jdbcType=VARCHAR},#{level,jdbcType=VARCHAR},#{teacher,jdbcType=VARCHAR},#{grade,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR},'软件学院',#{badge,jdbcType=INTEGER},#{metails,jdbcType=BINARY})
     </insert>
 
     <insert id="insertJingSaiParticipation" parameterType="com.example.graduate_sever.entity.ParticipationEntity" useGeneratedKeys="true">
@@ -95,7 +95,7 @@
     </select>
 
     <update id="editCompetition">
-        update `competition` set level=#{level},partment=#{partment},finishtime=#{finishtime},name=#{name},student=#{student},grade=#{grade} where id=#{id}
+        update `competition` set teacher=#{teacher},level=#{level},partment=#{partment},finishtime=#{finishtime},name=#{name},student=#{student},grade=#{grade} where id=#{id}
     </update>
 </mapper>
 

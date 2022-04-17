@@ -56,13 +56,18 @@ public class XueKeJingSai {
 
     @RequestMapping(value = "/updateCompetition", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public JsonBean updateCompetition(@RequestBody CompetitionUO uo) throws IOException {
-        Integer[] people=uo.getPeople();
+        StringBuffer str=new StringBuffer();
+        for (String s:uo.getPeople()) {
+            str.append(s+" ");
+        }
+        String people=str.toString();
         CompetitionEntity element=new CompetitionEntity();
         element.setFinishtime(uo.getFinishtime());
         element.setGrade(uo.getGrade());
         element.setLevel(uo.getLevel());
         element.setName(uo.getName());
         element.setStudent(uo.getStudent());
+        element.setTeacher(people);
         if(uo.getRole() ==3){
             element.setStatus(1);
         }
@@ -82,7 +87,7 @@ public class XueKeJingSai {
             bos.close();
         }
         element.setMetails(bos.toByteArray());
-        return service.insertJingSai(element,people);
+        return service.insertJingSai(element);
     }
 
     @RequestMapping(value = "/XueKeJingSaiMetials")
@@ -119,6 +124,6 @@ public class XueKeJingSai {
 
     @RequestMapping(value = "/editCompetition", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public JsonBean editCompetition(@RequestBody EditCompetitionUO uo) throws Exception {
-        return  new JsonBean(200,"",service.editCompetition(uo.getId(),uo.getName(),uo.getPartment(),uo.getFinishtime(),uo.getPeople(),uo.getGrade(),uo.getStudent(),uo.getLevel()));
+        return  new JsonBean(200,"",service.editCompetition(uo.getId(),uo.getName(),uo.getPartment(),uo.getFinishtime(),uo.getTeacher(),uo.getGrade(),uo.getStudent(),uo.getLevel()));
     }
 }

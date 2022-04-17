@@ -16,7 +16,7 @@ public interface XueKeJingSaiService {
      JsonBean deleteJingSai(int[] ids);
      JsonBean deleteOneJingSai(Integer id);
      JsonBean getJingSaiDetial(Integer id);
-     JsonBean insertJingSai(CompetitionEntity entity,Integer[] people);
+     JsonBean insertJingSai(CompetitionEntity entity);
      JsonBean shenBaoJingSai(CompetitionEntity entity,Integer[] people);
      Metails getXueKeJingSaiMetails(Integer id);
      List<TableData>  waitingxuekejingsai(DTO dTO);
@@ -29,5 +29,5 @@ public interface XueKeJingSaiService {
 
     List<Integer> getComputitionBadge(Integer id);
 
-    int editCompetition(Integer id, String name, String partment, String finishtime, Integer[] people, String grade, String student, String level);
+    int editCompetition(Integer id, String name, String partment, String finishtime, String teacher, String grade, String student, String level);
 }

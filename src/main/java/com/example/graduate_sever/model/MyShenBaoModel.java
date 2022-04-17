@@ -37,4 +37,14 @@ public class MyShenBaoModel {
     public void setFinishtime(String finishtime) {
         this.finishtime = finishtime;
     }
+
+    @Override
+    public String toString() {
+        return "MyShenBaoModel{" +
+                "name='" + name + '\'' +
+                ", partment='" + partment + '\'' +
+                ", finishtime='" + finishtime + '\'' +
+                ", id=" + id +
+                '}';
+    }
 }

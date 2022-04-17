@@ -68,13 +68,8 @@ public class RongYuChengHaoimpl implements RongYuChengHaoService {
     }
 
     @Override
-    public JsonBean shenbaoRongYuChengHao(HonorEntity entity, Integer[] people) {
+    public JsonBean shenbaoRongYuChengHao(HonorEntity entity) {
         int ref=mapper.shenBaoRongYuChengHao(entity);
-        if(ref!=0){
-            for (Integer ach_id:people) {
-                mapper.insertRongYuChengHaoParticipation(new ParticipationEntity(ach_id,entity.getId(),14));
-            }
-        }
         return new JsonBean(200,"",ref);
     }
 
@@ -122,14 +117,14 @@ public class RongYuChengHaoimpl implements RongYuChengHaoService {
     }
 
     @Override
-    public int editHonor(Integer id, String name, String partment, String finishtime, Integer[] people, String level) {
-        int ref=mapper.editHonor(id,name,finishtime,partment,level);
-        if(ref==1){
-            chanXueYanMapper.deletePeople(id,14);
-            for (Integer p:people) {
-                chanXueYanMapper.editPeople(id,p,14);
-            }
-        }
+    public int editHonor(Integer id, String name, String partment, String finishtime, String teacher,String level) {
+        int ref=mapper.editHonor(id,name,finishtime,partment,teacher,level);
+//        if(ref==1){
+//            chanXueYanMapper.deletePeople(id,14);
+//            for (Integer p:people) {
+//                chanXueYanMapper.editPeople(id,p,14);
+//            }
+//        }
         return ref;
     }
 

@@ -13,7 +13,7 @@ public class CompetitionUO implements Serializable {
     private String level;
     private String finishtime;
     private String student;
-    private Integer[] people;
+    private String[] people;
     private Integer role;
     private Integer shenbao;
     private String path;
@@ -94,11 +94,11 @@ public class CompetitionUO implements Serializable {
         this.student = student;
     }
 
-    public Integer[] getPeople() {
+    public String[] getPeople() {
         return people;
     }
 
-    public void setPeople(Integer[] people) {
+    public void setPeople(String[] people) {
         this.people = people;
     }
 }
