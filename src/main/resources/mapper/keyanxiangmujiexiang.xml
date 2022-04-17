@@ -36,7 +36,7 @@
     </select>
     <!--删除一个教研项目-->
     <delete id="deleteOneKeYanXiangMuJieXiang">
-        delete * from keyanxiangmujiexiang where keyanxiangmujiexiang.id=#{id}
+        delete from keyanxiangmujiexiang where keyanxiangmujiexiang.id=#{id}
     </delete>
 
     <select id="selectOneKeYanXiangMu" resultMap="KeYanXiangMuJieXiang">

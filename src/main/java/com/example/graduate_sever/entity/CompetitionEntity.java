@@ -16,6 +16,15 @@ public class CompetitionEntity implements Serializable {
     private Integer id;
     private String teacher;
     private byte[] metails;
+    private String partment;
+
+    public String getPartment() {
+        return partment;
+    }
+
+    public void setPartment(String partment) {
+        this.partment = partment;
+    }
 
     private Integer badge;
 
@@ -112,5 +121,16 @@ public class CompetitionEntity implements Serializable {
         this.student = student;
         this.teacher = teacher;
         this.metails = metails;
+    }
+
+    public CompetitionEntity(String name, String grade, String level, Integer status, String finishtime, String student, String teacher, String partment) {
+        this.name = name;
+        this.grade = grade;
+        this.level = level;
+        this.status = status;
+        this.finishtime = finishtime;
+        this.student = student;
+        this.teacher = teacher;
+        this.partment = partment;
     }
 }

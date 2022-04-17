@@ -48,8 +48,8 @@ public class RuanJianZhuZuoimpl implements RuanJianZhuZuoService {
     }
 
     @Override
-    public JsonBean deleteRuanJianZhuZuo(int[] ids) {
-        for (int id:ids) {
+    public JsonBean deleteRuanJianZhuZuo(List<Integer> ids) {
+        for (Integer id:ids) {
             mapper.deleteOneRuanJianZhuZuo(id);
         }
         return new JsonBean(200,"","");

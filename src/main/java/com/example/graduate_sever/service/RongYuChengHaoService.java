@@ -7,13 +7,15 @@ import com.example.graduate_sever.common.Metails;
 import com.example.graduate_sever.common.ResVO;
 import com.example.graduate_sever.common.TableData;
 import com.example.graduate_sever.entity.HonorEntity;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface RongYuChengHaoService {
      ResVO getAllRongYu(DTO jiaoYanXiangMuDTO);
      ResVO getSearchRongYu(DTO jiaoYanXiangMuDTO);
-     JsonBean deleteRongYu(int[] ids);
+     JsonBean deleteRongYu(List<Integer> ids);
      JsonBean deleteOneRongYu(Integer id);
 //     JsonBean getRongYuDetial(Integer id);
 
@@ -29,4 +31,6 @@ public interface RongYuChengHaoService {
     List<Integer> getHonorBadge(Integer id);
 
     int editHonor(Integer id, String name, String partment, String finishtime, String teacher, String level);
+
+    JsonBean honorImport(MultipartFile file, String name) throws IOException;
 }

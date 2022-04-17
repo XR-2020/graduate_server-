@@ -15,7 +15,7 @@ import java.util.List;
 public interface ZongXiangKeYanService {
      ResVO getAllZongXiangKeYan(DTO jiaoYanXiangMuDTO);
      ResVO getSearchZongXiangKeYan(DTO jiaoYanXiangMuDTO);
-     JsonBean deleteZongXiangKeYan(int[] ids);
+     JsonBean deleteZongXiangKeYan(List<Integer> ids);
      JsonBean deleteOneZongXiangKeYan(Integer id);
      JsonBean getZongXiangKeYanDetial(Integer id);
      JsonBean insertZongXiangKeYan(ZongXiangKeYanXiangMuEntity entity,Integer[] people);

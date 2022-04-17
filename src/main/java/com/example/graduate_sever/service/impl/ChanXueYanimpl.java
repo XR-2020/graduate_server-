@@ -74,7 +74,7 @@ public class ChanXueYanimpl implements ChanXueYanService {
     }
 
     @Override
-    public JsonBean deleteChanXueYan(int[] ids) {
+    public JsonBean deleteChanXueYan(List<Integer> ids) {
         for (int id:ids) {
             chanxueyanMapper.deleteOneChanXueYan(id);
         }

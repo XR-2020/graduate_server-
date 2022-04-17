@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -33,8 +34,8 @@ public class ZongXiangKeYan {
 //        System.out.println(chanXueYanDTO.getKey()+"______"+chanXueYanDTO.getPageIndex()+"_______"+chanXueYanDTO.getPageSize());
         return service.getSearchZongXiangKeYan(dTO);}
 
-    @PostMapping("/deleteZongXiangKeYan")
-    public JsonBean deleteZongXiangKeYan(int[] ids){return  service.deleteZongXiangKeYan(ids);}
+    @RequestMapping(value = "/deleteZongXiangKeYan", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public JsonBean deleteZongXiangKeYan(@RequestParam(value = "ids") List<Integer> ids){return  service.deleteZongXiangKeYan(ids);}
 
     @PostMapping("/deleteOneZongXiangKeYan")
     public  JsonBean deleteOneZongXiangKeYan(Integer id){return service.deleteOneZongXiangKeYan(id);}

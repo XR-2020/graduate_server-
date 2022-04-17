@@ -50,8 +50,8 @@ public class KeYanXiangMuJieXiangimpl implements KeYanXiangMuJieXiangService {
     }
 
     @Override
-    public JsonBean deleteKeYanXiangMuJieXiang(int[] ids) {
-        for (int id:ids) {
+    public JsonBean deleteKeYanXiangMuJieXiang(List<Integer> ids) {
+        for (Integer id:ids) {
             mapper.deleteOneKeYanXiangMuJieXiang(id);
         }
         return new JsonBean(200,"","");

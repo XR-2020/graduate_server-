@@ -15,7 +15,7 @@ import java.util.List;
 public interface ZhuanLiService {
      ResVO getAllZhuanLi(DTO jiaoYanXiangMuDTO);
      ResVO getSearchZhuanLi(DTO jiaoYanXiangMuDTO);
-     JsonBean deleteZhuanLi(int[] ids);
+     JsonBean deleteZhuanLi(List<Integer> ids);
      JsonBean deleteOneZhuanLi(Integer id);
      JsonBean getZhuanLiDetial(Integer id);
      JsonBean insertZhuanLi(HeBingEntity entity,Integer[] people);

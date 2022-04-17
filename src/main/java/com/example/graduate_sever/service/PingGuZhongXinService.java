@@ -15,7 +15,7 @@ import java.util.List;
 public interface PingGuZhongXinService {
      ResVO getAllPingGuZhongXin(DTO jiaoYanXiangMuDTO);
      ResVO getSearchPingGuZhongXin(DTO jiaoYanXiangMuDTO);
-     JsonBean deletePingGuZhongXin(int[] ids);
+     JsonBean deletePingGuZhongXin(List<Integer> ids);
      JsonBean deleteOnePingGuZhongXin(Integer id);
      JsonBean getPingGuZhongXinDetial(Integer id);
      JsonBean insertPingGuZhongXin(PingGuZhongXinXiangGuanEntity entity,Integer[] people);

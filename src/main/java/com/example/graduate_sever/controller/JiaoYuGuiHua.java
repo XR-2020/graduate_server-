@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -33,8 +34,8 @@ public class JiaoYuGuiHua {
 //        System.out.println(chanXueYanDTO.getKey()+"______"+chanXueYanDTO.getPageIndex()+"_______"+chanXueYanDTO.getPageSize());
         return jiaoYuGuiHuaService.getSearchJiaoYuGuiHua(dTO);}
 
-    @PostMapping("/deleteJiaoYuGuiHua")
-    public JsonBean deleteJiaoYuGuiHua(int[] ids){return  jiaoYuGuiHuaService.deleteJiaoYuGuiHua(ids);}
+    @RequestMapping(value = "/deleteJiaoYuGuiHua", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public JsonBean deleteJiaoYuGuiHua(@RequestParam(value = "ids") List<Integer> ids){return  jiaoYuGuiHuaService.deleteJiaoYuGuiHua(ids);}
 
     @PostMapping("/deleteOneJiaoYuGuiHua")
     public  JsonBean deleteOnePingGuZhongXin(Integer id){return jiaoYuGuiHuaService.deleteOneJiaoYuGuiHua(id);}

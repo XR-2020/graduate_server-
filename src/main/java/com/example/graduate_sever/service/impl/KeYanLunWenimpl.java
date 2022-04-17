@@ -50,8 +50,8 @@ public class KeYanLunWenimpl implements KeYanLunWenService {
     }
 
     @Override
-    public JsonBean deleteKeYanLunWen(int[] ids) {
-        for (int id:ids) {
+    public JsonBean deleteKeYanLunWen(List<Integer> ids) {
+        for (Integer id:ids) {
             mapper.deleteOneKeYanLunWen(id);
         }
         return new JsonBean(200,"","");

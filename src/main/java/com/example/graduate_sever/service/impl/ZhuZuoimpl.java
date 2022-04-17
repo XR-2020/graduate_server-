@@ -50,8 +50,8 @@ public class ZhuZuoimpl implements ZhuZuoService {
     }
 
     @Override
-    public JsonBean deleteZhuZuo(int[] ids) {
-        for (int id:ids) {
+    public JsonBean deleteZhuZuo(List<Integer> ids) {
+        for (Integer id:ids) {
             mapper.deleteOneZhuZuo(id);
         }
         return new JsonBean(200,"","");

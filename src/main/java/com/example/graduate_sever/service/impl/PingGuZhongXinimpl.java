@@ -53,8 +53,8 @@ public class PingGuZhongXinimpl implements PingGuZhongXinService {
     }
 
     @Override
-    public JsonBean deletePingGuZhongXin(int[] ids) {
-        for (int id:ids) {
+    public JsonBean deletePingGuZhongXin(List<Integer> ids) {
+        for (Integer id:ids) {
             mapper.deleteOnePingGuZhongXin(id);
         }
         return new JsonBean(200,"","");

@@ -102,13 +102,15 @@ public class HonorEntity implements Serializable {
         this.badge = badge;
     }
 
-    public HonorEntity(Integer status, String name, String level, String finishtime, String partment, String teacher, Integer badge) {
+    public HonorEntity() {
+    }
+
+    public HonorEntity(Integer status, String name, String level, String finishtime, String partment, String teacher) {
         this.status = status;
         this.name = name;
         this.level = level;
         this.finishtime = finishtime;
         this.partment = partment;
         this.teacher = teacher;
-        this.badge = badge;
     }
 }

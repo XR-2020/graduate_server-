@@ -48,8 +48,8 @@ public class ZhuanLiimpl implements ZhuanLiService {
     }
 
     @Override
-    public JsonBean deleteZhuanLi(int[] ids) {
-        for (int id:ids) {
+    public JsonBean deleteZhuanLi(List<Integer> ids) {
+        for (Integer id:ids) {
             mapper.deleteOneZhuanLi(id);
         }
         return new JsonBean(200,"","");

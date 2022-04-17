@@ -53,8 +53,8 @@ public class JiaoYanLunWenimpl implements JiaoYanLunWenMuService {
     }
 
     @Override
-    public JsonBean deleteJiaoYanLunWen(int[] ids) {
-        for (int id:ids) {
+    public JsonBean deleteJiaoYanLunWen(List<Integer> ids) {
+        for (Integer id:ids) {
             jiaoYanLunWenMapper.deleteOneJiaoYanLunWen(id);
         }
         return new JsonBean(200,"","");

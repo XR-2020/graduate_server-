@@ -7,13 +7,15 @@ import com.example.graduate_sever.common.Metails;
 import com.example.graduate_sever.common.ResVO;
 import com.example.graduate_sever.common.TableData;
 import com.example.graduate_sever.entity.CompetitionEntity;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface XueKeJingSaiService {
      ResVO getAllJingSai(DTO dTO);
      ResVO getSearchJingSai(DTO dTO);
-     JsonBean deleteJingSai(int[] ids);
+     JsonBean deleteJingSai(List<Integer> ids);
      JsonBean deleteOneJingSai(Integer id);
      JsonBean getJingSaiDetial(Integer id);
      JsonBean insertJingSai(CompetitionEntity entity);
@@ -30,4 +32,6 @@ public interface XueKeJingSaiService {
     List<Integer> getComputitionBadge(Integer id);
 
     int editCompetition(Integer id, String name, String partment, String finishtime, String teacher, String grade, String student, String level);
+
+    JsonBean competitionImport(MultipartFile file, String name) throws IOException;
 }

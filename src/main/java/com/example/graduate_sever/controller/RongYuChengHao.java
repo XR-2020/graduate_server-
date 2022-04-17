@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -34,8 +35,8 @@ public class RongYuChengHao {
     public ResVO getSearchRongYu(DTO dTO){
      return service.getSearchRongYu(dTO);}
 
-    @PostMapping("/deleteRongYu")
-    public JsonBean deleteRongYu(int[] ids){return  service.deleteRongYu(ids);}
+    @RequestMapping(value = "/deleteRongYu", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public JsonBean deleteRongYu(@RequestParam(value = "ids") List<Integer> ids){return  service.deleteRongYu(ids);}
 
     @PostMapping("/deleteOneRongYu")
     public  JsonBean deleteOneRongYu(Integer id){return service.deleteOneRongYu(id);}
@@ -109,5 +110,10 @@ public class RongYuChengHao {
     @RequestMapping(value = "/editHonor", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public JsonBean editHonor(@RequestBody EditHonorUO uo) throws Exception {
         return  new JsonBean(200,"",service.editHonor(uo.getId(),uo.getName(),uo.getPartment(),uo.getFinishtime(),uo.getTeacher(),uo.getLevel()));
+    }
+
+    @RequestMapping(value = "/honorImport")
+    public JsonBean honorImport(@RequestParam("file") MultipartFile file) throws IOException{
+        return service.honorImport(file,file.getName());
     }
 }

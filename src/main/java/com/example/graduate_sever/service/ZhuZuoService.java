@@ -15,7 +15,7 @@ import java.util.List;
 public interface ZhuZuoService {
      ResVO getAllZhuZuo(DTO dTO);
      ResVO getSearchZhuZuo(DTO dTO);
-     JsonBean deleteZhuZuo(int[] ids);
+     JsonBean deleteZhuZuo(List<Integer> ids);
      JsonBean deleteOneZhuZuo(Integer id);
      JsonBean getZhuZuoDetial(Integer id);
      JsonBean insertZhuZuo(HeBingEntity entity,Integer[] people);

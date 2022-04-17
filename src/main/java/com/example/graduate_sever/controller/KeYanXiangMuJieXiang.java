@@ -9,6 +9,8 @@ import com.example.graduate_sever.service.ZhuanLiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class KeYanXiangMuJieXiang {
     @Autowired
@@ -24,8 +26,8 @@ public class KeYanXiangMuJieXiang {
 //        System.out.println(chanXueYanDTO.getKey()+"______"+chanXueYanDTO.getPageIndex()+"_______"+chanXueYanDTO.getPageSize());
         return service.getSearchKeYanXiangMuJieXiang(dTO);}
 
-    @PostMapping("/deleteKeYanXiangMuJieXiang")
-    public JsonBean deleteKeYanXiangMuJieXiang(int[] ids){return  service.deleteKeYanXiangMuJieXiang(ids);}
+    @RequestMapping(value = "/deleteKeYanXiangMuJieXiang", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public JsonBean deleteKeYanXiangMuJieXiang(@RequestParam(value = "ids") List<Integer> ids){return  service.deleteKeYanXiangMuJieXiang(ids);}
 
     @PostMapping("/deleteOneKeYanXiangMuJieXiang")
     public  JsonBean deleteOneKeYanXiangMuJieXiang(Integer id){return service.deleteOneKeYanXiangMuJieXiang(id);}

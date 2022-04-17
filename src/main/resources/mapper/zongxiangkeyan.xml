@@ -42,7 +42,7 @@
     </select>
     <!--删除一个教研项目-->
     <delete id="deleteOneZongXiangKeYan">
-        delete * from zongxiangkeyanxiangmu where zongxiangkeyanxiangmu.id=#{id}
+        delete from zongxiangkeyanxiangmu where zongxiangkeyanxiangmu.id=#{id}
     </delete>
     <!--查询指定教研项目成果人员信息-->
     <select id="getZongXiangKeYanDetail" parameterType="java.lang.Integer" resultMap="ZongXiangKeYan_people">

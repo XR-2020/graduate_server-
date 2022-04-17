@@ -53,8 +53,8 @@ public class ZongXiangKeYanimpl implements ZongXiangKeYanService {
     }
 
     @Override
-    public JsonBean deleteZongXiangKeYan(int[] ids) {
-        for (int id : ids) {
+    public JsonBean deleteZongXiangKeYan(List<Integer> ids) {
+        for (Integer id : ids) {
             mapper.deleteOneZongXiangKeYan(id);
         }
         return new JsonBean(200, "", "");

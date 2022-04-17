@@ -40,8 +40,12 @@ public class ChanXueYan {
         System.out.println(chanXueYanDTO.getKey()+"______"+chanXueYanDTO.getPageIndex()+"_______"+chanXueYanDTO.getPageSize());
         return chanXueYanService.getSearchChanXueYan(chanXueYanDTO);}
 
-    @PostMapping("/deleteChanXueYan")
-    public JsonBean deleteChanXueYan(int[] ids){return  chanXueYanService.deleteChanXueYan(ids);}
+    @RequestMapping(value = "/deleteChanXueYan", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public JsonBean deleteChanXueYan(@RequestParam(value = "ids") List<Integer> ids){
+        for (Integer i:ids) {
+            System.out.println(i);
+        }
+        return  chanXueYanService.deleteChanXueYan(ids);}
 
     @PostMapping("/deleteOneChanXueYan")
     public  JsonBean deleteOneChanXueYan(Integer id){return chanXueYanService.deleteOneChanXueYan(id);}

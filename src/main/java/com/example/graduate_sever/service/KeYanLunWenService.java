@@ -15,7 +15,7 @@ import java.util.List;
 public interface KeYanLunWenService {
      ResVO getAllKeYanLunWen(DTO dTO);
      ResVO getSearchKeYanLunWen(DTO dTO);
-     JsonBean deleteKeYanLunWen(int[] ids);
+     JsonBean deleteKeYanLunWen(List<Integer> ids);
      JsonBean deleteOneKeYanLunWen(Integer id);
      JsonBean getKeYanLunWenDetial(Integer id);
      JsonBean insertKeYanLunWen(HeBingEntity entity,Integer[] people);

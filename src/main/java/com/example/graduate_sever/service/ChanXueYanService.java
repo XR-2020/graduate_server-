@@ -12,7 +12,7 @@ import java.util.List;
 public interface  ChanXueYanService {
      ResVO selectAll(DTO chanXueYanDTO);
      ResVO getSearchChanXueYan(DTO chanXueYanDTO);
-     JsonBean deleteChanXueYan(int[] ids);
+     JsonBean deleteChanXueYan(List<Integer> ids);
      JsonBean deleteOneChanXueYan(Integer id);
      JsonBean getChanXueYanDetail(Integer id);
      JsonBean insertChanXueYan(ChanXueYanEntity entity,Integer[] people);

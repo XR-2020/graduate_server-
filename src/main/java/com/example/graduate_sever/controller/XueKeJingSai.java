@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -36,8 +37,9 @@ public class XueKeJingSai {
 //        System.out.println(chanXueYanDTO.getKey()+"______"+chanXueYanDTO.getPageIndex()+"_______"+chanXueYanDTO.getPageSize());
         return service.getSearchJingSai(dTO);}
 
-    @PostMapping("/deleteJingSai")
-    public JsonBean deleteJingSai(int[] ids){return  service.deleteJingSai(ids);}
+    @RequestMapping(value = "/deleteJingSai", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public JsonBean deleteJingSai(@RequestParam(value = "ids") List<Integer> ids){
+        return  service.deleteJingSai(ids);}
 
     @PostMapping("/deleteOneJingSai")
     public  JsonBean deleteOneJingSai(Integer id){return service.deleteOneJingSai(id);}
@@ -126,4 +128,10 @@ public class XueKeJingSai {
     public JsonBean editCompetition(@RequestBody EditCompetitionUO uo) throws Exception {
         return  new JsonBean(200,"",service.editCompetition(uo.getId(),uo.getName(),uo.getPartment(),uo.getFinishtime(),uo.getTeacher(),uo.getGrade(),uo.getStudent(),uo.getLevel()));
     }
+
+    @RequestMapping(value = "/competitionImport")
+    public JsonBean competitionImport(@RequestParam("file") MultipartFile file) throws IOException{
+        return service.competitionImport(file,file.getName());
+    }
+
 }

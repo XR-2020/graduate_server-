@@ -35,7 +35,7 @@
     </select>
     <!--删除一个产学研成果-->
     <delete id="deleteOneKeYanLunWen">
-        delete * from keyanlunwen where keyanlunwen.id=#{id}
+        delete from keyanlunwen where keyanlunwen.id=#{id}
     </delete>
     <!--查询指定产学研成果人员信息-->
     <select id="getKeYanLunWenDetail" parameterType="java.lang.Integer" resultMap="KeYanLunWenz_people">
