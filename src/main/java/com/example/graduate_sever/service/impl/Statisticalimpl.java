@@ -177,7 +177,7 @@ public class Statisticalimpl implements StatisticalService {
         List<Honor> list=rongYuChengHaoMapper.selectRongYuChengHao(date1,date2);
         List<TableData> tableData=new ArrayList<>();
         for (Honor c:list) {
-            tableData.add(new TableData(c,rongYuChengHaoMapper.getRongYuDetail(c.getId())));
+            tableData.add(new TableData(c,null));
         }
         return tableData;
     }
@@ -197,7 +197,7 @@ public class Statisticalimpl implements StatisticalService {
         List<Competition> list=xueKeJingSaiMapper.selectXueKeJingSai(date1,date2);
         List<TableData> tableData=new ArrayList<>();
         for (Competition c:list) {
-            tableData.add(new TableData(c,xueKeJingSaiMapper.getJingSaiDetail(c.getId())));
+            tableData.add(new TableData(c,null));
         }
         return tableData;
     }

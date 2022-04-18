@@ -6,6 +6,7 @@ import com.example.graduate_sever.entity.ChanXueYanEntity;
 import com.example.graduate_sever.entity.ParticipationEntity;
 import com.example.graduate_sever.model.ChanXueYan;
 import com.example.graduate_sever.model.MyShenBaoModel;
+import com.example.graduate_sever.model.Teacher;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -54,4 +55,6 @@ public interface ChanXueYanMapper {
     int editHeBing(Integer id, String tablename, String name, String finishtime, String partment);
 
     ChanXueYan selectOneChanXueYan(Integer id);
+
+    Teacher login(Integer username, String password);
 }

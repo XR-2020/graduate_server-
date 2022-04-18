@@ -8,6 +8,7 @@ import com.example.graduate_sever.entity.ChanXueYanEntity;
 import com.example.graduate_sever.entity.ParticipationEntity;
 import com.example.graduate_sever.model.ChanXueYan;
 import com.example.graduate_sever.model.MyShenBaoModel;
+import com.example.graduate_sever.model.Teacher;
 import com.example.graduate_sever.service.ChanXueYanService;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
@@ -202,6 +203,11 @@ public class ChanXueYanimpl implements ChanXueYanService {
             }
         }
         return tableData;
+    }
+
+    @Override
+    public Teacher login(Integer username, String password) {
+        return chanxueyanMapper.login(username,password);
     }
 
     @Override

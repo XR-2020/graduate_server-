@@ -62,6 +62,7 @@ public class XueKeJingSai {
         for (String s:uo.getPeople()) {
             str.append(s+" ");
         }
+        Integer role= uo.getRole();
         String people=str.toString();
         CompetitionEntity element=new CompetitionEntity();
         element.setFinishtime(uo.getFinishtime());
@@ -70,8 +71,10 @@ public class XueKeJingSai {
         element.setName(uo.getName());
         element.setStudent(uo.getStudent());
         element.setTeacher(people);
-        if(uo.getRole() ==3){
+        if(role==3||role==4){
             element.setStatus(1);
+        }else{
+            element.setStatus(0);
         }
         element.setBadge(uo.getShenbao());
         //读取证明材料

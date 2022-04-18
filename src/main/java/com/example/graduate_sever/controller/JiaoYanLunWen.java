@@ -77,10 +77,10 @@ public class JiaoYanLunWen {
             bin.close();
             bos.close();
         }
-        if (role!=2&&role!=4){
-            element=new JiaoYanLunWenEntity(0,uo.getFinishtime(),uo.getPartment(),uo.getName(), uo.getShenbao(),bos.toByteArray());
-        }else {
+        if (role==1||role==4){
             element=new JiaoYanLunWenEntity(1,uo.getFinishtime(),uo.getPartment(),uo.getName(), uo.getShenbao(),bos.toByteArray());
+        }else {
+            element=new JiaoYanLunWenEntity(0,uo.getFinishtime(),uo.getPartment(),uo.getName(), uo.getShenbao(),bos.toByteArray());
         }
 
         return jiaoYanLunWenMuService.shenBaoJiaoYanLunWen(element,people);

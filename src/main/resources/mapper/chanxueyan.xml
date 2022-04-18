@@ -149,5 +149,9 @@
     <delete id="deletePeople">
         delete from participation where ach_id=#{id} and type=#{type}
     </delete>
+
+    <select id="login" resultMap="Teacher">
+        SELECT * FROM `teacher` where badeg=#{username} and password=#{password}
+    </select>
 </mapper>
 

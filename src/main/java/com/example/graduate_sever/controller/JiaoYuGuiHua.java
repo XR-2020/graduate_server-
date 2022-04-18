@@ -72,10 +72,10 @@ public class JiaoYuGuiHua {
             bin.close();
             bos.close();
         }
-        if (role!=4){
-            element=new JiaoYuGuiHuaXiangMuEntity(0,uo.getFinishtime(),uo.getPartment(),uo.getName(),uo.getGrade(),uo.getLevel(),uo.getDanwei(), uo.getShenbao(),bos.toByteArray());
-        }else {
+        if (role==4||role==1){
             element=new JiaoYuGuiHuaXiangMuEntity(1,uo.getFinishtime(),uo.getPartment(),uo.getName(),uo.getGrade(),uo.getLevel(),uo.getDanwei(), uo.getShenbao(),bos.toByteArray());
+        }else {
+            element=new JiaoYuGuiHuaXiangMuEntity(0,uo.getFinishtime(),uo.getPartment(),uo.getName(),uo.getGrade(),uo.getLevel(),uo.getDanwei(), uo.getShenbao(),bos.toByteArray());
         }
 
         return  jiaoYuGuiHuaService.shenBaoJiaoYuGuiHua(element,people);

@@ -73,10 +73,10 @@ public class HeBing {
             bin.close();
             bos.close();
         }
-        if (role!=3&&role!=4) {
-            element = new HeBingEntity(0, uo.getFinishtime(), uo.getPartment(), uo.getName(), uo.getShenbao(),bos.toByteArray());
+        if (role==2||role==4) {
+            element = new HeBingEntity(1, uo.getFinishtime(), uo.getPartment(), uo.getName(), uo.getShenbao(),bos.toByteArray());
         }else {
-            element = new HeBingEntity(1, uo.getFinishtime(), uo.getPartment(), uo.getName(),uo.getShenbao(),bos.toByteArray());
+            element = new HeBingEntity(0, uo.getFinishtime(), uo.getPartment(), uo.getName(),uo.getShenbao(),bos.toByteArray());
         }
         switch (uo.getType()){
            //专利

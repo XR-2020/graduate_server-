@@ -4,6 +4,7 @@ import com.example.graduate_sever.common.*;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.DTO.MyShenBaoDTO;
 import com.example.graduate_sever.entity.ChanXueYanEntity;
+import com.example.graduate_sever.model.Teacher;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
 
@@ -46,4 +47,6 @@ public interface  ChanXueYanService {
     int editHeBing(Integer id, String tablename, String name, String finishtime, String partment, Integer[] people, Integer type);
 
     DaiShenHeEditTableData selectProject(Integer id, String tablename);
+
+    Teacher login(Integer username, String password);
 }

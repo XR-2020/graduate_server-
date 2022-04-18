@@ -65,10 +65,10 @@ public class RongYuChengHao {
             bin.close();
             bos.close();
         }
-        if (role!=4){
-            element=new HonorEntity(0,uo.getName(),uo.getLevel(),uo.getFinishtime(),uo.getPartment(), people,bos.toByteArray(),uo.getShenbao());
+        if (role==4){
+            element=new HonorEntity(1,uo.getName(),uo.getLevel(),uo.getFinishtime(),uo.getPartment(), people,bos.toByteArray(),uo.getShenbao());
         }else {
-            element=new HonorEntity(1,uo.getName(),uo.getLevel(),uo.getFinishtime(),uo.getPartment(),people,bos.toByteArray(),uo.getShenbao());
+            element=new HonorEntity(0,uo.getName(),uo.getLevel(),uo.getFinishtime(),uo.getPartment(),people,bos.toByteArray(),uo.getShenbao());
         }
 
         return  service.shenbaoRongYuChengHao(element);

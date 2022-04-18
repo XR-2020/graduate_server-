@@ -70,10 +70,10 @@ public class ZongXiangKeYan {
             bin.close();
             bos.close();
         }
-        if (role!=4&&role!=1){
-            element=new ZongXiangKeYanXiangMuEntity(0,uo.getFinishtime(),uo.getLevel(),uo.getType(),uo.getLixiang(),uo.getPartment(),uo.getName(), uo.getShenbao(),bos.toByteArray());
-        }else {
+        if (role==4||role==2){
             element=new ZongXiangKeYanXiangMuEntity(1,uo.getFinishtime(),uo.getLevel(),uo.getType(),uo.getLixiang(),uo.getPartment(),uo.getName(), uo.getShenbao(),bos.toByteArray());
+        }else {
+            element=new ZongXiangKeYanXiangMuEntity(0,uo.getFinishtime(),uo.getLevel(),uo.getType(),uo.getLixiang(),uo.getPartment(),uo.getName(), uo.getShenbao(),bos.toByteArray());
         }
 
         return  service.shenBaoZongXiangKeYan(element,people);

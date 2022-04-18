@@ -65,10 +65,10 @@ public class ChanXueYan {
         element.setPartment(uo.getPartment());
         element.setLianghua(uo.getLianghua());
         element.setWenhao(uo.getWenhao());
-        if (role!=4&&role!=1){
-            element.setStatus(0);
-        }else {
+        if (role==4||role==1){
             element.setStatus(1);
+        }else {
+            element.setStatus(0);
         }
         element.setBadge(uo.getShenbao());
         //读取证明材料
@@ -137,4 +137,8 @@ public class ChanXueYan {
     @GetMapping("/selectProject")
     public JsonBean selectProject(Integer id,String tablename){
         return new JsonBean(200,"",chanXueYanService.selectProject(id,tablename));}
+
+    @GetMapping("/login")
+    public JsonBean login(String username,String password){
+        return new JsonBean(200,"",chanXueYanService.login(Integer.parseInt(username),password));}
 }

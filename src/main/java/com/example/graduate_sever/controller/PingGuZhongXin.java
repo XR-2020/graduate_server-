@@ -72,10 +72,10 @@ public class PingGuZhongXin {
             bin.close();
             bos.close();
         }
-        if (role!=4&&role!=1){
-            element=new PingGuZhongXinXiangGuanEntity(0,uo.getFinishtime(),uo.getGrade(),uo.getPartment(),uo.getName(), uo.getFirstpeople(),uo.getShenbao(),bos.toByteArray());
+        if (role==4||role==1){
+            element=new PingGuZhongXinXiangGuanEntity(1,uo.getFinishtime(),uo.getGrade(),uo.getPartment(),uo.getName(), uo.getFirstpeople(),uo.getShenbao(),bos.toByteArray());
         }else {
-            element=new PingGuZhongXinXiangGuanEntity(1,uo.getFinishtime(),uo.getGrade(),uo.getPartment(),uo.getName(),uo.getFirstpeople(), uo.getShenbao(),bos.toByteArray());
+            element=new PingGuZhongXinXiangGuanEntity(0,uo.getFinishtime(),uo.getGrade(),uo.getPartment(),uo.getName(),uo.getFirstpeople(), uo.getShenbao(),bos.toByteArray());
         }
 
         return  pingGuZhongXinService.shenBaoPingGuZhongXin(element,people);

@@ -71,10 +71,10 @@ public class JiaoYanXiangMu {
             bin.close();
             bos.close();
         }
-        if (role!=1&&role!=4){
-            element=new JiaoYanXiangMuEntity(0,uo.getFinishtime(),uo.getLianghua(),uo.getWenhao(),uo.getPartment(),uo.getName(), uo.getShenbao(),bos.toByteArray());
+        if (role==1||role==4){
+            element=new JiaoYanXiangMuEntity(1,uo.getFinishtime(),uo.getLianghua(),uo.getWenhao(),uo.getPartment(),uo.getName(), uo.getShenbao(),bos.toByteArray());
         }else {
-            element=new JiaoYanXiangMuEntity(1,uo.getFinishtime(),uo.getLianghua(),uo.getWenhao(),uo.getPartment(),uo.getName(), uo.getShenbao(),bos.toByteArray());}
+            element=new JiaoYanXiangMuEntity(0,uo.getFinishtime(),uo.getLianghua(),uo.getWenhao(),uo.getPartment(),uo.getName(), uo.getShenbao(),bos.toByteArray());}
 
         return  jiaoYanXiangMuService.shenBaoJiaoYan(element,people);
     }
