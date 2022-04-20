@@ -2,13 +2,10 @@ package com.example.graduate_sever.controller;
 
 
 import com.example.graduate_sever.GraduateSeverApplication;
+import com.example.graduate_sever.common.*;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.EditUO.EditChanXueYanUO;
-import com.example.graduate_sever.common.JsonBean;
-import com.example.graduate_sever.common.Metails;
-import com.example.graduate_sever.common.ResVO;
 import com.example.graduate_sever.common.UO.ChanXueYanUO;
-import com.example.graduate_sever.common.WebCookie;
 import com.example.graduate_sever.entity.ChanXueYanEntity;
 import com.example.graduate_sever.model.Teacher;
 import com.example.graduate_sever.service.ChanXueYanService;
@@ -140,5 +137,9 @@ public class ChanXueYan {
 
     @GetMapping("/login")
     public JsonBean login(String username,String password){
-        return new JsonBean(200,"",chanXueYanService.login(Integer.parseInt(username),password));}
+        Teacher teacher=chanXueYanService.login(Integer.parseInt(username),password);
+        if (teacher!=null){
+            WebSiteDateConfig.WebSiteDateConfig();
+        }
+        return new JsonBean(200,"",teacher);}
 }

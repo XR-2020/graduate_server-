@@ -85,7 +85,6 @@ public class GraduateSeverApplication {
 ////        WebDriver driver=new ChromeDriver(options);
         WebDriver driver=new ChromeDriver();
         WebCookie.setCookie(saveImgToLocal(driver));
-        WebSiteDateConfig.WebSiteDateConfig();
     }
 
 }
