@@ -229,9 +229,7 @@ public class ChanXueYanimpl implements ChanXueYanService {
     @Override
     public void ChanXueYancrawlerWebSite(String td, CloseableHttpClient httpClient,HttpPost list,HttpPost view){
         List<NameValuePair> listparams= new ArrayList<NameValuePair>();
-        //获取当前时间
-        Date date = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        String date=WebCookie.getDate();
         //设置请求地址的参数
         listparams.add(new BasicNameValuePair("tb",td));
         listparams.add(new BasicNameValuePair("pageNum","0"));
@@ -249,7 +247,7 @@ public class ChanXueYanimpl implements ChanXueYanService {
             String[] wenhao=doc.getElementsByAttributeValue("fd","立项文号").text().split("\\s+");
             //设置除参与人外其他信息
             for(int i=0;i<ids.length;i++){
-                ChanXueYanEntity chanXueYanEntity=new ChanXueYanEntity(1,formatter.format(date),lianghua[i],wenhao[i],name.get(i).text(),partment[i],Integer.parseInt(firstpeople[i]));
+                ChanXueYanEntity chanXueYanEntity=new ChanXueYanEntity(1,date,lianghua[i],wenhao[i],name.get(i).text(),partment[i],Integer.parseInt(firstpeople[i]));
                 int ref=chanxueyanMapper.insertChanXueYan(chanXueYanEntity);
                 if(ref!=0){
                     //设置小眼睛参数

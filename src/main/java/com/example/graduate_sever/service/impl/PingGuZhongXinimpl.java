@@ -94,9 +94,8 @@ public class PingGuZhongXinimpl implements PingGuZhongXinService {
     @Override
     public void PingGuZhongXinCrawlerWebSite(String td, CloseableHttpClient httpClient, HttpPost list, HttpPost view) {
         List<NameValuePair> listparams= new ArrayList<NameValuePair>();
-        //获取当前时间
-        Date date = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        //获取时间
+        String date=WebCookie.getDate();
         // System.out.println(formatter.format(date).toString());
         //设置请求地址的参数
         listparams.add(new BasicNameValuePair("tb",td));
@@ -114,7 +113,7 @@ public class PingGuZhongXinimpl implements PingGuZhongXinService {
             String[] grade=doc.getElementsByAttributeValue("fd","获奖/获准/按期验收时间").text().split("\\s+");
             //设置除参与人外其他信息
             for(int i=0;i<ids.length;i++){
-                PingGuZhongXinXiangGuanEntity pingGuZhongXinXiangGuanEntity=new PingGuZhongXinXiangGuanEntity(1,formatter.format(date),grade[i],partment[i],name.get(i).text(),Integer.parseInt(firstpeople[i]));
+                PingGuZhongXinXiangGuanEntity pingGuZhongXinXiangGuanEntity=new PingGuZhongXinXiangGuanEntity(1,date,grade[i],partment[i],name.get(i).text(),Integer.parseInt(firstpeople[i]));
                 int ref=mapper.insertPingGuZhongXin(pingGuZhongXinXiangGuanEntity);
                 if(ref!=0){
                     //添加第一完成人

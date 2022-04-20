@@ -95,9 +95,8 @@ public class JiaoYanXiangMuimpl implements JiaoYanXiangMuService {
     @Override
     public void JiaoYanXiangMuCrawlerWebSite(String td, CloseableHttpClient httpClient, HttpPost list, HttpPost view) {
         List<NameValuePair> listparams= new ArrayList<NameValuePair>();
-        //获取当前时间
-        Date date = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        //获取时间
+        String date=WebCookie.getDate();
         // System.out.println(formatter.format(date).toString());
         //设置请求地址的参数
         listparams.add(new BasicNameValuePair("tb",td));
@@ -117,7 +116,7 @@ public class JiaoYanXiangMuimpl implements JiaoYanXiangMuService {
 
             //设置除参与人外其他信息
             for(int i=0;i<ids.length;i++){
-                JiaoYanXiangMuEntity jiaoYanXiangMuEntity=new JiaoYanXiangMuEntity(1,formatter.format(date),lianghua[i],wenhao[i],partment[i],name.get(i).text(),Integer.parseInt(firstpeople[i]));
+                JiaoYanXiangMuEntity jiaoYanXiangMuEntity=new JiaoYanXiangMuEntity(1,date,lianghua[i],wenhao[i],partment[i],name.get(i).text(),Integer.parseInt(firstpeople[i]));
                 int ref=mapper.insertJiaoYanXiangMu(jiaoYanXiangMuEntity);
                 if(ref!=0){
                     //设置小眼睛参数

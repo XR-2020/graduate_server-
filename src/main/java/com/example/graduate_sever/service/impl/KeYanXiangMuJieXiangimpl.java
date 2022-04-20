@@ -92,8 +92,7 @@ public class KeYanXiangMuJieXiangimpl implements KeYanXiangMuJieXiangService {
     public void KeYanXiangMuJieXiangCrawlerWebSite(String td, CloseableHttpClient httpClient, HttpPost list, HttpPost view) {
         List<NameValuePair> listparams= new ArrayList<NameValuePair>();
         //获取当前时间
-        Date date = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        String date=WebCookie.getDate();
         // System.out.println(formatter.format(date).toString());
         //设置请求地址的参数
         listparams.add(new BasicNameValuePair("tb",td));
@@ -110,7 +109,7 @@ public class KeYanXiangMuJieXiangimpl implements KeYanXiangMuJieXiangService {
             String[] firstpeople=doc.getElementsByAttributeValue("fd","工号").text().split("\\s+");
             //设置除参与人外其他信息
             for(int i=0;i<ids.length;i++){
-                HeBingEntity keYanXiangMuJieXiangEntity=new HeBingEntity(1,formatter.format(date),partment[i],name.get(i).text(),Integer.parseInt(firstpeople[i]));
+                HeBingEntity keYanXiangMuJieXiangEntity=new HeBingEntity(1,date,partment[i],name.get(i).text(),Integer.parseInt(firstpeople[i]));
                 int ref=mapper.insertKeYanXiangMuJieXiang(keYanXiangMuJieXiangEntity);
                 if(ref!=0){
                     //设置小眼睛参数
