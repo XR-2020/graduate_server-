@@ -57,6 +57,7 @@ public class JiaoYanXiangMuimpl implements JiaoYanXiangMuService {
     public JsonBean deleteJiaoYan(List<Integer> ids) {
         for (Integer id:ids) {
             mapper.deleteOneJiaoYan(id);
+            chanXueYanMapper.deletePeople(id,2);
         }
         return new JsonBean(200,"","");
     }
@@ -64,6 +65,7 @@ public class JiaoYanXiangMuimpl implements JiaoYanXiangMuService {
     @Override
     public JsonBean deleteOneJiaoYan(Integer id) {
         mapper.deleteOneJiaoYan(id);
+        chanXueYanMapper.deletePeople(id,2);
         return new JsonBean(200,"","");
     }
 

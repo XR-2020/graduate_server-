@@ -57,8 +57,8 @@
     <!--产学研成果全局模糊查询-->
     <select id="getSearchChanXueYan" resultMap="ChanXueYan,ChanXueYan_count">
         <bind name="beginIndex" value="(pageIndex-1)*pageSize"></bind>
-        select c.* from chanxueyan c,teacher t,participation p where status=1 and p.badge=t.badeg and p.ach_id=c.id and CONCAT(c.id,t.tea_name,c.partment,c.name,c.wenhao,c.lianghua,c.finishtime,c.status,p.badge) LIKE CONCAT('%',#{key},'%') limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER};
-        select count(*) ChanXueYan_count from chanxueyan c,teacher t,participation p where status=1 and p.badge=t.badeg and p.ach_id=c.id and CONCAT(c.id,t.tea_name,c.partment,c.name,c.wenhao,c.lianghua,c.finishtime,c.status,p.badge) LIKE CONCAT('%',#{key},'%');
+        select distinct c.* from chanxueyan c,teacher t,participation p where status=1 and p.badge=t.badeg and p.ach_id=c.id and CONCAT(c.id,t.tea_name,c.partment,c.name,c.wenhao,c.lianghua,c.finishtime,c.status,p.badge) LIKE CONCAT('%',#{key},'%') limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER};
+        select count(*) ChanXueYan_count from( select distinct c.* from chanxueyan c,teacher t,participation p where status=1 and p.badge=t.badeg and p.ach_id=c.id and CONCAT(c.id,t.tea_name,c.partment,c.name,c.wenhao,c.lianghua,c.finishtime,c.status,p.badge) LIKE CONCAT('%',#{key},'%')) A
     </select>
     
     <insert id="insertChanXueYan" parameterType="com.example.graduate_sever.entity.ChanXueYanEntity" useGeneratedKeys="true" keyProperty="id">

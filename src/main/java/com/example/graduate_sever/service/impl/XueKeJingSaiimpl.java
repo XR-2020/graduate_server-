@@ -53,6 +53,7 @@ public class XueKeJingSaiimpl implements XueKeJingSaiService {
     public JsonBean deleteJingSai(List<Integer> ids) {
         for (Integer id:ids) {
             mapper.deleteOneJingSai(id);
+            chanXueYanMapper.deletePeople(id,13);
         }
         return new JsonBean(200,"","");
     }
@@ -60,6 +61,7 @@ public class XueKeJingSaiimpl implements XueKeJingSaiService {
     @Override
     public JsonBean deleteOneJingSai(Integer id) {
         mapper.deleteOneJingSai(id);
+        chanXueYanMapper.deletePeople(id,13);
         return new JsonBean(200,"","");
     }
 

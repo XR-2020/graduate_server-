@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.graduate_sever.Dao.NewSystemMapper">
+    <!--实体映射-->
+    <resultMap id="NewSystem" type="com.example.graduate_sever.model.NewSyatemModel">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="finishtime" jdbcType="VARCHAR" property="finishtime"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="partment" jdbcType="VARCHAR" property="partment"/>
+        <result column="badge" jdbcType="INTEGER" property="badge"/>
+        <result column="shenbao" property="shenbao"/>
+        <result column="metails" property="metails"/>
+        <result column="type" property="type"/>
+    </resultMap>
+<!--    <resultMap id="ZhuZuoMyShenBaoModel" type="com.example.graduate_sever.common.People">-->
+<!--        <result column="name" property="name"/>-->
+<!--        <result column="id" property="id"/>-->
+<!--        <result column="partment" property="partment"/>-->
+<!--        <result column="finishtime" property="finishtime"/>-->
+<!--    </resultMap>-->
+
+    <!--参与人映射-->
+    <resultMap id="NewSystem_People" type="com.example.graduate_sever.common.People">
+        <result column="badeg" jdbcType="INTEGER" javaType="int" property="badge"/>
+        <result column="tea_name" jdbcType="VARCHAR" javaType="string" property="name"/>
+    </resultMap>
+
+    <resultMap id="count13" type="java.lang.Long"/>
+<!--    <resultMap id="NewSystemMetails" type="com.example.graduate_sever.common.Metails">-->
+<!--        <result column="metails" property="metails"></result>-->
+<!--    </resultMap>-->
+    <!--查询教研项目所有成果-->
+    <!--application.yml 中通过 type-aliases-package 指定了实体类的为了，因此-->
+    <select id="getAllNewSystem" resultMap="NewSystem,count13">
+        <bind name="beginIndex" value="(pageIndex-1)*pageSize"></bind>
+        select * from newsystem where status=1 limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER};select count(*) count13 from newsystem where status=1 ;
+    </select>
+
+<!--    <select id="selectOneZhuZuo" resultMap="ZhuZuo">-->
+<!--        select * from `zhuzuo` where id=#{id}-->
+<!--    </select>-->
+    <!--删除一个项目-->
+    <delete id="deleteOneNewSystem">
+        delete from newsystem where id=#{id}
+    </delete>
+    <!--查询指定教研项目成果人员信息-->
+    <select id="getNewSystemDetail" resultMap="NewSystem_People">
+        select teacher.tea_name,teacher.badeg from newparticipation,teacher where newparticipation.badge=teacher.badeg and newparticipation.ach_id=#{id} and newparticipation.type=#{type}
+    </select>
+<!--    &lt;!&ndash;教研项目成果全局模糊查询&ndash;&gt;-->
+    <select id="getSearchNewSystem" resultMap="NewSystem,count13">
+        <bind name="beginIndex" value="(pageIndex-1)*pageSize"></bind>
+        select distinct c.* from newsystem c,teacher t,newparticipation p where status=1 and p.badge=t.badeg and p.ach_id=c.id and CONCAT(c.id,t.tea_name,c.partment,c.name,c.finishtime,c.status,p.badge,c.type) LIKE CONCAT('%',#{key},'%') limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER};
+        select count(*) count13 from (select distinct c.* from newsystem c,teacher t,newparticipation p where status=1 and p.badge=t.badeg and p.ach_id=c.id and CONCAT(c.id,t.tea_name,c.partment,c.name,c.finishtime,c.status,p.badge,c.type) LIKE CONCAT('%',#{key},'%')) A
+    </select>
+
+    <insert id="insertNewSystem" parameterType="com.example.graduate_sever.entity.NewSystemEntity" useGeneratedKeys="true" keyProperty="id">
+        INSERT IGNORE INTO newsystem( `status`, `name`, `finishtime`, `partment`,`badge`,`type`) VALUES (#{status,jdbcType=INTEGER},#{name,jdbcType=VARCHAR},#{finishtime,jdbcType=VARCHAR},#{partment,jdbcType=VARCHAR},#{badge,jdbcType=INTEGER},#{type,jdbcType=VARCHAR})
+    </insert>
+
+<!--    <insert id="shenBaoZhuZuo" parameterType="com.example.graduate_sever.entity.HeBingEntity" useGeneratedKeys="true" keyProperty="id">-->
+<!--        INSERT IGNORE INTO zhuzuo( `status`, `name`, `finishtime`, `partment`,`shenbao`,`metails`) VALUES (#{status,jdbcType=INTEGER},#{name,jdbcType=VARCHAR},#{finishtime,jdbcType=VARCHAR},#{partment,jdbcType=VARCHAR},#{badge,jdbcType=INTEGER},#{metails,jdbcType=BINARY})-->
+<!--    </insert>-->
+
+    <insert id="insertNewSystemParticipation" parameterType="com.example.graduate_sever.entity.NewParticipationEntity" useGeneratedKeys="true">
+        INSERT IGNORE INTO newparticipation(`badge`, `ach_id`, `type`) VALUES (#{badge,jdbcType=INTEGER},#{ach_id,jdbcType=INTEGER},#{type,jdbcType=VARCHAR})
+    </insert>
+
+<!--    <select id="ZhuZuoMetails" parameterType="java.lang.Integer" resultMap="ZhuZuoMetails">-->
+<!--        SELECT metails FROM `zhuzuo` where id=#{id}-->
+<!--    </select>-->
+
+<!--    <select id="selectZhuZuo" parameterType="java.lang.String" resultMap="ZhuZuo">-->
+<!--        select * from `zhuzuo` where status=1 and finishtime between #{date1} and #{date2}-->
+<!--    </select>-->
+
+<!--    <select id="waitingzhuzuo" resultMap="ZhuZuo">-->
+<!--        <bind name="beginIndex" value="(pageIndex-1)*pageSize"></bind>-->
+<!--        select * from `zhuzuo` where status=0 limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}-->
+<!--    </select>-->
+
+<!--    <update id="passZhuZuo" parameterType="java.lang.Integer">-->
+<!--        update `zhuzuo` set `status`=#{ispass} where id=#{id}-->
+<!--    </update>-->
+
+<!--    <select id="getZhuZuoDisData" resultMap="ZhuZuoMyShenBaoModel">-->
+<!--        <bind name="beginIndex" value="(pageIndex-1)*pageSize"></bind>-->
+<!--        select c.name,c.id,c.partment,c.finishtime from `zhuzuo` c,participation p where status=-1 and c.shenbao=p.badge and c.shenbao=#{badge} and p.type=1 limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}-->
+<!--    </select>-->
+        <update id="editNewSystem">
+            update `newsystem` set partment=#{partment},finishtime=#{finishtime},name=#{name} where id=#{id}
+        </update>
+
+        <delete id="deletePeople">
+            delete from newparticipation where ach_id=#{id}
+        </delete>
+
+        <insert id="editNewSystemPeople">
+            INSERT IGNORE INTO newparticipation(`badge`, `ach_id`, `type`) VALUES (#{badge,jdbcType=INTEGER},#{ach_id,jdbcType=INTEGER},#{type,jdbcType=VARCHAR})
+        </insert>
+
+</mapper>
+

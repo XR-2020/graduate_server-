@@ -56,6 +56,7 @@ public class JiaoYanLunWenimpl implements JiaoYanLunWenMuService {
     public JsonBean deleteJiaoYanLunWen(List<Integer> ids) {
         for (Integer id:ids) {
             jiaoYanLunWenMapper.deleteOneJiaoYanLunWen(id);
+            chanXueYanMapper.deletePeople(id,3);
         }
         return new JsonBean(200,"","");
     }
@@ -63,6 +64,7 @@ public class JiaoYanLunWenimpl implements JiaoYanLunWenMuService {
     @Override
     public JsonBean deleteOneJiaoYanLunWen(Integer id) {
         jiaoYanLunWenMapper.deleteOneJiaoYanLunWen(id);
+        chanXueYanMapper.deletePeople(id,3);
         return new JsonBean(200,"","");
     }
 
@@ -94,8 +96,6 @@ public class JiaoYanLunWenimpl implements JiaoYanLunWenMuService {
     @Override
     public void JiaoYanLunWenCrawlerWebSite(String td, CloseableHttpClient httpClient, HttpPost list, HttpPost view) {
         List<NameValuePair> listparams= new ArrayList<NameValuePair>();
-        //获取时间
-        String date=WebCookie.getDate();
         // System.out.println(formatter.format(date).toString());
         //设置请求地址的参数
         listparams.add(new BasicNameValuePair("tb",td));
@@ -110,9 +110,10 @@ public class JiaoYanLunWenimpl implements JiaoYanLunWenMuService {
             Elements name=doc.getElementsByAttributeValue("fd","名称");
             String[] partment=doc.getElementsByAttributeValue("fd","部门").text().split("\\s+");
             String[] firstpeople=doc.getElementsByAttributeValue("fd","工号").text().split("\\s+");
-           //添加教研论文
+            String[] finishtime=doc.getElementsByAttributeValue("fd","获奖/获准/按期验收时间").text().split("\\s+");
+            //添加教研论文
             for(int i=0;i<ids.length;i++){
-                JiaoYanLunWenEntity jiaoYanLunWenEntity=new JiaoYanLunWenEntity(1,date,partment[i],name.get(i).text(),Integer.parseInt(firstpeople[i]));
+                JiaoYanLunWenEntity jiaoYanLunWenEntity=new JiaoYanLunWenEntity(1,finishtime[i],partment[i],name.get(i).text(),Integer.parseInt(firstpeople[i]));
                 int ref=jiaoYanLunWenMapper.insertJiaoYanLunWen(jiaoYanLunWenEntity);
                 if(ref!=0){
                     jiaoYanLunWenMapper.insertJiaoYanLunWenParticipation(new ParticipationEntity(Integer.parseInt(firstpeople[i]),jiaoYanLunWenEntity.getId(),3));

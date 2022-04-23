@@ -1,5 +1,6 @@
 package com.example.graduate_sever.service.impl;
 
+import com.example.graduate_sever.Dao.ChanXueYanMapper;
 import com.example.graduate_sever.Dao.KeYanLunWenMapper;
 import com.example.graduate_sever.common.*;
 import com.example.graduate_sever.common.DTO.DTO;
@@ -31,6 +32,8 @@ import java.util.List;
 public class KeYanLunWenimpl implements KeYanLunWenService {
     @Autowired
     private KeYanLunWenMapper mapper;
+    @Autowired
+    private ChanXueYanMapper chanXueYanMapper;
     @Override
     public ResVO getAllKeYanLunWen(DTO dTO) {
         List<List<Object>>data=mapper.getAllKeYanLunWen(dTO);
@@ -53,6 +56,7 @@ public class KeYanLunWenimpl implements KeYanLunWenService {
     public JsonBean deleteKeYanLunWen(List<Integer> ids) {
         for (Integer id:ids) {
             mapper.deleteOneKeYanLunWen(id);
+            chanXueYanMapper.deletePeople(id,10);
         }
         return new JsonBean(200,"","");
     }
@@ -60,6 +64,7 @@ public class KeYanLunWenimpl implements KeYanLunWenService {
     @Override
     public JsonBean deleteOneKeYanLunWen(Integer id) {
         mapper.deleteOneKeYanLunWen(id);
+        chanXueYanMapper.deletePeople(id,10);
         return new JsonBean(200,"","");
     }
 

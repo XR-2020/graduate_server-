@@ -1,5 +1,6 @@
 package com.example.graduate_sever.service.impl;
 
+import com.example.graduate_sever.Dao.ChanXueYanMapper;
 import com.example.graduate_sever.Dao.ZhuZuoMapper;
 import com.example.graduate_sever.common.*;
 import com.example.graduate_sever.common.DTO.DTO;
@@ -31,6 +32,8 @@ import java.util.List;
 public class ZhuZuoimpl implements ZhuZuoService {
     @Autowired
     private ZhuZuoMapper mapper;
+    @Autowired
+    private ChanXueYanMapper chanXueYanMapper;
     @Override
     public ResVO getAllZhuZuo(DTO dTO) {
         List<List<Object>>data=mapper.getAllZhuZuo(dTO);
@@ -53,6 +56,7 @@ public class ZhuZuoimpl implements ZhuZuoService {
     public JsonBean deleteZhuZuo(List<Integer> ids) {
         for (Integer id:ids) {
             mapper.deleteOneZhuZuo(id);
+            chanXueYanMapper.deletePeople(id,9);
         }
         return new JsonBean(200,"","");
     }
@@ -60,6 +64,7 @@ public class ZhuZuoimpl implements ZhuZuoService {
     @Override
     public JsonBean deleteOneZhuZuo(Integer id) {
         mapper.deleteOneZhuZuo(id);
+        chanXueYanMapper.deletePeople(id,9);
         return new JsonBean(200,"","");
     }
 

@@ -78,6 +78,7 @@ public class ChanXueYanimpl implements ChanXueYanService {
     public JsonBean deleteChanXueYan(List<Integer> ids) {
         for (int id:ids) {
             chanxueyanMapper.deleteOneChanXueYan(id);
+            chanxueyanMapper.deletePeople(id,1);
         }
         return new JsonBean(200,"","");
     }
@@ -85,6 +86,7 @@ public class ChanXueYanimpl implements ChanXueYanService {
     @Override
     public JsonBean deleteOneChanXueYan(Integer id) {
         chanxueyanMapper.deleteOneChanXueYan(id);
+        chanxueyanMapper.deletePeople(id,1);
         return new JsonBean(200,"","");
     }
 
