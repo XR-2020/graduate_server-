@@ -5,6 +5,9 @@ import com.example.graduate_sever.common.EditUO.EditChanXueYanUO;
 import com.example.graduate_sever.common.EditUO.EditNewSystemUO;
 import com.example.graduate_sever.common.JsonBean;
 import com.example.graduate_sever.common.ResVO;
+import com.example.graduate_sever.common.UO.HeBingUO;
+import com.example.graduate_sever.common.UO.JiaoWuChuUO;
+import com.example.graduate_sever.common.UO.SheKeChuUO;
 import com.example.graduate_sever.common.WebCookie;
 import com.example.graduate_sever.service.NewSystemCrawlerService;
 import org.apache.http.client.methods.HttpPost;
@@ -79,4 +82,9 @@ public class NewSystemCrawler {
 
     @PostMapping("/deleteOneNewSystem")
     public  JsonBean deleteOneNewSystem(Integer id){return newSystemCrawlerService.deleteOneNewSystem(id);}
+
+    @RequestMapping(value = "/insertJiaoWuChu", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public JsonBean insertJiaoWuChu(@RequestBody JiaoWuChuUO uo) throws Exception {
+        return  newSystemCrawlerService.shenBaoSheKeChu(uo);
+    }
 }

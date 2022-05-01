@@ -31,4 +31,6 @@ public interface NewSystemMapper {
     void editNewSystemPeople(Integer ach_id, Integer badge,String type);
 
     void deleteOneNewSystem(int id);
+
+    int shenBaoJiaoWuChu(NewSystemEntity element);
 }

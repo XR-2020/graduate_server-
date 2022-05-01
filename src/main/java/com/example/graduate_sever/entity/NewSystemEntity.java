@@ -17,19 +17,15 @@ public class NewSystemEntity implements Serializable {
     private String name;
     private Integer badge;
     private byte[] metails;
+    private Integer shenbao;
     private String type;
 
-    @Override
-    public String toString() {
-        return "NewSystemEntity{" +
-                "status=" + status +
-                ", finishtime='" + finishtime + '\'' +
-                ", partment='" + partment + '\'' +
-                ", name='" + name + '\'' +
-                ", badge=" + badge +
-                ", metails=" + Arrays.toString(metails) +
-                ", type='" + type + '\'' +
-                '}';
+    public Integer getShenbao() {
+        return shenbao;
+    }
+
+    public void setShenbao(Integer shenbao) {
+        this.shenbao = shenbao;
     }
 
     public void setType(String type) {
@@ -96,12 +92,12 @@ public class NewSystemEntity implements Serializable {
         this.name = name;
     }
 
-    public NewSystemEntity(Integer status, String finishtime, String partment, String name, Integer badge, byte[] metails, String type) {
+    public NewSystemEntity(Integer status, String finishtime, String partment, String name, Integer shenbao, byte[] metails, String type) {
         this.status = status;
         this.finishtime = finishtime;
         this.partment = partment;
         this.name = name;
-        this.badge = badge;
+        this.shenbao = shenbao;
         this.metails = metails;
         this.type = type;
     }

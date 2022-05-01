@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WebCookie {
-    public static String cookie="JSESSIONID=009FFBF2668C3651CDD14B77018C63A4";
+    public static String cookie="JSESSIONID=93E1C926FFCBBC3F663F115A105E1D5E";
     public static String date;
 //    public static List<String> typeAll=new ArrayList<String>("科技处_著作","社科处_教育规划项目纵向结题","科技处_横向科研项目业绩表","","","","","");
 //

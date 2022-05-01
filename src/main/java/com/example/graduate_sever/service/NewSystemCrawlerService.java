@@ -3,6 +3,7 @@ package com.example.graduate_sever.service;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.JsonBean;
 import com.example.graduate_sever.common.ResVO;
+import com.example.graduate_sever.common.UO.JiaoWuChuUO;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
 
@@ -26,4 +27,6 @@ public interface NewSystemCrawlerService {
     JsonBean deleteNewSystem(List<Integer> ids);
 
     JsonBean deleteOneNewSystem(Integer id);
+
+    JsonBean shenBaoSheKeChu(JiaoWuChuUO uo) throws IOException;
 }
