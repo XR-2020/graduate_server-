@@ -73,4 +73,13 @@ public class SheKeChu {
         return  new JsonBean(200,"",sheKeChuService.editSheKeChu(uo));
     }
 
+    @GetMapping("/getSheKeChuMetails")
+    public byte[] getSheKeChuMetails(Integer id){
+        return sheKeChuService.getSheKeChuMetails(id).getMetails();
+    }
+
+    @RequestMapping(value = "/passSheKeChuChu", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public int passSheKeChuChu(Integer id,Integer ispass){
+        return sheKeChuService.passSheKeChuChu(id,ispass);
+    }
 }

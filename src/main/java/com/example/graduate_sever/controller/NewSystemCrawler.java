@@ -87,4 +87,14 @@ public class NewSystemCrawler {
     public JsonBean insertJiaoWuChu(@RequestBody JiaoWuChuUO uo) throws Exception {
         return  newSystemCrawlerService.shenBaoSheKeChu(uo);
     }
+
+    @GetMapping("/getJiaoWuChuMetails")
+    public byte[] getJiaoWuChuMetails(Integer id){
+        return newSystemCrawlerService.getJiaoWuChuMetails(id).getMetails();
+    }
+
+    @RequestMapping(value = "/passJiaoWuChu", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public int passJiaoWuChu(Integer id,Integer ispass){
+        return newSystemCrawlerService.passJiaoWuChu(id,ispass);
+    }
 }

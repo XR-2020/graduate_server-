@@ -53,6 +53,10 @@ public class HeBing {
     private RongYuChengHaoService rongYuChengHaoService;
     @Autowired
     private XueKeJingSaiService xueKeJingSaiService;
+    @Autowired
+    private NewSystemCrawlerService newSystemCrawlerService;
+    @Autowired
+    private SheKeChuService sheKeChuService;
     @RequestMapping(value = "/updateHeBing", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public JsonBean updateHeBing(@RequestBody HeBingUO uo) throws IOException {
         Integer role=uo.getRole();
@@ -194,7 +198,6 @@ public class HeBing {
     }
     @GetMapping("/getAllWaiting")
     public WaitingRes getAllWaiting(DTO dTO){
-
         WaitingRes allData=new WaitingRes(
                 chanXueYanService.waitingChanXueYan(dTO),chanXueYanService.waitingPageTotal(1),
                 hengXiangKeYanService.waitinghengxiangkeyan(dTO),chanXueYanService.waitingPageTotal(7),
@@ -209,7 +212,16 @@ public class HeBing {
                 xueKeJingSaiService.waitingxuekejingsai(dTO),chanXueYanService.waitingPageTotal(13),
                 zhuanLiService.waitingzhuanli(dTO),chanXueYanService.waitingPageTotal(6),
                 zhuZuoService.waitingzhuzuo(dTO),chanXueYanService.waitingPageTotal(9),
-                zongXiangKeYanService.waitingzongxiangkeyan(dTO),chanXueYanService.waitingPageTotal(8));
+                zongXiangKeYanService.waitingzongxiangkeyan(dTO),chanXueYanService.waitingPageTotal(8),
+                newSystemCrawlerService.waitingnewSystem(dTO,"教务处-实践科_校外实践基地"),newSystemCrawlerService.waitingnewSystemPageToTal("教务处-实践科_校外实践基地"),
+                newSystemCrawlerService.waitingnewSystem(dTO,"教务处-实践科_立项"),newSystemCrawlerService.waitingnewSystemPageToTal("教务处-实践科_立项"),
+                newSystemCrawlerService.waitingnewSystem(dTO,"教务处-实践科_结项"),newSystemCrawlerService.waitingnewSystemPageToTal("教务处-实践科_结项"),
+                newSystemCrawlerService.waitingnewSystem(dTO,"教务处-教材科_教材业绩点"),newSystemCrawlerService.waitingnewSystemPageToTal("教务处-教材科_教材业绩点"),
+                newSystemCrawlerService.waitingnewSystem(dTO,"教务处-教研科_教研业绩"),newSystemCrawlerService.waitingnewSystemPageToTal("教务处-教研科_教研业绩"),
+                newSystemCrawlerService.waitingnewSystem(dTO,"教务处-教研科_教研论文"),newSystemCrawlerService.waitingnewSystemPageToTal("教务处-教研科_教研论文"),
+                newSystemCrawlerService.waitingnewSystem(dTO,"教务处-评估中心_2020届本科优秀毕业设计（论文）指导教师"),newSystemCrawlerService.waitingnewSystemPageToTal("教务处-评估中心_2020届本科优秀毕业设计（论文）指导教师"),
+                sheKeChuService.waitingSheKeChu(dTO,"社科处_3.纵向结题"),sheKeChuService.waitingSheKeChuPageToTal("社科处_3.纵向结题"),
+                sheKeChuService.waitingSheKeChu(dTO,"社科处_7.科研获奖"),sheKeChuService.waitingSheKeChuPageToTal("社科处_7.科研获奖"));
         return allData;
     }
 

@@ -3,8 +3,10 @@ package com.example.graduate_sever.Dao;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.DTO.SheKeDTO;
 import com.example.graduate_sever.common.EditUO.SheKeChuEditUO;
+import com.example.graduate_sever.common.Metails;
 import com.example.graduate_sever.common.People;
 import com.example.graduate_sever.entity.SheKeChuEntity;
+import com.example.graduate_sever.model.SheKeChuModel;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -25,4 +27,12 @@ public interface SheKeChuMapper {
     void deleteAllPeople(Integer id,String type);
     int shenBaoSheKeChu(SheKeChuEntity entity);
     int editSheKeChu(SheKeChuEditUO uo);
+
+    List<SheKeChuModel> waitingSheKeChu(Integer beginIndex,Integer pageSize,String type);
+
+    long waitingSheKeChuPageToTal(String type);
+
+    Metails getSheKeChuMetails(Integer id);
+
+    int passSheKeChuChu(Integer id, Integer pass);
 }

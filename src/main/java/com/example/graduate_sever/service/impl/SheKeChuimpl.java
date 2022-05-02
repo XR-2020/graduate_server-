@@ -13,6 +13,7 @@ import com.example.graduate_sever.entity.ParticipationEntity;
 import com.example.graduate_sever.entity.SheKeChuEntity;
 import com.example.graduate_sever.model.ChanXueYan;
 import com.example.graduate_sever.model.MyShenBaoModel;
+import com.example.graduate_sever.model.SheKeChuModel;
 import com.example.graduate_sever.model.Teacher;
 import com.example.graduate_sever.service.ChanXueYanService;
 import com.example.graduate_sever.service.SheKeChuService;
@@ -135,5 +136,31 @@ public class SheKeChuimpl implements SheKeChuService {
             }
         }
         return ref;
+    }
+
+    @Override
+    public List<TableData> waitingSheKeChu(DTO dTO, String type) {
+        Integer beginIndex=dTO.getPageIndex()-1;
+        List<SheKeChuModel> list=mapper.waitingSheKeChu(beginIndex,dTO.getPageSize(),type);
+        List<TableData> tableData=new ArrayList<>();
+        for (SheKeChuModel c:list) {
+            tableData.add(new TableData(c,newSystemMapper.getNewSystemDetail(c.getId(),type)));
+        }
+        return tableData;
+    }
+
+    @Override
+    public long waitingSheKeChuPageToTal(String type) {
+        return mapper.waitingSheKeChuPageToTal(type);
+    }
+
+    @Override
+    public Metails getSheKeChuMetails(Integer id) {
+        return mapper.getSheKeChuMetails(id);
+    }
+
+    @Override
+    public int passSheKeChuChu(Integer id, Integer pass) {
+        return mapper.passSheKeChuChu(id,pass);
     }
 }

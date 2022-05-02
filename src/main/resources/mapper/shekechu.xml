@@ -19,6 +19,10 @@
         <result column="chengguotype" property="chengguotype"/>
         <result column="danwei" property="danwei"/>
     </resultMap>
+
+    <resultMap id="SheKeChuMetails" type="com.example.graduate_sever.common.Metails">
+        <result column="metails" property="metails"/>
+    </resultMap>
 <!--    <resultMap id="ZhuZuoMyShenBaoModel" type="com.example.graduate_sever.common.People">-->
 <!--        <result column="name" property="name"/>-->
 <!--        <result column="id" property="id"/>-->
@@ -69,38 +73,29 @@
         INSERT IGNORE INTO shekechu(`status`, `name`, `finishtime`, `partment`,`shenbao`,`type`,`jietidengji`,`xiangmujibie`,`jianglijibie`,`jianglidengji`,`huojiangleibie`,`chengguotype`,`danwei`,`metails`) VALUES (#{status,jdbcType=INTEGER},#{name,jdbcType=VARCHAR},#{finishtime,jdbcType=VARCHAR},#{partment,jdbcType=VARCHAR},#{shenbao,jdbcType=INTEGER},#{type,jdbcType=VARCHAR},#{jietidengji,jdbcType=VARCHAR},#{xiangmujibie,jdbcType=VARCHAR},#{jianglijibie,jdbcType=VARCHAR},#{jianglidengji,jdbcType=VARCHAR},#{huojiangleibie,jdbcType=VARCHAR},#{chengguotype,jdbcType=VARCHAR},#{danwei,jdbcType=VARCHAR},#{metails,jdbcType=BINARY})
     </insert>
 
-<!--    <insert id="shenBaoZhuZuo" parameterType="com.example.graduate_sever.entity.HeBingEntity" useGeneratedKeys="true" keyProperty="id">-->
-<!--        INSERT IGNORE INTO zhuzuo( `status`, `name`, `finishtime`, `partment`,`shenbao`,`metails`) VALUES (#{status,jdbcType=INTEGER},#{name,jdbcType=VARCHAR},#{finishtime,jdbcType=VARCHAR},#{partment,jdbcType=VARCHAR},#{badge,jdbcType=INTEGER},#{metails,jdbcType=BINARY})-->
-<!--    </insert>-->
+    <select id="waitingSheKeChu" resultMap="SheKeChu">
+        select * from shekechu where status=0 and type=#{type} limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER};select count(*) count13 from newsystem where status=1 ;
+    </select>
 
-<!--    <select id="ZhuZuoMetails" parameterType="java.lang.Integer" resultMap="ZhuZuoMetails">-->
-<!--        SELECT metails FROM `zhuzuo` where id=#{id}-->
-<!--    </select>-->
+    <select id="waitingSheKeChuPageToTal" resultMap="SheKeChuCount">
+        select count(*) SheKeChuCount from shekechu where status=0 and type=#{type};
+    </select>
 
-<!--    <select id="selectZhuZuo" parameterType="java.lang.String" resultMap="ZhuZuo">-->
-<!--        select * from `zhuzuo` where status=1 and finishtime between #{date1} and #{date2}-->
-<!--    </select>-->
-
-<!--    <select id="waitingzhuzuo" resultMap="ZhuZuo">-->
-<!--        <bind name="beginIndex" value="(pageIndex-1)*pageSize"></bind>-->
-<!--        select * from `zhuzuo` where status=0 limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}-->
-<!--    </select>-->
-
-<!--    <update id="passZhuZuo" parameterType="java.lang.Integer">-->
-<!--        update `zhuzuo` set `status`=#{ispass} where id=#{id}-->
-<!--    </update>-->
-
-<!--    <select id="getZhuZuoDisData" resultMap="ZhuZuoMyShenBaoModel">-->
-<!--        <bind name="beginIndex" value="(pageIndex-1)*pageSize"></bind>-->
-<!--        select c.name,c.id,c.partment,c.finishtime from `zhuzuo` c,participation p where status=-1 and c.shenbao=p.badge and c.shenbao=#{badge} and p.type=1 limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}-->
-<!--    </select>-->
-        <update id="editSheKeChu">
-            update `shekechu` set partment=#{partment},finishtime=#{finishtime},name=#{name},jietidengji=#{jietidengji},xiangmujibie=#{xiangmujibie},jianglijibie=#{jianglijibie},jianglidengji=#{jianglidengji},huojiangleibie=#{huojiangleibie},chengguotype=#{chengguotype},danwei=#{danwei} where id=#{id}
-        </update>
+    <update id="editSheKeChu">
+        update `shekechu` set partment=#{partment},finishtime=#{finishtime},name=#{name},jietidengji=#{jietidengji},xiangmujibie=#{xiangmujibie},jianglijibie=#{jianglijibie},jianglidengji=#{jianglidengji},huojiangleibie=#{huojiangleibie},chengguotype=#{chengguotype},danwei=#{danwei} where id=#{id}
+    </update>
 
     <delete id="deleteAllPeople">
         delete from newparticipation where ach_id=#{id} and type=#{type}
     </delete>
+
+    <update id="passSheKeChuChu" parameterType="java.lang.Integer">
+        update `shekechu` set `status`=#{pass} where id=#{id}
+    </update>
+
+    <select id="getSheKeChuMetails" parameterType="java.lang.Integer" resultMap="SheKeChuMetails">
+        SELECT metails FROM `shekechu` where id=#{id}
+    </select>
 
 </mapper>
 

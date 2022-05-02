@@ -30,7 +30,7 @@ public class WebSiteDateConfig {
         HttpPost list=new HttpPost("http://jx.zut.edu.cn/list.jsp");
         list.setHeader("Cookie",cookie);
         List<NameValuePair> listparams= new ArrayList<NameValuePair>();
-        listparams.add(new BasicNameValuePair("tb","科技处_论文"));
+        listparams.add(new BasicNameValuePair("tb","教务处-实践科_立项"));
         listparams.add(new BasicNameValuePair("pageNum","0"));
         listparams.add(new BasicNameValuePair("keyword",""));
         UrlEncodedFormEntity formEntity= null;
@@ -38,8 +38,9 @@ public class WebSiteDateConfig {
             formEntity = new UrlEncodedFormEntity(listparams,"utf-8");
             list.setEntity(formEntity);
             Document doc= Jsoup.parse(EntityUtils.toString(httpClient.execute(list).getEntity()));
-            String[] finishtime=doc.getElementsByAttributeValue("fd","获奖/获准/按期验收时间").text().split("\\s+");
-            String date=finishtime[0].substring(0,5)+"1.1";
+            Elements finishtime=doc.getElementsByAttributeValue("fd","获奖/获准/按期验收时间");
+            String date=finishtime.get(0).text().substring(0,5)+"1.1";
+            System.out.println(date);
             WebCookie.setDate(date);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();

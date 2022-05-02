@@ -4,6 +4,7 @@ import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.DTO.MyShenBaoDTO;
 import com.example.graduate_sever.common.*;
 import com.example.graduate_sever.common.DTO.SheKeDTO;
+import com.example.graduate_sever.common.EditUO.EditChanXueYanUO;
 import com.example.graduate_sever.common.EditUO.SheKeChuEditUO;
 import com.example.graduate_sever.common.UO.SheKeChuUO;
 import com.example.graduate_sever.entity.ChanXueYanEntity;
@@ -28,4 +29,11 @@ public interface SheKeChuService {
 
     int editSheKeChu(SheKeChuEditUO uo);
 
+    List<TableData> waitingSheKeChu(DTO dTO, String type);
+
+    long waitingSheKeChuPageToTal(String type);
+
+    Metails getSheKeChuMetails(Integer id);
+
+    int passSheKeChuChu(Integer id, Integer ispass);
 }

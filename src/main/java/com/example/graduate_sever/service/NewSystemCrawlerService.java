@@ -1,8 +1,11 @@
 package com.example.graduate_sever.service;
 
 import com.example.graduate_sever.common.DTO.DTO;
+import com.example.graduate_sever.common.EditUO.EditChanXueYanUO;
 import com.example.graduate_sever.common.JsonBean;
+import com.example.graduate_sever.common.Metails;
 import com.example.graduate_sever.common.ResVO;
+import com.example.graduate_sever.common.TableData;
 import com.example.graduate_sever.common.UO.JiaoWuChuUO;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -29,4 +32,12 @@ public interface NewSystemCrawlerService {
     JsonBean deleteOneNewSystem(Integer id);
 
     JsonBean shenBaoSheKeChu(JiaoWuChuUO uo) throws IOException;
+
+    List<TableData> waitingnewSystem(DTO dTO, String type);
+
+    long waitingnewSystemPageToTal(String type);
+
+    Metails getJiaoWuChuMetails(Integer id);
+
+    int passJiaoWuChu(Integer id, Integer ispass);
 }

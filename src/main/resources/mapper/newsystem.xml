@@ -13,6 +13,9 @@
         <result column="metails" property="metails"/>
         <result column="type" property="type"/>
     </resultMap>
+    <resultMap id="JiaoWuChuMetails" type="com.example.graduate_sever.common.Metails">
+        <result column="metails" property="metails"/>
+    </resultMap>
 <!--    <resultMap id="ZhuZuoMyShenBaoModel" type="com.example.graduate_sever.common.People">-->
 <!--        <result column="name" property="name"/>-->
 <!--        <result column="id" property="id"/>-->
@@ -103,5 +106,20 @@
             INSERT IGNORE INTO newparticipation(`badge`, `ach_id`, `type`) VALUES (#{badge,jdbcType=INTEGER},#{ach_id,jdbcType=INTEGER},#{type,jdbcType=VARCHAR})
         </insert>
 
+    <select id="waitingnewSystem" resultMap="NewSystem">
+        select * from newsystem where status=0 and type=#{type} limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER};select count(*) count13 from newsystem where status=1 ;
+    </select>
+
+    <select id="waitingnewSystemPageTotal" resultMap="count13">
+        select count(*) count13 from newsystem where status=0 and type=#{type};
+    </select>
+
+    <update id="passJiaoWuChu" parameterType="java.lang.Integer">
+        update `newsystem` set `status`=#{pass} where id=#{id}
+    </update>
+
+    <select id="getJiaoWuChuMetails" parameterType="java.lang.Integer" resultMap="JiaoWuChuMetails">
+        SELECT metails FROM `newsystem` where id=#{id}
+    </select>
 </mapper>
 

@@ -2,13 +2,12 @@ package com.example.graduate_sever.service.impl;
 
 import com.example.graduate_sever.Dao.NewSystemMapper;
 import com.example.graduate_sever.Dao.SheKeChuMapper;
+import com.example.graduate_sever.common.*;
 import com.example.graduate_sever.common.DTO.DTO;
-import com.example.graduate_sever.common.JsonBean;
-import com.example.graduate_sever.common.People;
-import com.example.graduate_sever.common.ResVO;
 import com.example.graduate_sever.common.UO.JiaoWuChuUO;
-import com.example.graduate_sever.common.WebCookie;
 import com.example.graduate_sever.entity.*;
+import com.example.graduate_sever.model.ChanXueYan;
+import com.example.graduate_sever.model.NewSyatemModel;
 import com.example.graduate_sever.service.NewSystemCrawlerService;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -106,11 +105,8 @@ public class NewSystemClawerimpl implements NewSystemCrawlerService {
             Elements keyan_danwei=doc.getElementsByAttributeValue("fd","奖励单位");
           //  System.out.println(ids+"*****"+keyan_name.size()+"***"+partment.size()+"***"+jianglijibie.size()+"***"+jianglidengji.size()+"***"+huojiangleibie.size()+"***"+chengguotype.size()+"***"+danwei.size()+"***"+td);
             if(td.equals("社科处_7.科研获奖")){
-                System.out.println("社科处_7.科研获奖***");
-                System.out.println(ids.length+"*****"+keyan_name.size()+"***"+partment.size()+"***"+jianglijibie.size()+"***"+jianglidengji.size()+"***"+huojiangleibie.size()+"***"+chengguotype.size()+"***"+keyan_danwei.size()+"***"+td);
-
                 for(int i=0;i<ids.length;i++){
-                   SheKeChuEntity sheKeChuEntity=new SheKeChuEntity(1,"2021",keyan_name.get(i).text(),partment.get(i).text(),jianglijibie.get(i).text(),jianglidengji.get(i).text(),huojiangleibie.get(i).text(), chengguotype.get(i).text(),keyan_danwei.get(i).text(),td);
+                   SheKeChuEntity sheKeChuEntity=new SheKeChuEntity(1,WebCookie.getDate(),keyan_name.get(i).text(),partment.get(i).text(),jianglijibie.get(i).text(),jianglidengji.get(i).text(),huojiangleibie.get(i).text(), chengguotype.get(i).text(),keyan_danwei.get(i).text(),td);
                     ref=sheKeChuMapper.insertSheKeChu(sheKeChuEntity);
                     if(ref!=0){
                         //设置小眼睛参数
@@ -281,5 +277,31 @@ public class NewSystemClawerimpl implements NewSystemCrawlerService {
             }
         }
         return new JsonBean(200,"",ref);
+    }
+
+    @Override
+    public List<TableData> waitingnewSystem(DTO dTO, String type) {
+        Integer beginIndex=dTO.getPageIndex()-1;
+        List<NewSyatemModel> list=newSystemMapper.waitingnewSystem(beginIndex,dTO.getPageSize(),type);
+        List<TableData> tableData=new ArrayList<>();
+        for (NewSyatemModel c:list) {
+            tableData.add(new TableData(c,newSystemMapper.getNewSystemDetail(c.getId(),type)));
+        }
+        return tableData;
+    }
+
+    @Override
+    public long waitingnewSystemPageToTal(String type) {
+        return newSystemMapper.waitingnewSystemPageTotal(type);
+    }
+
+    @Override
+    public Metails getJiaoWuChuMetails(Integer id) {
+        return newSystemMapper.getJiaoWuChuMetails(id);
+    }
+
+    @Override
+    public int passJiaoWuChu(Integer id, Integer pass) {
+        return newSystemMapper.passJiaoWuChu(id,pass);
     }
 }

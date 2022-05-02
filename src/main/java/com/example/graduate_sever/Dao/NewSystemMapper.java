@@ -1,6 +1,7 @@
 package com.example.graduate_sever.Dao;
 
 import com.example.graduate_sever.common.DTO.DTO;
+import com.example.graduate_sever.common.Metails;
 import com.example.graduate_sever.common.People;
 import com.example.graduate_sever.entity.ChanXueYanEntity;
 import com.example.graduate_sever.entity.NewParticipationEntity;
@@ -37,4 +38,12 @@ public interface NewSystemMapper {
     int shenBaoJiaoWuChu(NewSystemEntity element);
 
 
+    List<NewSyatemModel> waitingnewSystem(Integer beginIndex,Integer pageSize,String type);
+
+    long waitingnewSystemPageTotal(String type);
+
+
+    Metails getJiaoWuChuMetails(Integer id);
+
+    int passJiaoWuChu(Integer id, Integer pass);
 }
