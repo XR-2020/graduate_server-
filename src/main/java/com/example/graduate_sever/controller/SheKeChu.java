@@ -38,12 +38,12 @@ public class SheKeChu {
     public ResVO getSearchSheKeChu(SheKeDTO dTO){
         return sheKeChuService.getSearchKeYanHuoJiang(dTO);}
 
-    @RequestMapping(value = "/deleteKeYanHuoJiang", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public JsonBean deleteKeYanHuoJiang(@RequestParam(value = "ids") List<Integer> ids,@RequestParam(value = "type") String type){
+    @RequestMapping(value = "/deleteSheKeChu", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public JsonBean deleteSheKeChu(@RequestParam(value = "ids") List<Integer> ids,@RequestParam(value = "type") String type){
         return  sheKeChuService.deleteKeYanHuoJiang(ids,type);}
 
-    @PostMapping("/deleteOneKeYanHuoJiang")
-    public  JsonBean deleteOneKeYanHuoJiang(Integer id,String type){return sheKeChuService.deleteOneKeYanHuoJiang(id,type);}
+    @PostMapping("/deleteOneSheKeChu")
+    public  JsonBean deleteOneSheKeChu(Integer id,String type){return sheKeChuService.deleteOneKeYanHuoJiang(id,type);}
 
     @GetMapping("/getSheKeChuDetail")
     public JsonBean getSheKeChuDetail(Integer id,String type){
@@ -82,4 +82,5 @@ public class SheKeChu {
     public int passSheKeChuChu(Integer id,Integer ispass){
         return sheKeChuService.passSheKeChuChu(id,ispass);
     }
+
 }
