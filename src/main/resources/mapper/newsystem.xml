@@ -96,7 +96,7 @@
         </update>
 
         <delete id="deletePeople">
-            delete from newparticipation where ach_id=#{id}
+            delete from newparticipation where ach_id=#{id} and type=#{type}
         </delete>
 
         <insert id="editNewSystemPeople">

@@ -30,6 +30,7 @@
         <result column="chengguotype" property="chengguotype"/>
         <result column="danwei" property="danwei"/>
     </resultMap>
+    <resultMap id="NewTeacherBadge" type="java.lang.Integer"/>
 
     <select id="selectOne" resultMap="StatisticalNewSystem">
         select * from newsystem where status=1 and type=#{type} and finishtime between #{date1} and #{date2}
@@ -38,5 +39,17 @@
     <select id="selectOneSheKeChu" resultMap="StatisticalSheKeChu">
         select * from shekechu where status=1 and type=#{type} and finishtime between #{date1} and #{date2}
     </select>
+
+    <select id="selectDaiShenHeSheKeChu" resultMap="StatisticalSheKeChu">
+        select * from shekechu where id=#{id}
+    </select>
+    <select id="selectOneNewSystem" resultMap="StatisticalSheKeChu">
+        select * from newsystem where id=#{id}
+    </select>
+
+    <select id="getNewBadge" resultMap="NewTeacherBadge">
+        select teacher.badeg from  newparticipation,teacher where newparticipation.badge=teacher.badeg and newparticipation.ach_id=#{id} and newparticipation.type=#{type}
+    </select>
+
 </mapper>
 

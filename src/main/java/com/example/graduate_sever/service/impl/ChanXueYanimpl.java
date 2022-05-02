@@ -6,9 +6,7 @@ import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.DTO.MyShenBaoDTO;
 import com.example.graduate_sever.entity.ChanXueYanEntity;
 import com.example.graduate_sever.entity.ParticipationEntity;
-import com.example.graduate_sever.model.ChanXueYan;
-import com.example.graduate_sever.model.MyShenBaoModel;
-import com.example.graduate_sever.model.Teacher;
+import com.example.graduate_sever.model.*;
 import com.example.graduate_sever.service.ChanXueYanService;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
@@ -56,6 +54,10 @@ public class ChanXueYanimpl implements ChanXueYanService {
     private ZhuZuoMapper zhuZuoMapper;
     @Autowired
     private ZongXiangKeYanMapper zongXiangKeYanMapper;
+    @Autowired
+    private NewSystemMapper newSystemMapper;
+    @Autowired
+    private NewStatisticalMapper newStatisticalMapper;
 
     @Override
     public ResVO selectAll(DTO chanXueYanDTO) {
@@ -202,6 +204,14 @@ public class ChanXueYanimpl implements ChanXueYanService {
                 type=1;
                 tableData=new DaiShenHeEditTableData(chanxueyanMapper.selectOneChanXueYan(id),chanxueyanMapper.getBadge(id,type));
                 break;
+            }
+            case "newsystem":{
+                NewSyatemModel newSyatemModel=newStatisticalMapper.selectOneNewSystem(id,tablename);
+                tableData=new DaiShenHeEditTableData(newSyatemModel,newStatisticalMapper.getNewBadge(id,newSyatemModel.getType()));
+            }
+            default:{
+                SheKeChuModel sheKeChuModel=newStatisticalMapper.selectDaiShenHeSheKeChu(id,tablename);
+                tableData=new DaiShenHeEditTableData(sheKeChuModel,newStatisticalMapper.getNewBadge(id,sheKeChuModel.getType()));
             }
         }
         return tableData;
@@ -385,17 +395,21 @@ public class ChanXueYanimpl implements ChanXueYanService {
         List<List<MyShenBaoModel>> list=new ArrayList<>();
         List<MyShenBaoModel> myShenBaoModelList=new ArrayList<>();
         List<DaiShenHeTableData> tableData=new ArrayList<>();
+        List<NewGetPageTotal> paramslist2=new ArrayList<>();
+        paramslist2.add(new NewGetPageTotal("newsystem",""));
+        paramslist2.add(new NewGetPageTotal("shekechu",""));
+        for (NewGetPageTotal g:paramslist2) {
+            myShenBaoModelList=chanxueyanMapper.getDisData(g.getTablename(),badge);
+            for (MyShenBaoModel m:myShenBaoModelList) {
+                tableData.add(new DaiShenHeTableData(m,null,g.getTablename()));
+            }
+        }
         for (GetPageTotal g:paramslist) {
-            myShenBaoModelList=chanxueyanMapper.getDisData(g.getTablename(),badge,g.getType(),pageIndex,pageSize);
+            myShenBaoModelList=chanxueyanMapper.getDisData(g.getTablename(),badge);
             for (MyShenBaoModel m:myShenBaoModelList) {
                 tableData.add(new DaiShenHeTableData(m,chanxueyanMapper.getDetail(m.getId(),g.getType()),g.getTablename()));
             }
         }
-//        System.out.println("*********************************");
-//        for (TableData t:tableData) {
-//            System.out.println(t.toString());
-//        }
-//        System.out.println("*********************************");
         return tableData;
     }
 
@@ -417,8 +431,14 @@ public class ChanXueYanimpl implements ChanXueYanService {
         list.add(new GetPageTotal("keyanxiangmujiexiang",12));
         list.add(new GetPageTotal("competition",13));
         list.add(new GetPageTotal("honor",14));
+        List<NewGetPageTotal> paramslist2=new ArrayList<>();
+        paramslist2.add(new NewGetPageTotal("newsystem",""));
+        paramslist2.add(new NewGetPageTotal("shekechu",""));
         for (GetPageTotal g:list) {
-            pageTotal+=chanxueyanMapper.getPageTotal(badge,g.getTablename(),g.getType());
+            pageTotal+=chanxueyanMapper.getPageTotal(badge,g.getTablename());
+        }
+        for (NewGetPageTotal g:paramslist2) {
+            pageTotal+=chanxueyanMapper.getPageTotal(badge,g.getTablename());
         }
         return pageTotal;
     }
@@ -443,12 +463,21 @@ public class ChanXueYanimpl implements ChanXueYanService {
         paramslist.add(new GetPageTotal("keyanxiangmujiexiang",12));
         paramslist.add(new GetPageTotal("competition",13));
         paramslist.add(new GetPageTotal("honor",14));
+        List<NewGetPageTotal> paramslist2=new ArrayList<>();
+        paramslist2.add(new NewGetPageTotal("newsystem",""));
+        paramslist2.add(new NewGetPageTotal("shekechu",""));
         List<MyShenBaoModel> myShenBaoModelList;
         List<DaiShenHeTableData> tableData=new ArrayList<>();
         for (GetPageTotal g:paramslist) {
-            myShenBaoModelList=chanxueyanMapper.getDaiShenHeData(g.getTablename(),badge,g.getType(),pageIndex,pageSize);
+            myShenBaoModelList=chanxueyanMapper.getDaiShenHeData(g.getTablename(),badge);
             for (MyShenBaoModel m:myShenBaoModelList) {
-                tableData.add(new DaiShenHeTableData(m,chanxueyanMapper.getDetail(m.getId(),g.getType()),g.getTablename()));
+                tableData.add(new DaiShenHeTableData(m,null,g.getTablename()));
+            }
+        }
+        for (NewGetPageTotal g:paramslist2) {
+            myShenBaoModelList=chanxueyanMapper.getDaiShenHeData(g.getTablename(),badge);
+            for (MyShenBaoModel m:myShenBaoModelList) {
+                tableData.add(new DaiShenHeTableData(m,newSystemMapper.getNewSystemDetail(m.getId(),g.getType()),g.getTablename()));
             }
         }
         return tableData;
@@ -472,16 +501,23 @@ public class ChanXueYanimpl implements ChanXueYanService {
         list.add(new GetPageTotal("keyanxiangmujiexiang",12));
         list.add(new GetPageTotal("competition",13));
         list.add(new GetPageTotal("honor",14));
-        for (GetPageTotal g:list) {
-            pageTotal+=chanxueyanMapper.getDaiShenHePageTotal(badge,g.getTablename(),g.getType());
+        List<NewGetPageTotal> paramslist2=new ArrayList<>();
+        paramslist2.add(new NewGetPageTotal("newsystem",""));
+        paramslist2.add(new NewGetPageTotal("shekechu",""));
+        for (NewGetPageTotal g:paramslist2) {
+            pageTotal+=chanxueyanMapper.getDaiShenHePageTotal(badge,g.getTablename());
         }
+        for (GetPageTotal g:list) {
+            pageTotal+=chanxueyanMapper.getDaiShenHePageTotal(badge,g.getTablename());
+        }
+
         return pageTotal;
     }
 
     @Override
     public int deleteMyShenBao(Integer id, String tablename) {
-        int ref=chanxueyanMapper.deleteMyShenBao(id,tablename);
         Integer type=0;
+        String newtype = null;
         switch (tablename){
             case "chanxueyan":{
                 type=1;
@@ -539,9 +575,23 @@ public class ChanXueYanimpl implements ChanXueYanService {
                 type=14;
                 break;
             }
+            case "newsystem":{
+                newtype=newStatisticalMapper.selectOneNewSystem(id,tablename).getType();
+                break;
+            }
+            case "shekechu": {
+                newtype=newStatisticalMapper.selectDaiShenHeSheKeChu(id,tablename).getType();
+                break;
+            }
         }
+        System.out.println(newtype+"***********");
+        int ref=chanxueyanMapper.deleteMyShenBao(id,tablename);
         if(ref==1){
-                chanxueyanMapper.deleteDaiShenHePartipation(id,type);
+               if(tablename.equals("newsystem")||tablename.equals("shekechu")){
+                   newSystemMapper.deletePeople(id,newtype);
+               }else{
+                   chanxueyanMapper.deleteDaiShenHePartipation(id,type);
+               }
         }
         return ref;
     }
@@ -578,8 +628,17 @@ public class ChanXueYanimpl implements ChanXueYanService {
         paramslist.add(new GetPageTotal("honor",14));
         List<MyShenBaoModel> myShenBaoModelList=new ArrayList<>();
         List<DaiShenHeTableData> tableData=new ArrayList<>();
+        List<NewGetPageTotal> paramslist2=new ArrayList<>();
+        paramslist2.add(new NewGetPageTotal("newsystem",""));
+        paramslist2.add(new NewGetPageTotal("shekechu",""));
+        for (NewGetPageTotal g:paramslist2) {
+            myShenBaoModelList=chanxueyanMapper.getHadPassData(g.getTablename(),badge);
+            for (MyShenBaoModel m:myShenBaoModelList) {
+                tableData.add(new DaiShenHeTableData(m,null,g.getTablename()));
+            }
+        }
         for (GetPageTotal g:paramslist) {
-            myShenBaoModelList=chanxueyanMapper.getHadPassData(g.getTablename(),badge,g.getType(),pageIndex,pageSize);
+            myShenBaoModelList=chanxueyanMapper.getHadPassData(g.getTablename(),badge);
             for (MyShenBaoModel m:myShenBaoModelList) {
                 tableData.add(new DaiShenHeTableData(m,chanxueyanMapper.getDetail(m.getId(),g.getType()),g.getTablename()));
             }
@@ -605,8 +664,14 @@ public class ChanXueYanimpl implements ChanXueYanService {
         list.add(new GetPageTotal("keyanxiangmujiexiang",12));
         list.add(new GetPageTotal("competition",13));
         list.add(new GetPageTotal("honor",14));
+        List<NewGetPageTotal> paramslist2=new ArrayList<>();
+        paramslist2.add(new NewGetPageTotal("newsystem",""));
+        paramslist2.add(new NewGetPageTotal("shekechu",""));
+        for (NewGetPageTotal g:paramslist2) {
+            pageTotal+=chanxueyanMapper.getHadPassPageTotal(badge,g.getTablename());
+        }
         for (GetPageTotal g:list) {
-            pageTotal+=chanxueyanMapper.getHadPassPageTotal(badge,g.getTablename(),g.getType());
+            pageTotal+=chanxueyanMapper.getHadPassPageTotal(badge,g.getTablename());
         }
         return pageTotal;
     }

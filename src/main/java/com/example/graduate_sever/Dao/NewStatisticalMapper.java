@@ -16,4 +16,10 @@ public interface NewStatisticalMapper {
     List<NewSyatemModel> selectOne(String date1, String date2, String type);
 
     List<SheKeChuModel> selectOneSheKeChu(String date1, String date2, String type);
+
+    NewSyatemModel selectOneNewSystem(Integer id, String tablename);
+
+    List<Integer> getNewBadge(Integer id, String type);
+
+    SheKeChuModel selectDaiShenHeSheKeChu(Integer id, String tablename);
 }

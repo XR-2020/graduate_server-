@@ -36,12 +36,12 @@ public interface ChanXueYanMapper {
     long waitingPageTotal(String type);
     List<People> getDetail(Integer id,Integer type);
     List<Integer> getBadge(Integer id,Integer type);
-    List<MyShenBaoModel> getDisData(String tablename,Integer badge,Integer type,Integer pageIndex,Integer pageSize);
-    long getPageTotal(Integer badge,String tablename,Integer type);
-    List<MyShenBaoModel> getDaiShenHeData(String tablename,Integer badge,Integer type,Integer pageIndex,Integer pageSize);
-    long getDaiShenHePageTotal(Integer badge,String tablename,Integer type);
-    List<MyShenBaoModel> getHadPassData(String tablename,Integer badge,Integer type,Integer pageIndex,Integer pageSize);
-    long getHadPassPageTotal(Integer badge,String tablename,Integer type);
+    List<MyShenBaoModel> getDisData(String tablename,Integer badge);
+    long getPageTotal(Integer badge,String tablename);
+    List<MyShenBaoModel> getDaiShenHeData(String tablename,Integer badge);
+    long getDaiShenHePageTotal(Integer badge,String tablename);
+    List<MyShenBaoModel> getHadPassData(String tablename,Integer badge);
+    long getHadPassPageTotal(Integer badge,String tablename);
 
     int deleteMyShenBao(Integer id, String tablename);
 

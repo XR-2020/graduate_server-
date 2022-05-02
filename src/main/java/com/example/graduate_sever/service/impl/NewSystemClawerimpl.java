@@ -223,7 +223,7 @@ public class NewSystemClawerimpl implements NewSystemCrawlerService {
     public int editNewSystem(Integer id, String name, String finishtime, String partment, Integer[] people,String type) {
         int ref=newSystemMapper.editNewSystem(id,name,finishtime,partment);
         if(ref==1){
-            newSystemMapper.deletePeople(id);
+            newSystemMapper.deletePeople(id,type);
             for (Integer p:people) {
                 newSystemMapper.editNewSystemPeople(id,p,type);
             }
@@ -235,7 +235,7 @@ public class NewSystemClawerimpl implements NewSystemCrawlerService {
     public JsonBean deleteNewSystem(List<Integer> ids) {
         for (int id:ids) {
             newSystemMapper.deleteOneNewSystem(id);
-            newSystemMapper.deletePeople(id);
+           // newSystemMapper.deletePeople(id,type);
         }
         return new JsonBean(200,"","");
     }
@@ -243,7 +243,7 @@ public class NewSystemClawerimpl implements NewSystemCrawlerService {
     @Override
     public JsonBean deleteOneNewSystem(Integer id) {
         newSystemMapper.deleteOneNewSystem(id);
-        newSystemMapper.deletePeople(id);
+     //   newSystemMapper.deletePeople(id,type);
         return new JsonBean(200,"","");
     }
 
