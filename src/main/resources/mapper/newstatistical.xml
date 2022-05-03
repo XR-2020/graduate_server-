@@ -43,7 +43,7 @@
     <select id="selectDaiShenHeSheKeChu" resultMap="StatisticalSheKeChu">
         select * from shekechu where id=#{id}
     </select>
-    <select id="selectOneNewSystem" resultMap="StatisticalSheKeChu">
+    <select id="selectOneNewSystem" resultMap="StatisticalNewSystem">
         select * from newsystem where id=#{id}
     </select>
 

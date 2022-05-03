@@ -208,6 +208,7 @@ public class ChanXueYanimpl implements ChanXueYanService {
             case "newsystem":{
                 NewSyatemModel newSyatemModel=newStatisticalMapper.selectOneNewSystem(id,tablename);
                 tableData=new DaiShenHeEditTableData(newSyatemModel,newStatisticalMapper.getNewBadge(id,newSyatemModel.getType()));
+                break;
             }
             default:{
                 SheKeChuModel sheKeChuModel=newStatisticalMapper.selectDaiShenHeSheKeChu(id,tablename);

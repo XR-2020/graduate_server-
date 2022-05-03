@@ -87,8 +87,8 @@ public class NewSystemClawerimpl implements NewSystemCrawlerService {
             list.setEntity(formEntity);
             Document doc=Jsoup.parse(EntityUtils.toString(httpClient.execute(list).getEntity()));
             String[] ids=doc.getElementsByAttributeValue("fd","序号").text().split("\\s+");
-//            String ids=doc.getElementsByAttributeValue("fd","序号").text();
             Elements name=doc.getElementsByAttributeValue("fd","名称");
+            Elements book_name=doc.getElementsByAttributeValue("fd","教材名称");
             Elements keyan_name=doc.getElementsByAttributeValue("fd","成果名称");
             Elements zongxiang_name=doc.getElementsByAttributeValue("fd","项目名称");
             Elements partment=doc.getElementsByAttributeValue("fd","部门");
@@ -151,12 +151,47 @@ public class NewSystemClawerimpl implements NewSystemCrawlerService {
                     }
                 }
             }
-            else{
+            else if(td.equals("教务处-教材科_教材业绩点")){
                 //设置除参与人外其他信息
                 for(int i=0;i<ids.length;i++){
-                    System.out.println("else");
-                    NewSystemEntity newSystemEntity=new NewSystemEntity(1,finishtime.get(i).text(),partment.get(i).text(),name.get(i).text(),Integer.parseInt(firstpeople.get(i).text()),td);
+                    NewSystemEntity newSystemEntity;newSystemEntity=new NewSystemEntity(1,WebCookie.getDate(),"软件学院",book_name.get(i).text(),Integer.parseInt(firstpeople.get(i).text()),td);
                     ref=newSystemMapper.insertNewSystem(newSystemEntity);
+                    if(ref!=0){
+                        //设置小眼睛参数
+                        List<NameValuePair> viewparams= new ArrayList<NameValuePair>();
+                        viewparams.add(new BasicNameValuePair("tb",td));
+                        viewparams.add(new BasicNameValuePair("id",ids[i]));
+                        UrlEncodedFormEntity viewformEntity = new UrlEncodedFormEntity(viewparams,"utf-8");
+                        view.setEntity(viewformEntity);
+                        //获取小眼睛内容
+                        String[] people=Jsoup.parse(EntityUtils.toString(httpClient.execute(view).getEntity())).getElementById("memTab").text().split("\\s+");
+                        for(int j=5;j<people.length;j+=4){
+                            newSystemMapper.insertNewSystemParticipation(new NewParticipationEntity(Integer.parseInt(people[j]),newSystemEntity.getId(),td));
+                        }
+                        //添加第一完成人
+                        newSystemMapper.insertNewSystemParticipation(new NewParticipationEntity(Integer.parseInt(firstpeople.get(i).text()),newSystemEntity.getId(),td));
+                    }else{
+                        continue;
+                    }
+                }
+            }
+            else{
+                //设置除参与人外其他信息
+                NewSystemEntity newSystemEntity;
+                for(int i=0;i<ids.length;i++){
+                   if(finishtime.size()==0&&partment.size()==0){
+                       newSystemEntity=new NewSystemEntity(1,WebCookie.getDate(),"软件学院",name.get(i).text(),Integer.parseInt(firstpeople.get(i).text()),td);
+
+                    }else if(partment.size()==0){
+                       newSystemEntity=new NewSystemEntity(1,finishtime.get(i).text(),"软件学院",name.get(i).text(),Integer.parseInt(firstpeople.get(i).text()),td);
+
+                   }else if(finishtime.size()==0){
+                       newSystemEntity=new NewSystemEntity(1,WebCookie.getDate(),partment.get(i).text(),name.get(i).text(),Integer.parseInt(firstpeople.get(i).text()),td);
+
+                   }else{
+                       newSystemEntity=new NewSystemEntity(1,finishtime.get(i).text(),partment.get(i).text(),name.get(i).text(),Integer.parseInt(firstpeople.get(i).text()),td);
+                   }
+                   ref=newSystemMapper.insertNewSystem(newSystemEntity);
                     if(ref!=0){
                         //设置小眼睛参数
                         List<NameValuePair> viewparams= new ArrayList<NameValuePair>();

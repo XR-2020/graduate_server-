@@ -20,5 +20,3 @@ mybatis:
   type-aliases-package: com.example.graduate_sever.entity
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-
-
