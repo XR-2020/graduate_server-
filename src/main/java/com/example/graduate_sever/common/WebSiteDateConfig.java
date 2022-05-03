@@ -39,7 +39,7 @@ public class WebSiteDateConfig {
             list.setEntity(formEntity);
             Document doc= Jsoup.parse(EntityUtils.toString(httpClient.execute(list).getEntity()));
             Elements finishtime=doc.getElementsByAttributeValue("fd","获奖/获准/按期验收时间");
-            String date=finishtime.get(0).text().substring(0,5)+"1.1";
+            String date=finishtime.get(0).text().substring(0,5);
             System.out.println(date);
             WebCookie.setDate(date);
         } catch (UnsupportedEncodingException e) {
