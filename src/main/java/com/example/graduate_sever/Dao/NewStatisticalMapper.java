@@ -13,9 +13,9 @@ import java.util.List;
 public interface NewStatisticalMapper {
 
 
-    List<NewSyatemModel> selectOne(String date1, String date2, String type);
+    List<NewSyatemModel> selectOne(String date1, String date2,Integer badge,String type);
 
-    List<SheKeChuModel> selectOneSheKeChu(String date1, String date2, String type);
+    List<SheKeChuModel> selectOneSheKeChu(String date1, String date2, Integer badge,String type);
 
     NewSyatemModel selectOneNewSystem(Integer id, String tablename);
 

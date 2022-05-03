@@ -4,6 +4,15 @@ public class StatisticalDTO {
     private String date1;
     private String date2;
     private String value;
+    private String key;
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
 
     public String getValue() {
         return value;

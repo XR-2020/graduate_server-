@@ -33,11 +33,18 @@
     <resultMap id="NewTeacherBadge" type="java.lang.Integer"/>
 
     <select id="selectOne" resultMap="StatisticalNewSystem">
-        select * from newsystem where status=1 and type=#{type} and finishtime between #{date1} and #{date2}
+        select * from newsystem,newparticipation where newsystem.id=newparticipation.ach_id and status=1 and newsystem.type=#{type}
+        <if test="badge!=null">
+            and newparticipation.badge=#{badge}
+        </if>and finishtime between #{date1} and #{date2}
     </select>
 
     <select id="selectOneSheKeChu" resultMap="StatisticalSheKeChu">
-        select * from shekechu where status=1 and type=#{type} and finishtime between #{date1} and #{date2}
+        select * from shekechu,newparticipation where shekechu.id=newparticipation.ach_id and status=1 and shekechu.type=#{type}
+        <if test="badge!=null">
+            and newparticipation.badge=#{badge}
+        </if>
+        and finishtime between #{date1} and #{date2}
     </select>
 
     <select id="selectDaiShenHeSheKeChu" resultMap="StatisticalSheKeChu">

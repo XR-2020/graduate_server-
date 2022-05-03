@@ -82,25 +82,25 @@ public class GraduateSeverApplication {
 
     public static void main(String[] args) throws Exception {
         SpringApplication.run(GraduateSeverApplication.class, args);
-        //读取网站爬取时的用户名和密码配置文件
-        Properties properties = new Properties();
-        ClassPathResource classpathResource = new ClassPathResource("crawler.properties");//该路径是相对于src目录的，即classpath路径
-        try {
-            InputStream fileInputStream = classpathResource.getInputStream();
-            properties.load(fileInputStream);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        String username = properties.getProperty("username");
-        String password = properties.getProperty("password");
-        WebConfig.setPassword(password);
-        WebConfig.setUsername(username);
-        System.getProperties().setProperty("webdriver.chrome.driver", "C:\\Users\\Administrator\\.cache\\selenium\\chromedriver\\win32\\99.0.4844.51\\chromedriver.exe");
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless");
-        WebDriver driver=new ChromeDriver(options);
-//        WebDriver driver=new ChromeDriver();
-        WebCookie.setCookie(saveImgToLocal(driver));
+//        //读取网站爬取时的用户名和密码配置文件
+//        Properties properties = new Properties();
+//        ClassPathResource classpathResource = new ClassPathResource("crawler.properties");//该路径是相对于src目录的，即classpath路径
+//        try {
+//            InputStream fileInputStream = classpathResource.getInputStream();
+//            properties.load(fileInputStream);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        String username = properties.getProperty("username");
+//        String password = properties.getProperty("password");
+//        WebConfig.setPassword(password);
+//        WebConfig.setUsername(username);
+//        System.getProperties().setProperty("webdriver.chrome.driver", "C:\\Users\\Administrator\\.cache\\selenium\\chromedriver\\win32\\99.0.4844.51\\chromedriver.exe");
+//        ChromeOptions options = new ChromeOptions();
+//        options.addArguments("--headless");
+//        WebDriver driver=new ChromeDriver(options);
+////        WebDriver driver=new ChromeDriver();
+//        WebCookie.setCookie(saveImgToLocal(driver));
     }
 
 }

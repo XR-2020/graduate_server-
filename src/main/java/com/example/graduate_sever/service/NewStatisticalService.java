@@ -9,22 +9,22 @@ import java.util.List;
 
 public interface NewStatisticalService {
 
-     List<TableData> selectxiaowaishijianjidi(String date1, String date2);
+     List<TableData> selectxiaowaishijianjidi(String date1, String date2,Integer badge);
 
-     List<TableData> selectshijianlixiang(String date1, String date2);
+     List<TableData> selectshijianlixiang(String date1, String date2,Integer badge);
 
-     List<TableData> selectshijianjiexiang(String date1, String date2);
+     List<TableData> selectshijianjiexiang(String date1, String date2,Integer badge);
 
-     List<TableData> selectjiaocaiyejidian(String date1, String date2);
+     List<TableData> selectjiaocaiyejidian(String date1, String date2,Integer badge);
 
-     List<TableData> selectjiaoyanyeji(String date1, String date2);
+     List<TableData> selectjiaoyanyeji(String date1, String date2,Integer badge);
 
-     List<TableData> selectjiaoyanlunwen(String date1, String date2);
+     List<TableData> selectjiaoyanlunwen(String date1, String date2,Integer badge);
 
-     List<TableData> selectyouxiubishe(String date1, String date2);
+     List<TableData> selectyouxiubishe(String date1, String date2,Integer badge);
 
-     List<TableData> selectzongxiangjieti(String date1, String date2);
+     List<TableData> selectzongxiangjieti(String date1, String date2,Integer badge);
 
-     List<TableData> selectkeyanhuojiang(String date1, String date2);
+     List<TableData> selectkeyanhuojiang(String date1, String date2,Integer badge);
 
 }
