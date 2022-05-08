@@ -1,10 +1,12 @@
 package com.example.graduate_sever.service.impl;
 
+import com.example.graduate_sever.Dao.KeJiChuMapper;
 import com.example.graduate_sever.Dao.NewSystemMapper;
 import com.example.graduate_sever.Dao.SheKeChuMapper;
 import com.example.graduate_sever.common.*;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.UO.JiaoWuChuUO;
+import com.example.graduate_sever.controller.KeJiChu;
 import com.example.graduate_sever.entity.*;
 import com.example.graduate_sever.model.ChanXueYan;
 import com.example.graduate_sever.model.NewSyatemModel;
@@ -32,6 +34,8 @@ public class NewSystemClawerimpl implements NewSystemCrawlerService {
     private NewSystemMapper newSystemMapper;
     @Autowired
     private SheKeChuMapper sheKeChuMapper;
+    @Autowired
+    private KeJiChuMapper keJiChuMapper;
 
     @Override
     public List<String> typeList(CloseableHttpClient httpClient) throws IOException {
@@ -103,7 +107,6 @@ public class NewSystemClawerimpl implements NewSystemCrawlerService {
             Elements chengguotype=doc.getElementsByAttributeValue("fd","成果类别");
             Elements danwei=doc.getElementsByAttributeValue("fd","组织结题单位");
             Elements keyan_danwei=doc.getElementsByAttributeValue("fd","奖励单位");
-          //  System.out.println(ids+"*****"+keyan_name.size()+"***"+partment.size()+"***"+jianglijibie.size()+"***"+jianglidengji.size()+"***"+huojiangleibie.size()+"***"+chengguotype.size()+"***"+danwei.size()+"***"+td);
             if(td.equals("社科处_7.科研获奖")){
                 for(int i=0;i<ids.length;i++){
                    SheKeChuEntity sheKeChuEntity=new SheKeChuEntity(1,WebCookie.getDate(),keyan_name.get(i).text(),partment.get(i).text(),jianglijibie.get(i).text(),jianglidengji.get(i).text(),huojiangleibie.get(i).text(), chengguotype.get(i).text(),keyan_danwei.get(i).text(),td);
@@ -128,7 +131,6 @@ public class NewSystemClawerimpl implements NewSystemCrawlerService {
                 }
             }
             else if(td.equals("社科处_3.纵向结题")){
-                System.out.println("社科处_3.纵向结题");
                 for(int i=0;i<ids.length;i++){
                     SheKeChuEntity sheKeChuEntity=new SheKeChuEntity(1,zongxiang_finishtime.get(i).text(),zongxiang_name.get(i).text(),partment.get(i).text(),jietidengji.get(i).text(),xiangmujibie.get(i).text(),danwei.get(i).text(),td);
                     ref=sheKeChuMapper.insertSheKeChu(sheKeChuEntity);
@@ -156,6 +158,42 @@ public class NewSystemClawerimpl implements NewSystemCrawlerService {
                 for(int i=0;i<ids.length;i++){
                     NewSystemEntity newSystemEntity;newSystemEntity=new NewSystemEntity(1,WebCookie.getDate(),"软件学院",book_name.get(i).text(),Integer.parseInt(firstpeople.get(i).text()),td);
                     ref=newSystemMapper.insertNewSystem(newSystemEntity);
+                    if(ref!=0){
+                        //设置小眼睛参数
+                        List<NameValuePair> viewparams= new ArrayList<NameValuePair>();
+                        viewparams.add(new BasicNameValuePair("tb",td));
+                        viewparams.add(new BasicNameValuePair("id",ids[i]));
+                        UrlEncodedFormEntity viewformEntity = new UrlEncodedFormEntity(viewparams,"utf-8");
+                        view.setEntity(viewformEntity);
+                        //获取小眼睛内容
+                        String[] people=Jsoup.parse(EntityUtils.toString(httpClient.execute(view).getEntity())).getElementById("memTab").text().split("\\s+");
+                        for(int j=5;j<people.length;j+=4){
+                            newSystemMapper.insertNewSystemParticipation(new NewParticipationEntity(Integer.parseInt(people[j]),newSystemEntity.getId(),td));
+                        }
+                        //添加第一完成人
+                        newSystemMapper.insertNewSystemParticipation(new NewParticipationEntity(Integer.parseInt(firstpeople.get(i).text()),newSystemEntity.getId(),td));
+                    }else{
+                        continue;
+                    }
+                }
+            }
+            else if(td.contains("科技处")){
+                //设置除参与人外其他信息
+                NewSystemEntity newSystemEntity;
+                for(int i=0;i<ids.length;i++){
+                    if(finishtime.size()==0&&partment.size()==0){
+                        newSystemEntity=new NewSystemEntity(1,WebCookie.getDate(),"软件学院",name.get(i).text(),Integer.parseInt(firstpeople.get(i).text()),td);
+
+                    }else if(partment.size()==0){
+                        newSystemEntity=new NewSystemEntity(1,finishtime.get(i).text(),"软件学院",name.get(i).text(),Integer.parseInt(firstpeople.get(i).text()),td);
+
+                    }else if(finishtime.size()==0){
+                        newSystemEntity=new NewSystemEntity(1,WebCookie.getDate(),partment.get(i).text(),name.get(i).text(),Integer.parseInt(firstpeople.get(i).text()),td);
+
+                    }else{
+                        newSystemEntity=new NewSystemEntity(1,finishtime.get(i).text(),partment.get(i).text(),name.get(i).text(),Integer.parseInt(firstpeople.get(i).text()),td);
+                    }
+                    ref=keJiChuMapper.insertKeJiChu(newSystemEntity);
                     if(ref!=0){
                         //设置小眼睛参数
                         List<NameValuePair> viewparams= new ArrayList<NameValuePair>();

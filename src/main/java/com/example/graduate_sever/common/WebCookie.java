@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WebCookie {
-    public static String cookie="JSESSIONID=94C074D8D594C9B5E724FA683AA31DC5";
-    public static String date;
+    public static String cookie="JSESSIONID=221A459ECB1832FAFE6D4626C33A1055";
+    public static String date="2021";
 
     public static String getDate() {
         return date;
