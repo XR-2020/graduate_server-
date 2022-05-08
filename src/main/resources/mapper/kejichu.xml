@@ -74,5 +74,13 @@
     <insert id="insertKeJiChu" parameterType="com.example.graduate_sever.entity.NewSystemEntity" useGeneratedKeys="true" keyProperty="id">
         INSERT IGNORE INTO kejichu( `status`, `name`, `finishtime`, `partment`,`badge`,`type`) VALUES (#{status,jdbcType=INTEGER},#{name,jdbcType=VARCHAR},#{finishtime,jdbcType=VARCHAR},#{partment,jdbcType=VARCHAR},#{badge,jdbcType=INTEGER},#{type,jdbcType=VARCHAR})
     </insert>
+
+    <select id="waitingKeJiChu" resultMap="NewSystem">
+        select * from kejichu where status=0 and type=#{type} limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER};
+    </select>
+
+    <select id="waitingKeJiChuPageToTal" resultMap="KeJiChuChucount">
+        select count(*) KeJiChuChucount from kejichu where status=0 and type=#{type};
+    </select>
 </mapper>
 

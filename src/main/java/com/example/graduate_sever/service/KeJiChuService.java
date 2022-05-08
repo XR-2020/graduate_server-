@@ -36,4 +36,8 @@ public interface KeJiChuService {
     Metails getKeJiChuMetails(Integer id);
 
     int passKeJiChu(Integer id, Integer ispass);
+
+    List<TableData> waitingKeJiChu(DTO dTO, String type);
+
+    long waitingKeJiChuPageToTal(String type);
 }

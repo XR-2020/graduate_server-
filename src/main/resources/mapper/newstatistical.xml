@@ -31,16 +31,24 @@
         <result column="danwei" property="danwei"/>
     </resultMap>
     <resultMap id="NewTeacherBadge" type="java.lang.Integer"/>
+    <resultMap id="TeacherName" type="java.lang.String"/>
 
     <select id="selectOne" resultMap="StatisticalNewSystem">
-        select * from newsystem,newparticipation where newsystem.id=newparticipation.ach_id and status=1 and newsystem.type=#{type}
+        select distinct newsystem.* from newsystem,newparticipation where newsystem.id=newparticipation.ach_id and status=1 and newsystem.type=#{type}
+        <if test="badge!=null">
+            and newparticipation.badge=#{badge}
+        </if>and finishtime between #{date1} and #{date2}
+    </select>
+
+    <select id="selectOneKeJiChu" resultMap="StatisticalNewSystem">
+        select distinct kejichu.* from kejichu,newparticipation where kejichu.id=newparticipation.ach_id and status=1 and kejichu.type=#{type}
         <if test="badge!=null">
             and newparticipation.badge=#{badge}
         </if>and finishtime between #{date1} and #{date2}
     </select>
 
     <select id="selectOneSheKeChu" resultMap="StatisticalSheKeChu">
-        select * from shekechu,newparticipation where shekechu.id=newparticipation.ach_id and status=1 and shekechu.type=#{type}
+        select distinct shekechu.* from shekechu,newparticipation where shekechu.id=newparticipation.ach_id and status=1 and shekechu.type=#{type}
         <if test="badge!=null">
             and newparticipation.badge=#{badge}
         </if>
@@ -58,5 +66,9 @@
         select teacher.badeg from  newparticipation,teacher where newparticipation.badge=teacher.badeg and newparticipation.ach_id=#{id} and newparticipation.type=#{type}
     </select>
 
+
+    <select id="selectTeacherName" resultMap="TeacherName">
+        select tea_name from  teacher where teacher.badeg=#{badge}
+    </select>
 </mapper>
 

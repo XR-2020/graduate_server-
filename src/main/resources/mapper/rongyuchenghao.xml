@@ -68,17 +68,25 @@
         INSERT IGNORE INTO participation(`badge`, `ach_id`, `type`) VALUES (#{badge,jdbcType=INTEGER},#{ach_id,jdbcType=INTEGER},#{type,jdbcType=INTEGER})
     </insert>
 
-    <select id="RongYuMetails" parameterType="java.lang.Integer" resultMap="RongYuMetails">
+    <select id="RongYuChengHaoMetails" parameterType="java.lang.Integer" resultMap="RongYuMetails">
         SELECT metails FROM `honor` where id=#{id}
     </select>
 
     <select id="selectRongYuChengHao" parameterType="java.lang.String" resultMap="RongYu">
-        select * from `honor` where status=1 and finishtime between #{date1} and #{date2}
+        select * from `honor` where status=1
+            <if test="name!=null">
+                and CONCAT(teacher) LIKE CONCAT('%',#{name},'%')
+            </if>
+        and finishtime between #{date1} and #{date2}
     </select>
 
     <select id="waitingrongyuchenghao" resultMap="RongYu">
         <bind name="beginIndex" value="(pageIndex-1)*pageSize"></bind>
         select * from `honor` where status=0 limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+    </select>
+
+    <select id="waitingrongyuchenghaoPageToTal" resultMap="RongYucount">
+        select count(*) RongYucount from honor where status=0
     </select>
 
     <update id="passRongYuChengHao" parameterType="java.lang.Integer">

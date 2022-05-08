@@ -14,6 +14,7 @@ import com.example.graduate_sever.common.UO.SheKeChuUO;
 import com.example.graduate_sever.entity.NewParticipationEntity;
 import com.example.graduate_sever.entity.NewSystemEntity;
 import com.example.graduate_sever.entity.SheKeChuEntity;
+import com.example.graduate_sever.model.NewSyatemModel;
 import com.example.graduate_sever.model.SheKeChuModel;
 import com.example.graduate_sever.service.KeJiChuService;
 import com.example.graduate_sever.service.SheKeChuService;
@@ -143,4 +144,21 @@ public class KeJiChuimpl implements KeJiChuService {
     public int passKeJiChu(Integer id, Integer pass) {
         return mapper.passKeJiChu(id,pass);
     }
+
+    @Override
+    public List<TableData> waitingKeJiChu(DTO dTO, String type) {
+        Integer beginIndex=dTO.getPageIndex()-1;
+        List<NewSyatemModel> list=mapper.waitingKeJiChu(beginIndex,dTO.getPageSize(),type);
+        List<TableData> tableData=new ArrayList<>();
+        for (NewSyatemModel c:list) {
+            tableData.add(new TableData(c,newSystemMapper.getNewSystemDetail(c.getId(),type)));
+        }
+        return tableData;
+    }
+
+    @Override
+    public long waitingKeJiChuPageToTal(String type) {
+        return mapper.waitingKeJiChuPageToTal(type);
+    }
+
 }

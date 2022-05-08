@@ -22,6 +22,10 @@ public class NewStatisticalimpl implements NewStatisticalService {
     private NewStatisticalMapper mapper;
     @Autowired
     private NewSystemMapper newSystemMapper;
+    @Autowired
+    private RongYuChengHaoMapper rongYuChengHaoMapper;
+    @Autowired
+    private XueKeJingSaiMapper xueKeJingSaiMapper;
 
     @Override
     public List<TableData> selectxiaowaishijianjidi(String date1, String date2,Integer badge) {
@@ -117,6 +121,105 @@ public class NewStatisticalimpl implements NewStatisticalService {
         List<TableData> tableData=new ArrayList<>();
         for (SheKeChuModel c:list) {
             tableData.add(new TableData(c,newSystemMapper.getNewSystemDetail(c.getId(),"社科处_7.科研获奖")));
+        }
+        return tableData;
+    }
+
+    @Override
+    public List<TableData> selectzhuanli(String date1, String date2, Integer badge) {
+        List<NewSyatemModel> list=mapper.selectOneKeJiChu(date1,date2,badge,"科技处_专利");
+        List<TableData> tableData=new ArrayList<>();
+        for (NewSyatemModel c:list) {
+            System.out.println(c.getId()+"______________");
+            tableData.add(new TableData(c,newSystemMapper.getNewSystemDetail(c.getId(),"科技处_专利")));
+        }
+        return tableData;
+    }
+
+    @Override
+    public List<TableData> selecthengxiangkeyan(String date1, String date2, Integer badge) {
+        List<NewSyatemModel> list=mapper.selectOneKeJiChu(date1,date2,badge,"科技处_横向项目");
+        List<TableData> tableData=new ArrayList<>();
+        for (NewSyatemModel c:list) {
+            System.out.println(c.getId()+"______________");
+            tableData.add(new TableData(c,newSystemMapper.getNewSystemDetail(c.getId(),"科技处_横向项目")));
+        }
+        return tableData;
+    }
+
+    @Override
+    public List<TableData> selectzongxiangkeyan(String date1, String date2, Integer badge) {
+        List<NewSyatemModel> list=mapper.selectOneKeJiChu(date1,date2,badge,"科技处_纵向立项");
+        List<TableData> tableData=new ArrayList<>();
+        for (NewSyatemModel c:list) {
+            System.out.println(c.getId()+"______________");
+            tableData.add(new TableData(c,newSystemMapper.getNewSystemDetail(c.getId(),"科技处_纵向立项")));
+        }
+        return tableData;
+    }
+
+    @Override
+    public List<TableData> selectzhuzuo(String date1, String date2, Integer badge) {
+        List<NewSyatemModel> list=mapper.selectOneKeJiChu(date1,date2,badge,"科技处_著作");
+        List<TableData> tableData=new ArrayList<>();
+        for (NewSyatemModel c:list) {
+            System.out.println(c.getId()+"______________");
+            tableData.add(new TableData(c,newSystemMapper.getNewSystemDetail(c.getId(),"科技处_著作")));
+        }
+        return tableData;
+    }
+
+    @Override
+    public List<TableData> selectkeyanlunwen(String date1, String date2, Integer badge) {
+        List<NewSyatemModel> list=mapper.selectOneKeJiChu(date1,date2,badge,"科技处_论文");
+        List<TableData> tableData=new ArrayList<>();
+        for (NewSyatemModel c:list) {
+            System.out.println(c.getId()+"______________");
+            tableData.add(new TableData(c,newSystemMapper.getNewSystemDetail(c.getId(),"科技处_论文")));
+        }
+        return tableData;
+    }
+
+    @Override
+    public List<TableData> selectruanjianzhuzuoquan(String date1, String date2, Integer badge) {
+        List<NewSyatemModel> list=mapper.selectOneKeJiChu(date1,date2,badge,"科技处_软件著作权");
+        List<TableData> tableData=new ArrayList<>();
+        for (NewSyatemModel c:list) {
+            System.out.println(c.getId()+"______________");
+            tableData.add(new TableData(c,newSystemMapper.getNewSystemDetail(c.getId(),"科技处_软件著作权")));
+        }
+        return tableData;
+    }
+
+    @Override
+    public List<TableData> selectkeyanxiangmujiexiang(String date1, String date2, Integer badge) {
+        List<NewSyatemModel> list=mapper.selectOneKeJiChu(date1,date2,badge,"科技处_项目结项");
+        List<TableData> tableData=new ArrayList<>();
+        for (NewSyatemModel c:list) {
+            System.out.println(c.getId()+"______________");
+            tableData.add(new TableData(c,newSystemMapper.getNewSystemDetail(c.getId(),"科技处_项目结项")));
+        }
+        return tableData;
+    }
+
+    @Override
+    public List<TableData> selectxuekejingsai(String date1, String date2, Integer badge) {
+       String name=mapper.selectTeacherName(badge);
+        List<Competition> list=xueKeJingSaiMapper.selectXueKeJingSai(date1,date2,name);
+        List<TableData> tableData=new ArrayList<>();
+        for (Competition c:list) {
+            tableData.add(new TableData(c,null));
+        }
+        return tableData;
+    }
+
+    @Override
+    public List<TableData> selectrongyuchenghao(String date1, String date2, Integer badge) {
+        String name=mapper.selectTeacherName(badge);
+        List<Honor> list=rongYuChengHaoMapper.selectRongYuChengHao(date1,date2,name);
+        List<TableData> tableData=new ArrayList<>();
+        for (Honor c:list) {
+            tableData.add(new TableData(c,null));
         }
         return tableData;
     }

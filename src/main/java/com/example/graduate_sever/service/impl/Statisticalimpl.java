@@ -174,12 +174,7 @@ public class Statisticalimpl implements StatisticalService {
 
     @Override
     public List<TableData> rongyuchenghao(String date1, String date2) {
-        List<Honor> list=rongYuChengHaoMapper.selectRongYuChengHao(date1,date2);
-        List<TableData> tableData=new ArrayList<>();
-        for (Honor c:list) {
-            tableData.add(new TableData(c,null));
-        }
-        return tableData;
+        return null;
     }
 
     @Override
@@ -194,22 +189,12 @@ public class Statisticalimpl implements StatisticalService {
 
     @Override
     public List<TableData> xuekejingsai(String date1, String date2) {
-        List<Competition> list=xueKeJingSaiMapper.selectXueKeJingSai(date1,date2);
-        List<TableData> tableData=new ArrayList<>();
-        for (Competition c:list) {
-            tableData.add(new TableData(c,null));
-        }
-        return tableData;
+      return null;
     }
 
     @Override
     public List<TableData> zhuanli(String date1, String date2) {
-        List<ZhuanLi> list=zhuanLiMapper.selectZhuanLi(date1,date2);
-        List<TableData> tableData=new ArrayList<>();
-        for (ZhuanLi c:list) {
-            tableData.add(new TableData(c,zhuanLiMapper.getZhuanLiDetail(c.getId())));
-        }
-        return tableData;
+        return null;
     }
 
     @Override

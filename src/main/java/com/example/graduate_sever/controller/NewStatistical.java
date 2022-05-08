@@ -35,7 +35,16 @@ public class NewStatistical {
                 service.selectjiaoyanlunwen(date1,date2,badge),
                 service.selectyouxiubishe(date1,date2,badge),
                 service.selectzongxiangjieti(date1,date2,badge),
-                service.selectkeyanhuojiang(date1,date2,badge)
+                service.selectkeyanhuojiang(date1,date2,badge),
+                service.selectzhuanli(date1,date2,badge),
+                service.selecthengxiangkeyan(date1,date2,badge),
+                service.selectzongxiangkeyan(date1,date2,badge),
+                service.selectzhuzuo(date1,date2,badge),
+                service.selectkeyanlunwen(date1,date2,badge),
+                service.selectruanjianzhuzuoquan(date1,date2,badge),
+                service.selectkeyanxiangmujiexiang(date1,date2,badge),
+                service.selectxuekejingsai(date1,date2,badge),
+                service.selectrongyuchenghao(date1,date2,badge)
         );
         return allData;
     }
@@ -85,6 +94,42 @@ public class NewStatistical {
             }
             case "社科处_7.科研获奖":{
                 tableData=service.selectkeyanhuojiang(date1,date2,badge);
+                break;
+            }
+            case "科技处_专利":{
+                tableData=service.selectzhuanli(date1,date2,badge);
+                break;
+            }
+            case "科技处_横向项目":{
+                tableData=service.selecthengxiangkeyan(date1,date2,badge);
+                break;
+            }
+            case "科技处_纵向立项":{
+                tableData=service.selectzongxiangkeyan(date1,date2,badge);
+                break;
+            }
+            case "科技处_著作":{
+                tableData=service.selectzhuzuo(date1,date2,badge);
+                break;
+            }
+            case "科技处_论文":{
+                tableData=service.selectkeyanlunwen(date1,date2,badge);
+                break;
+            }
+            case "科技处_软件著作权":{
+                tableData=service.selectruanjianzhuzuoquan(date1,date2,badge);
+                break;
+            }
+            case "科技处_项目结项":{
+                tableData=service.selectkeyanxiangmujiexiang(date1,date2,badge);
+                break;
+            }
+            case "学科竞赛":{
+                tableData=service.selectxuekejingsai(date1,date2,badge);
+                break;
+            }
+            case "荣誉称号":{
+                tableData=service.selectrongyuchenghao(date1,date2,badge);
                 break;
             }
         }

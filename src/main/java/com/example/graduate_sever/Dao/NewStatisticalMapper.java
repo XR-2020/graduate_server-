@@ -22,4 +22,8 @@ public interface NewStatisticalMapper {
     List<Integer> getNewBadge(Integer id, String type);
 
     SheKeChuModel selectDaiShenHeSheKeChu(Integer id, String tablename);
+
+    String selectTeacherName(Integer badge);
+
+    List<NewSyatemModel> selectOneKeJiChu(String date1, String date2, Integer badge, String type);
 }

@@ -32,7 +32,7 @@ public interface XueKeJingSaiMapper {
     int shenBaoJingSai(CompetitionEntity entity);
     int insertJingSaiParticipation(ParticipationEntity participationEntity);
     Metails XueKeJingSaiMetails(Integer id);
-    List<Competition> selectXueKeJingSai(String date1, String date2);
+    List<Competition> selectXueKeJingSai(String date1, String date2,String name);
 
     List<Competition> waitingxuekejingsai(DTO dTO);
 
@@ -45,4 +45,6 @@ public interface XueKeJingSaiMapper {
     long getSearchJingSaiPageTotal();
 
     Competition selectOneCompetition(Integer id);
+
+    long waitingxuekejingsaiPageToTal();
 }

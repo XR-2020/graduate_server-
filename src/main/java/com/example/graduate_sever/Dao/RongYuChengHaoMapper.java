@@ -30,7 +30,7 @@ public interface RongYuChengHaoMapper {
     int shenBaoRongYuChengHao(HonorEntity entity);
     int insertRongYuChengHaoParticipation(ParticipationEntity participationEntity);
     Metails RongYuChengHaoMetails(Integer id);
-    List<Honor> selectRongYuChengHao(String date1, String date2);
+    List<Honor> selectRongYuChengHao(String date1, String date2,String name);
 
     List<Honor> waitingrongyuchenghao(DTO dTO);
 
@@ -46,4 +46,6 @@ public interface RongYuChengHaoMapper {
     long getSearchRongYuPageTotal();
 
     Honor selectHonor(Integer id);
+
+    long waitingrongyuchenghaoPageToTal();
 }

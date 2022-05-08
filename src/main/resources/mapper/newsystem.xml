@@ -107,7 +107,7 @@
         </insert>
 
     <select id="waitingnewSystem" resultMap="NewSystem">
-        select * from newsystem where status=0 and type=#{type} limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER};select count(*) count13 from newsystem where status=1 ;
+        select * from newsystem where status=0 and type=#{type} limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER};
     </select>
 
     <select id="waitingnewSystemPageTotal" resultMap="count13">

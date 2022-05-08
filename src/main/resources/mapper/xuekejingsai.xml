@@ -69,20 +69,28 @@
     </insert>
 
     <insert id="insertJingSaiParticipation" parameterType="com.example.graduate_sever.entity.ParticipationEntity" useGeneratedKeys="true">
-        INSERT IGNORE INTO participation(`badge`, `ach_id`, `type`) VALUES (#{badge,jdbcType=INTEGER},#{ach_id,jdbcType=INTEGER},#{type,jdbcType=INTEGER})
+        INSERT IGNORE INTO newparticipation(`badge`, `ach_id`, `type`) VALUES (#{badge,jdbcType=INTEGER},#{ach_id,jdbcType=INTEGER},"学科竞赛")
     </insert>
 
-    <select id="JingSaiMetails" parameterType="java.lang.Integer" resultMap="JingSaiMetails">
+    <select id="XueKeJingSaiMetails" parameterType="java.lang.Integer" resultMap="JingSaiMetails">
         SELECT metails FROM `competition` where id=#{id}
     </select>
 
     <select id="selectXueKeJingSai" parameterType="java.lang.String" resultMap="JingSai">
-        select * from `competition` where status=1 and finishtime between #{date1} and #{date2}
+        select * from `competition` where status=1
+        <if test="name!=null">
+            and CONCAT(teacher) LIKE CONCAT('%',#{name},'%')
+        </if>
+        and finishtime between #{date1} and #{date2}
     </select>
 
     <select id="waitingxuekejingsai" resultMap="JingSai">
         <bind name="beginIndex" value="(pageIndex-1)*pageSize"></bind>
         select * from `competition` where status=0 limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+    </select>
+
+    <select id="waitingxuekejingsaiPageToTal" resultMap="JingSai_count">
+        select count(*) JingSai_count from competition where status=0
     </select>
 
     <update id="passXueKeJingSai" parameterType="java.lang.Integer">

@@ -214,4 +214,9 @@ public class RongYuChengHaoimpl implements RongYuChengHaoService {
         return jsonBean;
     }
 
+    @Override
+    public long waitingrongyuchenghaoPageToTal() {
+        return mapper.waitingrongyuchenghaoPageToTal();
+    }
+
 }

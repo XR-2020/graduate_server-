@@ -378,37 +378,19 @@ public class ChanXueYanimpl implements ChanXueYanService {
         Integer badge=dto.getBadge();
         Integer pageIndex=dto.getPageIndex();
         Integer pageSize=dto.getPageSize();
-        List<GetPageTotal> paramslist=new ArrayList<>();
-        paramslist.add(new GetPageTotal("chanxueyan",1));
-        paramslist.add(new GetPageTotal("jiaoyanxiangmu",2));
-        paramslist.add(new GetPageTotal("jiaoyanlunwen",3));
-        paramslist.add(new GetPageTotal("pingguzhongxinxiangguan",4));
-        paramslist.add(new GetPageTotal("jiaoyuguihuaxiangmu",5));
-        paramslist.add(new GetPageTotal("zhuanli",6));
-        paramslist.add(new GetPageTotal("hengxiangkeyanxiangmu",7));
-        paramslist.add(new GetPageTotal("zongxiangkeyanxiangmu",8));
-        paramslist.add(new GetPageTotal("zhuzuo",9));
-        paramslist.add(new GetPageTotal("keyanlunwen",10));
-        paramslist.add(new GetPageTotal("ruanjianzhuzuoquan",11));
-        paramslist.add(new GetPageTotal("keyanxiangmujiexiang",12));
-        paramslist.add(new GetPageTotal("competition",13));
-        paramslist.add(new GetPageTotal("honor",14));
         List<List<MyShenBaoModel>> list=new ArrayList<>();
         List<MyShenBaoModel> myShenBaoModelList=new ArrayList<>();
         List<DaiShenHeTableData> tableData=new ArrayList<>();
         List<NewGetPageTotal> paramslist2=new ArrayList<>();
         paramslist2.add(new NewGetPageTotal("newsystem",""));
         paramslist2.add(new NewGetPageTotal("shekechu",""));
+        paramslist2.add(new NewGetPageTotal("kejichu",""));
+        paramslist2.add(new NewGetPageTotal("competition",""));
+        paramslist2.add(new NewGetPageTotal("honor",""));
         for (NewGetPageTotal g:paramslist2) {
             myShenBaoModelList=chanxueyanMapper.getDisData(g.getTablename(),badge);
             for (MyShenBaoModel m:myShenBaoModelList) {
                 tableData.add(new DaiShenHeTableData(m,null,g.getTablename()));
-            }
-        }
-        for (GetPageTotal g:paramslist) {
-            myShenBaoModelList=chanxueyanMapper.getDisData(g.getTablename(),badge);
-            for (MyShenBaoModel m:myShenBaoModelList) {
-                tableData.add(new DaiShenHeTableData(m,chanxueyanMapper.getDetail(m.getId(),g.getType()),g.getTablename()));
             }
         }
         return tableData;
@@ -417,27 +399,12 @@ public class ChanXueYanimpl implements ChanXueYanService {
     @Override
     public long getPageTotal(Integer badge) {
         int pageTotal=0;
-        List<GetPageTotal> list=new ArrayList<>();
-        list.add(new GetPageTotal("chanxueyan",1));
-        list.add(new GetPageTotal("jiaoyanxiangmu",2));
-        list.add(new GetPageTotal("jiaoyanlunwen",3));
-        list.add(new GetPageTotal("pingguzhongxinxiangguan",4));
-        list.add(new GetPageTotal("jiaoyuguihuaxiangmu",5));
-        list.add(new GetPageTotal("zhuanli",6));
-        list.add(new GetPageTotal("hengxiangkeyanxiangmu",7));
-        list.add(new GetPageTotal("zongxiangkeyanxiangmu",8));
-        list.add(new GetPageTotal("zhuzuo",9));
-        list.add(new GetPageTotal("keyanlunwen",10));
-        list.add(new GetPageTotal("ruanjianzhuzuoquan",11));
-        list.add(new GetPageTotal("keyanxiangmujiexiang",12));
-        list.add(new GetPageTotal("competition",13));
-        list.add(new GetPageTotal("honor",14));
         List<NewGetPageTotal> paramslist2=new ArrayList<>();
         paramslist2.add(new NewGetPageTotal("newsystem",""));
         paramslist2.add(new NewGetPageTotal("shekechu",""));
-        for (GetPageTotal g:list) {
-            pageTotal+=chanxueyanMapper.getPageTotal(badge,g.getTablename());
-        }
+        paramslist2.add(new NewGetPageTotal("kejichu",""));
+        paramslist2.add(new NewGetPageTotal("competition",""));
+        paramslist2.add(new NewGetPageTotal("honor",""));
         for (NewGetPageTotal g:paramslist2) {
             pageTotal+=chanxueyanMapper.getPageTotal(badge,g.getTablename());
         }
@@ -449,32 +416,14 @@ public class ChanXueYanimpl implements ChanXueYanService {
         Integer badge=dto.getBadge();
         Integer pageIndex=dto.getPageIndex();
         Integer pageSize=dto.getPageSize();
-        List<GetPageTotal> paramslist=new ArrayList<>();
-        paramslist.add(new GetPageTotal("chanxueyan",1));
-        paramslist.add(new GetPageTotal("jiaoyanxiangmu",2));
-        paramslist.add(new GetPageTotal("jiaoyanlunwen",3));
-        paramslist.add(new GetPageTotal("pingguzhongxinxiangguan",4));
-        paramslist.add(new GetPageTotal("jiaoyuguihuaxiangmu",5));
-        paramslist.add(new GetPageTotal("zhuanli",6));
-        paramslist.add(new GetPageTotal("hengxiangkeyanxiangmu",7));
-        paramslist.add(new GetPageTotal("zongxiangkeyanxiangmu",8));
-        paramslist.add(new GetPageTotal("zhuzuo",9));
-        paramslist.add(new GetPageTotal("keyanlunwen",10));
-        paramslist.add(new GetPageTotal("ruanjianzhuzuoquan",11));
-        paramslist.add(new GetPageTotal("keyanxiangmujiexiang",12));
-        paramslist.add(new GetPageTotal("competition",13));
-        paramslist.add(new GetPageTotal("honor",14));
         List<NewGetPageTotal> paramslist2=new ArrayList<>();
         paramslist2.add(new NewGetPageTotal("newsystem",""));
         paramslist2.add(new NewGetPageTotal("shekechu",""));
+        paramslist2.add(new NewGetPageTotal("kejichu",""));
+        paramslist2.add(new NewGetPageTotal("competition",""));
+        paramslist2.add(new NewGetPageTotal("honor",""));
         List<MyShenBaoModel> myShenBaoModelList;
         List<DaiShenHeTableData> tableData=new ArrayList<>();
-        for (GetPageTotal g:paramslist) {
-            myShenBaoModelList=chanxueyanMapper.getDaiShenHeData(g.getTablename(),badge);
-            for (MyShenBaoModel m:myShenBaoModelList) {
-                tableData.add(new DaiShenHeTableData(m,null,g.getTablename()));
-            }
-        }
         for (NewGetPageTotal g:paramslist2) {
             myShenBaoModelList=chanxueyanMapper.getDaiShenHeData(g.getTablename(),badge);
             for (MyShenBaoModel m:myShenBaoModelList) {
@@ -487,31 +436,15 @@ public class ChanXueYanimpl implements ChanXueYanService {
     @Override
     public long getDaiShenHePageTotal(Integer badge) {
         int pageTotal=0;
-        List<GetPageTotal> list=new ArrayList<>();
-        list.add(new GetPageTotal("chanxueyan",1));
-        list.add(new GetPageTotal("jiaoyanxiangmu",2));
-        list.add(new GetPageTotal("jiaoyanlunwen",3));
-        list.add(new GetPageTotal("pingguzhongxinxiangguan",4));
-        list.add(new GetPageTotal("jiaoyuguihuaxiangmu",5));
-        list.add(new GetPageTotal("zhuanli",6));
-        list.add(new GetPageTotal("hengxiangkeyanxiangmu",7));
-        list.add(new GetPageTotal("zongxiangkeyanxiangmu",8));
-        list.add(new GetPageTotal("zhuzuo",9));
-        list.add(new GetPageTotal("keyanlunwen",10));
-        list.add(new GetPageTotal("ruanjianzhuzuoquan",11));
-        list.add(new GetPageTotal("keyanxiangmujiexiang",12));
-        list.add(new GetPageTotal("competition",13));
-        list.add(new GetPageTotal("honor",14));
         List<NewGetPageTotal> paramslist2=new ArrayList<>();
         paramslist2.add(new NewGetPageTotal("newsystem",""));
         paramslist2.add(new NewGetPageTotal("shekechu",""));
+        paramslist2.add(new NewGetPageTotal("kejichu",""));
+        paramslist2.add(new NewGetPageTotal("competition",""));
+        paramslist2.add(new NewGetPageTotal("honor",""));
         for (NewGetPageTotal g:paramslist2) {
             pageTotal+=chanxueyanMapper.getDaiShenHePageTotal(badge,g.getTablename());
         }
-        for (GetPageTotal g:list) {
-            pageTotal+=chanxueyanMapper.getDaiShenHePageTotal(badge,g.getTablename());
-        }
-
         return pageTotal;
     }
 
@@ -612,36 +545,18 @@ public class ChanXueYanimpl implements ChanXueYanService {
         Integer badge=dto.getBadge();
         Integer pageIndex=dto.getPageIndex();
         Integer pageSize=dto.getPageSize();
-        List<GetPageTotal> paramslist=new ArrayList<>();
-        paramslist.add(new GetPageTotal("chanxueyan",1));
-        paramslist.add(new GetPageTotal("jiaoyanxiangmu",2));
-        paramslist.add(new GetPageTotal("jiaoyanlunwen",3));
-        paramslist.add(new GetPageTotal("pingguzhongxinxiangguan",4));
-        paramslist.add(new GetPageTotal("jiaoyuguihuaxiangmu",5));
-        paramslist.add(new GetPageTotal("zhuanli",6));
-        paramslist.add(new GetPageTotal("hengxiangkeyanxiangmu",7));
-        paramslist.add(new GetPageTotal("zongxiangkeyanxiangmu",8));
-        paramslist.add(new GetPageTotal("zhuzuo",9));
-        paramslist.add(new GetPageTotal("keyanlunwen",10));
-        paramslist.add(new GetPageTotal("ruanjianzhuzuoquan",11));
-        paramslist.add(new GetPageTotal("keyanxiangmujiexiang",12));
-        paramslist.add(new GetPageTotal("competition",13));
-        paramslist.add(new GetPageTotal("honor",14));
         List<MyShenBaoModel> myShenBaoModelList=new ArrayList<>();
         List<DaiShenHeTableData> tableData=new ArrayList<>();
         List<NewGetPageTotal> paramslist2=new ArrayList<>();
         paramslist2.add(new NewGetPageTotal("newsystem",""));
         paramslist2.add(new NewGetPageTotal("shekechu",""));
+        paramslist2.add(new NewGetPageTotal("kejichu",""));
+        paramslist2.add(new NewGetPageTotal("competition",""));
+        paramslist2.add(new NewGetPageTotal("honor",""));
         for (NewGetPageTotal g:paramslist2) {
             myShenBaoModelList=chanxueyanMapper.getHadPassData(g.getTablename(),badge);
             for (MyShenBaoModel m:myShenBaoModelList) {
                 tableData.add(new DaiShenHeTableData(m,null,g.getTablename()));
-            }
-        }
-        for (GetPageTotal g:paramslist) {
-            myShenBaoModelList=chanxueyanMapper.getHadPassData(g.getTablename(),badge);
-            for (MyShenBaoModel m:myShenBaoModelList) {
-                tableData.add(new DaiShenHeTableData(m,chanxueyanMapper.getDetail(m.getId(),g.getType()),g.getTablename()));
             }
         }
         return tableData;
@@ -650,28 +565,13 @@ public class ChanXueYanimpl implements ChanXueYanService {
     @Override
     public long getHadPassPageTotal(Integer badge) {
         int pageTotal=0;
-        List<GetPageTotal> list=new ArrayList<>();
-        list.add(new GetPageTotal("chanxueyan",1));
-        list.add(new GetPageTotal("jiaoyanxiangmu",2));
-        list.add(new GetPageTotal("jiaoyanlunwen",3));
-        list.add(new GetPageTotal("pingguzhongxinxiangguan",4));
-        list.add(new GetPageTotal("jiaoyuguihuaxiangmu",5));
-        list.add(new GetPageTotal("zhuanli",6));
-        list.add(new GetPageTotal("hengxiangkeyanxiangmu",7));
-        list.add(new GetPageTotal("zongxiangkeyanxiangmu",8));
-        list.add(new GetPageTotal("zhuzuo",9));
-        list.add(new GetPageTotal("keyanlunwen",10));
-        list.add(new GetPageTotal("ruanjianzhuzuoquan",11));
-        list.add(new GetPageTotal("keyanxiangmujiexiang",12));
-        list.add(new GetPageTotal("competition",13));
-        list.add(new GetPageTotal("honor",14));
         List<NewGetPageTotal> paramslist2=new ArrayList<>();
         paramslist2.add(new NewGetPageTotal("newsystem",""));
         paramslist2.add(new NewGetPageTotal("shekechu",""));
+        paramslist2.add(new NewGetPageTotal("kejichu",""));
+        paramslist2.add(new NewGetPageTotal("competition",""));
+        paramslist2.add(new NewGetPageTotal("honor",""));
         for (NewGetPageTotal g:paramslist2) {
-            pageTotal+=chanxueyanMapper.getHadPassPageTotal(badge,g.getTablename());
-        }
-        for (GetPageTotal g:list) {
             pageTotal+=chanxueyanMapper.getHadPassPageTotal(badge,g.getTablename());
         }
         return pageTotal;

@@ -33,4 +33,6 @@ public interface RongYuChengHaoService {
     int editHonor(Integer id, String name, String partment, String finishtime, String teacher, String level);
 
     JsonBean honorImport(MultipartFile file, String name) throws IOException;
+
+    long waitingrongyuchenghaoPageToTal();
 }

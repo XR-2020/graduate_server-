@@ -1,11 +1,13 @@
 package com.example.graduate_sever.service.impl;
 
 import com.example.graduate_sever.Dao.ChanXueYanMapper;
+import com.example.graduate_sever.Dao.NewSystemMapper;
 import com.example.graduate_sever.Dao.XueKeJingSaiMapper;
 import com.example.graduate_sever.common.*;
 import com.example.graduate_sever.common.DTO.DTO;
 import com.example.graduate_sever.common.DTO.MyShenBaoDTO;
 import com.example.graduate_sever.entity.CompetitionEntity;
+import com.example.graduate_sever.entity.NewParticipationEntity;
 import com.example.graduate_sever.entity.ParticipationEntity;
 import com.example.graduate_sever.model.Competition;
 import com.example.graduate_sever.model.Honor;
@@ -29,6 +31,8 @@ public class XueKeJingSaiimpl implements XueKeJingSaiService {
     private XueKeJingSaiMapper mapper;
     @Autowired
     private ChanXueYanMapper chanXueYanMapper;
+    @Autowired
+    private NewSystemMapper newSystemMapper;
     @Override
     public ResVO getAllJingSai(DTO dTO) {
         List<Competition> list=mapper.getAllJingSai(dTO);
@@ -76,13 +80,8 @@ public class XueKeJingSaiimpl implements XueKeJingSaiService {
     }
 
     @Override
-    public JsonBean shenBaoJingSai(CompetitionEntity entity, Integer[] people) {
+    public JsonBean shenBaoJingSai(CompetitionEntity entity) {
         int ref=mapper.shenBaoJingSai(entity);
-        if(ref!=0){
-            for (Integer ach_id:people) {
-                mapper.insertJingSaiParticipation(new ParticipationEntity(ach_id,entity.getId(),13));
-            }
-        }
         return new JsonBean(200,"",ref);
     }
 
@@ -235,5 +234,10 @@ public class XueKeJingSaiimpl implements XueKeJingSaiService {
             jsonBean= new JsonBean(200,"导入成功","");
         }
         return jsonBean;
+    }
+
+    @Override
+    public long waitingxuekejingsaiPageToTal() {
+       return mapper.waitingxuekejingsaiPageToTal();
     }
 }

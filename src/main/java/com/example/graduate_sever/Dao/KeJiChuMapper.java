@@ -31,4 +31,8 @@ public interface KeJiChuMapper {
     int passKeJiChu(Integer id, Integer pass);
 
     int insertKeJiChu(NewSystemEntity newSystemEntity);
+
+    List<NewSyatemModel> waitingKeJiChu(Integer beginIndex, Integer pageSize, String type);
+
+    long waitingKeJiChuPageToTal(String type);
 }

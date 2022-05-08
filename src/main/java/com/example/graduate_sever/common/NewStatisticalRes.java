@@ -14,6 +14,36 @@ public class NewStatisticalRes {
     private List<TableData> youxiubishe;
     private List<TableData> zongxiangjieti;
     private List<TableData> keyanhuojiang;
+    private List<TableData> zhuanli;
+    private List<TableData> hengxiangkeyan;
+    private List<TableData> zongxiangkeyan;
+    private List<TableData> zhuzuo;
+    private List<TableData> keyanlunwen;
+    private List<TableData> ruanjianzhuzuoquan;
+    private List<TableData> keyanxiangmujiexiang;
+    private List<TableData> xuekejingsai;
+    private List<TableData> rongyuchenghao;
+
+    public NewStatisticalRes(List<TableData> xiaowaishijianjidi, List<TableData> shijianlixiang, List<TableData> shijianjiexiang, List<TableData> jiaocaiyejidian, List<TableData> jiaoyanyeji, List<TableData> jiaoyanlunwen, List<TableData> youxiubishe, List<TableData> zongxiangjieti, List<TableData> keyanhuojiang, List<TableData> zhuanli, List<TableData> hengxiangkeyan, List<TableData> zongxiangkeyan, List<TableData> zhuzuo, List<TableData> keyanlunwen, List<TableData> ruanjianzhuzuoquan, List<TableData> keyanxiangmujiexiang, List<TableData> xuekejingsai, List<TableData> rongyuchenghao) {
+        this.xiaowaishijianjidi = xiaowaishijianjidi;
+        this.shijianlixiang = shijianlixiang;
+        this.shijianjiexiang = shijianjiexiang;
+        this.jiaocaiyejidian = jiaocaiyejidian;
+        this.jiaoyanyeji = jiaoyanyeji;
+        this.jiaoyanlunwen = jiaoyanlunwen;
+        this.youxiubishe = youxiubishe;
+        this.zongxiangjieti = zongxiangjieti;
+        this.keyanhuojiang = keyanhuojiang;
+        this.zhuanli = zhuanli;
+        this.hengxiangkeyan = hengxiangkeyan;
+        this.zongxiangkeyan = zongxiangkeyan;
+        this.zhuzuo = zhuzuo;
+        this.keyanlunwen = keyanlunwen;
+        this.ruanjianzhuzuoquan = ruanjianzhuzuoquan;
+        this.keyanxiangmujiexiang = keyanxiangmujiexiang;
+        this.xuekejingsai = xuekejingsai;
+        this.rongyuchenghao = rongyuchenghao;
+    }
 
     public List<TableData> getXiaowaishijianjidi() {
         return xiaowaishijianjidi;
@@ -87,15 +117,75 @@ public class NewStatisticalRes {
         this.keyanhuojiang = keyanhuojiang;
     }
 
-    public NewStatisticalRes(List<TableData> xiaowaishijianjidi, List<TableData> shijianlixiang, List<TableData> shijianjiexiang, List<TableData> jiaocaiyejidian, List<TableData> jiaoyanyeji, List<TableData> jiaoyanlunwen, List<TableData> youxiubishe, List<TableData> zongxiangjieti, List<TableData> keyanhuojiang) {
-        this.xiaowaishijianjidi = xiaowaishijianjidi;
-        this.shijianlixiang = shijianlixiang;
-        this.shijianjiexiang = shijianjiexiang;
-        this.jiaocaiyejidian = jiaocaiyejidian;
-        this.jiaoyanyeji = jiaoyanyeji;
-        this.jiaoyanlunwen = jiaoyanlunwen;
-        this.youxiubishe = youxiubishe;
-        this.zongxiangjieti = zongxiangjieti;
-        this.keyanhuojiang = keyanhuojiang;
+    public List<TableData> getZhuanli() {
+        return zhuanli;
+    }
+
+    public void setZhuanli(List<TableData> zhuanli) {
+        this.zhuanli = zhuanli;
+    }
+
+    public List<TableData> getHengxiangkeyan() {
+        return hengxiangkeyan;
+    }
+
+    public void setHengxiangkeyan(List<TableData> hengxiangkeyan) {
+        this.hengxiangkeyan = hengxiangkeyan;
+    }
+
+    public List<TableData> getZongxiangkeyan() {
+        return zongxiangkeyan;
+    }
+
+    public void setZongxiangkeyan(List<TableData> zongxiangkeyan) {
+        this.zongxiangkeyan = zongxiangkeyan;
+    }
+
+    public List<TableData> getZhuzuo() {
+        return zhuzuo;
+    }
+
+    public void setZhuzuo(List<TableData> zhuzuo) {
+        this.zhuzuo = zhuzuo;
+    }
+
+    public List<TableData> getKeyanlunwen() {
+        return keyanlunwen;
+    }
+
+    public void setKeyanlunwen(List<TableData> keyanlunwen) {
+        this.keyanlunwen = keyanlunwen;
+    }
+
+    public List<TableData> getRuanjianzhuzuoquan() {
+        return ruanjianzhuzuoquan;
+    }
+
+    public void setRuanjianzhuzuoquan(List<TableData> ruanjianzhuzuoquan) {
+        this.ruanjianzhuzuoquan = ruanjianzhuzuoquan;
+    }
+
+    public List<TableData> getKeyanxiangmujiexiang() {
+        return keyanxiangmujiexiang;
+    }
+
+    public void setKeyanxiangmujiexiang(List<TableData> keyanxiangmujiexiang) {
+        this.keyanxiangmujiexiang = keyanxiangmujiexiang;
+    }
+
+    public List<TableData> getXuekejingsai() {
+        return xuekejingsai;
+    }
+
+    public void setXuekejingsai(List<TableData> xuekejingsai) {
+        this.xuekejingsai = xuekejingsai;
+    }
+
+    public List<TableData> getRongyuchenghao() {
+        return rongyuchenghao;
+    }
+
+    public void setRongyuchenghao(List<TableData> rongyuchenghao) {
+        this.rongyuchenghao = rongyuchenghao;
     }
 }

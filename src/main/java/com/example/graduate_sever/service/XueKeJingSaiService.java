@@ -19,7 +19,7 @@ public interface XueKeJingSaiService {
      JsonBean deleteOneJingSai(Integer id);
      JsonBean getJingSaiDetial(Integer id);
      JsonBean insertJingSai(CompetitionEntity entity);
-     JsonBean shenBaoJingSai(CompetitionEntity entity,Integer[] people);
+     JsonBean shenBaoJingSai(CompetitionEntity entity);
      Metails getXueKeJingSaiMetails(Integer id);
      List<TableData>  waitingxuekejingsai(DTO dTO);
 
@@ -34,4 +34,6 @@ public interface XueKeJingSaiService {
     int editCompetition(Integer id, String name, String partment, String finishtime, String teacher, String grade, String student, String level);
 
     JsonBean competitionImport(MultipartFile file, String name) throws IOException;
+
+    long waitingxuekejingsaiPageToTal();
 }

@@ -5,22 +5,12 @@ import com.example.graduate_sever.model.ZheXian;
 import java.util.List;
 
 public class WaitingRes {
-    private List<TableData> chanxueyan;
-    private long chanxueyanPageTotal;
     private List<TableData> hengxiangkeyan;
     private long hengxiangkeyanPageTotal;
-    private List<TableData> jiaoyanlunwen;
-    private long jiaoyanlunwenPageTotal;
-    private List<TableData> jiaoyanxiangmu;
-    private long jiaoyanxiangmuPageTotal;
-    private List<TableData> jiaoyuguihua;
-    private long jiaoyuguihuaPageTotal;
     private List<TableData> keyanlunwen;
     private long keyanlunwenPageTotal;
     private List<TableData> keyanxiangmujiexiang;
     private long keyanxiangmujiexiangPageTotal;
-    private List<TableData> pingguzhongxin;
-    private long pingguzhongxinPageTotal;
     private List<TableData> rongyuchenghao;
     private long rongyuchenghaoPageTotal;
     private List<TableData> ruanjianzhuzuo;
@@ -33,7 +23,6 @@ public class WaitingRes {
     private long zhuzuoPageTotal;
     private List<TableData> zongxiangkeyan;
     private long zongxiangkeyanPageTotal;
-
     private List<TableData> xiaowaishijianjidi;
     private long xiaowaishijianjidiPageTotal;
     private List<TableData> shijianlixiang;
@@ -53,20 +42,43 @@ public class WaitingRes {
     private List<TableData> keyanhuojiang;
     private long keyanhuojiangPageTotal;
 
-    public List<TableData> getChanxueyan() {
-        return chanxueyan;
-    }
-
-    public void setChanxueyan(List<TableData> chanxueyan) {
-        this.chanxueyan = chanxueyan;
-    }
-
-    public long getChanxueyanPageTotal() {
-        return chanxueyanPageTotal;
-    }
-
-    public void setChanxueyanPageTotal(long chanxueyanPageTotal) {
-        this.chanxueyanPageTotal = chanxueyanPageTotal;
+    public WaitingRes(List<TableData> hengxiangkeyan, long hengxiangkeyanPageTotal, List<TableData> keyanlunwen, long keyanlunwenPageTotal, List<TableData> keyanxiangmujiexiang, long keyanxiangmujiexiangPageTotal, List<TableData> rongyuchenghao, long rongyuchenghaoPageTotal, List<TableData> ruanjianzhuzuo, long ruanjianzhuzuoPageTotal, List<TableData> xuekejingsai, long xuekejingsaiPageTotal, List<TableData> zhuanli, long zhuanliPageTotal, List<TableData> zhuzuo, long zhuzuoPageTotal, List<TableData> zongxiangkeyan, long zongxiangkeyanPageTotal, List<TableData> xiaowaishijianjidi, long xiaowaishijianjidiPageTotal, List<TableData> shijianlixiang, long shijianlixiangPageTotal, List<TableData> shijianjiexiang, long shijianjiexiangPageTotal, List<TableData> jiaocaiyejidian, long jiaocaiyejidianPageTotal, List<TableData> jiaoyanyeji, long jiaoyanyejiPageTotal, List<TableData> newjiaoyanlunwen, long newjiaoyanlunwenPageTotal, List<TableData> youxiubishe, long youxiubishePageTotal, List<TableData> zongxiangjieti, long zongxiangjietiPageTotal, List<TableData> keyanhuojiang, long keyanhuojiangPageTotal) {
+        this.hengxiangkeyan = hengxiangkeyan;
+        this.hengxiangkeyanPageTotal = hengxiangkeyanPageTotal;
+        this.keyanlunwen = keyanlunwen;
+        this.keyanlunwenPageTotal = keyanlunwenPageTotal;
+        this.keyanxiangmujiexiang = keyanxiangmujiexiang;
+        this.keyanxiangmujiexiangPageTotal = keyanxiangmujiexiangPageTotal;
+        this.rongyuchenghao = rongyuchenghao;
+        this.rongyuchenghaoPageTotal = rongyuchenghaoPageTotal;
+        this.ruanjianzhuzuo = ruanjianzhuzuo;
+        this.ruanjianzhuzuoPageTotal = ruanjianzhuzuoPageTotal;
+        this.xuekejingsai = xuekejingsai;
+        this.xuekejingsaiPageTotal = xuekejingsaiPageTotal;
+        this.zhuanli = zhuanli;
+        this.zhuanliPageTotal = zhuanliPageTotal;
+        this.zhuzuo = zhuzuo;
+        this.zhuzuoPageTotal = zhuzuoPageTotal;
+        this.zongxiangkeyan = zongxiangkeyan;
+        this.zongxiangkeyanPageTotal = zongxiangkeyanPageTotal;
+        this.xiaowaishijianjidi = xiaowaishijianjidi;
+        this.xiaowaishijianjidiPageTotal = xiaowaishijianjidiPageTotal;
+        this.shijianlixiang = shijianlixiang;
+        this.shijianlixiangPageTotal = shijianlixiangPageTotal;
+        this.shijianjiexiang = shijianjiexiang;
+        this.shijianjiexiangPageTotal = shijianjiexiangPageTotal;
+        this.jiaocaiyejidian = jiaocaiyejidian;
+        this.jiaocaiyejidianPageTotal = jiaocaiyejidianPageTotal;
+        this.jiaoyanyeji = jiaoyanyeji;
+        this.jiaoyanyejiPageTotal = jiaoyanyejiPageTotal;
+        this.newjiaoyanlunwen = newjiaoyanlunwen;
+        this.newjiaoyanlunwenPageTotal = newjiaoyanlunwenPageTotal;
+        this.youxiubishe = youxiubishe;
+        this.youxiubishePageTotal = youxiubishePageTotal;
+        this.zongxiangjieti = zongxiangjieti;
+        this.zongxiangjietiPageTotal = zongxiangjietiPageTotal;
+        this.keyanhuojiang = keyanhuojiang;
+        this.keyanhuojiangPageTotal = keyanhuojiangPageTotal;
     }
 
     public List<TableData> getHengxiangkeyan() {
@@ -83,54 +95,6 @@ public class WaitingRes {
 
     public void setHengxiangkeyanPageTotal(long hengxiangkeyanPageTotal) {
         this.hengxiangkeyanPageTotal = hengxiangkeyanPageTotal;
-    }
-
-    public List<TableData> getJiaoyanlunwen() {
-        return jiaoyanlunwen;
-    }
-
-    public void setJiaoyanlunwen(List<TableData> jiaoyanlunwen) {
-        this.jiaoyanlunwen = jiaoyanlunwen;
-    }
-
-    public long getJiaoyanlunwenPageTotal() {
-        return jiaoyanlunwenPageTotal;
-    }
-
-    public void setJiaoyanlunwenPageTotal(long jiaoyanlunwenPageTotal) {
-        this.jiaoyanlunwenPageTotal = jiaoyanlunwenPageTotal;
-    }
-
-    public List<TableData> getJiaoyanxiangmu() {
-        return jiaoyanxiangmu;
-    }
-
-    public void setJiaoyanxiangmu(List<TableData> jiaoyanxiangmu) {
-        this.jiaoyanxiangmu = jiaoyanxiangmu;
-    }
-
-    public long getJiaoyanxiangmuPageTotal() {
-        return jiaoyanxiangmuPageTotal;
-    }
-
-    public void setJiaoyanxiangmuPageTotal(long jiaoyanxiangmuPageTotal) {
-        this.jiaoyanxiangmuPageTotal = jiaoyanxiangmuPageTotal;
-    }
-
-    public List<TableData> getJiaoyuguihua() {
-        return jiaoyuguihua;
-    }
-
-    public void setJiaoyuguihua(List<TableData> jiaoyuguihua) {
-        this.jiaoyuguihua = jiaoyuguihua;
-    }
-
-    public long getJiaoyuguihuaPageTotal() {
-        return jiaoyuguihuaPageTotal;
-    }
-
-    public void setJiaoyuguihuaPageTotal(long jiaoyuguihuaPageTotal) {
-        this.jiaoyuguihuaPageTotal = jiaoyuguihuaPageTotal;
     }
 
     public List<TableData> getKeyanlunwen() {
@@ -163,22 +127,6 @@ public class WaitingRes {
 
     public void setKeyanxiangmujiexiangPageTotal(long keyanxiangmujiexiangPageTotal) {
         this.keyanxiangmujiexiangPageTotal = keyanxiangmujiexiangPageTotal;
-    }
-
-    public List<TableData> getPingguzhongxin() {
-        return pingguzhongxin;
-    }
-
-    public void setPingguzhongxin(List<TableData> pingguzhongxin) {
-        this.pingguzhongxin = pingguzhongxin;
-    }
-
-    public long getPingguzhongxinPageTotal() {
-        return pingguzhongxinPageTotal;
-    }
-
-    public void setPingguzhongxinPageTotal(long pingguzhongxinPageTotal) {
-        this.pingguzhongxinPageTotal = pingguzhongxinPageTotal;
     }
 
     public List<TableData> getRongyuchenghao() {
@@ -418,55 +366,6 @@ public class WaitingRes {
     }
 
     public void setKeyanhuojiangPageTotal(long keyanhuojiangPageTotal) {
-        this.keyanhuojiangPageTotal = keyanhuojiangPageTotal;
-    }
-
-    public WaitingRes(List<TableData> chanxueyan, long chanxueyanPageTotal, List<TableData> hengxiangkeyan, long hengxiangkeyanPageTotal, List<TableData> jiaoyanlunwen, long jiaoyanlunwenPageTotal, List<TableData> jiaoyanxiangmu, long jiaoyanxiangmuPageTotal, List<TableData> jiaoyuguihua, long jiaoyuguihuaPageTotal, List<TableData> keyanlunwen, long keyanlunwenPageTotal, List<TableData> keyanxiangmujiexiang, long keyanxiangmujiexiangPageTotal, List<TableData> pingguzhongxin, long pingguzhongxinPageTotal, List<TableData> rongyuchenghao, long rongyuchenghaoPageTotal, List<TableData> ruanjianzhuzuo, long ruanjianzhuzuoPageTotal, List<TableData> xuekejingsai, long xuekejingsaiPageTotal, List<TableData> zhuanli, long zhuanliPageTotal, List<TableData> zhuzuo, long zhuzuoPageTotal, List<TableData> zongxiangkeyan, long zongxiangkeyanPageTotal, List<TableData> xiaowaishijianjidi, long xiaowaishijianjidiPageTotal, List<TableData> shijianlixiang, long shijianlixiangPageTotal, List<TableData> shijianjiexiang, long shijianjiexiangPageTotal, List<TableData> jiaocaiyejidian, long jiaocaiyejidianPageTotal, List<TableData> jiaoyanyeji, long jiaoyanyejiPageTotal, List<TableData> newjiaoyanlunwen, long newjiaoyanlunwenPageTotal, List<TableData> youxiubishe, long youxiubishePageTotal, List<TableData> zongxiangjieti, long zongxiangjietiPageTotal, List<TableData> keyanhuojiang, long keyanhuojiangPageTotal) {
-        this.chanxueyan = chanxueyan;
-        this.chanxueyanPageTotal = chanxueyanPageTotal;
-        this.hengxiangkeyan = hengxiangkeyan;
-        this.hengxiangkeyanPageTotal = hengxiangkeyanPageTotal;
-        this.jiaoyanlunwen = jiaoyanlunwen;
-        this.jiaoyanlunwenPageTotal = jiaoyanlunwenPageTotal;
-        this.jiaoyanxiangmu = jiaoyanxiangmu;
-        this.jiaoyanxiangmuPageTotal = jiaoyanxiangmuPageTotal;
-        this.jiaoyuguihua = jiaoyuguihua;
-        this.jiaoyuguihuaPageTotal = jiaoyuguihuaPageTotal;
-        this.keyanlunwen = keyanlunwen;
-        this.keyanlunwenPageTotal = keyanlunwenPageTotal;
-        this.keyanxiangmujiexiang = keyanxiangmujiexiang;
-        this.keyanxiangmujiexiangPageTotal = keyanxiangmujiexiangPageTotal;
-        this.pingguzhongxin = pingguzhongxin;
-        this.pingguzhongxinPageTotal = pingguzhongxinPageTotal;
-        this.rongyuchenghao = rongyuchenghao;
-        this.rongyuchenghaoPageTotal = rongyuchenghaoPageTotal;
-        this.ruanjianzhuzuo = ruanjianzhuzuo;
-        this.ruanjianzhuzuoPageTotal = ruanjianzhuzuoPageTotal;
-        this.xuekejingsai = xuekejingsai;
-        this.xuekejingsaiPageTotal = xuekejingsaiPageTotal;
-        this.zhuanli = zhuanli;
-        this.zhuanliPageTotal = zhuanliPageTotal;
-        this.zhuzuo = zhuzuo;
-        this.zhuzuoPageTotal = zhuzuoPageTotal;
-        this.zongxiangkeyan = zongxiangkeyan;
-        this.zongxiangkeyanPageTotal = zongxiangkeyanPageTotal;
-        this.xiaowaishijianjidi = xiaowaishijianjidi;
-        this.xiaowaishijianjidiPageTotal = xiaowaishijianjidiPageTotal;
-        this.shijianlixiang = shijianlixiang;
-        this.shijianlixiangPageTotal = shijianlixiangPageTotal;
-        this.shijianjiexiang = shijianjiexiang;
-        this.shijianjiexiangPageTotal = shijianjiexiangPageTotal;
-        this.jiaocaiyejidian = jiaocaiyejidian;
-        this.jiaocaiyejidianPageTotal = jiaocaiyejidianPageTotal;
-        this.jiaoyanyeji = jiaoyanyeji;
-        this.jiaoyanyejiPageTotal = jiaoyanyejiPageTotal;
-        this.newjiaoyanlunwen = newjiaoyanlunwen;
-        this.newjiaoyanlunwenPageTotal = newjiaoyanlunwenPageTotal;
-        this.youxiubishe = youxiubishe;
-        this.youxiubishePageTotal = youxiubishePageTotal;
-        this.zongxiangjieti = zongxiangjieti;
-        this.zongxiangjietiPageTotal = zongxiangjietiPageTotal;
-        this.keyanhuojiang = keyanhuojiang;
         this.keyanhuojiangPageTotal = keyanhuojiangPageTotal;
     }
 }

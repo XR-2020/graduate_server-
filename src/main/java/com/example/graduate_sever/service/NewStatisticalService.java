@@ -26,5 +26,23 @@ public interface NewStatisticalService {
      List<TableData> selectzongxiangjieti(String date1, String date2,Integer badge);
 
      List<TableData> selectkeyanhuojiang(String date1, String date2,Integer badge);
+     
 
+    List<TableData> selectzhuanli(String date1, String date2, Integer badge);
+
+     List<TableData> selecthengxiangkeyan(String date1, String date2, Integer badge);
+
+     List<TableData> selectzongxiangkeyan(String date1, String date2, Integer badge);
+
+     List<TableData> selectzhuzuo(String date1, String date2, Integer badge);
+
+     List<TableData> selectkeyanlunwen(String date1, String date2, Integer badge);
+
+     List<TableData> selectruanjianzhuzuoquan(String date1, String date2, Integer badge);
+
+     List<TableData> selectkeyanxiangmujiexiang(String date1, String date2, Integer badge);
+
+     List<TableData> selectxuekejingsai(String date1, String date2, Integer badge);
+
+     List<TableData> selectrongyuchenghao(String date1, String date2, Integer badge);
 }

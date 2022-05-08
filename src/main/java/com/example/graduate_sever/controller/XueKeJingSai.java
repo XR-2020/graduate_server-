@@ -59,9 +59,6 @@ public class XueKeJingSai {
     @RequestMapping(value = "/updateCompetition", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public JsonBean updateCompetition(@RequestBody CompetitionUO uo) throws IOException {
         StringBuffer str=new StringBuffer();
-        for (String s:uo.getPeople()) {
-            str.append(s+" ");
-        }
         Integer role= uo.getRole();
         String people=str.toString();
         CompetitionEntity element=new CompetitionEntity();
@@ -92,7 +89,7 @@ public class XueKeJingSai {
             bos.close();
         }
         element.setMetails(bos.toByteArray());
-        return service.insertJingSai(element);
+        return service.shenBaoJingSai(element);
     }
 
     @RequestMapping(value = "/XueKeJingSaiMetials")

@@ -40,4 +40,5 @@ public interface NewSystemCrawlerService {
     Metails getJiaoWuChuMetails(Integer id);
 
     int passJiaoWuChu(Integer id, Integer ispass);
+
 }
