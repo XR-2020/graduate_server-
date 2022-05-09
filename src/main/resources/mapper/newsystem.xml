@@ -62,10 +62,6 @@
         INSERT IGNORE INTO newsystem( `status`, `name`, `finishtime`, `partment`,`badge`,`type`) VALUES (#{status,jdbcType=INTEGER},#{name,jdbcType=VARCHAR},#{finishtime,jdbcType=VARCHAR},#{partment,jdbcType=VARCHAR},#{badge,jdbcType=INTEGER},#{type,jdbcType=VARCHAR})
     </insert>
 
-<!--    <insert id="shenBaoZhuZuo" parameterType="com.example.graduate_sever.entity.HeBingEntity" useGeneratedKeys="true" keyProperty="id">-->
-<!--        INSERT IGNORE INTO zhuzuo( `status`, `name`, `finishtime`, `partment`,`shenbao`,`metails`) VALUES (#{status,jdbcType=INTEGER},#{name,jdbcType=VARCHAR},#{finishtime,jdbcType=VARCHAR},#{partment,jdbcType=VARCHAR},#{badge,jdbcType=INTEGER},#{metails,jdbcType=BINARY})-->
-<!--    </insert>-->
-
     <insert id="insertNewSystemParticipation" parameterType="com.example.graduate_sever.entity.NewParticipationEntity" useGeneratedKeys="true">
         INSERT IGNORE INTO newparticipation(`badge`, `ach_id`, `type`) VALUES (#{badge,jdbcType=INTEGER},#{ach_id,jdbcType=INTEGER},#{type,jdbcType=VARCHAR})
     </insert>
@@ -73,38 +69,18 @@
     <insert id="shenBaoJiaoWuChu" parameterType="com.example.graduate_sever.entity.NewSystemEntity" useGeneratedKeys="true" keyProperty="id">
         INSERT IGNORE INTO newsystem( `status`, `name`, `finishtime`, `partment`,`shenbao`,`type`,`metails`) VALUES (#{status,jdbcType=INTEGER},#{name,jdbcType=VARCHAR},#{finishtime,jdbcType=VARCHAR},#{partment,jdbcType=VARCHAR},#{shenbao,jdbcType=INTEGER},#{type,jdbcType=VARCHAR},#{metails,jdbcType=BINARY})
     </insert>
-<!--    <select id="ZhuZuoMetails" parameterType="java.lang.Integer" resultMap="ZhuZuoMetails">-->
-<!--        SELECT metails FROM `zhuzuo` where id=#{id}-->
-<!--    </select>-->
 
-<!--    <select id="selectZhuZuo" parameterType="java.lang.String" resultMap="ZhuZuo">-->
-<!--        select * from `zhuzuo` where status=1 and finishtime between #{date1} and #{date2}-->
-<!--    </select>-->
+    <update id="editNewSystem">
+        update `newsystem` set partment=#{partment},finishtime=#{finishtime},name=#{name} where id=#{id}
+     </update>
 
-<!--    <select id="waitingzhuzuo" resultMap="ZhuZuo">-->
-<!--        <bind name="beginIndex" value="(pageIndex-1)*pageSize"></bind>-->
-<!--        select * from `zhuzuo` where status=0 limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}-->
-<!--    </select>-->
+    <delete id="deletePeople">
+       delete from newparticipation where ach_id=#{id} and type=#{type}
+    </delete>
 
-<!--    <update id="passZhuZuo" parameterType="java.lang.Integer">-->
-<!--        update `zhuzuo` set `status`=#{ispass} where id=#{id}-->
-<!--    </update>-->
-
-<!--    <select id="getZhuZuoDisData" resultMap="ZhuZuoMyShenBaoModel">-->
-<!--        <bind name="beginIndex" value="(pageIndex-1)*pageSize"></bind>-->
-<!--        select c.name,c.id,c.partment,c.finishtime from `zhuzuo` c,participation p where status=-1 and c.shenbao=p.badge and c.shenbao=#{badge} and p.type=1 limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}-->
-<!--    </select>-->
-        <update id="editNewSystem">
-            update `newsystem` set partment=#{partment},finishtime=#{finishtime},name=#{name} where id=#{id}
-        </update>
-
-        <delete id="deletePeople">
-            delete from newparticipation where ach_id=#{id} and type=#{type}
-        </delete>
-
-        <insert id="editNewSystemPeople">
-            INSERT IGNORE INTO newparticipation(`badge`, `ach_id`, `type`) VALUES (#{badge,jdbcType=INTEGER},#{ach_id,jdbcType=INTEGER},#{type,jdbcType=VARCHAR})
-        </insert>
+    <insert id="editNewSystemPeople">
+      INSERT IGNORE INTO newparticipation(`badge`, `ach_id`, `type`) VALUES (#{badge,jdbcType=INTEGER},#{ach_id,jdbcType=INTEGER},#{type,jdbcType=VARCHAR})
+    </insert>
 
     <select id="waitingnewSystem" resultMap="NewSystem">
         select * from newsystem where status=0 and type=#{type} limit #{beginIndex,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER};

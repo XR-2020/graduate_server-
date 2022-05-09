@@ -13,6 +13,7 @@ import com.example.graduate_sever.common.UO.KeJiChuUO;
 import com.example.graduate_sever.common.UO.NewSystemUO;
 import com.example.graduate_sever.common.UO.SheKeChuUO;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface KeJiChuService {
@@ -27,7 +28,7 @@ public interface KeJiChuService {
 
     JsonBean getKeJiChuDetail(Integer id, String type);
 
-    JsonBean insertKeJiChu(KeJiChuUO uo);
+    JsonBean insertKeJiChu(KeJiChuUO uo) throws IOException;
 
     List<Integer> getKeJiChuBadge(Integer id, String type);
 

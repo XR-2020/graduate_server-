@@ -1,13 +1,10 @@
 package com.example.graduate_sever.controller;
 
 import com.example.graduate_sever.common.DTO.DTO;
-import com.example.graduate_sever.common.EditUO.EditChanXueYanUO;
 import com.example.graduate_sever.common.EditUO.EditNewSystemUO;
 import com.example.graduate_sever.common.JsonBean;
 import com.example.graduate_sever.common.ResVO;
-import com.example.graduate_sever.common.UO.HeBingUO;
 import com.example.graduate_sever.common.UO.JiaoWuChuUO;
-import com.example.graduate_sever.common.UO.SheKeChuUO;
 import com.example.graduate_sever.common.WebCookie;
 import com.example.graduate_sever.service.NewSystemCrawlerService;
 import org.apache.http.client.methods.HttpPost;
@@ -16,12 +13,11 @@ import org.apache.http.impl.client.HttpClients;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.xml.ws.Action;
 import java.io.IOException;
 import java.util.List;
 
 @RestController
-public class NewSystemCrawler {
+public class JiaoWuChu {
     @Autowired
     private NewSystemCrawlerService newSystemCrawlerService;
 

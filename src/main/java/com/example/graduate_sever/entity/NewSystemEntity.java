@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Arrays;
 
 /*
-* 科研项目结项实体
+* 新系统实体
 * */
 
 public class NewSystemEntity implements Serializable {

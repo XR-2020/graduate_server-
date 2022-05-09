@@ -16,13 +16,6 @@
     <resultMap id="KeJiChuMetails" type="com.example.graduate_sever.common.Metails">
         <result column="metails" property="metails"/>
     </resultMap>
-<!--    <resultMap id="ZhuZuoMyShenBaoModel" type="com.example.graduate_sever.common.People">-->
-<!--        <result column="name" property="name"/>-->
-<!--        <result column="id" property="id"/>-->
-<!--        <result column="partment" property="partment"/>-->
-<!--        <result column="finishtime" property="finishtime"/>-->
-<!--    </resultMap>-->
-
     <!--参与人映射-->
     <resultMap id="KeJiChu_People" type="com.example.graduate_sever.common.People">
         <result column="badeg" jdbcType="INTEGER" javaType="int" property="badge"/>
@@ -30,9 +23,6 @@
     </resultMap>
     <resultMap id="KeJiChuChucount" type="java.lang.Long"/>
     <resultMap id="KeJiChuType" type="java.lang.String"/>
-<!--    <resultMap id="NewSystemMetails" type="com.example.graduate_sever.common.Metails">-->
-<!--        <result column="metails" property="metails"></result>-->
-<!--    </resultMap>-->
     <!--查询教研项目所有成果-->
     <!--application.yml 中通过 type-aliases-package 指定了实体类的为了，因此-->
     <select id="getAllKeJiChu" resultMap="NewSystem,KeJiChuChucount">
@@ -82,5 +72,9 @@
     <select id="waitingKeJiChuPageToTal" resultMap="KeJiChuChucount">
         select count(*) KeJiChuChucount from kejichu where status=0 and type=#{type};
     </select>
+
+    <insert id="shenBaoKeJiChu" parameterType="com.example.graduate_sever.entity.NewSystemEntity" useGeneratedKeys="true" keyProperty="id">
+        INSERT IGNORE INTO kejichu( `status`, `name`, `finishtime`, `partment`,`shenbao`,`type`,`metails`) VALUES (#{status,jdbcType=INTEGER},#{name,jdbcType=VARCHAR},#{finishtime,jdbcType=VARCHAR},#{partment,jdbcType=VARCHAR},#{shenbao,jdbcType=INTEGER},#{type,jdbcType=VARCHAR},#{metails,jdbcType=BINARY})
+    </insert>
 </mapper>
 

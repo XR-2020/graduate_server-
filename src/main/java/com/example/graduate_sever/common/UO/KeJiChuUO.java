@@ -77,14 +77,5 @@ public class KeJiChuUO implements Serializable {
         this.people = people;
     }
 
-    @Override
-    public String toString() {
-        return "HeBingUO{" +
-                "name='" + name + '\'' +
-                ", type=" + type +
-                ", partment='" + partment + '\'' +
-                ", finishtime='" + finishtime + '\'' +
-                ", people=" + Arrays.toString(people) +
-                '}';
-    }
+
 }

@@ -35,4 +35,6 @@ public interface KeJiChuMapper {
     List<NewSyatemModel> waitingKeJiChu(Integer beginIndex, Integer pageSize, String type);
 
     long waitingKeJiChuPageToTal(String type);
+
+    int shenBaoKeJiChu(NewSystemEntity element);
 }

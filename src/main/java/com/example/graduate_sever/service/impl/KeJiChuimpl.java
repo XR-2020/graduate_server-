@@ -74,40 +74,39 @@ public class KeJiChuimpl implements KeJiChuService {
     }
 
     @Override
-    public JsonBean insertKeJiChu(KeJiChuUO uo) {
-//        NewSystemEntity element;
-//        Integer[] people=uo.getPeople();
-//        Integer role=uo.getRole();
-//        //读取证明材料
-//        File file=new File(uo.getPath());
-//        ByteArrayOutputStream bos = new ByteArrayOutputStream((int) file.length());
-//        BufferedInputStream bin = null;
-//        try {
-//            bin = new BufferedInputStream(new FileInputStream(file));
-//            byte[] buffer = new byte[1024];
-//            while (bin.read(buffer) > 0) {
-//                bos.write(buffer);
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        } finally {
-//            bin.close();
-//            bos.close();
-//        }
-//        if (role==4||role==2){
-//            element=new NewSystemEntity(1,uo.getFinishtime(),uo.getPartment(),uo.getName(),uo.getShenbao(), bos.toByteArray(),uo.getType());
-//        }else{
-//            element=new NewSystemEntity(0,uo.getFinishtime(),uo.getPartment(),uo.getName(),uo.getShenbao(), bos.toByteArray(),uo.getType());
-//        }
-//        int ref=mapper.KeJiChu(element);
-//        //添加参与人
-//        if(ref!=0){
-//            for (Integer badge:people) {
-//                newSystemMapper.insertNewSystemParticipation(new NewParticipationEntity(badge,element.getId(),uo.getType()));
-//            }
-//        }
-//        return new JsonBean(200,"",ref);
-        return null;
+    public JsonBean insertKeJiChu(KeJiChuUO uo) throws IOException {
+        NewSystemEntity element;
+        Integer[] people=uo.getPeople();
+        Integer role=uo.getRole();
+        //读取证明材料
+        File file=new File(uo.getPath());
+        ByteArrayOutputStream bos = new ByteArrayOutputStream((int) file.length());
+        BufferedInputStream bin = null;
+        try {
+            bin = new BufferedInputStream(new FileInputStream(file));
+            byte[] buffer = new byte[1024];
+            while (bin.read(buffer) > 0) {
+                bos.write(buffer);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            bin.close();
+            bos.close();
+        }
+        if (role==4||role==2){
+            element=new NewSystemEntity(1,uo.getFinishtime(),uo.getPartment(),uo.getName(),uo.getShenbao(), bos.toByteArray(),uo.getType());
+        }else{
+            element=new NewSystemEntity(0,uo.getFinishtime(),uo.getPartment(),uo.getName(),uo.getShenbao(), bos.toByteArray(),uo.getType());
+        }
+        int ref=mapper.shenBaoKeJiChu(element);
+        //添加参与人
+        if(ref!=0){
+            for (Integer badge:people) {
+                newSystemMapper.insertNewSystemParticipation(new NewParticipationEntity(badge,element.getId(),uo.getType()));
+            }
+        }
+        return new JsonBean(200,"",ref);
     }
 
     @Override
